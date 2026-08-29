@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": 1,
+  "build": 249896,
+  "locale": "zhCN",
+  "sourceUrl": "https://api.hearthstonejson.com/v1/249896/zhCN/cards.json",
+  "sourceSha256": "0a48530c48e0c15995790fcbedbc4d6e07474d8d1cf1c18eaaad8f2f0c1d3a3c",
+  "sourceByteLength": 10010735,
+  "selectedCards": [
+    {
+      "id": "RLK_843",
+      "dbfId": 86274,
+      "name": "奥术箭",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "RETURN_OF_THE_LICH_KING",
+      "text": "造成$2点伤害。<b>法力渴求（8）：</b>改为造成$3点伤害。",
+      "mechanics": [
+        "MANATHIRST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BAR_541",
+      "dbfId": 63056,
+      "name": "符文宝珠",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "THE_BARRENS",
+      "text": "造成$2点伤害。<b>发现</b>一张法术牌。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DRG_066",
+      "dbfId": 55416,
+      "name": "辟法奇美拉",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "DRAGONS",
+      "text": "<b>剧毒</b>。<b>扰魔</b>",
+      "mechanics": [
+        "ELUSIVE",
+        "POISONOUS"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BOT_563",
+      "dbfId": 49356,
+      "name": "战争机兵",
+      "cost": 5,
+      "attack": 6,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "BOOMSDAY",
+      "text": "<b>磁力</b>",
+      "mechanics": [
+        "MAGNETIC"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BOT_309",
+      "dbfId": 48529,
+      "name": "可升级机器人",
+      "cost": 2,
+      "attack": 1,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "BOOMSDAY",
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_029",
+      "dbfId": 315,
+      "name": "火球术",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "造成$6点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_023",
+      "dbfId": 555,
+      "name": "奥术智慧",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "抽两张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_182",
+      "dbfId": 90,
+      "name": "冰风雪人",
+      "cost": 4,
+      "attack": 4,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "CS2_120",
+      "dbfId": 1369,
+      "name": "淡水鳄",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_168",
+      "dbfId": 191,
+      "name": "鱼人袭击者",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "MURLOC",
+      "races": [
+        "MURLOC"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_172",
+      "dbfId": 216,
+      "name": "血沼迅猛龙",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_200",
+      "dbfId": 1686,
+      "name": "石拳食人魔",
+      "cost": 6,
+      "attack": 6,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "CS2_189",
+      "dbfId": 389,
+      "name": "精灵弓箭手",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>造成1点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_196",
+      "dbfId": 257,
+      "name": "剃刀猎手",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>召唤一个1/1的野猪。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_179",
+      "dbfId": 635,
+      "name": "森金持盾卫士",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>嘲讽</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BT_233",
+      "dbfId": 57718,
+      "name": "剑盾猛攻",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "BLACK_TEMPLE",
+      "text": "对一个随从造成$2点伤害。获得2点护甲值。",
+      "collectible": true
+    },
+    {
+      "id": "EX1_606",
+      "dbfId": 1023,
+      "name": "盾牌格挡",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "获得5点护甲值。抽一张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_106",
+      "dbfId": 401,
+      "name": "炽炎战斧",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "EX1_400",
+      "dbfId": 636,
+      "name": "旋风斩",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "对所有随从造成$1点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_105",
+      "dbfId": 1007,
+      "name": "英勇打击",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "在本回合中，使你的英雄获得+4攻击力。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_108",
+      "dbfId": 785,
+      "name": "斩杀",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "消灭一个受伤的敌方随从。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_119",
+      "dbfId": 1370,
+      "name": "绿洲钳嘴龟",
+      "cost": 4,
+      "attack": 2,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_118",
+      "dbfId": 1653,
+      "name": "岩浆暴怒者",
+      "cost": 3,
+      "attack": 5,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_121",
+      "dbfId": 41,
+      "name": "霜狼步兵",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>嘲讽</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_150",
+      "dbfId": 413,
+      "name": "雷矛特种兵",
+      "cost": 5,
+      "attack": 4,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>造成2点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DS1_055",
+      "dbfId": 582,
+      "name": "暗鳞治愈者",
+      "cost": 5,
+      "attack": 4,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>为所有友方角色恢复#2点生命值。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "NAGA",
+      "races": [
+        "NAGA"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EX1_025",
+      "dbfId": 523,
+      "name": "机械幼龙技工",
+      "cost": 4,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>召唤一个2/1的机械幼龙。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_186",
+      "dbfId": 712,
+      "name": "作战傀儡",
+      "cost": 7,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "CORE_GVG_053",
+      "dbfId": 69741,
+      "name": "盾甲侍女",
+      "cost": 5,
+      "attack": 5,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "CORE_HIDDEN",
+      "text": "<b>战吼：</b>\n获得5点护甲值。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_OG_149",
+      "dbfId": 120573,
+      "name": "暴虐食尸鬼",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>战吼：</b>对所有其他随从造成1点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EX1_029",
+      "dbfId": 658,
+      "name": "麻风侏儒",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "text": "<b>亡语：</b>对敌方英雄造成2点伤害。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EX1_556",
+      "dbfId": 778,
+      "name": "麦田傀儡",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "text": "<b>亡语：</b>召唤一个2/1的损坏的傀儡。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_001",
+      "dbfId": 2539,
+      "name": "炎枪术",
+      "cost": 5,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "对一个随从造成$25点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "AT_006",
+      "dbfId": 2549,
+      "name": "达拉然铁骑士",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>法术伤害+1</b>\n<b>激励：</b>获得<b>法术伤害+1</b>。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_007",
+      "dbfId": 2571,
+      "name": "嗜法者",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>战吼：</b>双方玩家各获取一张随机法术牌，你获取的那张法力值消耗减少（2）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_064",
+      "dbfId": 2729,
+      "name": "怒袭",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "造成$3点伤害。获得3点\n护甲值。",
+      "collectible": true
+    },
+    {
+      "id": "AT_066",
+      "dbfId": 2711,
+      "name": "奥格瑞玛狼骑士",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>激励：</b>使你的武器获得+1攻击力。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_068",
+      "dbfId": 2754,
+      "name": "加固",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "使你具有<b>嘲讽</b>的随从获得+2/+2。",
+      "collectible": true
+    },
+    {
+      "id": "AT_082",
+      "dbfId": 2486,
+      "name": "低阶侍从",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>激励：</b>\n获得+1攻击力。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_002",
+      "dbfId": 2541,
+      "name": "轮回",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>奥秘：</b>当一个友方随从死亡时，随机召唤一个法力值消耗相同的随从。",
+      "mechanics": [
+        "SECRET"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_003",
+      "dbfId": 2545,
+      "name": "英雄之魂",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "你的英雄技能会额外造成1点伤害。",
+      "mechanics": [
+        "HEROPOWER_DAMAGE"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_005",
+      "dbfId": 2542,
+      "name": "变形术：野猪",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "使一个随从变形成为一个4/2并具有<b>冲锋</b>的野猪。",
+      "collectible": true
+    },
+    {
+      "id": "AT_065",
+      "dbfId": 2756,
+      "name": "国王护卫者",
+      "cost": 3,
+      "attack": 3,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你控制任何具有<b>嘲讽</b>的随从，便获得+1耐久度。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_069",
+      "dbfId": 2733,
+      "name": "格斗陪练师",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>嘲讽</b>\n<b>战吼：</b>使一个随从获得<b>嘲讽</b>。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_071",
+      "dbfId": 2758,
+      "name": "阿莱克丝塔萨的勇士",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你的手牌中有龙牌，便获得+1攻击力和<b>冲锋</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_086",
+      "dbfId": 2576,
+      "name": "破坏者",
+      "cost": 3,
+      "attack": 4,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>下个回合敌方英雄技能的法力值消耗增加（5）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_088",
+      "dbfId": 2491,
+      "name": "穆戈尔的勇士",
+      "cost": 6,
+      "attack": 8,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "50%几率攻击错误的敌人。",
+      "mechanics": [
+        "FORGETFUL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_105",
+      "dbfId": 2502,
+      "name": "受伤的克瓦迪尔",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>对自身造成3点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_106",
+      "dbfId": 2259,
+      "name": "圣光勇士",
+      "cost": 3,
+      "attack": 4,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>\n<b>沉默</b>一个恶魔。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_108",
+      "dbfId": 2627,
+      "name": "重甲战马",
+      "cost": 4,
+      "attack": 5,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>揭示双方牌库里的一张随从牌。如果你的牌法力值消耗较大，则获得<b>冲锋</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_004",
+      "dbfId": 2572,
+      "name": "奥术冲击",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "对一个随从造成$2点伤害。该法术受到的<b>法术伤害</b>增益效果翻倍。",
+      "mechanics": [
+        "RECEIVES_DOUBLE_SPELLDAMAGE_BONUS"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_008",
+      "dbfId": 2544,
+      "name": "考达拉幼龙",
+      "cost": 6,
+      "attack": 6,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "你可以使用任意次数的英雄技能。",
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_017",
+      "dbfId": 2569,
+      "name": "暮光守护者",
+      "cost": 4,
+      "attack": 2,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你的手牌中有龙牌，便获得+1攻击力和<b>嘲讽</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_067",
+      "dbfId": 2753,
+      "name": "猛犸人头领",
+      "cost": 4,
+      "attack": 5,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "同时对其攻击目标相邻的随从造成伤害。",
+      "collectible": true
+    },
+    {
+      "id": "AT_080",
+      "dbfId": 2517,
+      "name": "要塞指挥官",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "每个回合你可以使用两次英雄技能。",
+      "collectible": true
+    },
+    {
+      "id": "AT_098",
+      "dbfId": 2573,
+      "name": "杂耍吞法者",
+      "cost": 6,
+      "attack": 6,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>战吼：</b>复制对手的英雄技能。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_099",
+      "dbfId": 2598,
+      "name": "科多兽骑手",
+      "cost": 6,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>激励：</b>召唤一个3/5的作战科多兽。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_113",
+      "dbfId": 2509,
+      "name": "征募官",
+      "cost": 5,
+      "attack": 5,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>激励：</b>将一个2/2的侍从置入你的手牌。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_009",
+      "dbfId": 2546,
+      "name": "罗宁",
+      "cost": 8,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>亡语：</b>将三张奥术飞弹置入你的手牌。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_070",
+      "dbfId": 2757,
+      "name": "天空上尉库拉格",
+      "cost": 7,
+      "attack": 4,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>冲冲冲冲锋</b>\n每有一个友方海盗，本牌的法力值消耗便减少（1）点。",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "race": "PIRATE",
+      "races": [
+        "PIRATE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_072",
+      "dbfId": 2760,
+      "name": "瓦里安·乌瑞恩",
+      "cost": 10,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>战吼：</b>抽三张牌。将抽到的随从牌直接置入战场。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_122",
+      "dbfId": 2724,
+      "name": "穿刺者戈莫克",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你拥有至少四个其他随从，则造成4点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_boar",
+      "dbfId": 298,
+      "name": "野猪",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ]
+    },
+    {
+      "id": "EX1_025t",
+      "dbfId": 59,
+      "name": "机械幼龙",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "set": "LEGACY",
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL",
+        "DRAGON"
+      ]
+    },
+    {
+      "id": "skele21",
+      "dbfId": 471,
+      "name": "损坏的傀儡",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "set": "EXPERT1",
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ]
+    },
+    {
+      "id": "HERO_08",
+      "dbfId": 637,
+      "name": "吉安娜·普罗德摩尔",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_08bp",
+      "dbfId": 807,
+      "name": "火焰冲击",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n造成$1点伤害。"
+    },
+    {
+      "id": "HERO_01",
+      "dbfId": 7,
+      "name": "加尔鲁什·地狱咆哮",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_01bp",
+      "dbfId": 725,
+      "name": "全副武装！",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n获得$d2点护甲值。"
+    },
+    {
+      "id": "GAME_005",
+      "dbfId": 1746,
+      "name": "幸运币",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "NEUTRAL",
+      "set": "CORE",
+      "text": "在本回合中，获得一个\n法力水晶。"
+    }
+  ]
+}

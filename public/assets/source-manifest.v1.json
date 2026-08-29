@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "board:witchwood",
+      "kind": "BOARD",
+      "sourceUrl": "https://blizzard.gamespress.com/Kit/Details/The-Witchwood-Announcement-Press-Kit",
+      "localPath": "/assets/board/witchwood-board.jpg",
+      "purpose": "展示战棋盘视觉",
+      "sha256": "2922dea2b76fba1ab52c271ef2c0ce4e35b9ec2a9a29835e25267047ea7ab285",
+      "byteLength": 276804
+    },
+    {
+      "id": "card-back:dark-wood",
+      "kind": "CARD_BACK",
+      "sourceUrl": "https://blizzard.gamespress.com/Kit/Details/The-Witchwood-Announcement-Press-Kit",
+      "localPath": "/assets/card-back/in-a-dark-wood.png",
+      "purpose": "对手隐藏手牌卡背",
+      "sha256": "3a2c5f6662c561b1932ec5e78c202dcac343cfda0a3d1d03181ea466006c4b5b",
+      "byteLength": 3209228
+    },
+    {
+      "id": "card:BAR_541",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BAR_541.png",
+      "localPath": "/assets/cards/BAR_541.png",
+      "sha256": "12216382e622f8184f00b56a7131d64ddc720f194b13613f8e8fcd0662e73a9f",
+      "byteLength": 476396,
+      "purpose": "符文宝珠 的官方中文渲染图"
+    },
+    {
+      "id": "card:BOT_309",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BOT_309.png",
+      "localPath": "/assets/cards/BOT_309.png",
+      "sha256": "6910456827d76ecbbd5aebe78b82e27841147c5cc74eba3d3fc6efa163f47f95",
+      "byteLength": 485390,
+      "purpose": "可升级机器人 的官方中文渲染图"
+    },
+    {
+      "id": "card:BOT_563",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BOT_563.png",
+      "localPath": "/assets/cards/BOT_563.png",
+      "sha256": "ca39eccabdbba275ed7bad46fabf1b61a4a180927e5fbefe4b37dc89227b8144",
+      "byteLength": 506622,
+      "purpose": "战争机兵 的官方中文渲染图"
+    },
+    {
+      "id": "card:BT_233",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BT_233.png",
+      "localPath": "/assets/cards/BT_233.png",
+      "sha256": "9e30a29f7e3fdfcbbcca806ed03478e51e8e1632176ff7eaf4f4952a49611f2a",
+      "byteLength": 439831,
+      "purpose": "剑盾猛攻 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_GVG_053",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_GVG_053.png",
+      "localPath": "/assets/cards/CORE_GVG_053.png",
+      "sha256": "f038ff848a8d6dfa6b6c170e996c71330b1b96567d676eadd4605a9ef0fbf84d",
+      "byteLength": 443123,
+      "purpose": "盾甲侍女 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_OG_149",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_OG_149.png",
+      "localPath": "/assets/cards/CORE_OG_149.png",
+      "sha256": "c902b550f921a74f48f78184963a4b6b9172f2680b3bf45e3d695932e9653858",
+      "byteLength": 515392,
+      "purpose": "暴虐食尸鬼 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_023",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_023.png",
+      "localPath": "/assets/cards/CS2_023.png",
+      "sha256": "d667c1f036768f608c41c1535c965aa0f8a79db5fad1d395a136ad2addf9b445",
+      "byteLength": 451887,
+      "purpose": "奥术智慧 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_029",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_029.png",
+      "localPath": "/assets/cards/CS2_029.png",
+      "sha256": "984a6b702a159da9402a8180f3113f0b99760a019bbd2c3b6254bae97893ec80",
+      "byteLength": 416404,
+      "purpose": "火球术 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_105",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_105.png",
+      "localPath": "/assets/cards/CS2_105.png",
+      "sha256": "c63d517d8ad7135a1000b58bb0c76ac8e97dd2bb5c9002c3ec154ba1981c5293",
+      "byteLength": 448439,
+      "purpose": "英勇打击 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_106",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_106.png",
+      "localPath": "/assets/cards/CS2_106.png",
+      "sha256": "5801cd61618e381c75d0916fef36f8d744194919c99aa2fb204449bdf58670ea",
+      "byteLength": 440521,
+      "purpose": "炽炎战斧 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_108",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_108.png",
+      "localPath": "/assets/cards/CS2_108.png",
+      "sha256": "a3efcbd3e984d62aed29154e3a2824fa39a2620ed1ea2e7c1a373a72c34f1027",
+      "byteLength": 470112,
+      "purpose": "斩杀 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_118",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_118.png",
+      "localPath": "/assets/cards/CS2_118.png",
+      "sha256": "32299f2b0fafc913d92b9dd2be5dd4cef6f4d3c94665cbd3e7c0537c0d4dc7c5",
+      "byteLength": 484986,
+      "purpose": "岩浆暴怒者 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_119",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_119.png",
+      "localPath": "/assets/cards/CS2_119.png",
+      "sha256": "4dbbfb5dc012b2fd13f005ee6b67a033e6779d95b93ec2352d7157dd4eeaae9e",
+      "byteLength": 474924,
+      "purpose": "绿洲钳嘴龟 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_120",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_120.png",
+      "localPath": "/assets/cards/CS2_120.png",
+      "sha256": "86deb86e3f2e005dd4c36079fc810b6d2b80f334865dd044cc9c09a073135812",
+      "byteLength": 491993,
+      "purpose": "淡水鳄 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_121",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_121.png",
+      "localPath": "/assets/cards/CS2_121.png",
+      "sha256": "4b65b8f4788e749552c3cd2a9e39342581b32eb5bb5eecc11c8aa6d24136a248",
+      "byteLength": 475924,
+      "purpose": "霜狼步兵 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_150",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_150.png",
+      "localPath": "/assets/cards/CS2_150.png",
+      "sha256": "ebc8eafe7c83037b1b2d53c927afb87314542373d003fdc2937fa2a740ab16a6",
+      "byteLength": 491601,
+      "purpose": "雷矛特种兵 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_168",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_168.png",
+      "localPath": "/assets/cards/CS2_168.png",
+      "sha256": "69de036a15f1a9e23d3a22d1672a3b82986548585702ec904bd3298db2b00d2c",
+      "byteLength": 474037,
+      "purpose": "鱼人袭击者 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_172",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_172.png",
+      "localPath": "/assets/cards/CS2_172.png",
+      "sha256": "daea70381118edc3ea58eb3bb1e1a02b8c768451069e0c77be37814fb4f75a2f",
+      "byteLength": 492583,
+      "purpose": "血沼迅猛龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_179",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_179.png",
+      "localPath": "/assets/cards/CS2_179.png",
+      "sha256": "0b88d3cb6ea4e6e6954468fcefbff49a0e0a3c671c13ad71bb9b1774124deb85",
+      "byteLength": 478901,
+      "purpose": "森金持盾卫士 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_182",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_182.png",
+      "localPath": "/assets/cards/CS2_182.png",
+      "sha256": "b913eac50871cc0237df64593668f29de3e833d29273a205989554513772906c",
+      "byteLength": 482860,
+      "purpose": "冰风雪人 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_186",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_186.png",
+      "localPath": "/assets/cards/CS2_186.png",
+      "sha256": "e4e44f66049cc70b66297b9a35e1c64f0cae66f2b14ffc5a0bf3c5d6bfbd0a29",
+      "byteLength": 491417,
+      "purpose": "作战傀儡 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_189",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_189.png",
+      "localPath": "/assets/cards/CS2_189.png",
+      "sha256": "3e90627426561c1b9ead7879707e30d777b9ff7ed288b623b54f1fa88b921992",
+      "byteLength": 495299,
+      "purpose": "精灵弓箭手 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_196",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_196.png",
+      "localPath": "/assets/cards/CS2_196.png",
+      "sha256": "dac221dc5a5e01e41287e97cbcf2a2e2fc4eb21237ea4c4d4e1eb86ee4073064",
+      "byteLength": 498712,
+      "purpose": "剃刀猎手 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_200",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_200.png",
+      "localPath": "/assets/cards/CS2_200.png",
+      "sha256": "fa28bf70937dd59c33a3bcfbc3204264d1c0c9bde1b4f5414859aa6997031d1b",
+      "byteLength": 469767,
+      "purpose": "石拳食人魔 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_boar",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_boar.png",
+      "localPath": "/assets/cards/CS2_boar.png",
+      "sha256": "1d762636776027d26f0a3916fa17e39053c82653ed705f7a46f47851ccfac75b",
+      "byteLength": 473652,
+      "purpose": "野猪 的官方中文渲染图"
+    },
+    {
+      "id": "card:DRG_066",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DRG_066.png",
+      "localPath": "/assets/cards/DRG_066.png",
+      "sha256": "c481245f2d05d2c1bb8261e5d5e4db54d2f0a7a8337c71bc410daabd3b52ccc9",
+      "byteLength": 505038,
+      "purpose": "辟法奇美拉 的官方中文渲染图"
+    },
+    {
+      "id": "card:DS1_055",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DS1_055.png",
+      "localPath": "/assets/cards/DS1_055.png",
+      "sha256": "311faf1461837c647594c838cb4f196106d3806d5d4f5e949bc1e2c801f9ab33",
+      "byteLength": 515965,
+      "purpose": "暗鳞治愈者 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_025",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_025.png",
+      "localPath": "/assets/cards/EX1_025.png",
+      "sha256": "cbd8e6159304021fc9cade1a6d7260e8d75dada26c758a490af060f6dedaeb22",
+      "byteLength": 494451,
+      "purpose": "机械幼龙技工 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_025t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_025t.png",
+      "localPath": "/assets/cards/EX1_025t.png",
+      "sha256": "42f7b9d9bdc0419ce1ca39383875260b6ccfdd9912d28cc4d9e4defdc60800b7",
+      "byteLength": 490176,
+      "purpose": "机械幼龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_029",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_029.png",
+      "localPath": "/assets/cards/EX1_029.png",
+      "sha256": "321384982e7ce21ba27b78634d31788df08d5589af5151888ff09f2340acae04",
+      "byteLength": 427528,
+      "purpose": "麻风侏儒 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_400",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_400.png",
+      "localPath": "/assets/cards/EX1_400.png",
+      "sha256": "60528bf41ed625d0f057e4237a887dc4343ddf77d84cc18eb71910ce460fd667",
+      "byteLength": 460322,
+      "purpose": "旋风斩 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_556",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_556.png",
+      "localPath": "/assets/cards/EX1_556.png",
+      "sha256": "6eaa2804c4660e413d57692d0261ed3be28f5652c567408d5fed9103f832c8cb",
+      "byteLength": 485361,
+      "purpose": "麦田傀儡 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_606",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_606.png",
+      "localPath": "/assets/cards/EX1_606.png",
+      "sha256": "96c0c5a2ad196629758449a23ceb31d201d4388d04b1f82267999400aee823f0",
+      "byteLength": 468812,
+      "purpose": "盾牌格挡 的官方中文渲染图"
+    },
+    {
+      "id": "card:GAME_005",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/GAME_005.png",
+      "localPath": "/assets/cards/GAME_005.png",
+      "sha256": "20765f194242db5d4debe4627e81896b97a3c9be4eb88d7e9854f3d3e6fec0e2",
+      "byteLength": 431500,
+      "purpose": "幸运币 的官方中文渲染图"
+    },
+    {
+      "id": "card:RLK_843",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/RLK_843.png",
+      "localPath": "/assets/cards/RLK_843.png",
+      "sha256": "33598983ae96db04dc8d13d5e9450b2e840d5eed0ba2930a1d7bf2cc62661fa2",
+      "byteLength": 467711,
+      "purpose": "奥术箭 的官方中文渲染图"
+    },
+    {
+      "id": "card:skele21",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/skele21.png",
+      "localPath": "/assets/cards/skele21.png",
+      "sha256": "fb69e9458b77d0bb042bc46fb3c6054733b877b7c2481b246ff5fa741bb17901",
+      "byteLength": 465439,
+      "purpose": "损坏的傀儡 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_01bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_01bp.png",
+      "localPath": "/assets/hero-powers/HERO_01bp.png",
+      "sha256": "dfd277959f7d2b1fabc0cf01b778b60db1563e4bd9c79b5e2782ec24dda7f3e1",
+      "byteLength": 389370,
+      "purpose": "全副武装！ 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_08bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_08bp.png",
+      "localPath": "/assets/hero-powers/HERO_08bp.png",
+      "sha256": "ec6c1032c05bea2c4345b161eaeb9535853b71aa8f5c008587ce25ecf2e42c69",
+      "byteLength": 382583,
+      "purpose": "火焰冲击 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_01",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_01.png",
+      "localPath": "/assets/heroes/HERO_01.png",
+      "sha256": "23a6da69c4362c1adb4fe83b107ca0b136a2ed151eb6c98c953689ff69615358",
+      "byteLength": 466402,
+      "purpose": "加尔鲁什·地狱咆哮 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_08",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_08.png",
+      "localPath": "/assets/heroes/HERO_08.png",
+      "sha256": "893eb757858978d7e6e6f140a435f954fd3d119cdcfcb0e3fa6f4a8e8e20ed9d",
+      "byteLength": 484621,
+      "purpose": "吉安娜·普罗德摩尔 的官方中文渲染图"
+    }
+  ]
+}

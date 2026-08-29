@@ -1,0 +1,15 @@
+export * from '@/compat/capabilityGuards'
+export * from '@/compat/compatibilityMatrix.v1'
+export * from '@/compat/rawInput'
+export * from '@/compat/versionGuards'
+
+export {
+  COMPATIBILITY_MATRIX_V1 as COMPATIBILITY_MATRIX,
+  CURRENT_COMPATIBILITY_TUPLE_V1 as CURRENT_COMPATIBILITY_TUPLE,
+  M1_COMPATIBILITY_ROW_V1 as M1_COMPATIBILITY,
+  M2_COMPATIBILITY_ROW_V1 as M2_COMPATIBILITY,
+  M3_COMPATIBILITY_ROW_V1 as M3_COMPATIBILITY,
+  M1_COMPATIBILITY_ROW_V1 as M1_COMPATIBILITY_ROW,
+  M2_COMPATIBILITY_ROW_V1 as M2_COMPATIBILITY_ROW,
+  M3_COMPATIBILITY_ROW_V1 as M3_COMPATIBILITY_ROW,
+} from '@/compat/compatibilityMatrix.v1'
