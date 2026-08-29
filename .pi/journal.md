@@ -1,5 +1,11 @@
 # 项目流水
 
+## 2026-08-29 · candidate 分支合并到 root master
+
+- candidate 当前实现固化为 `ui/official-reference-hero-layout` 分支，提交 `1bd6f66`；root 现有配置与流水固化为 `master` 基线提交 `b795f6e`。
+- 通过允许无共同祖先的本地合并将 candidate 接入 root，合并提交为 `6029659`；源码、测试、配置、官方素材、scripts 与 `.pi` 留痕已进入 root。
+- `.artifacts`、`.cache`、`.workflow`、Playwright 证据、截图、tmp 与本地 settings 保持工作区状态；合并后 `pnpm install --frozen-lockfile`、目标 Vitest 17/17、typecheck、lint、architecture、build 全部通过。
+
 ## 2026-08-29 · 按官方参考图重做英雄头像、法力水晶与牌库
 
 - 读取主人提供的官方战场截图，按其核心结构重做英雄区：头像使用官方本地英雄图裁切并叠加竖向金色拱形框，实时生命宝石保持公开 projection 驱动。
