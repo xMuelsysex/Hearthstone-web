@@ -1,5 +1,63 @@
 # 项目流水
 
+## 2026-08-29 · 卡牌可用高亮、攻击死亡预告与牌库放大
+
+- 英雄头像与英雄技能的 board inspection 改用与战场卡牌一致的纯卡面大预览；手牌可使用卡牌、战场可攻击随从分别显示绿色环，带可立即触发效果的可用手牌显示金黄色环覆盖提示。
+- `ATTACK` legal action 新增 `projectedDeathEntityIds`，由共享战斗计算复用武器攻击与剧毒规则；GameBoard 汇总所有合法攻击结果，在敌我双方涉及的预计死亡随从上显示骷髅预告标记。
+- 双方牌库牌背尺寸调整为桌面约 128px、低高度桌面约 120px、移动端约 88px，保留数量、空牌库、悬停和键盘访问；浏览器实测 1280×720/390×844 无横向溢出。
+- 组件/引擎目标测试 20/20、全量 Vitest 26/26、browser 1/1、typecheck、lint、architecture、build 141 modules、M1 Chromium 12/12 全部通过；console errors=0。
+
+## 2026-08-29 · 法力水晶靠近手牌与炉石式托盘
+
+- 从 Hero 内部胶囊提取 `ManaTray`，将双方托盘放到各自手牌附近；桌面玩家托盘位于手牌上缘，对手托盘位于手牌区域内，移动端保持紧凑布局。
+- 逐颗生成永久法力槽与临时水晶，亮槽、空槽、临时槽使用独立视觉状态；`data-mana-current`、`data-mana-max`、`data-mana-temporary` 和可访问标签继续绑定公开 projection。
+- GameBoard 组件测试 15/15、typecheck、lint、architecture、build 140 modules、M1 Chromium 12/12 通过；1280×720 与 390×844 浏览器复核通过，390px `scrollWidth=375`，console errors=0。
+
+## 2026-08-29 · 预览属性数值与目标型英雄技能箭头
+
+- 战场纯卡面预览的费用、攻击、生命数值按 440px 桌面卡面与 300px 移动端卡面同步放大，实时值继续来自公开 projection。
+- 目标型 `HERO_POWER` 拖拽复用 `USE_HERO_POWER` legal action、现有 drop target 和固定 SVG 箭头层，箭头状态隐藏拖拽副本；无目标技能保留现有点击、键盘和普通拖拽行为。
+- GameBoard 组件测试 15/15、typecheck、lint、architecture、build 140 modules、M1 Chromium 12/12 通过；1280px、835px、390px 浏览器检查通过，390px `scrollWidth=375`，console errors=0。
+
+## 2026-08-29 · 战场预览放大、纯卡面与拖拽源隐藏
+
+- 战场随从 inspection 预览改为纯完整卡面，隐藏重复名称、数值和关键词说明；桌面卡面放大到 440px 并定位到视口约 22% 中线，移动端使用 300px。
+- 箭头目标模式仅渲染 SVG 箭头，不再渲染跟随指针的拖拽卡牌副本；手牌源卡在指针越过源卡实际边界后隐藏，回拖进入边界立即恢复。
+- 离手状态继续由实时几何判定驱动，使用源卡自身边界兼容手牌卡面溢出容器的布局；M1 拖拽辅助断言同步覆盖起始箭头和副本可见性。
+- GameBoard 组件测试 14/14、typecheck、lint、architecture、build 140 modules、M1 Chromium 11/11 通过；1280×720、835px、390×844 浏览器复核通过，390px `scrollWidth=375`，console errors=0。
+
+## 2026-08-29 · 卡牌预览定位与目标箭头
+
+- inspection source 增加 hand/board 模式：手牌悬停预览跟随当前指针在卡牌位置放大，战场卡牌预览移动到视口左侧约 30% 的中心线；Discover 预览保留对话框内定位。
+- 新增固定 SVG 目标箭头层：手牌法术拖拽卡牌完整离开手牌区域后显示法术箭头，战场可攻击卡牌按下拖拽时立即显示攻击箭头；箭头目标中心继续来自现有 drop target 与 legal action descriptor。
+- GameBoard 组件测试 14/14、typecheck、lint、architecture、build 140 modules、M1 Chromium 11/11 通过；1280×720 与 390×844 浏览器检查通过，console errors=0。
+
+## 2026-08-29 · 全量补齐战场随从原画
+
+- 对照主人示例图确认第二张 `BOT_309` 为正确原画样本，其余四张为 `BOT_563`、`CS2_179`、`CS2_196`、`CS2_boar`；随后扩展到全部 48 个可进入战场的随从 definition。
+- `scripts/freeze-assets.mjs` 从 `source-selected.249896.json` 自动枚举所有 `MINION`，补齐 HearthstoneJSON `orig` 原画并生成 124 项 manifest；椭圆裁切与实时属性显示保持统一。
+- manifest 与 GameBoard 数据驱动测试覆盖 48 个随从；组件测试 14/14、typecheck、lint、build 140 modules、architecture、M1 Chromium 11/11 通过；1280×720 与 390×844 浏览器尺寸检查通过。
+
+## 2026-08-29 · 英雄无框原画与战场椭圆卡牌
+
+- 英雄头像与英雄技能切换到 HearthstoneJSON `orig` 原画，移除 CSS 外围框、圆环和多重阴影，保留生命/费用徽章、交互和可访问性状态。
+- 战场随从切换到对应官方原画并裁切为椭圆视窗，攻击/生命实时宝石继续由公开 projection 驱动；手牌、Discover、inspection 与拖拽预览继续使用完整中文渲染图。
+- 新增 3 张战场卡、2 个英雄与 2 个英雄技能的本地原画清单和生成脚本；组件测试 11/11、typecheck、lint、architecture、build 140 modules、M1 Chromium 11/11 通过，1280×720 与 390×844 浏览器复核通过，console errors=0。
+
+## 2026-08-29 · 结束回合垂直居中与双方牌库环绕
+
+- 结束回合/换牌控制移入右侧场景控制区，桌面按对手牌库 → 回合按钮 → 我方牌库的顺序垂直排列，按钮中心对齐战场高度 50%。
+- 牌库继续复用公开 projection 的 `DeckTracker`，数量、空牌状态、悬停与键盘聚焦保持不变；移动端控制区继续纵向可滚动。
+- 更新 GameBoard 组件契约与 M1 几何断言；Vitest 11/11、typecheck、lint、architecture、build、M1 Chromium 11/11 通过，1280×720/1920×1080 与 390px 浏览器复核通过，console errors=0。
+
+## 2026-08-29 · 战场拖拽跟手、镜像英雄与简化战场卡面
+
+- 拖拽预览改为以指针坐标为中心锚点，桌面与移动端均随鼠标/触控指针移动；M1 helper 增加预览卡面中心与指针的几何断言。
+- 对手区域改为“对手手牌 → 对手英雄 → 对手战场”，与玩家“玩家战场 → 玩家英雄 → 玩家手牌”形成水平镜像；英雄头像继续居中，英雄技能保持头像右侧。
+- 战场卡牌复用 `CardFace` 的实时公开投影数值，新增原画裁切视觉，只显示原画、攻击和生命；费用、名称、效果文字保留在手牌、Discover、inspection 与拖拽预览。
+- 右侧牌库改为对手在上、我方在下的纵向排列，公开数量、has-cards/empty 状态、悬停和键盘聚焦交互保持不变。
+- 验证：目标 Vitest 3 files / 17 tests、typecheck、lint、architecture、build 140 modules、M1 11/11、M3/M4 2/2；1280×720、1920×1080、390px 真实浏览器几何通过，拖拽中心误差约 1px，console errors=0。
+
 ## 2026-08-29 · candidate 分支合并到 root master
 
 - candidate 当前实现固化为 `ui/official-reference-hero-layout` 分支，提交 `1bd6f66`；root 现有配置与流水固化为 `master` 基线提交 `b795f6e`。

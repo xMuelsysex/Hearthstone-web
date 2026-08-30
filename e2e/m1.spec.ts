@@ -58,7 +58,7 @@ async function clickControlAndWaitForBatch(page: Page, button: Locator): Promise
   await expect(board).toHaveAttribute('data-animation-state', 'complete')
 }
 
-async function dragAndWaitForBatch(page: Page, source: Locator, target: Locator): Promise<void> {
+async function dragAndWaitForBatch(page: Page, source: Locator, target: Locator, expectedArrowKind?: 'spell' | 'attack' | 'hero-power'): Promise<void> {
   const board = page.locator('.hearth-board')
   await expect(board).toHaveAttribute('data-animation-state', 'complete')
   await expect(page.getByRole('status')).toHaveText('命令已就绪')
@@ -75,28 +75,46 @@ async function dragAndWaitForBatch(page: Page, source: Locator, target: Locator)
   const startY = sourceBox.y + sourceBox.height / 2
   const endX = targetBox.x + targetBox.width / 2
   const endY = targetBox.y + targetBox.height / 2
+  const sourceIsInHand = await source.evaluate((element) => element.closest('.player-hand') !== null)
   await page.mouse.move(startX, startY)
   await page.mouse.down()
-  await expect(page.locator('[data-drag-preview]')).toBeVisible()
-  const previewBefore = await page.locator('[data-drag-preview]').boundingBox()
+  const previewCard = page.locator('[data-drag-preview] .game-card')
+  const arrowAtStart = await page.locator('[data-target-arrow]').count() > 0
+  if (expectedArrowKind) {
+    await expect(page.locator(`[data-target-arrow][data-arrow-kind="${expectedArrowKind}"]`)).toHaveCount(expectedArrowKind === 'spell' ? 0 : 1)
+  }
+  if (sourceIsInHand) expect(arrowAtStart).toBe(false)
+  if (arrowAtStart) {
+    await expect(previewCard).toHaveCount(0)
+  } else {
+    await expect(previewCard).toBeVisible()
+  }
+  const previewBefore = arrowAtStart ? null : await previewCard.boundingBox()
   await page.mouse.move(endX, endY, { steps: 8 })
   await expect(target).toHaveClass(/drop-target-active/)
-  const previewAfter = await page.locator('[data-drag-preview]').boundingBox()
-  expect(previewBefore).not.toBeNull()
-  expect(previewAfter).not.toBeNull()
-  if (previewBefore && previewAfter) {
-    expect(Math.hypot(previewAfter.x - previewBefore.x, previewAfter.y - previewBefore.y)).toBeGreaterThan(8)
-    const boardBox = await board.boundingBox()
-    expect(boardBox).not.toBeNull()
-    if (boardBox) {
-      const previewRight = previewAfter.x + (previewAfter.width ?? 0)
-      const hasRoomLeftOfPointer = endX - boardBox.x > (previewAfter.width ?? 0) + 16
-      if (hasRoomLeftOfPointer) expect(previewRight).toBeLessThanOrEqual(endX + 2)
-      else expect(previewAfter.x).toBeLessThanOrEqual(boardBox.x + 18)
+  if (expectedArrowKind) {
+    await expect(page.locator(`[data-target-arrow][data-arrow-kind="${expectedArrowKind}"]`)).toHaveAttribute('data-arrow-valid', 'true')
+    await expect(page.locator(`[data-target-arrow][data-arrow-target-entity-id]`)).toHaveCount(1)
+  }
+  const arrowVisible = await page.locator('[data-target-arrow]').count() > 0
+  if (arrowVisible) {
+    await expect(previewCard).toHaveCount(0)
+    if (sourceIsInHand) await expect(source).toBeHidden()
+  } else {
+    const previewAfter = await previewCard.boundingBox()
+    expect(previewBefore).not.toBeNull()
+    expect(previewAfter).not.toBeNull()
+    if (previewBefore && previewAfter) {
+      expect(Math.hypot(previewAfter.x - previewBefore.x, previewAfter.y - previewBefore.y)).toBeGreaterThan(8)
+      expect(Math.abs(previewBefore.x + previewBefore.width / 2 - startX)).toBeLessThan(10)
+      expect(Math.abs(previewBefore.y + previewBefore.height / 2 - startY)).toBeLessThan(10)
+      expect(Math.abs(previewAfter.x + previewAfter.width / 2 - endX)).toBeLessThan(10)
+      expect(Math.abs(previewAfter.y + previewAfter.height / 2 - endY)).toBeLessThan(10)
     }
   }
   await page.mouse.up()
   await expect(page.locator('[data-drag-preview]')).toHaveCount(0)
+  await expect(page.locator('[data-target-arrow]')).toHaveCount(0)
   await expect.poll(() => board.getAttribute('data-event-key')).not.toBe(previousEventKey)
   await expect(board).toHaveAttribute('data-animation-state', 'complete')
 }
@@ -167,7 +185,7 @@ test('first launch tutorial completes all five real-card steps and persists comp
   await expect(page.locator('.player-hand .game-card[data-card-definition-id="RLK_843"][data-tutorial-role="source"]')).toHaveCount(1)
   await expect(page.locator('.hero-strip[aria-label="旅店老板"] .hero-portrait[data-tutorial-role="target"]')).toHaveCount(1)
 
-  await dragAndWaitForBatch(page, handCard(page, 'RLK_843'), hero(page, '旅店老板'))
+  await dragAndWaitForBatch(page, handCard(page, 'RLK_843'), hero(page, '旅店老板'), 'spell')
   await expect(page.getByRole('button', { name: '下一步' })).toBeVisible()
   await page.getByRole('button', { name: '重置本步' }).click()
   await expect(page.getByRole('button', { name: '下一步' })).toHaveCount(0)
@@ -177,7 +195,7 @@ test('first launch tutorial completes all five real-card steps and persists comp
   await expect(page.getByRole('heading', { name: '剧毒' })).toBeVisible()
   await expect(page.locator('.player-board .game-card[data-card-definition-id="DRG_066"][data-tutorial-role="source"]')).toHaveCount(1)
   await expect(page.locator('.opponent-board .game-card[data-card-definition-id="CS2_119"][data-tutorial-role="target"]')).toHaveCount(1)
-  await dragAndWaitForBatch(page, boardCard(page, 'player', 'DRG_066'), boardCard(page, 'opponent', 'CS2_119'))
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'DRG_066'), boardCard(page, 'opponent', 'CS2_119'), 'attack')
   await page.getByRole('button', { name: '下一步' }).click()
 
   await expect(page.getByRole('heading', { name: '扰魔' })).toBeVisible()
@@ -232,10 +250,10 @@ test('showcase completes five keywords, exports a completed log, summarizes it, 
   await expect(page.locator('.log-summary')).toContainText('胜利')
 
   await page.getByRole('button', { name: '开始展示战' }).click()
-  await expect(page.locator('.action-panel')).toContainText('确认换牌')
+  await expect(page.locator('.scene-turn-control')).toContainText('确认换牌')
   await expect(page.locator('.drag-hint')).toHaveCount(0)
   await page.getByRole('button', { name: /确认换牌/ }).click()
-  await expect(page.locator('.action-panel')).toHaveText('结束回合')
+  await expect(page.locator('.scene-turn-control')).toHaveText('结束回合')
   await expect(page.locator('.action-panel .danger')).toHaveCount(0)
   await expect(page.getByRole('button', { name: '执行推荐动作' })).toHaveCount(0)
   await expect(page.locator('.coverage-panel .complete')).toHaveCount(0)
@@ -245,8 +263,8 @@ test('Escape opens an empty settings shell and keeps surrender out of the action
   await initializeReadyStorage(page)
   await startShowcase(page)
 
-  await expect(page.locator('.action-panel')).toHaveText('结束回合')
-  await expect(page.locator('.action-panel')).not.toContainText('认输')
+  await expect(page.locator('.scene-turn-control')).toHaveText('结束回合')
+  await expect(page.locator('.scene-turn-control')).not.toContainText('认输')
   await expect(page.locator('.drag-hint')).toHaveCount(0)
 
   await page.keyboard.press('Escape')
@@ -317,12 +335,22 @@ test('multi-tab start and active-log import reject conflicts while completed imp
   await expect(secondPage.getByRole('status')).toContainText('导入失败：ACTIVE_GAME_CONFLICT')
 
   await input.setInputFiles({ name: 'completed.json', mimeType: 'application/json', buffer: Buffer.from(sourceLogs.completed) })
-  await expect(secondPage.locator('.action-panel')).toContainText('确认换牌')
+  await expect(secondPage.locator('.scene-turn-control')).toContainText('确认换牌')
   await expect(secondPage.locator('.drag-hint')).toHaveCount(0)
   await expect(secondPage.getByRole('button', { name: /确认换牌/ })).toBeVisible()
   await expect(secondPage.getByRole('button', { name: '执行推荐动作' })).toHaveCount(0)
   await expect.poll(() => secondPage.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? '{}').activeGameLog.gameId, STORAGE_KEY)).toBe(activeGameId)
   await expect.poll(() => secondPage.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? '{}').completedGameLogs.length, STORAGE_KEY)).toBe(1)
+})
+
+test('targeted hero power uses a target arrow without a drag preview', async ({ page }) => {
+  await initializeReadyStorage(page)
+  await startShowcase(page)
+  await clickControlAndWaitForBatch(page, page.getByRole('button', { name: '结束回合' }))
+
+  const heroPower = page.locator('.hero-player .hero-power-slot')
+  await expect(heroPower).toBeEnabled()
+  await dragAndWaitForBatch(page, heroPower, hero(page, '旅店老板'), 'hero-power')
 })
 
 test('blocked official assets render explicit fallbacks and the 720p layout has no horizontal overflow', async ({ page }) => {
@@ -357,9 +385,67 @@ test('public inspection stays on public entities and inspection-only keyboard in
   await expect(publicCard).toBeVisible()
   await publicCard.hover()
   await expect(page.locator('[data-inspection-overlay]')).toHaveCount(1)
+  await expect(page.locator('[data-inspection-overlay]')).toHaveAttribute('data-inspection-mode', 'hand')
+  await expect(page.locator('[data-inspection-overlay] .hand-hover-card')).toBeVisible()
+  const handBox = await publicCard.boundingBox()
+  const handPreviewBox = await page.locator('[data-inspection-overlay]').boundingBox()
+  expect(handBox).not.toBeNull()
+  expect(handPreviewBox).not.toBeNull()
+  if (handBox && handPreviewBox) {
+    expect(Math.abs(handPreviewBox.x + handPreviewBox.width / 2 - (handBox.x + handBox.width / 2))).toBeLessThan(20)
+    expect(Math.abs(handPreviewBox.y + handPreviewBox.height / 2 - (handBox.y + handBox.height / 2))).toBeLessThan(40)
+  }
   await expect(publicCard).toHaveAttribute('aria-describedby', 'card-keyword-tooltip')
   await expect(page.getByRole('tooltip')).toContainText('法力渴求')
   await expect(page.locator('.inspection-layer')).toHaveCSS('pointer-events', 'none')
+
+  const battlefieldCard = page.locator('.opponent-board .game-card').first()
+  await battlefieldCard.hover()
+  await expect(page.locator('[data-inspection-overlay]')).toHaveAttribute('data-inspection-mode', 'board')
+  const battlefieldPreview = await page.locator('[data-inspection-overlay]').boundingBox()
+  const viewport = await page.evaluate(() => ({ width: innerWidth, height: innerHeight }))
+  expect(battlefieldPreview).not.toBeNull()
+  if (battlefieldPreview) {
+    const centerX = battlefieldPreview.x + battlefieldPreview.width / 2
+    const centerY = battlefieldPreview.y + battlefieldPreview.height / 2
+    expect(centerX).toBeGreaterThanOrEqual(viewport.width * 0.18 - 1)
+    expect(centerX).toBeLessThanOrEqual(viewport.width * 0.28 + 1)
+    expect(centerX).toBeLessThan(viewport.width * 0.5)
+    await expect(page.locator('[data-inspection-overlay]')).toHaveAttribute('data-inspection-presentation', 'card-only')
+    await expect(page.locator('[data-inspection-overlay] .battlefield-inspection-card')).toBeVisible()
+    await expect(page.locator('[data-inspection-overlay] .inspection-card-copy')).toHaveCount(0)
+    const battlefieldCardPreview = await page.locator('[data-inspection-overlay] .battlefield-inspection-card').boundingBox()
+    expect(battlefieldCardPreview).not.toBeNull()
+    if (battlefieldCardPreview) expect(battlefieldCardPreview.width).toBeGreaterThan(136)
+    expect(centerY).toBeGreaterThan(viewport.height * 0.3)
+    expect(centerY).toBeLessThan(viewport.height * 0.7)
+    const previewStats = await page.locator('[data-inspection-overlay]').evaluate((overlay) => {
+      const readFontSize = (selector: string) => Number.parseFloat(getComputedStyle(overlay.querySelector(selector) as HTMLElement).fontSize)
+      return {
+        cost: readFontSize('.card-cost'),
+        attack: readFontSize('.card-attack'),
+        health: readFontSize('.card-health'),
+      }
+    })
+    expect(previewStats.cost).toBeGreaterThan(20)
+    expect(previewStats.attack).toBeGreaterThan(20)
+    expect(previewStats.health).toBeGreaterThan(20)
+  }
+
+  const playerHeroPreviewSource = page.locator('.hero-player .hero-portrait')
+  await playerHeroPreviewSource.hover()
+  await expect(page.locator('[data-inspection-overlay]')).toHaveAttribute('data-inspection-presentation', 'card-only')
+  await expect(page.locator('[data-inspection-overlay] .large-inspection-card--hero')).toBeVisible()
+  await expect(page.locator('[data-inspection-overlay] .inspection-card-copy')).toHaveCount(0)
+  const heroPreviewBox = await page.locator('[data-inspection-overlay] .large-inspection-card--hero').boundingBox()
+  expect(heroPreviewBox?.width ?? 0).toBeGreaterThan(136)
+
+  await page.locator('.hero-player .hero-power-slot').hover()
+  await expect(page.locator('[data-inspection-overlay]')).toHaveAttribute('data-inspection-presentation', 'card-only')
+  await expect(page.locator('[data-inspection-overlay] .large-inspection-card--hero_power')).toBeVisible()
+  await expect(page.locator('[data-inspection-overlay] .inspection-card-copy')).toHaveCount(0)
+  const heroPowerPreviewBox = await page.locator('[data-inspection-overlay] .large-inspection-card--hero_power').boundingBox()
+  expect(heroPowerPreviewBox?.width ?? 0).toBeGreaterThan(136)
 
   const hiddenCard = page.locator('.opponent-hand-card').first()
   await expect(hiddenCard).toHaveAttribute('data-hidden-card', 'true')
@@ -388,7 +474,7 @@ test('desktop geometry fills both viewport sizes and keeps one scene control wit
         const element = document.querySelector<HTMLElement>(selector)
         if (!element) return null
         const box = element.getBoundingClientRect()
-        return { x: box.x, y: box.y, width: box.width, height: box.height, right: box.right, bottom: box.bottom }
+        return { x: box.x, y: box.y, top: box.top, width: box.width, height: box.height, right: box.right, bottom: box.bottom }
       }
       return {
         viewport: { width: innerWidth, height: innerHeight },
@@ -398,16 +484,20 @@ test('desktop geometry fills both viewport sizes and keeps one scene control wit
         opponentHero: read('.opponent-lane .hero-portrait'),
         playerHero: read('.player-lane .hero-portrait'),
         opponentHand: read('.opponent-hand'),
+        opponentBoard: read('.opponent-board'),
+        playerBoard: read('.player-board'),
         playerHand: read('.player-hand'),
-        action: read('.action-panel .secondary'),
+        action: read('.scene-control .secondary'),
         rail: read('.game-status'),
         deckPanel: read('.deck-panel'),
         opponentDeck: read('[data-deck-owner="opponent"]'),
         selfDeck: read('[data-deck-owner="self"]'),
+        opponentDeckPile: read('[data-deck-owner="opponent"] .deck-pile'),
+        selfDeckPile: read('[data-deck-owner="self"] .deck-pile'),
         opponentPower: read('.hero-opponent .hero-power-slot'),
         playerPower: read('.hero-player .hero-power-slot'),
-        playerMana: read('.hero-player .mana-crystal'),
-        opponentMana: read('.hero-opponent .mana-crystal'),
+        playerMana: read('.player-hand .mana-crystal'),
+        opponentMana: read('.opponent-hand .mana-crystal'),
       }
     })
     expect(metrics.shell?.width).toBe(viewport.width)
@@ -416,15 +506,24 @@ test('desktop geometry fills both viewport sizes and keeps one scene control wit
     expect(metrics.scroll.height).toBeLessThanOrEqual(viewport.height + 1)
     expect(metrics.board?.bottom).toBeLessThanOrEqual(viewport.height + 1)
     expect(metrics.opponentHero?.y).toBeLessThan(metrics.playerHero?.y ?? 0)
-    expect(metrics.opponentHand?.y).toBeGreaterThan(metrics.opponentHero?.bottom ?? 0)
-    expect(metrics.playerHand?.y).toBeGreaterThan(metrics.playerHero?.bottom ?? 0)
+    expect(metrics.opponentHand?.bottom).toBeLessThanOrEqual((metrics.opponentHero?.y ?? 0) + 1)
+    expect(metrics.opponentHero?.bottom).toBeLessThanOrEqual((metrics.opponentBoard?.y ?? 0) + 1)
+    expect(metrics.playerBoard?.bottom).toBeLessThanOrEqual((metrics.playerHero?.y ?? 0) + 1)
+    expect(metrics.playerHero?.bottom).toBeLessThanOrEqual((metrics.playerHand?.y ?? 0) + 1)
     expect(Math.abs((metrics.opponentHero?.x ?? 0) + (metrics.opponentHero?.width ?? 0) / 2 - ((metrics.playerHero?.x ?? 0) + (metrics.playerHero?.width ?? 0) / 2))).toBeLessThan(4)
     expect(metrics.opponentPower?.x).toBeGreaterThan((metrics.opponentHero?.right ?? 0) - 1)
     expect(metrics.playerPower?.x).toBeGreaterThan((metrics.playerHero?.right ?? 0) - 1)
     expect(metrics.opponentMana?.width).toBeGreaterThan(0)
     expect(metrics.playerMana?.width).toBeGreaterThan(0)
-    await expect(page.locator('.hero-player .mana-crystal')).toHaveAttribute('data-mana-current', /\d+/)
-    await expect(page.locator('.hero-player .mana-crystal')).toHaveAttribute('data-mana-max', /\d+/)
+    expect(metrics.opponentMana?.top).toBeGreaterThanOrEqual((metrics.opponentHand?.y ?? 0) - 1)
+    expect(metrics.opponentMana?.bottom).toBeLessThanOrEqual((metrics.opponentHand?.bottom ?? Number.POSITIVE_INFINITY) + 1)
+    expect(metrics.playerMana?.bottom).toBeLessThanOrEqual((metrics.playerHand?.y ?? Number.POSITIVE_INFINITY) + 1)
+    await expect(page.locator('.player-hand .mana-crystal')).toHaveAttribute('data-mana-current', /\d+/)
+    await expect(page.locator('.player-hand .mana-crystal')).toHaveAttribute('data-mana-max', /\d+/)
+    expect(metrics.action?.height).toBeGreaterThan(0)
+    expect(Math.abs((metrics.action?.y ?? 0) + (metrics.action?.height ?? 0) / 2 - viewport.height / 2)).toBeLessThan(8)
+    expect(metrics.opponentDeck?.bottom).toBeLessThanOrEqual((metrics.action?.y ?? 0) + 1)
+    expect(metrics.action?.bottom).toBeLessThanOrEqual((metrics.selfDeck?.y ?? Number.POSITIVE_INFINITY) + 1)
     expect(metrics.action?.x).toBeGreaterThan(metrics.board?.x ?? 0)
     expect(metrics.action?.right).toBeLessThanOrEqual(viewport.width + 1)
     expect(metrics.rail?.x).toBeGreaterThanOrEqual(0)
@@ -433,6 +532,9 @@ test('desktop geometry fills both viewport sizes and keeps one scene control wit
     expect(metrics.deckPanel?.right).toBeLessThanOrEqual(viewport.width + 1)
     expect(metrics.opponentDeck?.width).toBeGreaterThan(0)
     expect(metrics.selfDeck?.width).toBeGreaterThan(0)
+    expect(metrics.opponentDeckPile?.width).toBeGreaterThan(110)
+    expect(metrics.selfDeckPile?.width).toBeGreaterThan(110)
+    expect(metrics.opponentDeck?.bottom).toBeLessThan(metrics.selfDeck?.y ?? Number.POSITIVE_INFINITY)
   }
 })
 

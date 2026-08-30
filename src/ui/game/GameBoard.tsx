@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type AnimationEvent as ReactAnimationEvent, type CSSProperties, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type AnimationEvent as ReactAnimationEvent, type CSSProperties, type FocusEvent as ReactFocusEvent, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import { getCardDefinition } from '@/cards/registry'
 import type { CardDefinitionId } from '@/cards/types'
 import { usePlayerSession, type LegalActionDescriptor, type PlayerViewModel, type PublicEntityViewModel } from '@/app/context/playerSession'
@@ -55,9 +55,12 @@ type DragState = DragPayload & {
   pointerId: number
   startX: number
   startY: number
+  sourceX: number
+  sourceY: number
   x: number
   y: number
   moved: boolean
+  handExited: boolean
 }
 
 type PlayCardAction = Extract<LegalActionDescriptor, { type: 'PLAY_CARD' }>
@@ -67,18 +70,24 @@ type DragPreviewEntity = PublicEntityViewModel
 
 type TutorialHighlight = { role: 'source' | 'target' | 'excluded' | 'choice' }
 
+type InspectionMode = 'hand' | 'board'
+
 type InspectionSource = {
   sourceKey: string
   entity: PublicEntityViewModel
+  mode: InspectionMode
+  x: number
+  y: number
 }
 
 type InspectionBinding = {
   sourceKey: string
   tooltipId: string
   active: boolean
-  onPointerEnter: () => void
+  onPointerEnter: (event: ReactPointerEvent<HTMLElement>) => void
+  onPointerMove: (event: ReactPointerEvent<HTMLElement>) => void
   onPointerLeave: () => void
-  onFocus: () => void
+  onFocus: (event: ReactFocusEvent<HTMLElement>) => void
   onBlur: () => void
 }
 
@@ -87,6 +96,7 @@ function inspectionAttributes(inspection: InspectionBinding | undefined, hasKeyw
   return {
     'data-inspection-key': inspection.sourceKey,
     onPointerEnter: inspection.onPointerEnter,
+    onPointerMove: inspection.onPointerMove,
     onPointerLeave: inspection.onPointerLeave,
     onFocus: inspection.onFocus,
     onBlur: inspection.onBlur,
@@ -96,6 +106,10 @@ function inspectionAttributes(inspection: InspectionBinding | undefined, hasKeyw
 
 function tutorialAttributes(highlight: TutorialHighlight | undefined) {
   return highlight ? { 'data-tutorial-highlight': 'true', 'data-tutorial-role': highlight.role } : {}
+}
+
+function elementAtPoint(clientX: number, clientY: number): Element | null {
+  return typeof document.elementFromPoint === 'function' ? document.elementFromPoint(clientX, clientY) : null
 }
 
 function readDropTarget(element: Element | null): DropTarget | null {
@@ -147,6 +161,40 @@ function isEntityDropTarget(target: DropTarget | null, entityId: number): boolea
 
 function isZoneDropTarget(target: DropTarget | null, zone: DropZone): boolean {
   return target?.type === 'zone' && target.zone === zone
+}
+
+function isDragPreviewOutsideHand(x: number, y: number, entityId: number): boolean {
+  const hand = document.querySelector<HTMLElement>('.player-hand')
+  if (!hand) return false
+  const source = Array.from(hand.querySelectorAll<HTMLElement>('[data-entity-id]')).find((element) => element.getAttribute('data-entity-id') === String(entityId))
+  const rect = source?.getBoundingClientRect() ?? hand.getBoundingClientRect()
+  return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom
+}
+
+type Point = { x: number; y: number }
+
+function dropTargetPoint(target: DropTarget | null): Point | null {
+  if (!target) return null
+  const selector = target.type === 'entity'
+    ? `[data-drop-target="entity:${target.entityId}"]`
+    : `[data-drop-target="zone:${target.zone}"]`
+  const element = document.querySelector<HTMLElement>(selector)
+  if (!element) return null
+  const rect = element.getBoundingClientRect()
+  return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+}
+
+function curvedArrowPath(start: Point, end: Point): string {
+  const dx = end.x - start.x
+  const dy = end.y - start.y
+  const distance = Math.hypot(dx, dy)
+  if (distance < 1) return `M ${start.x} ${start.y} L ${end.x} ${end.y}`
+  const bend = Math.min(110, Math.max(28, distance * 0.16))
+  const control = {
+    x: start.x + dx * 0.5 - (dy / distance) * bend,
+    y: start.y + dy * 0.5 + (dx / distance) * bend,
+  }
+  return `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`
 }
 
 function placementIndexForPointer(pointerX: number): number {
@@ -203,10 +251,26 @@ function actionForKeyboard(payload: DragPayload, actions: LegalActionDescriptor[
   return actions.find((action) => action.type === 'USE_HERO_POWER') ?? null
 }
 
-function AssetImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  const [failed, setFailed] = useState(false)
-  if (failed) return <span className={`asset-fallback ${className ?? ''}`} role="img" aria-label={`${alt}素材加载失败`}>素材加载失败</span>
-  return <img src={src} alt={alt} className={className} draggable={false} onError={() => setFailed(true)} />
+function AssetImage({ src, alt, className, fallbackSrc }: { src: string; alt: string; className?: string; fallbackSrc?: string }) {
+  const [fallbackAttemptedFor, setFallbackAttemptedFor] = useState<string | null>(null)
+  const [failedSource, setFailedSource] = useState<string | null>(null)
+  const showingFallback = fallbackSrc !== undefined && fallbackAttemptedFor === src
+  if (failedSource === src) return <span className={`asset-fallback ${className ?? ''}`} role="img" aria-label={`${alt}素材加载失败`}>素材加载失败</span>
+  const imageSrc = showingFallback ? fallbackSrc : src
+  return <img src={imageSrc} alt={alt} className={className} draggable={false} onError={() => {
+    if (!showingFallback && fallbackSrc) {
+      setFallbackAttemptedFor(src)
+      return
+    }
+    setFailedSource(src)
+  }} />
+}
+
+function artAssetPath(entity: PublicEntityViewModel): string {
+  if (entity.assetPath.startsWith('/assets/cards/')) return `/assets/card-art/${entity.definitionId}.png`
+  if (entity.assetPath.startsWith('/assets/heroes/')) return `/assets/hero-art/${entity.definitionId}.png`
+  if (entity.assetPath.startsWith('/assets/hero-powers/')) return `/assets/hero-power-art/${entity.definitionId}.png`
+  return entity.assetPath
 }
 
 function cardRuntimeValues(entity: PublicEntityViewModel) {
@@ -222,39 +286,67 @@ function cardRuntimeValues(entity: PublicEntityViewModel) {
   }
 }
 
-function InspectionLayer({ entity }: { entity: PublicEntityViewModel }) {
+function cardEffectIsReady(entity: PublicEntityViewModel, playable: boolean): boolean {
+  if (!playable) return false
+  const definition = getCardDefinition(entity.definitionId)
+  const immediateEffect = definition.effect !== 'NONE' && !definition.effect.startsWith('DEATHRATTLE_')
+  const actionKeyword = definition.keywords.some((keyword) => keyword === 'DISCOVER' || keyword === 'MAGNETIC' || keyword === 'MANATHIRST')
+  return immediateEffect || actionKeyword
+}
+
+function InspectionLayer({ source }: { source: InspectionSource }) {
+  const { entity } = source
   const keywordText = entity.keywords.map((keyword) => `${KEYWORD_LABELS[keyword] ?? keyword}：${KEYWORD_DESCRIPTIONS[keyword] ?? '该关键词的公开规则说明。'}`).join('；')
   const values = cardRuntimeValues(entity)
+  const largeCardPreview = source.mode === 'board' && (
+    values.definition.type === 'MINION' || values.definition.type === 'HERO' || values.definition.type === 'HERO_POWER'
+  )
+  const battlefieldCardPreview = source.mode === 'board' && values.definition.type === 'MINION'
   const valueSummary = values.definition.type === 'HERO'
     ? `生命 ${entity.health}/${entity.maxHealth}`
     : values.hasStats
       ? `攻击 ${entity.attack} · ${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
       : `费用 ${values.definition.cost}`
+  const positionStyle = source.mode === 'hand' ? { left: `${source.x}px`, top: `${source.y}px` } : undefined
   return (
-    <div className="inspection-layer" data-inspection-overlay data-inspection-entity-id={entity.id} data-inspection-definition-id={entity.definitionId}>
-      <div className="inspection-card" aria-label={`公开预览：${entity.name}`}>
-        <div
-          className="inspection-card-art game-card compact"
-          data-card-definition-id={entity.definitionId}
-          data-entity-id={entity.id}
-          data-card-cost-current={values.definition.cost}
-          data-card-attack-current={values.hasStats ? entity.attack : undefined}
-          data-card-value-current={values.hasStats ? values.currentValue : undefined}
-          data-card-value-max={values.hasStats ? values.maximumValue : undefined}
-          data-card-value-label={values.hasStats ? values.valueLabel : undefined}
-        >
+    <div
+      className={`inspection-layer ${source.mode === 'hand' ? 'hand-hover-preview' : ''} ${largeCardPreview ? 'large-card-preview' : ''} ${battlefieldCardPreview ? 'battlefield-card-preview' : ''}`}
+      style={positionStyle}
+      data-inspection-overlay
+      data-inspection-mode={source.mode}
+      data-inspection-entity-id={entity.id}
+      data-inspection-definition-id={entity.definitionId}
+      data-inspection-presentation={largeCardPreview ? 'card-only' : undefined}
+    >
+      {source.mode === 'hand' ? (
+        <div className="hand-hover-card game-card" aria-label={`公开预览：${entity.name}`}>
           <CardFace entity={entity} imageAlt={`${entity.name}公开预览`} />
         </div>
-        <div className="inspection-card-copy">
-          <strong>{entity.name}</strong>
-          <span>{valueSummary}</span>
-          {values.definition.type === 'HERO' && entity.attack > 0 ? <span>攻击 {entity.attack}</span> : null}
-          {entity.armor > 0 ? <span>护甲 {entity.armor}</span> : null}
-          {entity.durability > 0 && values.valueLabel !== '耐久' ? <span>耐久 {entity.durability}</span> : null}
-          {entity.keywords.length > 0 ? <span>{entity.keywords.map((keyword) => KEYWORD_LABELS[keyword] ?? keyword).join(' · ')}</span> : null}
+      ) : (
+        <div className={`inspection-card ${largeCardPreview ? 'inspection-card--pure' : ''}`} aria-label={`公开预览：${entity.name}`}>
+          <div
+            className={`inspection-card-art game-card compact ${battlefieldCardPreview ? 'battlefield-inspection-card' : largeCardPreview ? `large-inspection-card large-inspection-card--${values.definition.type.toLowerCase()}` : ''}`}
+            data-card-definition-id={entity.definitionId}
+            data-entity-id={entity.id}
+            data-card-cost-current={values.definition.cost}
+            data-card-attack-current={values.hasStats ? entity.attack : undefined}
+            data-card-value-current={values.hasStats ? values.currentValue : undefined}
+            data-card-value-max={values.hasStats ? values.maximumValue : undefined}
+            data-card-value-label={values.hasStats ? values.valueLabel : undefined}
+          >
+            <CardFace entity={entity} imageAlt={`${entity.name}公开预览`} />
+          </div>
+          {largeCardPreview ? null : <div className="inspection-card-copy">
+            <strong>{entity.name}</strong>
+            <span>{valueSummary}</span>
+            {values.definition.type === 'HERO' && entity.attack > 0 ? <span>攻击 {entity.attack}</span> : null}
+            {entity.armor > 0 ? <span>护甲 {entity.armor}</span> : null}
+            {entity.durability > 0 && values.valueLabel !== '耐久' ? <span>耐久 {entity.durability}</span> : null}
+            {entity.keywords.length > 0 ? <span>{entity.keywords.map((keyword) => KEYWORD_LABELS[keyword] ?? keyword).join(' · ')}</span> : null}
+          </div>}
         </div>
-      </div>
-      {entity.keywords.length > 0 ? <div id={INSPECTION_TOOLTIP_ID} role="tooltip" className="keyword-tooltip">{keywordText}</div> : null}
+      )}
+      {entity.keywords.length > 0 && !largeCardPreview ? <div id={INSPECTION_TOOLTIP_ID} role="tooltip" className="keyword-tooltip">{keywordText}</div> : null}
     </div>
   )
 }
@@ -262,9 +354,10 @@ function InspectionLayer({ entity }: { entity: PublicEntityViewModel }) {
 type CardFaceProps = {
   entity: PublicEntityViewModel
   imageAlt?: string
+  battlefield?: boolean
 }
 
-function CardFace({ entity, imageAlt }: CardFaceProps) {
+function CardFace({ entity, imageAlt, battlefield = false }: CardFaceProps) {
   const values = cardRuntimeValues(entity)
   const attackState = entity.attack > values.definition.attack ? 'buffed' : entity.attack < values.definition.attack ? 'debuffed' : 'base'
   const valueState = values.currentValue < values.maximumValue
@@ -276,8 +369,8 @@ function CardFace({ entity, imageAlt }: CardFaceProps) {
         : 'base'
   return (
     <>
-      <AssetImage src={entity.assetPath} alt={imageAlt ?? `${entity.name}卡图`} />
-      {values.definition.type !== 'HERO' ? <span className="card-cost layered-card-cost" aria-label={`费用 ${values.definition.cost}`} data-card-cost-current={values.definition.cost}>{values.definition.cost}</span> : null}
+      {battlefield ? <span className="battlefield-art-window"><AssetImage src={artAssetPath(entity)} fallbackSrc={entity.assetPath} alt={imageAlt ?? `${entity.name}原画`} className="battlefield-card-art" /></span> : <AssetImage src={entity.assetPath} alt={imageAlt ?? `${entity.name}卡图`} />}
+      {!battlefield && values.definition.type !== 'HERO' ? <span className="card-cost layered-card-cost" aria-label={`费用 ${values.definition.cost}`} data-card-cost-current={values.definition.cost}>{values.definition.cost}</span> : null}
       {values.hasStats ? <span
         className="card-stats"
         aria-label={`攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`}
@@ -302,20 +395,35 @@ type CardProps = {
   onActivate?: (() => void) | undefined
   dropTargetId?: number
   dropTargetClassName?: string
+  battlefield?: boolean
   style?: CSSProperties
   inspection?: InspectionBinding | undefined
   tutorialHighlight?: TutorialHighlight | undefined
+  playable?: boolean
+  attackable?: boolean
+  effectReady?: boolean
+  projectedDeath?: boolean
 }
 
-function Card({ entity, compact = false, selected = false, onToggle, onPointerDown, onActivate, dropTargetId, dropTargetClassName = '', style, inspection, tutorialHighlight }: CardProps) {
+function Card({ entity, compact = false, selected = false, onToggle, onPointerDown, onActivate, dropTargetId, dropTargetClassName = '', battlefield = false, style, inspection, tutorialHighlight, playable = false, attackable = false, effectReady = false, projectedDeath = false }: CardProps) {
   const values = cardRuntimeValues(entity)
-  const accessibleLabel = values.hasStats
+  const baseAccessibleLabel = values.hasStats
     ? `${entity.name}，攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
     : values.definition.type === 'HERO'
       ? `${entity.name}英雄，生命 ${entity.health}/${entity.maxHealth}`
       : `${entity.name}，费用 ${values.definition.cost}`
-  const content = <CardFace entity={entity} />
-  const className = `game-card ${compact ? 'compact' : ''} ${selected ? 'selected' : ''} ${entity.exhausted ? 'exhausted' : ''} ${onPointerDown ? 'drag-source' : ''} ${dropTargetClassName}`
+  const cardStatusLabels = [
+    playable ? '可使用' : null,
+    attackable ? '可攻击' : null,
+    effectReady ? '特效可触发' : null,
+    projectedDeath ? '攻击后预计死亡' : null,
+  ].filter((label): label is string => label !== null)
+  const accessibleLabel = cardStatusLabels.length > 0 ? `${baseAccessibleLabel}，${cardStatusLabels.join('，')}` : baseAccessibleLabel
+  const content = <>
+    <CardFace entity={entity} battlefield={battlefield} />
+    {projectedDeath ? <span className="projected-death-marker" role="img" aria-label="预告：攻击后预计死亡" data-predicted-death="true">☠</span> : null}
+  </>
+  const className = `game-card ${battlefield ? 'battlefield-card' : ''} ${compact ? 'compact' : ''} ${selected ? 'selected' : ''} ${entity.exhausted ? 'exhausted' : ''} ${onPointerDown ? 'drag-source' : ''} ${playable ? 'card-playable' : ''} ${attackable ? 'card-attackable' : ''} ${effectReady ? 'card-effect-ready' : ''} ${projectedDeath ? 'card-projected-death' : ''} ${dropTargetClassName}`
   const commonProps = {
     'data-drop-target': dropTargetId === undefined ? undefined : `entity:${dropTargetId}`,
     'data-card-definition-id': entity.definitionId,
@@ -325,6 +433,10 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
     'data-card-value-current': values.hasStats ? values.currentValue : undefined,
     'data-card-value-max': values.hasStats ? values.maximumValue : undefined,
     'data-card-value-label': values.hasStats ? values.valueLabel : undefined,
+    'data-card-playable': playable ? 'true' : undefined,
+    'data-card-attackable': attackable ? 'true' : undefined,
+    'data-card-effect-ready': effectReady ? 'true' : undefined,
+    'data-predicted-death': projectedDeath ? 'true' : undefined,
     onPointerDown,
     style,
   }
@@ -351,6 +463,38 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
     >{content}</div>
   }
   return <article className={className} tabIndex={0} aria-label={accessibleLabel} {...commonProps} {...publicInspectionProps} {...highlightProps}>{content}</article>
+}
+
+type ManaTrayProps = {
+  mana: PlayerViewModel['self']['mana']
+  owner: 'self' | 'opponent'
+}
+
+function ManaTray({ mana, owner }: ManaTrayProps) {
+  const permanentCount = Math.max(0, Math.floor(mana.maximum))
+  const availablePermanentCount = Math.max(0, Math.min(permanentCount, Math.floor(mana.current)))
+  const temporaryCount = Math.max(0, Math.floor(mana.temporary))
+  return (
+    <div
+      className={`resource-pills mana-tray mana-crystal ${mana.current + mana.temporary > 0 ? 'mana-crystal--ready' : ''}`}
+      role="group"
+      aria-label={`法力 ${mana.current}/${mana.maximum}，临时 ${mana.temporary}`}
+      data-mana-owner={owner}
+      data-mana-current={mana.current}
+      data-mana-max={mana.maximum}
+      data-mana-temporary={mana.temporary}
+    >
+      <strong className="mana-crystal-value" aria-live="polite">{mana.current}/{mana.maximum}</strong>
+      <div className="mana-crystal-list" aria-hidden="true">
+        {Array.from({ length: permanentCount }, (_, index) => {
+          const filled = index < availablePermanentCount
+          return <span key={`permanent-${index + 1}`} className={`mana-crystal-gem ${filled ? 'mana-crystal-gem--filled' : 'mana-crystal-gem--empty'}`} data-mana-slot={index + 1} data-mana-kind="permanent" data-mana-state={filled ? 'filled' : 'empty'}><span className="mana-crystal-gem-shine" /></span>
+        })}
+        {Array.from({ length: temporaryCount }, (_, index) => <span key={`temporary-${index + 1}`} className="mana-crystal-gem mana-crystal-gem--temporary" data-mana-slot={permanentCount + index + 1} data-mana-kind="temporary" data-mana-state="temporary"><span className="mana-crystal-gem-shine" /></span>)}
+      </div>
+      {temporaryCount > 0 ? <small className="mana-crystal-temporary">+{temporaryCount}</small> : null}
+    </div>
+  )
 }
 
 type HeroProps = {
@@ -408,7 +552,7 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
         {...tutorialAttributes(tutorialHighlight)}
       >
         <span className="hero-art-window">
-          <AssetImage src={entity.assetPath} alt={`${label}英雄 ${entity.name}`} className="hero-art" />
+          <AssetImage src={artAssetPath(entity)} fallbackSrc={entity.assetPath} alt={`${label}英雄 ${entity.name}`} className="hero-art" />
         </span>
           <span className="hero-health-badge" aria-live="polite">{currentHealth}</span>
           {currentAttack > 0 ? <span className={`hero-attack-badge ${entity.attack > 0 ? 'hero-attack-badge--temporary' : ''}`} aria-label={`攻击 ${currentAttack}`} data-hero-attack-current={currentAttack}>{currentAttack}</span> : null}
@@ -449,24 +593,11 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
         {...tutorialAttributes(heroPowerTutorialHighlight)}
       >
         <span className="hero-power-art-window">
-          <AssetImage src={heroPower.assetPath} alt={`英雄技能 ${heroPower.name}`} className="hero-power-art" />
+          <AssetImage src={artAssetPath(heroPower)} fallbackSrc={heroPower.assetPath} alt={`英雄技能 ${heroPower.name}`} className="hero-power-art" />
           <span className="hero-power-cost" aria-hidden="true" data-card-cost-current={heroPowerDefinition.cost}>{heroPowerDefinition.cost}</span>
         </span>
         <span>{heroPower.name}</span>
         </button>
-        <div className="resource-pills">
-          <span
-            className={`mana-crystal ${mana.current > 0 ? 'mana-crystal--ready' : ''}`}
-            aria-label={`法力 ${mana.current}/${mana.maximum}，临时 ${mana.temporary}`}
-            data-mana-current={mana.current}
-            data-mana-max={mana.maximum}
-            data-mana-temporary={mana.temporary}
-          >
-            <span className="mana-crystal-shape" aria-hidden="true" />
-            <strong className="mana-crystal-value">{mana.current}/{mana.maximum}</strong>
-            {mana.temporary > 0 && <small className="mana-crystal-temporary">+{mana.temporary}</small>}
-          </span>
-        </div>
       </div>
     </section>
   )
@@ -509,12 +640,10 @@ export function GameBoard() {
   const [completedAnimationKey, setCompletedAnimationKey] = useState('')
   const [drag, setDrag] = useState<DragState | null>(null)
   const [dropTarget, setDropTarget] = useState<DropTarget | null>(null)
-  const [boardBounds, setBoardBounds] = useState<{ left: number; right: number } | null>(null)
   const [hoverInspection, setHoverInspection] = useState<InspectionSource | null>(null)
   const [focusInspection, setFocusInspection] = useState<InspectionSource | null>(null)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const suppressClickRef = useRef(false)
-  const boardRef = useRef<HTMLElement>(null)
   const mulligan = session.legalActions.find((action) => action.type === 'CONFIRM_MULLIGAN')
   const normalActions = session.legalActions.filter((action) => action.type !== 'CONFIRM_MULLIGAN' && action.type !== 'CONCEDE')
   const concede = session.legalActions.find((action) => action.type === 'CONCEDE')
@@ -544,7 +673,6 @@ export function GameBoard() {
   const dialogLifecycleRef = useRef<'closed' | 'open'>('closed')
   const discoverOpen = discoverChoiceIds.length > 0 && discoverDecisionId !== undefined
   const inspectedEntity = focusInspection ?? hoverInspection
-  const boardInspection = inspectedEntity?.sourceKey.startsWith('choice:') ? null : inspectedEntity
 
   function clearInspection(): void {
     setHoverInspection(null)
@@ -552,13 +680,19 @@ export function GameBoard() {
   }
 
   function inspectionFor(entity: PublicEntityViewModel, sourceKey = `entity:${entity.id}`): InspectionBinding {
+    const mode: InspectionMode = sourceKey.startsWith('choice:') || !session.view.self.hand.some((handEntity) => handEntity.id === entity.id) ? 'board' : 'hand'
+    const sourceAt = (x: number, y: number): InspectionSource => ({ sourceKey, entity, mode, x, y })
     return {
       sourceKey,
       tooltipId: INSPECTION_TOOLTIP_ID,
       active: inspectedEntity?.sourceKey === sourceKey,
-      onPointerEnter: () => setHoverInspection({ sourceKey, entity }),
+      onPointerEnter: (event) => setHoverInspection(sourceAt(event.clientX, event.clientY)),
+      onPointerMove: (event) => setHoverInspection((current) => current?.sourceKey === sourceKey ? sourceAt(event.clientX, event.clientY) : current),
       onPointerLeave: () => setHoverInspection((current) => current?.sourceKey === sourceKey ? null : current),
-      onFocus: () => setFocusInspection({ sourceKey, entity }),
+      onFocus: (event) => {
+        const rect = event.currentTarget.getBoundingClientRect()
+        setFocusInspection(sourceAt(rect.left + rect.width / 2, rect.top + rect.height / 2))
+      },
       onBlur: () => setFocusInspection((current) => current?.sourceKey === sourceKey ? null : current),
     }
   }
@@ -630,18 +764,19 @@ export function GameBoard() {
     if (!drag) return
     const handlePointerMove = (event: PointerEvent) => {
       if (event.pointerId !== drag.pointerId) return
-      const nextTarget = readDropTarget(document.elementFromPoint(event.clientX, event.clientY))
+      const nextTarget = readDropTarget(elementAtPoint(event.clientX, event.clientY))
       setDrag((current) => current && current.pointerId === event.pointerId ? {
         ...current,
         x: event.clientX,
         y: event.clientY,
         moved: current.moved || Math.hypot(event.clientX - current.startX, event.clientY - current.startY) > 6,
+        handExited: current.kind === 'HAND_CARD' ? isDragPreviewOutsideHand(event.clientX, event.clientY, current.entityId) : current.handExited,
       } : current)
       setDropTarget(nextTarget)
     }
     const handlePointerUp = (event: PointerEvent) => {
       if (event.pointerId !== drag.pointerId) return
-      const target = readDropTarget(document.elementFromPoint(event.clientX, event.clientY))
+      const target = readDropTarget(elementAtPoint(event.clientX, event.clientY))
       const action = actionForDrop(drag, target, event.clientX, session.legalActions, session.view)
       const moved = drag.moved || Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) > 6
       const shouldActivate = moved && action !== null
@@ -649,7 +784,6 @@ export function GameBoard() {
       suppressClickRef.current = moved
       setDrag(null)
       setDropTarget(null)
-      setBoardBounds(null)
       if (isMulliganDrop) setMulliganIds((current) => current.includes(drag.entityId) ? current : [...current, drag.entityId])
       else if (shouldActivate && action) {
         setHoverInspection(null)
@@ -678,21 +812,23 @@ export function GameBoard() {
     clearInspection()
     if (payload.kind === 'HAND_CARD' && !session.legalActions.some((action) => action.type === 'PLAY_CARD' && action.cardInstanceId === payload.entityId)) return
     if (event.pointerType === 'mouse' && event.button !== 0) return
+    const sourceRect = event.currentTarget.getBoundingClientRect()
     event.preventDefault()
     suppressClickRef.current = false
     event.currentTarget.setPointerCapture?.(event.pointerId)
-    const bounds = boardRef.current?.getBoundingClientRect()
-    setBoardBounds(bounds ? { left: bounds.left, right: bounds.right } : null)
     setDrag({
       ...payload,
       pointerId: event.pointerId,
       startX: event.clientX,
       startY: event.clientY,
+      sourceX: sourceRect.left + sourceRect.width / 2,
+      sourceY: sourceRect.top + sourceRect.height / 2,
       x: event.clientX,
       y: event.clientY,
       moved: false,
+      handExited: false,
     })
-    setDropTarget(readDropTarget(document.elementFromPoint(event.clientX, event.clientY)))
+    setDropTarget(readDropTarget(elementAtPoint(event.clientX, event.clientY)))
   }
 
   function activateFromKeyboard(payload: DragPayload): void {
@@ -770,18 +906,9 @@ export function GameBoard() {
 
   const selfHeroCanAttack = session.legalActions.some((action) => action.type === 'ATTACK' && action.attackSourceId === session.view.self.hero.id)
   const selfHeroPowerCanActivate = session.legalActions.some((action) => action.type === 'USE_HERO_POWER')
-  const boardRect = boardBounds
-  const previewLeft = drag
-    ? boardRect
-      ? Math.min(Math.max(boardRect.left + 16, drag.x - 244), Math.max(boardRect.left + 16, boardRect.right - 260))
-      : Math.min(Math.max(14, drag.x - 244), Math.max(14, window.innerWidth - 258))
-    : 14
-  const previewTop = drag
-    ? Math.min(Math.max(14, drag.y - 150), Math.max(14, window.innerHeight - 326))
-    : 14
   const dragPreviewStyle = drag ? {
-    left: `${previewLeft}px`,
-    top: `${previewTop}px`,
+    left: `${drag.x}px`,
+    top: `${drag.y}px`,
   } : undefined
   const tutorial = session.tutorial
   const visibleEntities = [
@@ -796,12 +923,30 @@ export function GameBoard() {
     ...session.view.opponent.board,
   ]
   const publicEntityForId = (entityId: number): PublicEntityViewModel | undefined => visibleEntities.find((entity) => entity.id === entityId)
-  const currentInspectionEntity = inspectedEntity
-    ? publicEntityForId(inspectedEntity.entity.id) ?? (inspectedEntity.sourceKey.startsWith('choice:') ? inspectedEntity.entity : null)
+  const currentInspectionSource = inspectedEntity
+    ? (() => {
+      const entity = publicEntityForId(inspectedEntity.entity.id) ?? (inspectedEntity.sourceKey.startsWith('choice:') ? inspectedEntity.entity : null)
+      return entity ? { ...inspectedEntity, entity } : null
+    })()
     : null
   const playActions = session.legalActions.filter((action): action is PlayCardAction => action.type === 'PLAY_CARD')
   const attackActions = session.legalActions.filter((action): action is Extract<LegalActionDescriptor, { type: 'ATTACK' }> => action.type === 'ATTACK')
+  const projectedDeathEntityIds = new Set(attackActions.flatMap((action) => action.projectedDeathEntityIds))
   const cardDefinitionForAction = (action: PlayCardAction): string | undefined => publicEntityForId(action.cardInstanceId)?.definitionId
+  const targetingSpell = drag?.kind === 'HAND_CARD'
+    && drag.handExited
+    && dragEntity !== undefined
+    && getCardDefinition(dragEntity.definitionId).type === 'SPELL'
+    && playActions.some((action) => action.cardInstanceId === drag.entityId && action.targetEntityId !== undefined)
+  const targetingAttack = (drag?.kind === 'BOARD_ENTITY' || drag?.kind === 'HERO')
+    && attackActions.some((action) => action.attackSourceId === drag.entityId)
+  const targetingHeroPower = drag?.kind === 'HERO_POWER'
+    && session.legalActions.some((action) => action.type === 'USE_HERO_POWER' && action.targetEntityId !== undefined)
+  const arrowKind = targetingSpell ? 'spell' : targetingHeroPower ? 'hero-power' : targetingAttack ? 'attack' : null
+  const arrowStart = drag && arrowKind ? { x: drag.sourceX, y: drag.sourceY } : null
+  const arrowEnd = drag && arrowKind ? dropTargetPoint(dropTarget) ?? { x: drag.x, y: drag.y } : null
+  const targetArrow = arrowKind && arrowStart && arrowEnd ? { kind: arrowKind, start: arrowStart, end: arrowEnd } : null
+  const arrowViewport = typeof window === 'undefined' ? { width: 0, height: 0 } : { width: window.innerWidth, height: window.innerHeight }
   const tutorialHighlightFor = (entity: PublicEntityViewModel): TutorialHighlight | undefined => {
     if (!tutorial) return undefined
     if (tutorial.stepId === 'MANATHIRST') {
@@ -869,7 +1014,6 @@ export function GameBoard() {
       ) : null}
 
       <section
-        ref={boardRef}
         className="hearth-board"
         data-animation-state={animating ? 'running' : 'complete'}
         data-event-key={session.lastEventKey}
@@ -877,6 +1021,10 @@ export function GameBoard() {
         <div className="battlefield-decor" aria-hidden="true" />
         <div className="battlefield-layout">
           <section className="battle-lane opponent-lane" aria-label="对手区域">
+            <div className="opponent-hand" aria-label={`对手手牌 ${session.view.opponent.hand.length} 张`} data-hand-count={session.view.opponent.hand.length}>
+              {session.view.opponent.hand.map((card, index) => <div key={card.id} className="opponent-hand-card" data-hidden-card="true" style={fanStyle(index, session.view.opponent.hand.length)}><AssetImage src="/assets/card-back/in-a-dark-wood.png" alt="对手隐藏手牌" /></div>)}
+              <ManaTray owner="opponent" mana={session.view.opponent.mana} />
+            </div>
             <Hero
               entity={session.view.opponent.hero}
               heroPower={session.view.opponent.heroPower}
@@ -889,11 +1037,8 @@ export function GameBoard() {
               heroPowerInspection={inspectionFor(session.view.opponent.heroPower)}
               tutorialHighlight={tutorialHighlightFor(session.view.opponent.hero)}
             />
-            <div className="opponent-hand" aria-label={`对手手牌 ${session.view.opponent.hand.length} 张`} data-hand-count={session.view.opponent.hand.length}>
-              {session.view.opponent.hand.map((card, index) => <div key={card.id} className="opponent-hand-card" data-hidden-card="true" style={fanStyle(index, session.view.opponent.hand.length)}><AssetImage src="/assets/card-back/in-a-dark-wood.png" alt="对手隐藏手牌" /></div>)}
-            </div>
             <div className={`board-row opponent-board ${zoneTargetClass('opponent-board')}`} aria-label="对手战场" data-drop-target="zone:opponent-board">
-              {session.view.opponent.board.length === 0 ? <span className="empty-zone">对手战场为空</span> : session.view.opponent.board.map((entity) => <Card key={entity.id} entity={entity} compact dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />)}
+              {session.view.opponent.board.length === 0 ? <span className="empty-zone">对手战场为空</span> : session.view.opponent.board.map((entity) => <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} projectedDeath={projectedDeathEntityIds.has(entity.id)} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />)}
             </div>
           </section>
           <div className="board-divider"><span>THE WITCHWOOD</span></div>
@@ -901,8 +1046,9 @@ export function GameBoard() {
             <div className="player-side">
               <div className={`board-row player-board ${zoneTargetClass('self-board')}`} aria-label="你的战场" data-drop-target="zone:self-board">
                 {session.view.self.board.length === 0 ? <span className="empty-zone">你的战场为空</span> : session.view.self.board.map((entity) => {
+                  const attackable = attackActions.some((action) => action.attackSourceId === entity.id)
                   const payload = boardEntityPayload(entity)
-                  return <Card key={entity.id} entity={entity} compact dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} onPointerDown={payload ? (event) => startDrag(payload, event) : undefined} onActivate={payload ? () => activateFromKeyboard(payload) : undefined} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />
+                  return <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} attackable={attackable} projectedDeath={projectedDeathEntityIds.has(entity.id)} onPointerDown={payload ? (event) => startDrag(payload, event) : undefined} onActivate={payload ? () => activateFromKeyboard(payload) : undefined} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />
                 })}
               </div>
               <Hero
@@ -932,25 +1078,40 @@ export function GameBoard() {
                 data-hand-count={session.view.self.hand.length}
               >
                 {session.view.self.hand.map((entity, index) => {
+                  const hiddenWhileDragging = drag?.kind === 'HAND_CARD' && drag.entityId === entity.id && drag.handExited
                   const selectable = mulligan?.selectableEntityIds.includes(entity.id) === true
+                  const playable = playActions.some((action) => action.cardInstanceId === entity.id)
+                  const effectReady = cardEffectIsReady(entity, playable)
                   const payload = handPayload(entity)
                   return <Card
                     key={entity.id}
                     entity={entity}
-                    style={fanStyle(index, session.view.self.hand.length)}
+                    style={hiddenWhileDragging ? { ...fanStyle(index, session.view.self.hand.length), visibility: 'hidden' } : fanStyle(index, session.view.self.hand.length)}
                     selected={mulliganIds.includes(entity.id)}
                     onPointerDown={payload ? (event) => startDrag(payload, event) : undefined}
                     onActivate={payload ? () => activateFromKeyboard(payload) : undefined}
                     inspection={inspectionFor(entity)}
                     tutorialHighlight={tutorialHighlightFor(entity)}
+                    playable={playable}
+                    effectReady={effectReady}
                     {...(selectable ? { onToggle: () => toggleMulligan(entity.id) } : {})}
                   />
                 })}
+                <ManaTray owner="self" mana={session.view.self.mana} />
               </div>
             </div>
           </section>
           <aside className="action-panel scene-control" aria-label="回合控制">
-            {mulligan ? <button type="button" disabled={interactionLocked} onClick={() => void dispatch(mulligan)}>确认换牌（{mulliganIds.length}）</button> : endTurn ? <button type="button" className="secondary" disabled={interactionLocked} onClick={() => void dispatch(endTurn)}>结束回合</button> : null}
+            <section className="deck-panel scene-deck-panel" aria-label="牌库">
+              <h2>牌库</h2>
+              <div className="deck-tracker-list">
+                <DeckTracker owner="opponent" label={opponentLabel} handCount={session.view.opponent.hand.length} deckCount={session.view.opponent.deckCount} />
+                <div className="scene-turn-control">
+                  {mulligan ? <button type="button" disabled={interactionLocked} onClick={() => void dispatch(mulligan)}>确认换牌（{mulliganIds.length}）</button> : endTurn ? <button type="button" className="secondary" disabled={interactionLocked} onClick={() => void dispatch(endTurn)}>结束回合</button> : null}
+                </div>
+                <DeckTracker owner="self" label={selfLabel} handCount={session.view.self.hand.length} deckCount={session.view.self.deckCount} />
+              </div>
+            </section>
           </aside>
         </div>
         <span
@@ -983,7 +1144,7 @@ export function GameBoard() {
             return <Card key={choiceId} entity={entity} inspection={inspectionFor(entity, `choice:${discoverDecisionId}:${choiceId}`)} tutorialHighlight={tutorial?.stepId === 'DISCOVER' ? { role: 'choice' } : undefined} onPointerDown={(event) => startDrag(payload, event)} onActivate={() => activateFromKeyboard(payload)} dropTargetClassName={zoneTargetClass('discover')} />
           }) : null}
         </div>
-        {currentInspectionEntity ? <InspectionLayer entity={currentInspectionEntity} /> : null}
+        {currentInspectionSource ? <InspectionLayer source={currentInspectionSource} /> : null}
       </dialog> : null}
 
       {settingsOpen ? <dialog
@@ -1003,21 +1164,41 @@ export function GameBoard() {
         </div>
       </dialog> : null}
 
-      {!discoverOpen && boardInspection && currentInspectionEntity ? <InspectionLayer entity={currentInspectionEntity} /> : null}
+      {!discoverOpen && currentInspectionSource ? <InspectionLayer source={currentInspectionSource} /> : null}
 
-      {drag && dragEntity ? <div className={`drag-preview ${activeDropAction ? 'is-valid' : ''}`} style={dragPreviewStyle} aria-live="polite" data-drag-preview>
+      {targetArrow ? (
+        <svg
+          className="target-arrow-layer"
+          aria-hidden="true"
+          data-target-arrow
+          data-arrow-kind={targetArrow.kind}
+          data-arrow-source-entity-id={drag?.kind === 'DISCOVER_CHOICE' ? undefined : drag?.entityId}
+          data-arrow-target-entity-id={dropTarget?.type === 'entity' ? dropTarget.entityId : undefined}
+          data-arrow-target-x={targetArrow.end.x}
+          data-arrow-target-y={targetArrow.end.y}
+          data-arrow-valid={activeDropAction ? 'true' : 'false'}
+          viewBox={`0 0 ${arrowViewport.width} ${arrowViewport.height}`}
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <marker id="target-arrow-head" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="strokeWidth">
+              <path className={`target-arrow-head target-arrow-head--${targetArrow.kind}`} d="M 0 0 L 13 6.5 L 0 13 Z" />
+            </marker>
+          </defs>
+          <path
+            className={`target-arrow target-arrow--${targetArrow.kind} ${activeDropAction ? 'is-valid' : ''}`}
+            d={curvedArrowPath(targetArrow.start, targetArrow.end)}
+            markerEnd="url(#target-arrow-head)"
+          />
+        </svg>
+      ) : null}
+
+      {drag && dragEntity && !arrowKind ? <div className={`drag-preview ${activeDropAction ? 'is-valid' : ''}`} style={dragPreviewStyle} aria-live="polite" data-drag-preview data-hand-exited={drag.kind === 'HAND_CARD' ? String(drag.handExited) : undefined}>
         <Card entity={dragEntity} />
         <span>{activeDropAction ? '松开以确认' : '拖到目标区域'}</span>
       </div> : null}
 
       <aside className="game-status" aria-label="战场状态">
-        <section className="deck-panel" aria-label="牌库">
-          <h2>牌库</h2>
-          <div className="deck-tracker-list">
-            <DeckTracker owner="opponent" label={opponentLabel} handCount={session.view.opponent.hand.length} deckCount={session.view.opponent.deckCount} />
-            <DeckTracker owner="self" label={selfLabel} handCount={session.view.self.hand.length} deckCount={session.view.self.deckCount} />
-          </div>
-        </section>
         <section className="coverage-panel" aria-label="展示战关键词进度">
           {Object.entries(session.view.scenario.coverage).map(([keyword, sequence]) => <span key={keyword} className={sequence === null ? '' : 'complete'}>{sequence === null ? '○' : '✓'} {KEYWORD_LABELS[keyword] ?? keyword}</span>)}
         </section>

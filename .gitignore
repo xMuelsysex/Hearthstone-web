@@ -4,3 +4,25 @@ playwright-report/
 test-results/
 coverage/
 *.local
+
+# Local build, browser-evidence, workflow, and research artifacts
+.artifacts/
+.playwright-mcp/
+.workflow/
+.pi/settings.local.json
+artifacts-*.png
+gamespress-*.json
+page-*.png
+tmp-*.png
+tmp/
+
+# Local test output
+*.local.json
+junit.xml
+
+# Temporary generated workspace files
+*.tmp
+*.bak
+*~
+.DS_Store
+Thumbs.db

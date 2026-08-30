@@ -6,6 +6,15 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const snapshot = JSON.parse(await readFile(resolve(root, 'src/cards/data/source-selected.249896.json'), 'utf8'))
 const assets = []
+const originalArtAssets = [
+  ...snapshot.selectedCards
+    .filter((card) => card.type === 'MINION')
+    .map((card) => ({ id: card.id, kind: 'CARD_ART', folder: 'card-art' })),
+  { id: 'HERO_01', kind: 'HERO_ART', folder: 'hero-art' },
+  { id: 'HERO_08', kind: 'HERO_ART', folder: 'hero-art' },
+  { id: 'HERO_01bp', kind: 'HERO_POWER_ART', folder: 'hero-power-art' },
+  { id: 'HERO_08bp', kind: 'HERO_POWER_ART', folder: 'hero-power-art' },
+]
 
 async function hashFile(path) {
   const bytes = await readFile(path)
@@ -34,6 +43,20 @@ for (const card of snapshot.selectedCards) {
   }
   const integrity = await hashFile(absolutePath)
   assets.push({ id: `${kind.toLowerCase()}:${card.id}`, kind, sourceUrl, localPath, ...integrity, purpose: `${card.name} 的官方中文渲染图` })
+}
+
+for (const asset of originalArtAssets) {
+  const localPath = `/assets/${asset.folder}/${asset.id}.png`
+  const absolutePath = resolve(root, `public${localPath}`)
+  const sourceUrl = `https://art.hearthstonejson.com/v1/orig/${asset.id}.png`
+  try {
+    await stat(absolutePath)
+  } catch {
+    await download(sourceUrl, absolutePath)
+  }
+  const integrity = await hashFile(absolutePath)
+  const manifestId = `${asset.kind.toLowerCase().replaceAll('_', '-')}:${asset.id}`
+  assets.push({ id: manifestId, kind: asset.kind, sourceUrl, localPath, ...integrity, purpose: `${asset.id} 的官方原画` })
 }
 
 const staticAssets = [

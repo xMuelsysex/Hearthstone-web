@@ -2,6 +2,7 @@ import { CARD_DEFINITIONS_V1, getCardDefinition } from '@/cards/registry'
 import type { EffectExecutorId } from '@/cards/types'
 import { createEntityFromDefinition } from '@/engine/applyRecordedEvent'
 import { applyRecordedEvent, enemyHeroId } from '@/engine/applyRecordedEvent'
+import { combatAttackValue } from '@/engine/combat'
 import { validateCommand, type GameCommand, type TargetLegalityEvidence } from '@/engine/commands'
 import type { DamagePacketV1, DomainEventV1, RecordedEventV1 } from '@/engine/events'
 import { nextRandom, shuffleWithRng } from '@/engine/rng'
@@ -120,9 +121,8 @@ export function resolveCommand(
         const target = getEntity(workingState.game, accepted.attackTargetId)
         emitGame({ type: 'ATTACK_DECLARED', actorId: accepted.actorId, sourceEntityId: source.id, targetEntityId: target.id })
         const sourceWeapon = source.type === 'HERO' ? workingState.game.players[accepted.actorId].weaponEntityId : null
-        const sourceAttack = source.attack + (sourceWeapon === null ? 0 : getEntity(workingState.game, sourceWeapon).attack)
-        const targetWeapon = target.type === 'HERO' ? workingState.game.players[target.controllerId].weaponEntityId : null
-        const targetAttack = target.attack + (targetWeapon === null ? 0 : getEntity(workingState.game, targetWeapon).attack)
+        const sourceAttack = combatAttackValue(workingState.game, source.id)
+        const targetAttack = combatAttackValue(workingState.game, target.id)
         const packets: DamagePacketV1[] = [{ sourceEntityId: source.id, targetEntityId: target.id, amount: sourceAttack, poisonous: source.keywords.includes('POISONOUS'), reason: 'COMBAT' }]
         if (targetAttack > 0) packets.push({ sourceEntityId: target.id, targetEntityId: source.id, amount: targetAttack, poisonous: target.keywords.includes('POISONOUS'), reason: 'COMBAT' })
         queue.push({ type: 'DAMAGE', packets })

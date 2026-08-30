@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { PlayerSessionProvider } from '@/app/context/PlayerSessionContext'
 import type { LegalActionDescriptor, PlayerSessionValue, PlayerViewModel, PublicEntityViewModel } from '@/app/context/playerSession'
+import { CARD_DEFINITIONS_V1 } from '@/cards/registry'
 import { projectPlayerView } from '@/engine/projection'
 import { createShowcaseState } from '@/scenarios/showcase'
 import { GameBoard } from '@/ui/game/GameBoard'
@@ -164,7 +165,12 @@ describe('GameBoard public UI boundaries', () => {
     expect(opponentHero).toHaveAttribute('data-health-current', '28')
     expect(opponentHero).toHaveAttribute('data-armor', '2')
     expect(opponentHero.querySelector('.health-fill')).toHaveStyle({ width: '93%' })
-    expect(screen.getByLabelText('法力 2/5，临时 1')).toBeInTheDocument()
+    const opponentManaTray = screen.getByLabelText('法力 2/5，临时 1')
+    expect(opponentManaTray).toBeInTheDocument()
+    expect(opponentManaTray.querySelectorAll('[data-mana-kind="permanent"]')).toHaveLength(5)
+    expect(opponentManaTray.querySelectorAll('[data-mana-state="filled"]')).toHaveLength(2)
+    expect(opponentManaTray.querySelectorAll('[data-mana-state="empty"]')).toHaveLength(3)
+    expect(opponentManaTray.querySelectorAll('[data-mana-kind="temporary"]')).toHaveLength(1)
 
     const heroPowers = screen.getAllByRole('button', { name: /英雄技能/ })
     const ownPower = heroPowers.find((power) => power.closest('.hero-player'))
@@ -174,6 +180,15 @@ describe('GameBoard public UI boundaries', () => {
     expect(ownPower).not.toBeDisabled()
     expect(screen.getAllByRole('button', { name: '结束回合' })).toHaveLength(1)
     expect(container.querySelectorAll('.game-status')).toHaveLength(1)
+
+    const sceneControl = container.querySelector('.scene-control')
+    const sceneTrackerList = sceneControl?.querySelector('.deck-tracker-list')
+    const sceneTurnControl = sceneTrackerList?.children[1]
+    expect(sceneTrackerList?.children[0]).toHaveAttribute('data-deck-owner', 'opponent')
+    expect(sceneTurnControl).toHaveClass('scene-turn-control')
+    expect(sceneTurnControl?.querySelector('.secondary')).toHaveTextContent('结束回合')
+    expect(sceneTrackerList?.children[2]).toHaveAttribute('data-deck-owner', 'self')
+    expect(container.querySelector('.game-status .deck-panel')).toBeNull()
 
     const multiKeywordDomCard = screen.getByRole('button', { name: /多关键词测试随从/ })
     await user.hover(multiKeywordDomCard)
@@ -203,6 +218,106 @@ describe('GameBoard public UI boundaries', () => {
     expect(screen.getByRole('button', { name: '认输' })).toBeInTheDocument()
   })
 
+  it('anchors hand preview at the pointer and delays spell arrows until the card leaves hand', () => {
+    const view = publicView()
+    const card = view.self.hand.find((entity) => entity.definitionId === 'RLK_843')
+    if (!card) throw new Error('RLK_843 fixture missing from public hand')
+    const session = makeSession(view, [playCardAction(card, view.opponent.hero.id)])
+    const { container } = renderBoard(session)
+    const handCard = container.querySelector(`.player-hand [data-entity-id="${card.id}"]`)
+    if (!(handCard instanceof HTMLElement)) throw new Error('hand card fixture missing')
+
+    fireEvent.pointerEnter(handCard, { clientX: 160, clientY: 560, pointerId: 1 })
+    const handPreview = container.querySelector('[data-inspection-overlay]')
+    expect(handPreview).toHaveAttribute('data-inspection-mode', 'hand')
+    expect(handPreview).toHaveStyle({ left: '160px', top: '560px' })
+
+    fireEvent.pointerDown(handCard, { pointerId: 1, pointerType: 'mouse', button: 0, clientX: 160, clientY: 560 })
+    expect(container.querySelector('[data-drag-preview]')).toHaveAttribute('data-hand-exited', 'false')
+    expect(container.querySelector('[data-target-arrow]')).toBeNull()
+
+    fireEvent.pointerMove(window, { pointerId: 1, clientX: 400, clientY: -200 })
+    expect(container.querySelector('[data-drag-preview]')).toBeNull()
+    expect(container.querySelector(`.player-hand [data-entity-id="${card.id}"]`)).toHaveStyle({ visibility: 'hidden' })
+    expect(container.querySelector('[data-target-arrow]')).toHaveAttribute('data-arrow-kind', 'spell')
+
+    fireEvent.pointerMove(window, { pointerId: 1, clientX: 0, clientY: 0 })
+    expect(container.querySelector('[data-drag-preview]')).toHaveAttribute('data-hand-exited', 'false')
+    expect(container.querySelector(`.player-hand [data-entity-id="${card.id}"]`)).toBeInTheDocument()
+    expect(container.querySelector('[data-target-arrow]')).toBeNull()
+
+    fireEvent.pointerUp(window, { pointerId: 1, clientX: 0, clientY: 0 })
+    expect(container.querySelector('[data-drag-preview]')).toBeNull()
+    expect(container.querySelector('[data-target-arrow]')).toBeNull()
+  })
+
+  it('shows an attack arrow immediately when dragging an actionable battlefield card', () => {
+    const view = publicView()
+    const source = view.self.board.find((entity) => entity.definitionId === 'BOT_309')
+    const target = view.opponent.board[0]
+    if (!source || !target) throw new Error('attack card fixtures missing')
+    const session = makeSession(view, [{ id: 'attack-arrow', type: 'ATTACK', actorId: 'PLAYER', attackSourceId: source.id, attackTargetId: target.id, projectedDeathEntityIds: [] }])
+    const { container } = renderBoard(session)
+    const sourceCard = container.querySelector(`.player-board [data-entity-id="${source.id}"]`)
+    if (!(sourceCard instanceof HTMLElement)) throw new Error('battlefield card fixture missing')
+
+    fireEvent.pointerDown(sourceCard, { pointerId: 2, pointerType: 'mouse', button: 0, clientX: 320, clientY: 280 })
+    const arrow = container.querySelector('[data-target-arrow]')
+    expect(arrow).toHaveAttribute('data-arrow-kind', 'attack')
+    expect(arrow).toHaveAttribute('data-arrow-source-entity-id', String(source.id))
+
+    fireEvent.pointerUp(window, { pointerId: 2, clientX: 320, clientY: 280 })
+    expect(container.querySelector('[data-target-arrow]')).toBeNull()
+  })
+
+  it('shows a target arrow immediately for an actionable targeted hero power', () => {
+    const view = publicView()
+    const target = view.opponent.hero
+    const session = makeSession(view, [{ id: 'hero-power-arrow', type: 'USE_HERO_POWER', actorId: 'PLAYER', targetEntityId: target.id }])
+    const { container } = renderBoard(session)
+    const heroPower = container.querySelector('.hero-player .hero-power-slot')
+    if (!(heroPower instanceof HTMLElement)) throw new Error('hero power fixture missing')
+
+    fireEvent.pointerDown(heroPower, { pointerId: 3, pointerType: 'mouse', button: 0, clientX: 240, clientY: 240 })
+    const arrow = container.querySelector('[data-target-arrow]')
+    expect(arrow).toHaveAttribute('data-arrow-kind', 'hero-power')
+    expect(arrow).toHaveAttribute('data-arrow-source-entity-id', String(view.self.heroPower.id))
+    expect(container.querySelector('[data-drag-preview]')).toBeNull()
+
+    fireEvent.pointerUp(window, { pointerId: 3, clientX: 240, clientY: 240 })
+    expect(container.querySelector('[data-target-arrow]')).toBeNull()
+  })
+
+  it('requests original art for every supported minion on the battlefield', () => {
+    const view = publicView()
+    const minions = Object.values(CARD_DEFINITIONS_V1).filter((definition) => definition.type === 'MINION')
+    view.self.board = minions.map((definition, index) => ({
+      id: 9500 + index,
+      definitionId: definition.id,
+      name: definition.name,
+      assetPath: `/assets/cards/${definition.id}.png`,
+      attack: definition.attack,
+      health: definition.health,
+      maxHealth: definition.health,
+      armor: 0,
+      durability: 0,
+      exhausted: false,
+      keywords: definition.keywords,
+      controllerId: view.viewerId,
+    }))
+
+    const { container } = renderBoard(makeSession(view))
+    expect(container.querySelectorAll('.player-board .battlefield-card')).toHaveLength(minions.length)
+    for (const [index, definition] of minions.entries()) {
+      const card = container.querySelector(`.player-board [data-entity-id="${9500 + index}"]`)
+      expect(card).toHaveClass('battlefield-card')
+      expect(card?.querySelector('.battlefield-card-art')).toHaveAttribute('src', `/assets/card-art/${definition.id}.png`)
+      expect(card).toHaveAttribute('data-card-definition-id', definition.id)
+      expect(card).toHaveAttribute('data-card-attack-current', String(definition.attack))
+      expect(card).toHaveAttribute('data-card-value-current', String(definition.health))
+    }
+  })
+
   it('keeps rendered card values synchronized with projection state for minions and weapons', () => {
     const view = publicView()
     const minion = view.self.board.find((entity) => entity.definitionId === 'BOT_309')
@@ -226,14 +341,20 @@ describe('GameBoard public UI boundaries', () => {
 
     const { container } = renderBoard(makeSession(view))
     const minionCard = container.querySelector(`[data-entity-id="${minion.id}"]`)
+    const opponentMinionCard = container.querySelector('[data-card-definition-id="CS2_119"]')
     const weaponCard = container.querySelector(`[data-entity-id="${weapon.id}"]`)
     expect(minionCard).toHaveAttribute('data-card-attack-current', '4')
     expect(minionCard).toHaveAttribute('data-card-value-current', '6')
     expect(minionCard?.querySelector('.card-attack')).toHaveTextContent('4')
     expect(minionCard?.querySelector('.card-health')).toHaveTextContent('6')
-    expect(minionCard?.querySelector('img')).toHaveAttribute('src', '/assets/cards/BOT_309.png')
+    expect(minionCard).toHaveClass('battlefield-card')
+    expect(minionCard?.querySelector('.battlefield-art-window')).toBeInTheDocument()
+    expect(minionCard?.querySelector('.battlefield-card-art')).toHaveAttribute('src', '/assets/card-art/BOT_309.png')
+    expect(minionCard?.querySelector('.card-cost')).toBeNull()
     expect(minionCard?.querySelector('.card-name')).toBeNull()
     expect(minionCard?.querySelector('.card-keywords')).toBeNull()
+    expect(opponentMinionCard?.querySelector('.battlefield-card-art')).toHaveAttribute('src', '/assets/card-art/CS2_119.png')
+    expect(opponentMinionCard?.querySelector('.card-cost')).toBeNull()
     expect(weaponCard).toHaveAttribute('data-card-value-label', '耐久')
     expect(weaponCard).toHaveAttribute('data-card-value-current', '1')
     expect(weaponCard?.querySelector('.card-health')).toHaveTextContent('1')
@@ -279,6 +400,10 @@ describe('GameBoard public UI boundaries', () => {
     const playerHero = container.querySelector('.hero-player')
     if (!(playerHero instanceof HTMLElement)) throw new Error('player hero fixture missing')
     const opponentHero = container.querySelector('.hero-opponent')
+    const opponentLane = container.querySelector('.opponent-lane')
+    expect(opponentLane?.children[0]).toHaveClass('opponent-hand')
+    expect(opponentLane?.children[1]).toHaveClass('hero-strip')
+    expect(opponentLane?.children[2]).toHaveClass('opponent-board')
     expect(playerHero.querySelector('.hero-portrait')?.parentElement).toHaveClass('hero-core')
     expect(playerHero.querySelector('.hero-core .hero-power-slot')).toBeInTheDocument()
     expect(opponentHero?.querySelector('.hero-portrait')?.parentElement).toHaveClass('hero-core')
@@ -296,16 +421,20 @@ describe('GameBoard public UI boundaries', () => {
     const heroPower = playerHero.querySelector('.hero-power-slot')
     expect(heroPower).toHaveAttribute('data-card-cost-current', '2')
     expect(heroPower?.querySelector('.hero-power-cost')).toHaveTextContent('2')
-    const manaCrystal = playerHero.querySelector('.mana-crystal')
+    const manaCrystal = container.querySelector('.player-hand .mana-crystal')
+    expect(manaCrystal).toHaveClass('mana-tray')
     expect(manaCrystal).toHaveAttribute('data-mana-current', String(view.self.mana.current))
     expect(manaCrystal).toHaveAttribute('data-mana-max', String(view.self.mana.maximum))
     expect(manaCrystal).toHaveTextContent(`${view.self.mana.current}/${view.self.mana.maximum}`)
     if (!(heroPower instanceof HTMLElement) || !(weaponSlot instanceof HTMLElement)) throw new Error('hero HUD fixture missing')
 
     fireEvent.focus(heroPower)
-    const powerInspection = container.querySelector('.inspection-card-copy')
-    expect(powerInspection).toHaveTextContent('费用 2')
-    expect(powerInspection).not.toHaveTextContent('攻击 0')
+    const powerInspection = container.querySelector('[data-inspection-overlay]')
+    expect(powerInspection).toHaveClass('large-card-preview')
+    expect(powerInspection).toHaveAttribute('data-inspection-presentation', 'card-only')
+    expect(powerInspection?.querySelector('.large-inspection-card--hero_power')).toBeInTheDocument()
+    expect(powerInspection?.querySelector('.card-cost')).toHaveTextContent('2')
+    expect(powerInspection?.querySelector('.inspection-card-copy')).toBeNull()
 
     fireEvent.focus(weaponSlot)
     const weaponInspection = container.querySelector('.inspection-card-copy')
@@ -313,13 +442,64 @@ describe('GameBoard public UI boundaries', () => {
     expect(container.querySelector('.inspection-card-art .card-health')).toHaveTextContent('1')
   })
 
-  it('uses the official hero render as a cropped portrait without a placeholder sigil', () => {
+  it('uses original hero and hero-power art without extra frame placeholders', () => {
     const view = publicView()
     const { container } = renderBoard(makeSession(view))
     const playerPortrait = container.querySelector('.hero-player .hero-portrait')
     expect(playerPortrait?.querySelector('.hero-art-window')).toBeInTheDocument()
-    expect(playerPortrait?.querySelector('.hero-art')).toHaveAttribute('src', '/assets/heroes/HERO_08.png')
+    expect(playerPortrait?.querySelector('.hero-art')).toHaveAttribute('src', '/assets/hero-art/HERO_08.png')
     expect(playerPortrait?.querySelector('.hero-sigil')).toBeNull()
+    expect(container.querySelector('.hero-player .hero-power-art')).toHaveAttribute('src', '/assets/hero-power-art/HERO_08bp.png')
+  })
+
+  it('highlights usable, attackable, effect-ready, and predicted-death cards', () => {
+    const view = publicView()
+    const spell = view.self.hand.find((entity) => entity.definitionId === 'RLK_843')
+    const source = view.self.board.find((entity) => entity.definitionId === 'BOT_309')
+    const target = view.opponent.board.find((entity) => entity.definitionId === 'CS2_119')
+    if (!spell || !source || !target) throw new Error('card highlight fixtures missing')
+    const session = makeSession(view, [
+      playCardAction(spell, view.opponent.hero.id),
+      { id: 'attack-highlight', type: 'ATTACK', actorId: 'PLAYER', attackSourceId: source.id, attackTargetId: target.id, projectedDeathEntityIds: [source.id, target.id] },
+    ])
+    const { container } = renderBoard(session)
+
+    const spellCard = container.querySelector(`.player-hand [data-entity-id="${spell.id}"]`)
+    expect(spellCard).toHaveClass('card-playable', 'card-effect-ready')
+    expect(spellCard).toHaveAttribute('data-card-playable', 'true')
+    expect(spellCard).toHaveAttribute('data-card-effect-ready', 'true')
+
+    const sourceCard = container.querySelector(`.player-board [data-entity-id="${source.id}"]`)
+    expect(sourceCard).toHaveClass('card-attackable', 'card-projected-death')
+    expect(sourceCard).toHaveAttribute('data-card-attackable', 'true')
+    expect(sourceCard).toHaveAttribute('data-predicted-death', 'true')
+    expect(sourceCard?.querySelector('[data-predicted-death]')).toHaveAccessibleName('预告：攻击后预计死亡')
+
+    const targetCard = container.querySelector(`.opponent-board [data-entity-id="${target.id}"]`)
+    expect(targetCard).toHaveClass('card-projected-death')
+    expect(targetCard).toHaveAttribute('data-predicted-death', 'true')
+  })
+
+  it('uses the battlefield card size for hero and hero-power inspections', () => {
+    const view = publicView()
+    const { container } = renderBoard(makeSession(view))
+    const hero = container.querySelector('.hero-player .hero-portrait')
+    const heroPower = container.querySelector('.hero-player .hero-power-slot')
+    if (!(hero instanceof HTMLElement) || !(heroPower instanceof HTMLElement)) throw new Error('hero inspection fixtures missing')
+
+    fireEvent.focus(hero)
+    const heroPreview = container.querySelector('[data-inspection-overlay]')
+    expect(heroPreview).toHaveClass('large-card-preview')
+    expect(heroPreview).toHaveAttribute('data-inspection-presentation', 'card-only')
+    expect(heroPreview?.querySelector('.large-inspection-card--hero')).toBeInTheDocument()
+    expect(heroPreview?.querySelector('.inspection-card-copy')).toBeNull()
+
+    fireEvent.focus(heroPower)
+    const heroPowerPreview = container.querySelector('[data-inspection-overlay]')
+    expect(heroPowerPreview).toHaveClass('large-card-preview')
+    expect(heroPowerPreview).toHaveAttribute('data-inspection-presentation', 'card-only')
+    expect(heroPowerPreview?.querySelector('.large-inspection-card--hero_power')).toBeInTheDocument()
+    expect(heroPowerPreview?.querySelector('.inspection-card-copy')).toBeNull()
   })
 
   it('refreshes focused inspection values from the latest projection', () => {
@@ -331,7 +511,14 @@ describe('GameBoard public UI boundaries', () => {
     if (!(card instanceof HTMLElement)) throw new Error('board card fixture missing')
 
     fireEvent.focus(card)
-    expect(container.querySelector('.inspection-card-copy')).toHaveTextContent(`生命 ${minion.health}/${minion.maxHealth}`)
+    const preview = container.querySelector('[data-inspection-overlay]')
+    expect(preview).toHaveAttribute('data-inspection-presentation', 'card-only')
+    expect(preview?.querySelector('.battlefield-inspection-card')).toBeInTheDocument()
+    expect(preview?.querySelector('.inspection-card-copy')).toBeNull()
+    expect(preview?.querySelector('.card-cost')).toHaveAttribute('data-card-cost-current')
+    expect(preview?.querySelector('.card-attack')).toHaveTextContent(String(minion.attack))
+    expect(preview?.querySelector('.card-health')).toHaveTextContent(String(minion.health))
+    expect(preview?.querySelector('[data-card-value-current]')).toHaveAttribute('data-card-value-current', String(minion.health))
 
     const updatedView = structuredClone(view)
     updatedView.self.board = [{ ...minion, health: 2 }]
@@ -340,7 +527,8 @@ describe('GameBoard public UI boundaries', () => {
         <GameBoard />
       </PlayerSessionProvider>,
     )
-    expect(container.querySelector('.inspection-card-copy')).toHaveTextContent('生命 2/5')
+    expect(container.querySelector('[data-inspection-overlay] .inspection-card-copy')).toBeNull()
+    expect(container.querySelector('[data-inspection-overlay] [data-card-value-current]')).toHaveAttribute('data-card-value-current', '2')
   })
 
   it('derives tutorial source and target markers from legal actions', () => {

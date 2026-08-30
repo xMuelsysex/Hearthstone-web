@@ -29,7 +29,7 @@ export type LegalActionDescriptor =
   | MulliganActionDescriptor
   | { id: string; type: 'PLAY_CARD'; actorId: PlayerId; cardInstanceId: EntityId; playMode: 'NORMAL' | 'MAGNETIC'; placementIndex?: number; targetEntityId?: EntityId; evidence?: TargetLegalityEvidence }
   | { id: string; type: 'SELECT_DISCOVER'; actorId: PlayerId; decisionId: DecisionId; discoverChoiceId: CardDefinitionId }
-  | { id: string; type: 'ATTACK'; actorId: PlayerId; attackSourceId: EntityId; attackTargetId: EntityId }
+  | { id: string; type: 'ATTACK'; actorId: PlayerId; attackSourceId: EntityId; attackTargetId: EntityId; projectedDeathEntityIds: EntityId[] }
   | { id: string; type: 'USE_HERO_POWER'; actorId: PlayerId; targetEntityId?: EntityId; evidence?: TargetLegalityEvidence }
   | { id: string; type: 'END_TURN' | 'CONCEDE'; actorId: PlayerId }
 

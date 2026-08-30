@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const assetSchema = z.object({
   id: z.string().min(1).max(128),
-  kind: z.enum(['CARD', 'HERO', 'HERO_POWER', 'BOARD', 'CARD_BACK', 'UI']),
+  kind: z.enum(['CARD', 'CARD_ART', 'HERO', 'HERO_ART', 'HERO_POWER', 'HERO_POWER_ART', 'BOARD', 'CARD_BACK', 'UI']),
   sourceUrl: z.string().url(),
   localPath: z.string().startsWith('/assets/'),
   sha256: z.string().regex(/^[a-f0-9]{64}$/),

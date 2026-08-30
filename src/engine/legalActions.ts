@@ -1,5 +1,6 @@
 import { getCardDefinition } from '@/cards/registry'
 import type { LegalActionDescriptor, TargetLegalityEvidence } from '@/engine/commands'
+import { projectedCombatDeaths } from '@/engine/combat'
 import { getEntity, otherPlayer, type AuthoritativeSessionStateV1, type EntityId, type PlayerId } from '@/engine/state'
 
 function allCharacterIds(state: AuthoritativeSessionStateV1): EntityId[] {
@@ -99,7 +100,14 @@ export function getLegalActions(state: AuthoritativeSessionStateV1, actorId: Pla
   const weaponAttack = player.weaponEntityId === null ? 0 : getEntity(game, player.weaponEntityId).attack
   if (!hero.exhausted && hero.attack + weaponAttack > 0) attackers.push(hero.id)
   for (const attackSourceId of attackers) {
-    for (const attackTargetId of attackTargets) actions.push({ id: `${actorId}:attack:${attackSourceId}:${attackTargetId}`, type: 'ATTACK', actorId, attackSourceId, attackTargetId })
+    for (const attackTargetId of attackTargets) actions.push({
+      id: `${actorId}:attack:${attackSourceId}:${attackTargetId}`,
+      type: 'ATTACK',
+      actorId,
+      attackSourceId,
+      attackTargetId,
+      projectedDeathEntityIds: projectedCombatDeaths(state, attackSourceId, attackTargetId),
+    })
   }
 
   if (!player.heroPowerUsed && availableMana >= 2) {
