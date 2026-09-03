@@ -1,3 +1,4 @@
+import { SHOWCASE_DECKS_V1 } from '@/cards/decks'
 import { validateCommand } from '@/engine/commands'
 import { chooseTavernKeeperAction, observeForAi } from '@/ai/tavernKeeper'
 import { createShowcaseState, runShowcaseScript, SHOWCASE_MAX_COMMANDS, SHOWCASE_MAX_TURNS } from '@/scenarios/showcase'
@@ -29,6 +30,18 @@ describe('showcase scenario', () => {
     expect(concedeIndex).toBeGreaterThan(readyIndex)
     expect(types.filter((type) => type === 'GAME_CONCEDED')).toHaveLength(1)
     expect(types.filter((type) => type === 'GAME_ENDED')).toHaveLength(1)
+  })
+
+  it('builds a playable showcase state for every official hero and its class deck', () => {
+    for (const deck of SHOWCASE_DECKS_V1) {
+      const state = createShowcaseState(deck.ownerClass)
+      const player = state.game.players.PLAYER
+      expect(state.game.entities[String(player.heroEntityId)]?.definitionId).toBe(deck.heroId)
+      expect(state.game.entities[String(player.heroPowerEntityId)]?.definitionId).toBe(deck.heroPowerId)
+      expect(player.deck.length + player.hand.length + player.board.length).toBe(deck.cards.length)
+      for (const cardId of deck.signatureCardIds) expect(deck.cards).toContain(cardId)
+      expect(player.hand.map((id) => state.game.entities[String(id)]?.definitionId)).toEqual(expect.arrayContaining(deck.signatureCardIds.slice(0, 3)))
+    }
   })
 
   it('keeps every selected AI descriptor within the public actor-scoped legality contract', () => {

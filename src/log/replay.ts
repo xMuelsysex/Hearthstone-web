@@ -1,8 +1,9 @@
 import { applyRecordedEvent } from '@/engine/applyRecordedEvent'
-import type { AuthoritativeSessionStateV1 } from '@/engine/state'
+import { RNG_ALGORITHM_VERSION, RULES_VERSION, type AuthoritativeSessionStateV1 } from '@/engine/state'
 import { canonicalizeV1 } from '@/log/canonicalize'
-import { hashCanonicalValue, hashStateV1, type Sha256Hex } from '@/log/hash'
+import { hashCanonicalValue, hashStateV1, isSupportedCardDataVersion, LEGACY_CARD_DATA_VERSIONS, normalizeStateForCardDataVersion, type Sha256Hex, type SupportedCardDataVersion } from '@/log/hash'
 import type { AnyGameLogV1, RecordedEventWithHashV1 } from '@/log/schema'
+import { SCENARIO_VERSION } from '@/scenarios/state'
 
 export type ReplayFrameMetaV1 = {
   kind: 'initial' | 'event'
@@ -52,6 +53,17 @@ function safeEventId(recorded: RecordedEventWithHashV1): string {
 }
 
 async function replayLogInternal(log: AnyGameLogV1, onFrame?: ReplayFrameCallbackV1): Promise<AuthoritativeSessionStateV1> {
+  if (log.rulesVersion !== RULES_VERSION || log.scenarioVersion !== SCENARIO_VERSION || log.rngAlgorithmVersion !== RNG_ALGORITHM_VERSION || !isSupportedCardDataVersion(log.cardDataVersion)) {
+    throw new ReplayLogIntegrityError({
+      code: 'UNSUPPORTED_VERSION',
+      batchSequence: null,
+      eventSequence: null,
+      safeEventId: null,
+      expectedHash: null,
+      actualHash: null,
+    })
+  }
+  const cardDataVersion: SupportedCardDataVersion = log.cardDataVersion
   const actualContentDigest = await hashCanonicalValue(digestInputOf(log))
   if (actualContentDigest !== log.contentDigest) throw new ReplayLogIntegrityError({
     code: 'CONTENT_DIGEST_MISMATCH',
@@ -62,7 +74,7 @@ async function replayLogInternal(log: AnyGameLogV1, onFrame?: ReplayFrameCallbac
     actualHash: actualContentDigest,
   })
   let state = structuredClone(log.initialState)
-  const initialHash = await hashStateV1(state)
+  const initialHash = await hashStateV1(state, cardDataVersion)
   if (initialHash !== log.initialStateHash) throw new ReplayLogIntegrityError({
     code: 'INITIAL_STATE_HASH_MISMATCH',
     batchSequence: null,
@@ -111,8 +123,8 @@ async function replayLogInternal(log: AnyGameLogV1, onFrame?: ReplayFrameCallbac
         expectedHash: null,
         actualHash: null,
       })
-      state = applyRecordedEvent(state, recorded.event)
-      const actualHash = await hashStateV1(state)
+      state = normalizeStateForCardDataVersion(applyRecordedEvent(state, recorded.event, { legacyCardDataVersion: cardDataVersion === LEGACY_CARD_DATA_VERSIONS[0] }), cardDataVersion)
+      const actualHash = await hashStateV1(state, cardDataVersion)
       if (actualHash !== recorded.postStateHash) throw new ReplayLogIntegrityError({
         code: 'POST_STATE_HASH_MISMATCH',
         batchSequence: batch.sequence,
@@ -151,7 +163,7 @@ async function replayLogInternal(log: AnyGameLogV1, onFrame?: ReplayFrameCallbac
     expectedHash: null,
     actualHash: null,
   })
-  const actualCurrentStateHash = await hashStateV1(state)
+  const actualCurrentStateHash = await hashStateV1(state, cardDataVersion)
   if (actualCurrentStateHash !== log.currentStateHash) throw new ReplayLogIntegrityError({
     code: 'CURRENT_STATE_HASH_MISMATCH',
     batchSequence: log.batches.at(-1)?.sequence ?? null,

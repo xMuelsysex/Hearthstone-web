@@ -1,9 +1,9 @@
 import { z } from 'zod'
-import { CARD_DATA_VERSION } from '@/cards/data/cards.v1'
 import { resolveCommand } from '@/engine/resolveCommand'
 import { RULES_VERSION } from '@/engine/state'
 import { canonicalizeV1 } from '@/log/canonicalize'
-import { hashCanonicalValue, hashStateV1 } from '@/log/hash'
+import { resolveDependenciesForCardDataVersion } from '@/log/compatibility'
+import { hashCanonicalValue, hashStateV1, isSupportedCardDataVersion, normalizeStateForCardDataVersion, type SupportedCardDataVersion } from '@/log/hash'
 import type { AnyGameLogV1 } from '@/log/schema'
 import { replayLog } from '@/log/replay'
 import { SCENARIO_VERSION } from '@/scenarios/state'
@@ -11,6 +11,13 @@ import { GameRepository } from '@/storage/repository'
 import type { StorageRootV1 } from '@/storage/schema'
 
 export const IMPORT_BYTE_LIMIT = 1_048_576
+function resolveImportedCommand(
+  state: Parameters<typeof resolveCommand>[0],
+  command: Parameters<typeof resolveCommand>[1],
+  cardDataVersion: SupportedCardDataVersion,
+) {
+  return resolveCommand(state, command, resolveDependenciesForCardDataVersion(cardDataVersion))
+}
 const shaSchema = z.string().regex(/^[a-f0-9]{64}$/)
 const shortString = z.string().min(1).max(128)
 
@@ -25,7 +32,7 @@ const commandSchema = z.discriminatedUnion('type', [
 ])
 
 const evidenceSchema = z.object({
-  actionKind: z.enum(['SPELL', 'HERO_POWER']),
+  actionKind: z.enum(['SPELL', 'HERO_POWER', 'BATTLECRY']),
   actorId: z.enum(['PLAYER', 'OPPONENT']),
   publicCandidateEntityIds: z.array(z.number().int().positive()).max(32),
   excluded: z.array(z.object({ entityId: z.number().int().positive(), reason: z.literal('ELUSIVE') }).strict()).max(32),
@@ -54,7 +61,7 @@ const entitySchema = z.object({
   ownerId: playerIdSchema,
   controllerId: playerIdSchema,
   zone: z.enum(['DECK', 'HAND', 'BOARD', 'GRAVEYARD', 'HERO', 'HERO_POWER', 'WEAPON', 'ATTACHED', 'SET_ASIDE']),
-  type: z.enum(['MINION', 'SPELL', 'WEAPON', 'HERO', 'HERO_POWER']),
+  type: z.enum(['MINION', 'SPELL', 'WEAPON', 'HERO', 'HERO_POWER', 'LOCATION']),
   createdSequence: z.number().int().nonnegative(),
   attack: z.number().int().min(-1000).max(1000),
   health: z.number().int().min(-1000).max(1000),
@@ -62,10 +69,12 @@ const entitySchema = z.object({
   armor: z.number().int().nonnegative().max(1000),
   durability: z.number().int().min(-1000).max(1000),
   exhausted: z.boolean(),
+  summonedThisTurn: z.boolean().optional(),
+  attacksRemaining: z.number().int().min(0).max(2).optional(),
   poisonousLethal: z.boolean(),
   destroyMarked: z.boolean(),
   deathrattleResolved: z.boolean(),
-  keywords: z.array(z.enum(['MANATHIRST', 'POISONOUS', 'ELUSIVE', 'DISCOVER', 'MAGNETIC', 'TAUNT', 'DEATHRATTLE'])).max(16),
+  keywords: z.array(z.enum(['MANATHIRST', 'POISONOUS', 'ELUSIVE', 'DISCOVER', 'MAGNETIC', 'TAUNT', 'DEATHRATTLE', 'CHARGE', 'RUSH', 'DIVINE_SHIELD', 'WINDFURY'])).max(16),
   races: z.array(z.enum(['BEAST', 'DRAGON', 'ELEMENTAL', 'MECHANICAL', 'MURLOC', 'NAGA', 'UNDEAD'])).max(16),
   attachedCardIds: z.array(entityIdSchema).max(16),
 }).strict()
@@ -194,9 +203,10 @@ export async function validateAndImportLog(
   const boundary = logBoundarySchema.safeParse(parsed)
   if (!boundary.success) throw new Error('IMPORT_SCHEMA_INVALID')
   const log = boundary.data as AnyGameLogV1
-  if (log.rulesVersion !== RULES_VERSION || log.cardDataVersion !== CARD_DATA_VERSION || log.scenarioVersion !== SCENARIO_VERSION) {
+  if (log.rulesVersion !== RULES_VERSION || !isSupportedCardDataVersion(log.cardDataVersion) || log.scenarioVersion !== SCENARIO_VERSION) {
     throw new Error('UNSUPPORTED_VERSION')
   }
+  const cardDataVersion: SupportedCardDataVersion = log.cardDataVersion
   assertInitialStateReferences(log)
   const replayedState = await replayLog(log)
   if (log.batches.reduce((sum, batch) => sum + batch.events.length, 0) !== log.totalEventCount) throw new Error('TOTAL_EVENT_COUNT_MISMATCH')
@@ -206,7 +216,7 @@ export async function validateAndImportLog(
   let expectedEventSequence = state.game.nextEventSequence
   for (const batch of log.batches) {
     if (batch.sequence !== expectedBatchSequence) throw new Error(`BATCH_SEQUENCE_MISMATCH:${expectedBatchSequence}`)
-    const provisional = resolveCommand(state, batch.command)
+    const provisional = resolveImportedCommand(state, batch.command, cardDataVersion)
     if (canonicalizeV1(provisional.legalityEvidence) !== canonicalizeV1(batch.legalityEvidence)) throw new Error(`LEGALITY_EVIDENCE_MISMATCH:${batch.sequence}`)
     if (provisional.events.length !== batch.events.length) throw new Error(`EVENT_COUNT_MISMATCH:${batch.sequence}`)
     for (let index = 0; index < batch.events.length; index += 1) {
@@ -215,15 +225,15 @@ export async function validateAndImportLog(
       if (!supplied || !expected) throw new Error(`EVENT_MISSING:${batch.sequence}:${index}`)
       if (supplied.sequence !== expectedEventSequence || supplied.sequence !== expected.sequence) throw new Error(`EVENT_SEQUENCE_MISMATCH:${expectedEventSequence}`)
       if (canonicalizeV1(supplied.event) !== canonicalizeV1(expected.event)) throw new Error(`EVENT_PAYLOAD_MISMATCH:${supplied.sequence}`)
-      const actualHash = await hashStateV1(expected.postState)
+      const actualHash = await hashStateV1(expected.postState, cardDataVersion)
       if (actualHash !== supplied.postStateHash) throw new Error(`POST_STATE_HASH_MISMATCH:${supplied.sequence}`)
       expectedEventSequence += 1
     }
     if (batch.postBatchStateHash !== batch.events.at(-1)?.postStateHash) throw new Error(`BATCH_HASH_MISMATCH:${batch.sequence}`)
-    state = provisional.finalState
+    state = normalizeStateForCardDataVersion(provisional.finalState, cardDataVersion)
     expectedBatchSequence += 1
   }
-  if (await hashStateV1(state) !== log.currentStateHash || await hashStateV1(replayedState) !== log.currentStateHash) throw new Error('CURRENT_STATE_HASH_MISMATCH')
+  if (await hashStateV1(state, cardDataVersion) !== log.currentStateHash || await hashStateV1(replayedState, cardDataVersion) !== log.currentStateHash) throw new Error('CURRENT_STATE_HASH_MISMATCH')
   if (log.status === 'completed') {
     if (state.game.phase !== 'GAME_OVER' || state.game.winnerId !== log.winnerId || state.game.endReason !== log.endReason) throw new Error('TERMINAL_SUMMARY_MISMATCH')
     const expectedResult = log.winnerId === 'PLAYER' ? 'PLAYER_WIN' : 'PLAYER_LOSS'

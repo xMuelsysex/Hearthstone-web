@@ -1,5 +1,5 @@
 import { CARD_DEFINITIONS_V1, getCardDefinition } from '@/cards/registry'
-import type { EffectExecutorId } from '@/cards/types'
+import type { EffectExecutorId, Keyword } from '@/cards/types'
 import { createEntityFromDefinition } from '@/engine/applyRecordedEvent'
 import { applyRecordedEvent, enemyHeroId } from '@/engine/applyRecordedEvent'
 import { combatAttackValue } from '@/engine/combat'
@@ -29,12 +29,17 @@ type WorkItem =
   | { type: 'DAMAGE'; packets: DamagePacketV1[] }
   | { type: 'SWEEP_DEATHS' }
   | { type: 'DRAW'; actorId: PlayerId; count: number }
-  | { type: 'SUMMON'; actorId: PlayerId; definitionId: string; placementIndex?: number }
-  | { type: 'OFFER_DISCOVER'; actorId: PlayerId; sourceEntityId: EntityId }
+  | { type: 'HEAL'; targetEntityId: EntityId; amount: number }
+  | { type: 'ADD_CARD'; actorId: PlayerId; definitionId: string }
+  | { type: 'ADD_CARD_IF_DEAD'; actorId: PlayerId; definitionId: string; targetEntityId: EntityId }
+  | { type: 'REFRESH_HERO_POWER'; actorId: PlayerId }
+  | { type: 'SUMMON'; actorId: PlayerId; definitionId: string; placementIndex?: number; ready?: boolean }
+  | { type: 'OFFER_DISCOVER'; actorId: PlayerId; sourceEntityId: EntityId; kind?: 'SPELL' | 'CARD' }
   | { type: 'CHECK_TERMINAL' }
 
 export type ResolveDependencies = {
   discoverPool?: readonly string[]
+  legacyCardDataVersion?: boolean
 }
 
 export function resolveCommand(
@@ -42,7 +47,7 @@ export function resolveCommand(
   command: GameCommand,
   dependencies: ResolveDependencies = {},
 ): ProvisionalCommandBatchV1 {
-  const validation = validateCommand(committedState, command)
+  const validation = validateCommand(committedState, command, dependencies)
   if (!validation.ok) throw new Error(validation.code)
   const legalityEvidence = validation.evidence
   const baseState = structuredClone(committedState)
@@ -50,10 +55,12 @@ export function resolveCommand(
   const events: ProvisionalRecordedEventV1[] = []
   const queue: WorkItem[] = []
   const batchSequence = committedState.game.nextBatchSequence
+  const entityOptions = dependencies.legacyCardDataVersion ? { legacyCardDataVersion: true } : {}
+  const eventOptions = dependencies.legacyCardDataVersion ? { legacyCardDataVersion: true } : {}
 
   function emitRecorded(event: RecordedEventV1, derive = true): void {
     const sequence = workingState.game.nextEventSequence
-    workingState = applyRecordedEvent(workingState, event)
+    workingState = applyRecordedEvent(workingState, event, eventOptions)
     events.push({ sequence, event, postState: workingState })
     if (!derive) return
     const scenarioEvents = deriveScenarioEvents(workingState, event, sequence, event.scope === 'GAME' && event.payload.type === 'COMMAND_ACCEPTED' ? legalityEvidence : [])
@@ -112,7 +119,14 @@ export function resolveCommand(
       }
       case 'SELECT_DISCOVER': {
         const player = workingState.game.players[accepted.actorId]
-        const entity = createEntityFromDefinition(workingState.game.nextEntityId, accepted.discoverChoiceId, accepted.actorId, player.hand.length >= 10 ? 'GRAVEYARD' : 'HAND')
+        const entity = createEntityFromDefinition(
+          workingState.game.nextEntityId,
+          accepted.discoverChoiceId,
+          accepted.actorId,
+          player.hand.length >= 10 ? 'GRAVEYARD' : 'HAND',
+          false,
+          entityOptions,
+        )
         emitGame({ type: 'DISCOVER_RESOLVED', actorId: accepted.actorId, decisionId: accepted.decisionId, choiceDefinitionId: accepted.discoverChoiceId, entity, burned: player.hand.length >= 10 })
         return
       }
@@ -136,11 +150,15 @@ export function resolveCommand(
       case 'USE_HERO_POWER': {
         const player = workingState.game.players[accepted.actorId]
         const heroPower = getEntity(workingState.game, player.heroPowerEntityId)
-        emitGame({ type: 'HERO_POWER_USED', actorId: accepted.actorId, heroPowerEntityId: heroPower.id, manaCost: 2 })
-        queue.push(createEffectItem(accepted.actorId, heroPower.id, getCardDefinition(heroPower.definitionId).effect, accepted.targetEntityId))
+        const heroPowerDefinition = getCardDefinition(heroPower.definitionId)
+        emitGame({ type: 'HERO_POWER_USED', actorId: accepted.actorId, heroPowerEntityId: heroPower.id, manaCost: heroPowerDefinition.cost })
+        queue.push(createEffectItem(accepted.actorId, heroPower.id, heroPowerDefinition.effect, accepted.targetEntityId))
         return
       }
       case 'END_TURN': {
+        const temporaryGhouls = workingState.game.players[accepted.actorId].board.filter((id) => getEntity(workingState.game, id).definitionId === 'HERO_11bpt')
+        for (const entityId of temporaryGhouls) emitGame({ type: 'MINION_MARKED_DESTROYED', entityId })
+        if (temporaryGhouls.length > 0) queue.unshift({ type: 'SWEEP_DEATHS' })
         emitGame({ type: 'TURN_ENDED', actorId: accepted.actorId })
         const nextActor = otherPlayer(accepted.actorId)
         emitGame({ type: 'TURN_STARTED', actorId: nextActor, turn: workingState.game.turn + 1 })
@@ -173,12 +191,24 @@ export function resolveCommand(
       case 'DRAW':
         for (let count = 0; count < item.count; count += 1) drawCard(item.actorId)
         return
+      case 'HEAL':
+        emitGame({ type: 'CHARACTER_HEALED', targetEntityId: item.targetEntityId, amount: item.amount })
+        return
+      case 'ADD_CARD':
+        addCard(item.actorId, item.definitionId)
+        return
+      case 'ADD_CARD_IF_DEAD':
+        if (getEntity(workingState.game, item.targetEntityId).zone === 'GRAVEYARD') addCard(item.actorId, item.definitionId)
+        return
+      case 'REFRESH_HERO_POWER':
+        emitGame({ type: 'HERO_POWER_REFRESHED', actorId: item.actorId })
+        return
       case 'SUMMON':
-        summon(item.actorId, item.definitionId, item.placementIndex)
+        summon(item.actorId, item.definitionId, item.placementIndex, item.ready)
         return
       case 'OFFER_DISCOVER':
         if (!heroesAreAlive()) return
-        offerDiscover(item.actorId, item.sourceEntityId)
+        offerDiscover(item.actorId, item.sourceEntityId, item.kind)
         return
       case 'CHECK_TERMINAL':
         if (queue.length > 0) {
@@ -208,12 +238,102 @@ export function resolveCommand(
       case 'DAMAGE_AND_DISCOVER_SPELL':
         queue.unshift(
           { type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: targetEntityId as EntityId, amount: value, poisonous: false, reason: 'SPELL' }] },
-          { type: 'OFFER_DISCOVER', actorId: item.actorId, sourceEntityId: item.sourceEntityId },
+          { type: 'OFFER_DISCOVER', actorId: item.actorId, sourceEntityId: item.sourceEntityId, kind: 'SPELL' },
         )
+        return
+      case 'DISCOVER_CARD':
+        queue.unshift({ type: 'OFFER_DISCOVER', actorId: item.actorId, sourceEntityId: item.sourceEntityId, kind: 'CARD' })
         return
       case 'SUMMON_TOKEN':
       case 'DEATHRATTLE_SUMMON_TOKEN':
         if (card.tokenCardId) queue.unshift({ type: 'SUMMON', actorId: item.actorId, definitionId: card.tokenCardId })
+        return
+      case 'SUMMON_TOKENS':
+        if (card.tokenCardId) {
+          for (let count = 0; count < value; count += 1) queue.unshift({ type: 'SUMMON', actorId: item.actorId, definitionId: card.tokenCardId })
+        }
+        return
+      case 'DAMAGE_AND_SUMMON_TOKEN':
+        if (card.tokenCardId) queue.unshift({ type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: targetEntityId as EntityId, amount: value, poisonous: false, reason: 'SPELL' }] }, { type: 'SUMMON', actorId: item.actorId, definitionId: card.tokenCardId })
+        return
+      case 'DAMAGE_AND_ADD_CARD_IF_DEAD':
+        if (card.tokenCardId) queue.unshift(
+          { type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: targetEntityId as EntityId, amount: value, poisonous: false, reason: 'SPELL' }] },
+          { type: 'ADD_CARD_IF_DEAD', actorId: item.actorId, definitionId: card.tokenCardId, targetEntityId: targetEntityId as EntityId },
+        )
+        return
+      case 'DAMAGE_AND_SPLASH': {
+        const enemy = otherPlayer(item.actorId)
+        const enemyIds = [workingState.game.players[enemy].heroEntityId, ...workingState.game.players[enemy].board]
+        const packets = enemyIds.map((targetId) => ({
+          sourceEntityId: item.sourceEntityId,
+          targetEntityId: targetId,
+          amount: targetId === targetEntityId ? value : card.secondaryValue,
+          poisonous: false,
+          reason: targetId === targetEntityId ? 'SPELL' as const : 'AREA' as const,
+        }))
+        queue.unshift({ type: 'DAMAGE', packets })
+        return
+      }
+      case 'DAMAGE_ALL_ENEMY_MINIONS_AND_HEAL_HERO': {
+        const targets = workingState.game.players[otherPlayer(item.actorId)].board
+        const healAmount = targets.reduce((total, id) => {
+          const target = getEntity(workingState.game, id)
+          return total + (target.keywords.includes('DIVINE_SHIELD') ? 0 : Math.min(value, Math.max(0, target.health)))
+        }, 0)
+        queue.unshift(
+          { type: 'DAMAGE', packets: targets.map((targetEntityId) => ({ sourceEntityId: item.sourceEntityId, targetEntityId, amount: value, poisonous: false, reason: 'AREA' as const })) },
+          { type: 'HEAL', targetEntityId: workingState.game.players[item.actorId].heroEntityId, amount: healAmount },
+        )
+        return
+      }
+      case 'DAMAGE_SPLIT_ENEMY_MINIONS_AND_HEAL_HERO': {
+        const targets = workingState.game.players[otherPlayer(item.actorId)].board
+        if (targets.length === 0) return
+        const simulatedHealth = new Map(targets.map((targetId) => [targetId, getEntity(workingState.game, targetId).health]))
+        const simulatedDivineShield = new Map(targets.map((targetId) => [targetId, getEntity(workingState.game, targetId).keywords.includes('DIVINE_SHIELD')]))
+        const packets: DamagePacketV1[] = []
+        let healAmount = 0
+        for (let point = 0; point < value; point += 1) {
+          const random = nextRandom(workingState.game.rng)
+          emitGame({ type: 'RNG_ADVANCED', rng: random.rng })
+          const targetEntityId = targets[Math.min(targets.length - 1, Math.floor(random.value * targets.length))] as EntityId
+          packets.push({ sourceEntityId: item.sourceEntityId, targetEntityId, amount: 1, poisonous: false, reason: 'AREA' })
+          if (simulatedDivineShield.get(targetEntityId)) {
+            simulatedDivineShield.set(targetEntityId, false)
+          } else if ((simulatedHealth.get(targetEntityId) ?? 0) > 0) {
+            simulatedHealth.set(targetEntityId, (simulatedHealth.get(targetEntityId) ?? 0) - 1)
+            healAmount += 1
+          }
+        }
+        queue.unshift(
+          { type: 'DAMAGE', packets },
+          { type: 'HEAL', targetEntityId: workingState.game.players[item.actorId].heroEntityId, amount: healAmount },
+        )
+        return
+      }
+      case 'DAMAGE_ENEMY_HERO_AND_ARMOR':
+        emitGame({ type: 'ARMOR_GAINED', actorId: item.actorId, amount: card.secondaryValue })
+        queue.unshift({ type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: enemyHeroId(workingState, item.actorId), amount: value, poisonous: false, reason: 'BATTLECRY' }] })
+        return
+      case 'DAMAGE_AND_DRAW':
+        queue.unshift(
+          { type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: targetEntityId as EntityId, amount: value, poisonous: false, reason: 'SPELL' }] },
+          { type: 'DRAW', actorId: item.actorId, count: card.secondaryValue },
+        )
+        return
+      case 'DAMAGE_AND_HEAL_HERO':
+        queue.unshift(
+          { type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: targetEntityId as EntityId, amount: value, poisonous: false, reason: 'SPELL' }] },
+          { type: 'HEAL', targetEntityId: workingState.game.players[item.actorId].heroEntityId, amount: value },
+        )
+        return
+      case 'DAMAGE_AND_HEAL_HERO_AND_RESET_POWER':
+        queue.unshift(
+          { type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: targetEntityId as EntityId, amount: value, poisonous: false, reason: 'SPELL' }] },
+          { type: 'HEAL', targetEntityId: workingState.game.players[item.actorId].heroEntityId, amount: value },
+          { type: 'REFRESH_HERO_POWER', actorId: item.actorId },
+        )
         return
       case 'DAMAGE_AND_ARMOR':
         emitGame({ type: 'ARMOR_GAINED', actorId: item.actorId, amount: card.secondaryValue })
@@ -237,6 +357,94 @@ export function resolveCommand(
       }
       case 'TEMPORARY_HERO_ATTACK':
         emitGame({ type: 'TEMPORARY_HERO_ATTACK_GAINED', actorId: item.actorId, amount: value })
+        return
+      case 'TEMPORARY_HERO_ATTACK_AND_ARMOR':
+        emitGame({ type: 'TEMPORARY_HERO_ATTACK_GAINED', actorId: item.actorId, amount: value })
+        emitGame({ type: 'ARMOR_GAINED', actorId: item.actorId, amount: card.secondaryValue })
+        return
+      case 'DRAW_AND_DAMAGE_SELF':
+        queue.unshift(
+          { type: 'DRAW', actorId: item.actorId, count: value },
+          { type: 'DAMAGE', packets: [{ sourceEntityId: item.sourceEntityId, targetEntityId: workingState.game.players[item.actorId].heroEntityId, amount: card.secondaryValue, poisonous: false, reason: getEntity(workingState.game, item.sourceEntityId).type === 'HERO_POWER' ? 'HERO_POWER' : 'BATTLECRY' }] },
+        )
+        return
+      case 'HEAL_HERO':
+        queue.unshift({ type: 'HEAL', targetEntityId: workingState.game.players[item.actorId].heroEntityId, amount: value })
+        return
+      case 'HEAL_CHARACTER':
+        queue.unshift({ type: 'HEAL', targetEntityId: targetEntityId as EntityId, amount: value })
+        return
+      case 'SET_HERO_HEALTH':
+        emitGame({ type: 'HERO_HEALTH_SET', actorId: item.actorId, health: value })
+        return
+      case 'HEAL_TARGET_AND_DRAW':
+        queue.unshift(
+          { type: 'HEAL', targetEntityId: targetEntityId as EntityId, amount: value },
+          { type: 'DRAW', actorId: item.actorId, count: card.secondaryValue },
+        )
+        return
+      case 'BUFF_OTHER_FRIENDLY_MINIONS': {
+        const sourceId = item.sourceEntityId
+        for (const targetId of workingState.game.players[item.actorId].board.filter((id) => id !== sourceId)) {
+          emitGame({ type: 'MINION_BUFFED', targetEntityId: targetId, attackGain: value, healthGain: card.secondaryValue })
+        }
+        return
+      }
+      case 'GRANT_POISONOUS':
+        emitGame({ type: 'MINION_KEYWORD_GRANTED', targetEntityId: targetEntityId as EntityId, keyword: 'POISONOUS' })
+        return
+      case 'DEATHRATTLE_ADD_CARD':
+        if (card.tokenCardId) queue.unshift({ type: 'ADD_CARD', actorId: item.actorId, definitionId: card.tokenCardId })
+        return
+      case 'SUMMON_TOKENS_AND_BUFF':
+        if (card.tokenCardId) {
+          for (let count = 0; count < value; count += 1) summon(item.actorId, card.tokenCardId)
+        }
+        for (const targetId of workingState.game.players[item.actorId].board) {
+          emitGame({ type: 'MINION_BUFFED', targetEntityId: targetId, attackGain: card.secondaryValue, healthGain: 0 })
+          emitGame({ type: 'MINION_KEYWORD_GRANTED', targetEntityId: targetId, keyword: 'DIVINE_SHIELD' })
+        }
+        return
+      case 'SUMMON_CHEAP_DECK_MINIONS_RUSH': {
+        let summonedCount = 0
+        for (const entityId of [...workingState.game.players[item.actorId].deck]) {
+          if (summonedCount >= 2 || workingState.game.players[item.actorId].board.length >= 7) break
+          const entity = structuredClone(getEntity(workingState.game, entityId))
+          const definition = getCardDefinition(entity.definitionId)
+          if (definition.type !== 'MINION' || definition.cost > 2) continue
+          entity.zone = 'BOARD'
+          entity.exhausted = false
+          entity.summonedThisTurn = true
+          entity.attacksRemaining = definition.keywords.includes('WINDFURY') ? 2 : 1
+          entity.keywords = [...new Set([...entity.keywords, 'RUSH' as Keyword])]
+          emitGame({ type: 'MINION_SUMMONED', actorId: item.actorId, entity, placementIndex: workingState.game.players[item.actorId].board.length, fromDeck: true })
+          summonedCount += 1
+        }
+        return
+      }
+      case 'EQUIP_TOKEN_WEAPON': {
+        if (!card.tokenCardId) return
+        const player = workingState.game.players[item.actorId]
+        const entity = createEntityFromDefinition(
+          workingState.game.nextEntityId,
+          card.tokenCardId,
+          item.actorId,
+          'WEAPON',
+          false,
+          entityOptions,
+        )
+        emitGame({ type: 'WEAPON_CREATED_AND_EQUIPPED', actorId: item.actorId, entity, replacedEntityId: player.weaponEntityId })
+        return
+      }
+      case 'SUMMON_RANDOM_BASIC_TOTEM': {
+        const tokens = ['CS2_050', 'CS2_051', 'CS2_052', 'CS2_058']
+        const random = nextRandom(workingState.game.rng)
+        emitGame({ type: 'RNG_ADVANCED', rng: random.rng })
+        summon(item.actorId, tokens[Math.floor(random.value * tokens.length)] as string)
+        return
+      }
+      case 'ADD_TOKEN_CARD':
+        if (card.tokenCardId) addCard(item.actorId, card.tokenCardId)
         return
       case 'DESTROY_DAMAGED_MINION':
         emitGame({ type: 'MINION_MARKED_DESTROYED', entityId: targetEntityId as EntityId })
@@ -293,16 +501,48 @@ export function resolveCommand(
     emitGame({ type: 'CARD_DRAWN', actorId, entityId, burned: player.hand.length >= 10 })
   }
 
-  function summon(actorId: PlayerId, definitionId: string, placementIndex?: number): void {
+  function addCard(actorId: PlayerId, definitionId: string): void {
+    const player = workingState.game.players[actorId]
+    const entity = createEntityFromDefinition(
+      workingState.game.nextEntityId,
+      definitionId,
+      actorId,
+      'HAND',
+      false,
+      entityOptions,
+    )
+    emitGame({ type: 'CARD_ADDED', actorId, entity, burned: player.hand.length >= 10 })
+  }
+
+  function summon(actorId: PlayerId, definitionId: string, placementIndex?: number, ready?: boolean): void {
     const player = workingState.game.players[actorId]
     if (player.board.length >= 7) return
-    const entity = createEntityFromDefinition(workingState.game.nextEntityId, definitionId, actorId, 'BOARD', true)
+    const card = getCardDefinition(definitionId)
+    const canAttackImmediately = dependencies.legacyCardDataVersion
+      ? false
+      : ready ?? (card.keywords.includes('CHARGE') || card.keywords.includes('RUSH'))
+    const entity = createEntityFromDefinition(
+      workingState.game.nextEntityId,
+      definitionId,
+      actorId,
+      'BOARD',
+      !canAttackImmediately,
+      entityOptions,
+    )
+    if (!dependencies.legacyCardDataVersion) {
+      entity.summonedThisTurn = canAttackImmediately
+      entity.attacksRemaining = canAttackImmediately ? (card.keywords.includes('WINDFURY') ? 2 : 1) : 0
+    }
     emitGame({ type: 'MINION_SUMMONED', actorId, entity, placementIndex: placementIndex ?? player.board.length })
   }
 
-  function offerDiscover(actorId: PlayerId, sourceEntityId: EntityId): void {
+  function offerDiscover(actorId: PlayerId, sourceEntityId: EntityId, kind: 'SPELL' | 'CARD' = 'SPELL'): void {
+    const player = workingState.game.players[actorId]
+    const actorClass = getCardDefinition(getEntity(workingState.game, player.heroEntityId).definitionId).cardClass
     const pool = [...(dependencies.discoverPool ?? Object.values(CARD_DEFINITIONS_V1)
-      .filter((card) => card.collectible && card.type === 'SPELL' && (card.cardClass === 'MAGE' || card.cardClass === 'NEUTRAL'))
+      .filter((card) => card.collectible
+        && (kind === 'CARD' ? ['MINION', 'SPELL', 'WEAPON'].includes(card.type) : card.type === 'SPELL')
+        && (card.classes.includes('NEUTRAL') || card.classes.includes(actorClass)))
       .map((card) => card.id))].sort()
     if (pool.length < 3) throw new Error('DISCOVER_POOL_TOO_SMALL')
     const candidates = [...pool]

@@ -3,6 +3,8 @@ import { projectLegalActions, projectPlayerView, type PlayerViewModel } from '@/
 import { resolveCommand } from '@/engine/resolveCommand'
 import type { AuthoritativeSessionStateV1, PlayerId } from '@/engine/state'
 import { appendBatch, createActiveGameLog } from '@/log/logBuilder'
+import { resolveDependenciesForCardDataVersion } from '@/log/compatibility'
+import { isSupportedCardDataVersion, normalizeStateForCardDataVersion } from '@/log/hash'
 import type { ActiveGameLogV1, AnyGameLogV1, CommandBatchV1 } from '@/log/schema'
 import { replayLog } from '@/log/replay'
 import { exportLog, validateAndImportLog, type ImportFileLike } from '@/log/validateImport'
@@ -160,7 +162,8 @@ export class SessionController {
     this.error = null
     this.publish()
     try {
-      const provisional = resolveCommand(this.state, command)
+      if (!isSupportedCardDataVersion(this.log.cardDataVersion)) throw new Error(`UNSUPPORTED_CARD_DATA_VERSION:${this.log.cardDataVersion}`)
+      const provisional = resolveCommand(this.state, command, resolveDependenciesForCardDataVersion(this.log.cardDataVersion))
       const nextLog = await appendBatch(this.log, provisional, this.clock.now())
       let committedRoot: StorageRootV2
       try {
@@ -181,7 +184,8 @@ export class SessionController {
       if (!batch) throw new Error('MISSING_COMMITTED_BATCH')
       this.setPersistedRoot(committedRoot)
       this.log = nextLog
-      this.state = provisional.finalState
+      if (!isSupportedCardDataVersion(nextLog.cardDataVersion)) throw new Error(`UNSUPPORTED_CARD_DATA_VERSION:${nextLog.cardDataVersion}`)
+      this.state = normalizeStateForCardDataVersion(provisional.finalState, nextLog.cardDataVersion)
       this.lastBatch = batch
       return batch
     } catch (error) {
@@ -206,9 +210,13 @@ export class SessionController {
 
   snapshotForActor(actorId: PlayerId): ActorSnapshot | null {
     if (!this.state) return null
+    const cardDataVersion = this.log?.cardDataVersion
+    const legalActions = cardDataVersion && isSupportedCardDataVersion(cardDataVersion)
+      ? projectLegalActions(this.state, actorId, resolveDependenciesForCardDataVersion(cardDataVersion))
+      : projectLegalActions(this.state, actorId)
     return {
       view: projectPlayerView(this.state, actorId),
-      legalActions: projectLegalActions(this.state, actorId),
+      legalActions,
     }
   }
 

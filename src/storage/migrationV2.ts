@@ -1,7 +1,6 @@
-import { CARD_DATA_VERSION } from '@/cards/data/cards.v1'
 import { RULES_VERSION } from '@/engine/state'
 import { canonicalizeV1 } from '@/log/canonicalize'
-import { hashCanonicalValue, sha256Hex } from '@/log/hash'
+import { hashCanonicalValue, isSupportedCardDataVersion, sha256Hex } from '@/log/hash'
 import type { AnyGameLogV1 } from '@/log/schema'
 import { replayLog } from '@/log/replay'
 import { assertStorageRootV2, createEmptyStorageRootV2, type RawMigrationBytesV2, type StorageRootV2 } from '@/storage/schemaV2'
@@ -27,7 +26,7 @@ function asV1Root(value: unknown): StorageRootV1 {
 }
 
 function assertLogMetadata(log: AnyGameLogV1): void {
-  if (log.rulesVersion !== RULES_VERSION || log.cardDataVersion !== CARD_DATA_VERSION || log.scenarioVersion !== SCENARIO_VERSION || log.rngAlgorithmVersion !== 'mulberry32-v1') {
+  if (log.rulesVersion !== RULES_VERSION || !isSupportedCardDataVersion(log.cardDataVersion) || log.scenarioVersion !== SCENARIO_VERSION || log.rngAlgorithmVersion !== 'mulberry32-v1') {
     throw new Error('MIGRATION_UNSUPPORTED_VERSION')
   }
   if (typeof log.gameId !== 'string' || log.gameId.length === 0 || typeof log.createdAt !== 'string' || typeof log.updatedAt !== 'string') {

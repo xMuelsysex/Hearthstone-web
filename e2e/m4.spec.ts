@@ -27,6 +27,6 @@ test('M4 Chromium gate boots from the V2 storage compatibility envelope', async 
   }, { key: STORAGE_KEY })
   await page.goto('/')
   await expect(page.getByRole('heading', { name: '炉石传说：旅店展示战' })).toBeVisible()
-  await expect(page.getByRole('button', { name: '开始展示战' })).toBeEnabled()
+  await expect(page.getByRole('button', { name: '开始对局' })).toBeEnabled()
   await expect.poll(() => page.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? '{}').schemaVersion, STORAGE_KEY)).toBe(2)
 })

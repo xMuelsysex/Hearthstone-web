@@ -1,9 +1,9 @@
 export type CardDefinitionId = string
-export type CardClass = 'MAGE' | 'WARRIOR' | 'NEUTRAL'
-export type CardType = 'MINION' | 'SPELL' | 'WEAPON' | 'HERO' | 'HERO_POWER'
-export type Keyword = 'MANATHIRST' | 'POISONOUS' | 'ELUSIVE' | 'DISCOVER' | 'MAGNETIC' | 'TAUNT' | 'DEATHRATTLE'
+export type CardClass = 'DEATHKNIGHT' | 'DEMONHUNTER' | 'DRUID' | 'HUNTER' | 'MAGE' | 'PALADIN' | 'PRIEST' | 'ROGUE' | 'SHAMAN' | 'WARLOCK' | 'WARRIOR' | 'NEUTRAL'
+export type CardType = 'MINION' | 'SPELL' | 'WEAPON' | 'HERO' | 'HERO_POWER' | 'LOCATION'
+export type Keyword = 'MANATHIRST' | 'POISONOUS' | 'ELUSIVE' | 'DISCOVER' | 'MAGNETIC' | 'TAUNT' | 'DEATHRATTLE' | 'CHARGE' | 'RUSH' | 'DIVINE_SHIELD' | 'WINDFURY'
 export type Race = 'BEAST' | 'DRAGON' | 'ELEMENTAL' | 'MECHANICAL' | 'MURLOC' | 'NAGA' | 'UNDEAD'
-export type TargetingMode = 'NONE' | 'ANY_CHARACTER' | 'ANY_MINION' | 'ENEMY_DAMAGED_MINION'
+export type TargetingMode = 'NONE' | 'ANY_CHARACTER' | 'FRIENDLY_CHARACTER' | 'ENEMY_CHARACTER' | 'ANY_MINION' | 'ENEMY_DAMAGED_MINION' | 'ENEMY_HERO' | 'FRIENDLY_MINION' | 'FRIENDLY_BEAST' | 'UNHURT_ENEMY_MINION'
 
 export type EffectExecutorId =
   | 'NONE'
@@ -26,6 +26,31 @@ export type EffectExecutorId =
   | 'HERO_POWER_DAMAGE'
   | 'HERO_POWER_ARMOR'
   | 'TEMPORARY_MANA'
+  | 'DRAW_AND_DAMAGE_SELF'
+  | 'SUMMON_TOKENS'
+  | 'DAMAGE_AND_SUMMON_TOKEN'
+  | 'DAMAGE_AND_SPLASH'
+  | 'DAMAGE_ALL_ENEMY_MINIONS_AND_HEAL_HERO'
+  | 'DAMAGE_SPLIT_ENEMY_MINIONS_AND_HEAL_HERO'
+  | 'DAMAGE_ENEMY_HERO_AND_ARMOR'
+  | 'DAMAGE_AND_DRAW'
+  | 'DAMAGE_AND_HEAL_HERO'
+  | 'DAMAGE_AND_HEAL_HERO_AND_RESET_POWER'
+  | 'DAMAGE_AND_ADD_CARD_IF_DEAD'
+  | 'DEATHRATTLE_ADD_CARD'
+  | 'HEAL_HERO'
+  | 'HEAL_CHARACTER'
+  | 'SET_HERO_HEALTH'
+  | 'HEAL_TARGET_AND_DRAW'
+  | 'BUFF_OTHER_FRIENDLY_MINIONS'
+  | 'GRANT_POISONOUS'
+  | 'SUMMON_TOKENS_AND_BUFF'
+  | 'SUMMON_CHEAP_DECK_MINIONS_RUSH'
+  | 'EQUIP_TOKEN_WEAPON'
+  | 'SUMMON_RANDOM_BASIC_TOTEM'
+  | 'ADD_TOKEN_CARD'
+  | 'DISCOVER_CARD'
+  | 'TEMPORARY_HERO_ATTACK_AND_ARMOR'
 
 export type CardDefinitionV1 = {
   id: CardDefinitionId
@@ -37,6 +62,7 @@ export type CardDefinitionV1 = {
   durability: number
   type: CardType
   cardClass: CardClass
+  classes: CardClass[]
   rarity: string
   set: string
   text: string

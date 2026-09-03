@@ -1,3 +1,5 @@
+import { getShowcaseDeck, type ShowcaseDeckDefinitionV1 } from '@/cards/decks'
+import type { CardClass } from '@/cards/types'
 import { commandFromAction } from '@/engine/commands'
 import { getLegalActions } from '@/engine/legalActions'
 import { projectPlayerView } from '@/engine/projection'
@@ -24,15 +26,20 @@ function moveDeckCardToBoard(state: AuthoritativeSessionStateV1, actorId: Player
   return entityId
 }
 
-export function createShowcaseState(): AuthoritativeSessionStateV1 {
+export type ShowcasePlayerClass = Exclude<CardClass, 'NEUTRAL'>
+
+export function createShowcaseState(playerClass: ShowcasePlayerClass = 'MAGE'): AuthoritativeSessionStateV1 {
+  const deck: ShowcaseDeckDefinitionV1 = getShowcaseDeck(playerClass)
+  const isDefaultShowcase = playerClass === 'MAGE'
   const state = createGameState({
     seed: SHOWCASE_SEED,
     scenarioId: 'showcase-v1',
     startingPlayerId: 'PLAYER',
-    playerDeckTop: ['RLK_843', 'BAR_541', 'DRG_066', 'BOT_563'],
+    playerProfile: { heroId: deck.heroId, heroPowerId: deck.heroPowerId, deck: deck.cards },
+    playerDeckTop: isDefaultShowcase ? ['RLK_843', 'BAR_541', 'DRG_066', 'BOT_563'] : deck.signatureCardIds,
     opponentDeckTop: ['BT_233'],
   })
-  moveDeckCardToBoard(state, 'PLAYER', 'BOT_309')
+  if (isDefaultShowcase) moveDeckCardToBoard(state, 'PLAYER', 'BOT_309')
   moveDeckCardToBoard(state, 'OPPONENT', 'CS2_119')
   return state
 }

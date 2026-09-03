@@ -65,6 +65,24 @@
       "purpose": "AT_017 的官方原画"
     },
     {
+      "id": "card-art:AT_063",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/AT_063.png",
+      "localPath": "/assets/card-art/AT_063.png",
+      "sha256": "76459a63c25f7a7a002de00325bf6eab4c8cbcbccc51293497e2bf143cdf2f19",
+      "byteLength": 238631,
+      "purpose": "AT_063 的官方原画"
+    },
+    {
+      "id": "card-art:AT_063t",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/AT_063t.png",
+      "localPath": "/assets/card-art/AT_063t.png",
+      "sha256": "2d4839927f5dfb94eddd97c8579e70971ed3cb436fc5b855280e5ea542b9f727",
+      "byteLength": 265701,
+      "purpose": "AT_063t 的官方原画"
+    },
+    {
       "id": "card-art:AT_066",
       "kind": "CARD_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/AT_066.png",
@@ -218,6 +236,24 @@
       "purpose": "AT_122 的官方原画"
     },
     {
+      "id": "card-art:AV_312",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/AV_312.png",
+      "localPath": "/assets/card-art/AV_312.png",
+      "sha256": "dcd2a6b9227cba357c43fa27f877841eac848c0dd04045f821073f4d820b9e1c",
+      "byteLength": 259607,
+      "purpose": "AV_312 的官方原画"
+    },
+    {
+      "id": "card-art:BAR_074",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/BAR_074.png",
+      "localPath": "/assets/card-art/BAR_074.png",
+      "sha256": "76f333177ab82d8600ac081d160ea359ad08f92390c3c4d39254309d2f5a04b5",
+      "byteLength": 232632,
+      "purpose": "BAR_074 的官方原画"
+    },
+    {
       "id": "card-art:BOT_309",
       "kind": "CARD_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/BOT_309.png",
@@ -236,6 +272,231 @@
       "purpose": "BOT_563 的官方原画"
     },
     {
+      "id": "card-art:BT_255",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/BT_255.png",
+      "localPath": "/assets/card-art/BT_255.png",
+      "sha256": "33ce9bd92adaac5c0e830ddcf223b5e8268f8e797cb0764ddb84eb88450bc1c4",
+      "byteLength": 179800,
+      "purpose": "BT_255 的官方原画"
+    },
+    {
+      "id": "card-art:CAP_004",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CAP_004.png",
+      "localPath": "/assets/card-art/CAP_004.png",
+      "sha256": "3286eae4e5ce9dbcf0e6ab5ae2b1c66228d735bf0ab6f14af25e72e988f752a4",
+      "byteLength": 200950,
+      "purpose": "CAP_004 的官方原画"
+    },
+    {
+      "id": "card-art:CAP_107",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CAP_107.png",
+      "localPath": "/assets/card-art/CAP_107.png",
+      "sha256": "b03b3f4d62c820c517c11313341f39979b8cee1f2d4e12738ac69858f0645f9b",
+      "byteLength": 245716,
+      "purpose": "CAP_107 的官方原画"
+    },
+    {
+      "id": "card-art:CAP_804",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CAP_804.png",
+      "localPath": "/assets/card-art/CAP_804.png",
+      "sha256": "0bda095f726d73ec9570e50a9062e9ba0a838b4b8b971c8b5204007eaa9c6967",
+      "byteLength": 206761,
+      "purpose": "CAP_804 的官方原画"
+    },
+    {
+      "id": "card-art:CAP_806",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CAP_806.png",
+      "localPath": "/assets/card-art/CAP_806.png",
+      "sha256": "e9bfd1bea78febaa2abed381cbc450e79f0980a4ddc62c9fb3293f2a963f76f1",
+      "byteLength": 232889,
+      "purpose": "CAP_806 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_153",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_153.png",
+      "localPath": "/assets/card-art/CATA_153.png",
+      "sha256": "c37e907f58c5351a8920d7ce825e085b52573547667cf529d898a41bf9e4de4a",
+      "byteLength": 295210,
+      "purpose": "CATA_153 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_153t",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_153t.png",
+      "localPath": "/assets/card-art/CATA_153t.png",
+      "sha256": "9725caf6289b1b0fbdacfaa1602b07a1d9e4fc2c11dc938c74ea1f59688c9ba3",
+      "byteLength": 222209,
+      "purpose": "CATA_153t 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_154",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_154.png",
+      "localPath": "/assets/card-art/CATA_154.png",
+      "sha256": "47a6f7fb93b4a201649babf7528098ab0812e06287c4cc70576cb9cc80d6c1bb",
+      "byteLength": 324501,
+      "purpose": "CATA_154 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_200",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_200.png",
+      "localPath": "/assets/card-art/CATA_200.png",
+      "sha256": "a1d39e02df20354456409094dc8cc5d0ba69d6370320d40924ec549691221082",
+      "byteLength": 176562,
+      "purpose": "CATA_200 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_201",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_201.png",
+      "localPath": "/assets/card-art/CATA_201.png",
+      "sha256": "a7e3ada87e37fb1205c14a7ebfa59e121987311d19cf279e9f9e9c9c77053b56",
+      "byteLength": 213034,
+      "purpose": "CATA_201 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_458",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_458.png",
+      "localPath": "/assets/card-art/CATA_458.png",
+      "sha256": "c383fdaed3e1b34994166a8bec6f7cf45e203fcdec93f6f2fb9aa1376975d99c",
+      "byteLength": 255185,
+      "purpose": "CATA_458 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_473",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_473.png",
+      "localPath": "/assets/card-art/CATA_473.png",
+      "sha256": "08d20081c65f3e70300e75df311248437574fb8d152b996736869245e8f08461",
+      "byteLength": 236560,
+      "purpose": "CATA_473 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_474",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_474.png",
+      "localPath": "/assets/card-art/CATA_474.png",
+      "sha256": "7aa79e5425ec01e3e039503f6aa1169c9080be14c76bcdc7fc0642589bdc483e",
+      "byteLength": 232053,
+      "purpose": "CATA_474 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_475",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_475.png",
+      "localPath": "/assets/card-art/CATA_475.png",
+      "sha256": "d32446ab0ae15d843284ef101d3c3a6f3754dee1bf81d4d963504e72e8cb9bba",
+      "byteLength": 215429,
+      "purpose": "CATA_475 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_479t3",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_479t3.png",
+      "localPath": "/assets/card-art/CATA_479t3.png",
+      "sha256": "2889c0cc23088cb31ee3481ef1f70132840805ffc605dd867d37d313748587db",
+      "byteLength": 204039,
+      "purpose": "CATA_479t3 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_497",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_497.png",
+      "localPath": "/assets/card-art/CATA_497.png",
+      "sha256": "e6606b46236985903656c7689cdb3421cd8f1c02644e67319f1c87a53ff9117b",
+      "byteLength": 224818,
+      "purpose": "CATA_497 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_556",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_556.png",
+      "localPath": "/assets/card-art/CATA_556.png",
+      "sha256": "283f4c8f57c055d5dc4c493041196da6bde55d6b8a8efeb3a4a5c489c0dfa732",
+      "byteLength": 190074,
+      "purpose": "CATA_556 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_565",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_565.png",
+      "localPath": "/assets/card-art/CATA_565.png",
+      "sha256": "dfeefea818446e0a2f3483c5f9a01ed32f42c031cbd22ce3152c422d9b6139ab",
+      "byteLength": 240775,
+      "purpose": "CATA_565 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_722",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_722.png",
+      "localPath": "/assets/card-art/CATA_722.png",
+      "sha256": "0fe3f955a866cfec1e9167b9cf9539de98754bb841ac0fa5068c4403e6962d90",
+      "byteLength": 209718,
+      "purpose": "CATA_722 的官方原画"
+    },
+    {
+      "id": "card-art:CATA_EVENT_401",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_EVENT_401.png",
+      "localPath": "/assets/card-art/CATA_EVENT_401.png",
+      "sha256": "3dd5e5c91c30e5e252218c9989f7009651f1b713c2518c8e6d4f71524753399c",
+      "byteLength": 188432,
+      "purpose": "CATA_EVENT_401 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_BT_187",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_BT_187.png",
+      "localPath": "/assets/card-art/CORE_BT_187.png",
+      "sha256": "7f8d80ed18dc3904cf3a1d525d635ad731b0400328af28363955095830858343",
+      "byteLength": 254173,
+      "purpose": "CORE_BT_187 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_DRG_107",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_DRG_107.png",
+      "localPath": "/assets/card-art/CORE_DRG_107.png",
+      "sha256": "6c61676d2a5ea7cb88d57e1d260eb58eccb0697d0ae7ef75812d20c950a4629b",
+      "byteLength": 233682,
+      "purpose": "CORE_DRG_107 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_EDR_003",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_EDR_003.png",
+      "localPath": "/assets/card-art/CORE_EDR_003.png",
+      "sha256": "cfa84f4b3e3f94d41eebe1ed5103d180b80214ec51173adab1f38e5b97c4eccf",
+      "byteLength": 254446,
+      "purpose": "CORE_EDR_003 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_EX1_012",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_EX1_012.png",
+      "localPath": "/assets/card-art/CORE_EX1_012.png",
+      "sha256": "f1759bd6d81dd2ca3c4af31f67646b0bbe36d9d6f7c4c77cd76237f24a2709ce",
+      "byteLength": 277944,
+      "purpose": "CORE_EX1_012 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_GIL_531",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_GIL_531.png",
+      "localPath": "/assets/card-art/CORE_GIL_531.png",
+      "sha256": "b2ace16b77867b4782d5e7af97e8d961bfa0cc8f4c7ee876f387217507675a72",
+      "byteLength": 238992,
+      "purpose": "CORE_GIL_531 的官方原画"
+    },
+    {
       "id": "card-art:CORE_GVG_053",
       "kind": "CARD_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_GVG_053.png",
@@ -245,6 +506,24 @@
       "purpose": "CORE_GVG_053 的官方原画"
     },
     {
+      "id": "card-art:CORE_ICC_038",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_ICC_038.png",
+      "localPath": "/assets/card-art/CORE_ICC_038.png",
+      "sha256": "fa9aa0045b9d11f031750e2b2e216249840212e0899b69a709c149899e1b38d0",
+      "byteLength": 162769,
+      "purpose": "CORE_ICC_038 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_KAR_061",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_KAR_061.png",
+      "localPath": "/assets/card-art/CORE_KAR_061.png",
+      "sha256": "a12a35d2aa5c4852b6dfc60499c8fb90096d87f65e7dccb6a997d8659b9bb49c",
+      "byteLength": 231062,
+      "purpose": "CORE_KAR_061 的官方原画"
+    },
+    {
       "id": "card-art:CORE_OG_149",
       "kind": "CARD_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_OG_149.png",
@@ -252,6 +531,96 @@
       "sha256": "1f21f817aa46f78d0a1da948dcbaaf52e17038c82add4ffe8212b41d2d04c5c7",
       "byteLength": 260570,
       "purpose": "CORE_OG_149 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_SCH_713",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_SCH_713.png",
+      "localPath": "/assets/card-art/CORE_SCH_713.png",
+      "sha256": "9b4f37a04ea58850a584c02c0d42fa217aa9a4c4e1d0ba3d95ba0f8b42a5f08e",
+      "byteLength": 255125,
+      "purpose": "CORE_SCH_713 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_SW_072",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_SW_072.png",
+      "localPath": "/assets/card-art/CORE_SW_072.png",
+      "sha256": "4c88934d178d4edf7a53fc539987821d4425c06c0998d5ce6a587e10ea0730f1",
+      "byteLength": 222622,
+      "purpose": "CORE_SW_072 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_UNG_205",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_UNG_205.png",
+      "localPath": "/assets/card-art/CORE_UNG_205.png",
+      "sha256": "20c29fe8a386069b25d238a54b629e35a71bf1e5e83923b446df292a4a1a0870",
+      "byteLength": 226702,
+      "purpose": "CORE_UNG_205 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_UNG_809",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_UNG_809.png",
+      "localPath": "/assets/card-art/CORE_UNG_809.png",
+      "sha256": "c8d3588d756562830c182e7d1bccd81fa69b8b8d602f84567e8e8728e38696c8",
+      "byteLength": 216222,
+      "purpose": "CORE_UNG_809 的官方原画"
+    },
+    {
+      "id": "card-art:CORE_WC_042",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CORE_WC_042.png",
+      "localPath": "/assets/card-art/CORE_WC_042.png",
+      "sha256": "4743e9b6cac3cc0c66ba1a0e572cc20990392f83f215d4894111e99c4478ab8d",
+      "byteLength": 191313,
+      "purpose": "CORE_WC_042 的官方原画"
+    },
+    {
+      "id": "card-art:CS2_050",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CS2_050.png",
+      "localPath": "/assets/card-art/CS2_050.png",
+      "sha256": "427f5bd26ee495b77cc4dd39a234eb8e134c9a76ff28d4c7a0394700e83d1f24",
+      "byteLength": 292784,
+      "purpose": "CS2_050 的官方原画"
+    },
+    {
+      "id": "card-art:CS2_051",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CS2_051.png",
+      "localPath": "/assets/card-art/CS2_051.png",
+      "sha256": "fb18c24baff67b475f3d29c0cab1c0952fb5717af9dd2b461d3e48f7adb870ec",
+      "byteLength": 306668,
+      "purpose": "CS2_051 的官方原画"
+    },
+    {
+      "id": "card-art:CS2_052",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CS2_052.png",
+      "localPath": "/assets/card-art/CS2_052.png",
+      "sha256": "84744c61419b33625e5eb48a93d5d78e1ce96edb36e5e1903cde8e99bf3c53cb",
+      "byteLength": 323723,
+      "purpose": "CS2_052 的官方原画"
+    },
+    {
+      "id": "card-art:CS2_058",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CS2_058.png",
+      "localPath": "/assets/card-art/CS2_058.png",
+      "sha256": "03b3c77518862d680e1baa9ba353cc8ad92c7732ce4427dcb3aa2419e44fba9e",
+      "byteLength": 177762,
+      "purpose": "CS2_058 的官方原画"
+    },
+    {
+      "id": "card-art:CS2_101t",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CS2_101t.png",
+      "localPath": "/assets/card-art/CS2_101t.png",
+      "sha256": "c808dde03829b64a09d3f43f38947f60816489c40758c9ebb2a6587618d7e3d3",
+      "byteLength": 241662,
+      "purpose": "CS2_101t 的官方原画"
     },
     {
       "id": "card-art:CS2_118",
@@ -380,6 +749,87 @@
       "purpose": "CS2_boar 的官方原画"
     },
     {
+      "id": "card-art:DED_509",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DED_509.png",
+      "localPath": "/assets/card-art/DED_509.png",
+      "sha256": "6110bc5d0c90b1d2b973a927ece369974e0358691769fcfd071df9ad19f0c3dc",
+      "byteLength": 224815,
+      "purpose": "DED_509 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_136t",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_136t.png",
+      "localPath": "/assets/card-art/DINO_136t.png",
+      "sha256": "7f566eed0a22889e3131188d52fdda53e8923f42a7b0b322dd6bca98ef3055d9",
+      "byteLength": 194506,
+      "purpose": "DINO_136t 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_410",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_410.png",
+      "localPath": "/assets/card-art/DINO_410.png",
+      "sha256": "3378d323207183b3b11b7e3e7d5a54c22550fc0c1c33a4a947069a687ae79c87",
+      "byteLength": 188317,
+      "purpose": "DINO_410 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_410t",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_410t.png",
+      "localPath": "/assets/card-art/DINO_410t.png",
+      "sha256": "b46b0412dac9874867881318b6cc6a5e0138498c6039c7758810b142c83579c9",
+      "byteLength": 198462,
+      "purpose": "DINO_410t 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_410t2",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_410t2.png",
+      "localPath": "/assets/card-art/DINO_410t2.png",
+      "sha256": "05f0bb6e97e18901aaa940ed70a8db36fcac68e60c5b0273f0db8250048e9eb6",
+      "byteLength": 187927,
+      "purpose": "DINO_410t2 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_410t3",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_410t3.png",
+      "localPath": "/assets/card-art/DINO_410t3.png",
+      "sha256": "7fc5de0082438c10b4a2e06e5466a59e2d9e8bde0708df7d0e1332c36ba9b1cf",
+      "byteLength": 188585,
+      "purpose": "DINO_410t3 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_410t4",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_410t4.png",
+      "localPath": "/assets/card-art/DINO_410t4.png",
+      "sha256": "5df1266e9c8d67ccdb99fd530c0820e731601f2b8b4f126d82dec642c8759544",
+      "byteLength": 193725,
+      "purpose": "DINO_410t4 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_410t5",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_410t5.png",
+      "localPath": "/assets/card-art/DINO_410t5.png",
+      "sha256": "62585457d090c08f546601c3338b88dfe943101cd683ade3b7390db0480f9983",
+      "byteLength": 190325,
+      "purpose": "DINO_410t5 的官方原画"
+    },
+    {
+      "id": "card-art:DINO_411",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DINO_411.png",
+      "localPath": "/assets/card-art/DINO_411.png",
+      "sha256": "47a961736a63052ce95bfe3f8db70b04fd83deca4d3eea8f2d4fc76ff3f966aa",
+      "byteLength": 217235,
+      "purpose": "DINO_411 的官方原画"
+    },
+    {
       "id": "card-art:DRG_066",
       "kind": "CARD_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DRG_066.png",
@@ -396,6 +846,141 @@
       "sha256": "fb1fc9ac4d11dfecd6792907ed224ecf235bfe80e43d72b0d7720f88c2ad7a82",
       "byteLength": 252489,
       "purpose": "DS1_055 的官方原画"
+    },
+    {
+      "id": "card-art:DS1_178",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/DS1_178.png",
+      "localPath": "/assets/card-art/DS1_178.png",
+      "sha256": "c9a97d7e0ea6441dc51ec56f329a1c63d3157fff82e74d4097adc098c38b4e7d",
+      "byteLength": 255812,
+      "purpose": "DS1_178 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_000",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_000.png",
+      "localPath": "/assets/card-art/EDR_000.png",
+      "sha256": "151b8e57d02e6a84caa8fcad238fc10e146fc3d3704244c83cd4974868653a80",
+      "byteLength": 254229,
+      "purpose": "EDR_000 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_258",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_258.png",
+      "localPath": "/assets/card-art/EDR_258.png",
+      "sha256": "3eefd59ee67da54ae4fa9b69963278bd9e821506e0aab72b7ba4289f62e0bd79",
+      "byteLength": 247594,
+      "purpose": "EDR_258 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_456",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_456.png",
+      "localPath": "/assets/card-art/EDR_456.png",
+      "sha256": "06221de46be530beb4289c120d4d4cc11c9703821741c1d2630c29a287dc2070",
+      "byteLength": 257774,
+      "purpose": "EDR_456 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_457",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_457.png",
+      "localPath": "/assets/card-art/EDR_457.png",
+      "sha256": "a25f164f9356ddf914be5eb482fc5707aaf96b277d753647320cf278538b65d3",
+      "byteLength": 214819,
+      "purpose": "EDR_457 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_492",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_492.png",
+      "localPath": "/assets/card-art/EDR_492.png",
+      "sha256": "c8b09b00ef09fa56e218f0be7757f41cbebc18663a3abd2d310ea3c9b17e49bf",
+      "byteLength": 188337,
+      "purpose": "EDR_492 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_810t",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_810t.png",
+      "localPath": "/assets/card-art/EDR_810t.png",
+      "sha256": "ef5b2916585e291d2ddbb6600668c17ac793972d09f7b5b354bf1a2d9348215b",
+      "byteLength": 170680,
+      "purpose": "EDR_810t 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_844",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_844.png",
+      "localPath": "/assets/card-art/EDR_844.png",
+      "sha256": "0a8dc6ae5330c64c26c8c56d1685bbae15872121eeafdab16d859268b57be27f",
+      "byteLength": 223418,
+      "purpose": "EDR_844 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_849",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_849.png",
+      "localPath": "/assets/card-art/EDR_849.png",
+      "sha256": "19680bf3a73f52022fb40f1563eb99759f6b256a07947d724f5a36ce2d6302ec",
+      "byteLength": 175703,
+      "purpose": "EDR_849 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_856",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_856.png",
+      "localPath": "/assets/card-art/EDR_856.png",
+      "sha256": "34b458fd40c5ff58af963349eb9c940a932a53b0d12ac95477a174e7824b17cc",
+      "byteLength": 201346,
+      "purpose": "EDR_856 的官方原画"
+    },
+    {
+      "id": "card-art:EDR_970",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EDR_970.png",
+      "localPath": "/assets/card-art/EDR_970.png",
+      "sha256": "bff7e0136da20dcb8d7e1bff29ae12c636ea5fa8c47b891c23fc06f5d539af5e",
+      "byteLength": 211676,
+      "purpose": "EDR_970 的官方原画"
+    },
+    {
+      "id": "card-art:END_004",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/END_004.png",
+      "localPath": "/assets/card-art/END_004.png",
+      "sha256": "49a36ceb7a2db30834e27c0d5c5262afb5cc925f09e39c5174ab65a4ec1a781b",
+      "byteLength": 189934,
+      "purpose": "END_004 的官方原画"
+    },
+    {
+      "id": "card-art:END_033",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/END_033.png",
+      "localPath": "/assets/card-art/END_033.png",
+      "sha256": "433b08b2f6c28418f80b8c24fc7153b56eebb5ff661143ea8dac1691292e0466",
+      "byteLength": 207365,
+      "purpose": "END_033 的官方原画"
+    },
+    {
+      "id": "card-art:ETC_080",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/ETC_080.png",
+      "localPath": "/assets/card-art/ETC_080.png",
+      "sha256": "f5e74bb1ee92b020261a81414d8f657ff063eff986d9fed1534c81e60b53a0ef",
+      "byteLength": 196637,
+      "purpose": "ETC_080 的官方原画"
+    },
+    {
+      "id": "card-art:ETC_836",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/ETC_836.png",
+      "localPath": "/assets/card-art/ETC_836.png",
+      "sha256": "0b527d55918f9fb8dd96406d6d39265851a9953e69b04131a13aa944284ca481",
+      "byteLength": 236961,
+      "purpose": "ETC_836 的官方原画"
     },
     {
       "id": "card-art:EX1_025",
@@ -434,6 +1019,366 @@
       "purpose": "EX1_556 的官方原画"
     },
     {
+      "id": "card-art:EX1_620",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/EX1_620.png",
+      "localPath": "/assets/card-art/EX1_620.png",
+      "sha256": "0be2a22144c18c8187f8a3df9fe0e6ef05b240f29b65b12ce3811709740cc51e",
+      "byteLength": 212263,
+      "purpose": "EX1_620 的官方原画"
+    },
+    {
+      "id": "card-art:FIR_929",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/FIR_929.png",
+      "localPath": "/assets/card-art/FIR_929.png",
+      "sha256": "89157f1bc979473926aca575d5550417ed534d1e380b0e7ff049eb76b6b3b69c",
+      "byteLength": 185488,
+      "purpose": "FIR_929 的官方原画"
+    },
+    {
+      "id": "card-art:FIR_959",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/FIR_959.png",
+      "localPath": "/assets/card-art/FIR_959.png",
+      "sha256": "237688fd7d625a03cd0a5576a405942fb65112844da34b1bc707b29dd98a2139",
+      "byteLength": 252620,
+      "purpose": "FIR_959 的官方原画"
+    },
+    {
+      "id": "card-art:FP1_030",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/FP1_030.png",
+      "localPath": "/assets/card-art/FP1_030.png",
+      "sha256": "489360d3bb29c73c37536d0543977cb0312a28af18b5c383f7f65c4c260d1fa1",
+      "byteLength": 208322,
+      "purpose": "FP1_030 的官方原画"
+    },
+    {
+      "id": "card-art:GDB_463",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/GDB_463.png",
+      "localPath": "/assets/card-art/GDB_463.png",
+      "sha256": "62c231faa86cae0163e5c19f40a1b456a58cf28e0feabeb1e5c6fa9a7a9bb568",
+      "byteLength": 220778,
+      "purpose": "GDB_463 的官方原画"
+    },
+    {
+      "id": "card-art:GDB_846",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/GDB_846.png",
+      "localPath": "/assets/card-art/GDB_846.png",
+      "sha256": "4fa7cca1d8238336abde03cbfffb24892238903c99d20cc2ceab67d64e2dccb6",
+      "byteLength": 207679,
+      "purpose": "GDB_846 的官方原画"
+    },
+    {
+      "id": "card-art:GVG_108",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/GVG_108.png",
+      "localPath": "/assets/card-art/GVG_108.png",
+      "sha256": "cd8a8efac472a379bc7015a439aa9a36dbc01b3a53aa089ecc2a2d857a228f57",
+      "byteLength": 253714,
+      "purpose": "GVG_108 的官方原画"
+    },
+    {
+      "id": "card-art:HERO_11bpt",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_11bpt.png",
+      "localPath": "/assets/card-art/HERO_11bpt.png",
+      "sha256": "aa1e55792d194ae08692a9c570b094246603e86295f96c7e79770aabcdb1cd1d",
+      "byteLength": 217889,
+      "purpose": "HERO_11bpt 的官方原画"
+    },
+    {
+      "id": "card-art:ICC_415",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/ICC_415.png",
+      "localPath": "/assets/card-art/ICC_415.png",
+      "sha256": "eb4b8d1d47fd46c880093dd4436a9047f30a1f3068dc184add178c2438ff5ded",
+      "byteLength": 251763,
+      "purpose": "ICC_415 的官方原画"
+    },
+    {
+      "id": "card-art:ICC_706",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/ICC_706.png",
+      "localPath": "/assets/card-art/ICC_706.png",
+      "sha256": "65d1624dbccf43bb374e0fd919512913916481194ffbccaa56512fe1926442cb",
+      "byteLength": 315489,
+      "purpose": "ICC_706 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_035",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_035.png",
+      "localPath": "/assets/card-art/JAIL_035.png",
+      "sha256": "aba5af2501d7185faa4a208487bdc7572756794f82a15876a59719a9a30f370e",
+      "byteLength": 206245,
+      "purpose": "JAIL_035 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_321",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_321.png",
+      "localPath": "/assets/card-art/JAIL_321.png",
+      "sha256": "666effa603754a98bb8020645bd72afc1b06e92bdbfbf468a728c4d1e57ae527",
+      "byteLength": 244313,
+      "purpose": "JAIL_321 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_328",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_328.png",
+      "localPath": "/assets/card-art/JAIL_328.png",
+      "sha256": "f274641fce7fe9b92b1a797aa78d6b40bd9a53977f50135d7508433adf9b0543",
+      "byteLength": 227444,
+      "purpose": "JAIL_328 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_384",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_384.png",
+      "localPath": "/assets/card-art/JAIL_384.png",
+      "sha256": "13f135f319212b587d4da68fb88dbde1d75d9a99f1793fa894b7d5eff9efa67d",
+      "byteLength": 218241,
+      "purpose": "JAIL_384 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_397",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_397.png",
+      "localPath": "/assets/card-art/JAIL_397.png",
+      "sha256": "2c718d41e8fb0288d06e05da863a65b846a0c0454d390499cc81ed13951a423d",
+      "byteLength": 248163,
+      "purpose": "JAIL_397 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_421",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_421.png",
+      "localPath": "/assets/card-art/JAIL_421.png",
+      "sha256": "7c420dbc64760f3c4c0979f69c30651a06f5b70b07e4627d58af0b8b6bd148c6",
+      "byteLength": 221423,
+      "purpose": "JAIL_421 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_444",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_444.png",
+      "localPath": "/assets/card-art/JAIL_444.png",
+      "sha256": "8f69045c6998fcbb903fe0dc7d1cb065308e7e818b22d6c74d91ab406571e6c8",
+      "byteLength": 230588,
+      "purpose": "JAIL_444 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_446",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_446.png",
+      "localPath": "/assets/card-art/JAIL_446.png",
+      "sha256": "1b3f2adbb461ffc5b7b77cf9f8bb52a451ed7eefee2cda74010473cab5252cf9",
+      "byteLength": 187755,
+      "purpose": "JAIL_446 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_457",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_457.png",
+      "localPath": "/assets/card-art/JAIL_457.png",
+      "sha256": "9fc5a3658240e7cf8ca4fb280ee343eeca9fd993154f9da3afa8d76a82d5b2e5",
+      "byteLength": 212638,
+      "purpose": "JAIL_457 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_504",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_504.png",
+      "localPath": "/assets/card-art/JAIL_504.png",
+      "sha256": "61547a12d74027969f40d215f6f6de806d0680ee70bc8d7f716c64c0d2640b20",
+      "byteLength": 206306,
+      "purpose": "JAIL_504 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_509",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_509.png",
+      "localPath": "/assets/card-art/JAIL_509.png",
+      "sha256": "125be59683210dae6390f3883abf3a2e5e99b6b391e13716336e131eee63e048",
+      "byteLength": 191279,
+      "purpose": "JAIL_509 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_516",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_516.png",
+      "localPath": "/assets/card-art/JAIL_516.png",
+      "sha256": "4daf73b3360607132bef3c16ef1e7b7abb6b7acdedff83944d4eb869e5b52bd8",
+      "byteLength": 249252,
+      "purpose": "JAIL_516 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_719",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_719.png",
+      "localPath": "/assets/card-art/JAIL_719.png",
+      "sha256": "ea5079b0a4792dcd30a092459ebe6e2850a075cc3e872620d691ab24e0545648",
+      "byteLength": 235782,
+      "purpose": "JAIL_719 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_720",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_720.png",
+      "localPath": "/assets/card-art/JAIL_720.png",
+      "sha256": "2d22d0a1702d5c8ebe4f1d93087cf74a628563015afc2c4fa20eef7399e349c6",
+      "byteLength": 193163,
+      "purpose": "JAIL_720 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_733",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_733.png",
+      "localPath": "/assets/card-art/JAIL_733.png",
+      "sha256": "bba0e264523313daaedbfd9c209779667a22b58511fba37e737941686464119d",
+      "byteLength": 208008,
+      "purpose": "JAIL_733 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_734",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_734.png",
+      "localPath": "/assets/card-art/JAIL_734.png",
+      "sha256": "b01a9568810cfdc7abc45a56341e4d9b37f02e43d8774877caafb8415d2155a3",
+      "byteLength": 213500,
+      "purpose": "JAIL_734 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_800",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_800.png",
+      "localPath": "/assets/card-art/JAIL_800.png",
+      "sha256": "b4472a96168ebc80267e15cd3967a718183373ff692ab447d49d51b32f784802",
+      "byteLength": 202372,
+      "purpose": "JAIL_800 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_831",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_831.png",
+      "localPath": "/assets/card-art/JAIL_831.png",
+      "sha256": "3adc9b9dc97350c029eb098e59e5d70daa375fc221b4cf4fdf1ba6cdffa543f5",
+      "byteLength": 214627,
+      "purpose": "JAIL_831 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_912",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_912.png",
+      "localPath": "/assets/card-art/JAIL_912.png",
+      "sha256": "2616dcc068e719618b9cb0fbe5a1bf0595280e2eee79546e72a4e6b92ba7234e",
+      "byteLength": 231552,
+      "purpose": "JAIL_912 的官方原画"
+    },
+    {
+      "id": "card-art:JAIL_998",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAIL_998.png",
+      "localPath": "/assets/card-art/JAIL_998.png",
+      "sha256": "f85e83f77935df84838d8074e1654d3708d7a4ea5c2c8f0f6a6c88f1ddbb2da1",
+      "byteLength": 169718,
+      "purpose": "JAIL_998 的官方原画"
+    },
+    {
+      "id": "card-art:JAM_028",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAM_028.png",
+      "localPath": "/assets/card-art/JAM_028.png",
+      "sha256": "f650d330a3b02b4a84e9c7c88473bdb5c73995f3a5ef55b34b4e590c4f3aba7e",
+      "byteLength": 235360,
+      "purpose": "JAM_028 的官方原画"
+    },
+    {
+      "id": "card-art:JAM_034",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/JAM_034.png",
+      "localPath": "/assets/card-art/JAM_034.png",
+      "sha256": "c55e365478d6bda0de84965c45d7480e866d0ef7c093ff6d2ac326c409403864",
+      "byteLength": 249579,
+      "purpose": "JAM_034 的官方原画"
+    },
+    {
+      "id": "card-art:KAR_114",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/KAR_114.png",
+      "localPath": "/assets/card-art/KAR_114.png",
+      "sha256": "19194f1a6d666fd53981177110896e072684691e7566e047de8cd2e7a1bbb626",
+      "byteLength": 172299,
+      "purpose": "KAR_114 的官方原画"
+    },
+    {
+      "id": "card-art:LEG_CS3_015",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/LEG_CS3_015.png",
+      "localPath": "/assets/card-art/LEG_CS3_015.png",
+      "sha256": "f460e8a3b0e34fa1d95a1f651aa6c9f35732660285820c318e51bae350cee9d9",
+      "byteLength": 226038,
+      "purpose": "LEG_CS3_015 的官方原画"
+    },
+    {
+      "id": "card-art:LOE_011",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/LOE_011.png",
+      "localPath": "/assets/card-art/LOE_011.png",
+      "sha256": "3b524ff664b9fb510032a0a7838a2d6bc647a37f007a775e291b3a2e158bb77a",
+      "byteLength": 232281,
+      "purpose": "LOE_011 的官方原画"
+    },
+    {
+      "id": "card-art:LOOT_014",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/LOOT_014.png",
+      "localPath": "/assets/card-art/LOOT_014.png",
+      "sha256": "79f5e50446b6e798bb70f2b8b79658cdda711cba32e43738b3d203813223fcc7",
+      "byteLength": 194315,
+      "purpose": "LOOT_014 的官方原画"
+    },
+    {
+      "id": "card-art:MIS_703",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/MIS_703.png",
+      "localPath": "/assets/card-art/MIS_703.png",
+      "sha256": "42045d34efe794e75e7a9c4ef4860d6d53b11b9e152c646643145a5d537b6f86",
+      "byteLength": 243289,
+      "purpose": "MIS_703 的官方原画"
+    },
+    {
+      "id": "card-art:REV_018",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/REV_018.png",
+      "localPath": "/assets/card-art/REV_018.png",
+      "sha256": "19ac6b064e3a1721209653aa75565e504f0b6644ead9abb24dd334faaffa58c5",
+      "byteLength": 192802,
+      "purpose": "REV_018 的官方原画"
+    },
+    {
+      "id": "card-art:REV_360",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/REV_360.png",
+      "localPath": "/assets/card-art/REV_360.png",
+      "sha256": "26a4c353dd9024c8ac7cebb4c2f94d6a456f0ca279927bccb535b03d3499acef",
+      "byteLength": 226188,
+      "purpose": "REV_360 的官方原画"
+    },
+    {
+      "id": "card-art:SCH_311",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/SCH_311.png",
+      "localPath": "/assets/card-art/SCH_311.png",
+      "sha256": "091218e6dce4b2357fadb6a12002592557404fa03205b1471f820a1ffa441c57",
+      "byteLength": 142008,
+      "purpose": "SCH_311 的官方原画"
+    },
+    {
       "id": "card-art:skele21",
       "kind": "CARD_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/skele21.png",
@@ -441,6 +1386,312 @@
       "sha256": "f84a38d4b3d5f3b0ebe3362a6550599be6e6faa1b7560e80d0b1be3d7d461aaa",
       "byteLength": 256238,
       "purpose": "skele21 的官方原画"
+    },
+    {
+      "id": "card-art:SW_062",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/SW_062.png",
+      "localPath": "/assets/card-art/SW_062.png",
+      "sha256": "c616afd56f9f43dc5cefd17f7f049f006495af8abc8073dcb6ceede1247cc88e",
+      "byteLength": 224035,
+      "purpose": "SW_062 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_003",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_003.png",
+      "localPath": "/assets/card-art/TIME_003.png",
+      "sha256": "99f4c5cb0374a6796ef994f1e73aeb94354c2528a017303089c515810f007790",
+      "byteLength": 222558,
+      "purpose": "TIME_003 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_009",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_009.png",
+      "localPath": "/assets/card-art/TIME_009.png",
+      "sha256": "d493bdd6475a99fb3039f920ccbfb3046272fab1bfb651c5138413861b67fe44",
+      "byteLength": 219505,
+      "purpose": "TIME_009 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_019",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_019.png",
+      "localPath": "/assets/card-art/TIME_019.png",
+      "sha256": "03645a892b8d3ee52eb0c9cc915b20c7f435b4e1c1552a66750ae6f395e51e0f",
+      "byteLength": 197501,
+      "purpose": "TIME_019 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_034",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_034.png",
+      "localPath": "/assets/card-art/TIME_034.png",
+      "sha256": "938ef777709f2e001c24153b2ed88e2999b583fdb0d5962ab7d45cc37eb1fa84",
+      "byteLength": 241881,
+      "purpose": "TIME_034 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_609",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_609.png",
+      "localPath": "/assets/card-art/TIME_609.png",
+      "sha256": "b6ec1fd70d0ed7d778c267e4ffa535ccf7ef3823dbe5c44391234cd76e4eac66",
+      "byteLength": 247075,
+      "purpose": "TIME_609 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_609t1",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_609t1.png",
+      "localPath": "/assets/card-art/TIME_609t1.png",
+      "sha256": "accfacfacaeff4d87b9d6b2ccc3efbfed06b3680b100dcfe9900816699dc04a2",
+      "byteLength": 275394,
+      "purpose": "TIME_609t1 的官方原画"
+    },
+    {
+      "id": "card-art:TIME_609t2",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TIME_609t2.png",
+      "localPath": "/assets/card-art/TIME_609t2.png",
+      "sha256": "8959f8c1fb3cc96887bbfc513baa3d0f2618d2cf3a44fc4ceabf0a4536cbce2a",
+      "byteLength": 237738,
+      "purpose": "TIME_609t2 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_100",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_100.png",
+      "localPath": "/assets/card-art/TLC_100.png",
+      "sha256": "6e95d47febcc3374a48ec5f59d361871904765c5540aee402289fa37ea0a910b",
+      "byteLength": 233008,
+      "purpose": "TLC_100 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_106",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_106.png",
+      "localPath": "/assets/card-art/TLC_106.png",
+      "sha256": "520ec698de7b153a4c9cd3e36f9fc6af6407b19a46a37ad7f75cc61e1e75110e",
+      "byteLength": 167763,
+      "purpose": "TLC_106 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_226",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_226.png",
+      "localPath": "/assets/card-art/TLC_226.png",
+      "sha256": "86ad0c798c890d196d35ef54a4c93073459baf66f4972e50804db82f28aae63f",
+      "byteLength": 179418,
+      "purpose": "TLC_226 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_249",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_249.png",
+      "localPath": "/assets/card-art/TLC_249.png",
+      "sha256": "ec2e14589513e671e8a6fc6e83e60ac763414c707ee146d5c2048198f0d1909b",
+      "byteLength": 172495,
+      "purpose": "TLC_249 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_252",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_252.png",
+      "localPath": "/assets/card-art/TLC_252.png",
+      "sha256": "1574bcc48c682d18612168e26649a6a81a0b94782b1a21454d306a25d10e40cd",
+      "byteLength": 193771,
+      "purpose": "TLC_252 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_427",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_427.png",
+      "localPath": "/assets/card-art/TLC_427.png",
+      "sha256": "a85799fb44e796ea7a5aec428110d138faeb619aab6c49449a2aa50c302d450b",
+      "byteLength": 192213,
+      "purpose": "TLC_427 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_436",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_436.png",
+      "localPath": "/assets/card-art/TLC_436.png",
+      "sha256": "7a621e3ca5587ee32215fa797c5cf9272f7cae61053b5893b1be7f9c8a8b6187",
+      "byteLength": 186937,
+      "purpose": "TLC_436 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_438",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_438.png",
+      "localPath": "/assets/card-art/TLC_438.png",
+      "sha256": "bd66b9eb9ebb829a2b6e9b94814425b412c3ef81d5c78f1e0f23635507b1b729",
+      "byteLength": 186031,
+      "purpose": "TLC_438 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_522",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_522.png",
+      "localPath": "/assets/card-art/TLC_522.png",
+      "sha256": "d5816da9d89a169af44a984c0bebc864399497159b6efba51cd65cbe2634aba3",
+      "byteLength": 174583,
+      "purpose": "TLC_522 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_600",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_600.png",
+      "localPath": "/assets/card-art/TLC_600.png",
+      "sha256": "b2519d8f98071b2006de741c53e09aa30cbde3e02b99d947faa1e98af038e92d",
+      "byteLength": 206273,
+      "purpose": "TLC_600 的官方原画"
+    },
+    {
+      "id": "card-art:TLC_603",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TLC_603.png",
+      "localPath": "/assets/card-art/TLC_603.png",
+      "sha256": "00450861c8a19aca46c006ebddbc1c4abb99da52977eb1113f518b502bfe53dd",
+      "byteLength": 216046,
+      "purpose": "TLC_603 的官方原画"
+    },
+    {
+      "id": "card-art:TSC_032",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TSC_032.png",
+      "localPath": "/assets/card-art/TSC_032.png",
+      "sha256": "5efbb1bb683cb95f85ef35a665de7e1687375022441a5709ce2f84b70ae825c1",
+      "byteLength": 242180,
+      "purpose": "TSC_032 的官方原画"
+    },
+    {
+      "id": "card-art:TSC_908",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TSC_908.png",
+      "localPath": "/assets/card-art/TSC_908.png",
+      "sha256": "9427144fffd6e2780110ee501a9427fbb5b5d6e9e178ac968e1b894b63f892b9",
+      "byteLength": 240896,
+      "purpose": "TSC_908 的官方原画"
+    },
+    {
+      "id": "card-art:TSC_926",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TSC_926.png",
+      "localPath": "/assets/card-art/TSC_926.png",
+      "sha256": "4b9d07ebc8848edf657bb2fe5e55268961ff220e6aa629b1003a07f4bd60a34b",
+      "byteLength": 214230,
+      "purpose": "TSC_926 的官方原画"
+    },
+    {
+      "id": "card-art:TTN_078",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TTN_078.png",
+      "localPath": "/assets/card-art/TTN_078.png",
+      "sha256": "c98a7135959a03a2d174509f099e35995cb32d7cf890cce19fd6ff96448e50dc",
+      "byteLength": 214991,
+      "purpose": "TTN_078 的官方原画"
+    },
+    {
+      "id": "card-art:TTN_462",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TTN_462.png",
+      "localPath": "/assets/card-art/TTN_462.png",
+      "sha256": "f10bd7b0b8a20b116824d1a586f04ac1a2c743821b59b086b858f6437469deef",
+      "byteLength": 227753,
+      "purpose": "TTN_462 的官方原画"
+    },
+    {
+      "id": "card-art:TTN_742",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TTN_742.png",
+      "localPath": "/assets/card-art/TTN_742.png",
+      "sha256": "aaaba591a01428cb858567da9321c0bc0f836ca716083f93baadec49ebbc802c",
+      "byteLength": 166849,
+      "purpose": "TTN_742 的官方原画"
+    },
+    {
+      "id": "card-art:TTN_924",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/TTN_924.png",
+      "localPath": "/assets/card-art/TTN_924.png",
+      "sha256": "c4144166b8cf543915aa05bb4f0972c7ef591950ba2c57db8a13c301950268dd",
+      "byteLength": 229846,
+      "purpose": "TTN_924 的官方原画"
+    },
+    {
+      "id": "card-art:ULD_003",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/ULD_003.png",
+      "localPath": "/assets/card-art/ULD_003.png",
+      "sha256": "27602b6159bbb790738df64503a7f230ec550f3bf56f87e36752b6091f5e6cef",
+      "byteLength": 224257,
+      "purpose": "ULD_003 的官方原画"
+    },
+    {
+      "id": "card-art:ULD_212",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/ULD_212.png",
+      "localPath": "/assets/card-art/ULD_212.png",
+      "sha256": "9230b7104c42b2057e9a5288fc1a7a7c5bb814fe35a66432202a910a0a8534f7",
+      "byteLength": 209264,
+      "purpose": "ULD_212 的官方原画"
+    },
+    {
+      "id": "card-art:UNG_809t1",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/UNG_809t1.png",
+      "localPath": "/assets/card-art/UNG_809t1.png",
+      "sha256": "952e908e6347a1f8a9da0572e7b321426a860885ac163549cc5f2060c8c12e58",
+      "byteLength": 189186,
+      "purpose": "UNG_809t1 的官方原画"
+    },
+    {
+      "id": "card-art:UNG_919",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/UNG_919.png",
+      "localPath": "/assets/card-art/UNG_919.png",
+      "sha256": "60eb67b9097e0fb5a574301ffd190a55c8242113e7053c8bd2b2f00286bd9876",
+      "byteLength": 248154,
+      "purpose": "UNG_919 的官方原画"
+    },
+    {
+      "id": "card-art:WORK_040",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/WORK_040.png",
+      "localPath": "/assets/card-art/WORK_040.png",
+      "sha256": "9ee4354fd4884195f0127def4c24262268f31b049e721ce70752f822b31c471a",
+      "byteLength": 196059,
+      "purpose": "WORK_040 的官方原画"
+    },
+    {
+      "id": "card-art:WW_331",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/WW_331.png",
+      "localPath": "/assets/card-art/WW_331.png",
+      "sha256": "0842629d36b017c07fdc820076f220f8888945751e2e36992d66f39c18281bbb",
+      "byteLength": 182152,
+      "purpose": "WW_331 的官方原画"
+    },
+    {
+      "id": "card-art:WW_337",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/WW_337.png",
+      "localPath": "/assets/card-art/WW_337.png",
+      "sha256": "b8988d62d89e9a0d477b775446f5098a975ef7bc8e561c942e24c36af1e8ac9c",
+      "byteLength": 189869,
+      "purpose": "WW_337 的官方原画"
+    },
+    {
+      "id": "card-art:WW_815",
+      "kind": "CARD_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/WW_815.png",
+      "localPath": "/assets/card-art/WW_815.png",
+      "sha256": "f317287476bf16954fff3cdbd48f1555cd9e45c502c03c767fdd941be01275b2",
+      "byteLength": 213202,
+      "purpose": "WW_815 的官方原画"
     },
     {
       "id": "card-back:dark-wood",
@@ -540,6 +1791,24 @@
       "sha256": "8b56fa39cf2a7a5d15d71f0bc5b8e0aab7814a4847603d4f8a860d4ff50335c4",
       "byteLength": 479991,
       "purpose": "暮光守护者 的官方中文渲染图"
+    },
+    {
+      "id": "card:AT_063",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/AT_063.png",
+      "localPath": "/assets/cards/AT_063.png",
+      "sha256": "ff0bac48d330ada50d5170d7c47999fd27721fc64e83a4e2ad8fa2ac6c27c4ea",
+      "byteLength": 527482,
+      "purpose": "酸喉 的官方中文渲染图"
+    },
+    {
+      "id": "card:AT_063t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/AT_063t.png",
+      "localPath": "/assets/cards/AT_063t.png",
+      "sha256": "0712de60a16584e73b725c7ceda1855efcf0271f5126586b0e8413d08441d3a1",
+      "byteLength": 542159,
+      "purpose": "恐鳞 的官方中文渲染图"
     },
     {
       "id": "card:AT_064",
@@ -722,6 +1991,33 @@
       "purpose": "穿刺者戈莫克 的官方中文渲染图"
     },
     {
+      "id": "card:AV_295",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/AV_295.png",
+      "localPath": "/assets/cards/AV_295.png",
+      "sha256": "c6c457a7f70ee934808565a627f336e5071ffe2afe46ebfa3b3fcfd80e65b74d",
+      "byteLength": 475317,
+      "purpose": "占领冷齿矿洞 的官方中文渲染图"
+    },
+    {
+      "id": "card:AV_312",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/AV_312.png",
+      "localPath": "/assets/cards/AV_312.png",
+      "sha256": "bbc31e93623513eef27ef08133a93580130a76f3caf381fd968aeb2cdb896f1f",
+      "byteLength": 540734,
+      "purpose": "献祭召唤者 的官方中文渲染图"
+    },
+    {
+      "id": "card:BAR_074",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BAR_074.png",
+      "localPath": "/assets/cards/BAR_074.png",
+      "sha256": "24de5c1c104a7d2f46588f85957fdedb36a6b15748de2c3999c1dbc7a2e8590f",
+      "byteLength": 502082,
+      "purpose": "前沿哨所 的官方中文渲染图"
+    },
+    {
       "id": "card:BAR_541",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BAR_541.png",
@@ -729,6 +2025,15 @@
       "sha256": "12216382e622f8184f00b56a7131d64ddc720f194b13613f8e8fcd0662e73a9f",
       "byteLength": 476396,
       "purpose": "符文宝珠 的官方中文渲染图"
+    },
+    {
+      "id": "card:BOT_054",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BOT_054.png",
+      "localPath": "/assets/cards/BOT_054.png",
+      "sha256": "ce068a5e0e77f6b97f85ed1282152976b3d5a42e35c84311bc5341d8f91ee859",
+      "byteLength": 415073,
+      "purpose": "生物计划 的官方中文渲染图"
     },
     {
       "id": "card:BOT_309",
@@ -749,6 +2054,15 @@
       "purpose": "战争机兵 的官方中文渲染图"
     },
     {
+      "id": "card:BOT_568",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BOT_568.png",
+      "localPath": "/assets/cards/BOT_568.png",
+      "sha256": "afe3042b531c7bbe28bd9ba190cadb33cd84678012199b6543d0338d8bbc2296",
+      "byteLength": 514881,
+      "purpose": "莫瑞甘的灵界 的官方中文渲染图"
+    },
+    {
       "id": "card:BT_233",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BT_233.png",
@@ -756,6 +2070,447 @@
       "sha256": "9e30a29f7e3fdfcbbcca806ed03478e51e8e1632176ff7eaf4f4952a49611f2a",
       "byteLength": 439831,
       "purpose": "剑盾猛攻 的官方中文渲染图"
+    },
+    {
+      "id": "card:BT_255",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/BT_255.png",
+      "localPath": "/assets/cards/BT_255.png",
+      "sha256": "5f15018fa277a0b73dcff0fca28a756133e70226eac4de5824dd8bc507967c29",
+      "byteLength": 522678,
+      "purpose": "凯尔萨斯·逐日者 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_004",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_004.png",
+      "localPath": "/assets/cards/CAP_004.png",
+      "sha256": "f5ca8605292cdebcbf8214c3ab635f7225183238564593467d679d69c4222288",
+      "byteLength": 497617,
+      "purpose": "伪装的特工 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_105",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_105.png",
+      "localPath": "/assets/cards/CAP_105.png",
+      "sha256": "9b77ef029f6498547c18aea1477781598571dba64df8c0e5df38f40e03ec6ffd",
+      "byteLength": 444285,
+      "purpose": "钩手拖曳 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_107",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_107.png",
+      "localPath": "/assets/cards/CAP_107.png",
+      "sha256": "926679bc019575d9f7c9cf20538855744a2e1ead1818f9ef8872973f764b1ea8",
+      "byteLength": 530928,
+      "purpose": "火炮长 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_801",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_801.png",
+      "localPath": "/assets/cards/CAP_801.png",
+      "sha256": "4675c80ea36f8cb133956319fb93f84d1353478493612970cc3c4d3aaa7d133a",
+      "byteLength": 469218,
+      "purpose": "幽魂不散 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_804",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_804.png",
+      "localPath": "/assets/cards/CAP_804.png",
+      "sha256": "c9b1ea6fff5bf1407b53c4471a880bad593293b56ea70df9f96034d7b256654b",
+      "byteLength": 512693,
+      "purpose": "捉鬼专家 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_805",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_805.png",
+      "localPath": "/assets/cards/CAP_805.png",
+      "sha256": "fb8bb920e070881861fd3a6af80dc2b87a74b0fba122d7d7543cdbd77636a587",
+      "byteLength": 491155,
+      "purpose": "灵质处决 的官方中文渲染图"
+    },
+    {
+      "id": "card:CAP_806",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CAP_806.png",
+      "localPath": "/assets/cards/CAP_806.png",
+      "sha256": "c758aec147e70c1e82b9e84c115095618883c0d8f9286180e319dd7f0942850f",
+      "byteLength": 548569,
+      "purpose": "雷斯·范盖斯特 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_153",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_153.png",
+      "localPath": "/assets/cards/CATA_153.png",
+      "sha256": "4128e3f89dcb2668fcea5a936dd2bda7a81084f7a7828507373fc089f18dd87c",
+      "byteLength": 542630,
+      "purpose": "奥拉基尔，风暴之主 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_153t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_153t.png",
+      "localPath": "/assets/cards/CATA_153t.png",
+      "sha256": "f055dc611b06cc572384c789341f9d8abb0cc5dfbcbe9e7a7503f58bd5374c6f",
+      "byteLength": 519384,
+      "purpose": "奥拉基尔的灌能之手 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_154",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_154.png",
+      "localPath": "/assets/cards/CATA_154.png",
+      "sha256": "ad6b0d89c34c2ba52c72e664869ea6f173ac0b67eb0e68e771001675e3020662",
+      "byteLength": 536058,
+      "purpose": "希奈丝特拉 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_200",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_200.png",
+      "localPath": "/assets/cards/CATA_200.png",
+      "sha256": "bd3975a2845b866ebf7d1d815b3eb58e56c8ae774c61cac97b3292c1174f4229",
+      "byteLength": 499597,
+      "purpose": "古神的眼线 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_201",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_201.png",
+      "localPath": "/assets/cards/CATA_201.png",
+      "sha256": "fe6f1b0df6101c8f09f4ad7805f1660d1664afb0e3cd5fc61654e6c6d4e3190a",
+      "byteLength": 501406,
+      "purpose": "暮光主母 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_302",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_302.png",
+      "localPath": "/assets/cards/CATA_302.png",
+      "sha256": "3fb8c544b19abab45b046d706a586b5f4304395b3c43baaa4f3cca14fd8edc28",
+      "byteLength": 469705,
+      "purpose": "愈合 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_308",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_308.png",
+      "localPath": "/assets/cards/CATA_308.png",
+      "sha256": "ad540e34bf40adba0a37f599a17f50113eba3a5f258e2b4b9925ae89f7a2c131",
+      "byteLength": 472483,
+      "purpose": "麦迪文的胜利 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_458",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_458.png",
+      "localPath": "/assets/cards/CATA_458.png",
+      "sha256": "b55217c12df36c4f39230cef409fa4e20fcce055a2e95f67864e1a77555755eb",
+      "byteLength": 526686,
+      "purpose": "大法师卡雷 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_472",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_472.png",
+      "localPath": "/assets/cards/CATA_472.png",
+      "sha256": "ca9b2d70565fa98c977eb1ac9f4cb70d95706b370d4f2832e05c43db7a19071e",
+      "byteLength": 473387,
+      "purpose": "灵感之槌 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_473",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_473.png",
+      "localPath": "/assets/cards/CATA_473.png",
+      "sha256": "c8889a69483de72a6777b9f3845447193a95b3dd4dd76cb4679a6bfb6cb8ba62",
+      "byteLength": 550682,
+      "purpose": "诺兹多姆，青铜守护巨龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_474",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_474.png",
+      "localPath": "/assets/cards/CATA_474.png",
+      "sha256": "c81e0dacc137458fbded43ffe350d936fd85a694511dd26d1821c8ce38c976dc",
+      "byteLength": 516928,
+      "purpose": "矛心哨卫 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_475",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_475.png",
+      "localPath": "/assets/cards/CATA_475.png",
+      "sha256": "04c5d0b9bc83ecbd86634ed4d05a6714d3d966f44772505bb48fba99cda9be7a",
+      "byteLength": 510727,
+      "purpose": "破鳞盾卫 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_479",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_479.png",
+      "localPath": "/assets/cards/CATA_479.png",
+      "sha256": "0214ba1dfd281a8cd3bb0529771fe45a48cd7c27613781f9178807d73d043e02",
+      "byteLength": 452979,
+      "purpose": "飞龙机动 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_479t3",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_479t3.png",
+      "localPath": "/assets/cards/CATA_479t3.png",
+      "sha256": "65f9c0e3bcdb0abe122206daf77303730360a7e94a2e044d470c225401e2e3d4",
+      "byteLength": 495759,
+      "purpose": "天空幼龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_485",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_485.png",
+      "localPath": "/assets/cards/CATA_485.png",
+      "sha256": "3b417a2b73dd647f5d748fcdb7c8178a23ad6d171a9c161b9f81e38a17d63a09",
+      "byteLength": 483200,
+      "purpose": "激寒急流 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_489",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_489.png",
+      "localPath": "/assets/cards/CATA_489.png",
+      "sha256": "f4e53ef8cabeee367554f2ba40ebf87bfafcad50a440e92c36849e95166c6a84",
+      "byteLength": 482327,
+      "purpose": "奥术涌流 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_496",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_496.png",
+      "localPath": "/assets/cards/CATA_496.png",
+      "sha256": "d293a29deb70cb3a6bfdb4b0519404c2a1ff12259b9940b906e625837469472c",
+      "byteLength": 475309,
+      "purpose": "诅咒之链 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_497",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_497.png",
+      "localPath": "/assets/cards/CATA_497.png",
+      "sha256": "065bf3adc9cc39af3c8089fc7e9b67e2fdc18effbbb3e9884f61fea312bfffda",
+      "byteLength": 534533,
+      "purpose": "奥卓克希昂 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_526",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_526.png",
+      "localPath": "/assets/cards/CATA_526.png",
+      "sha256": "5b4d6d492745b2bdf76d1b2ca82b9f92e6ec2d1e27858fceec0c6675910559e9",
+      "byteLength": 471778,
+      "purpose": "布洛克斯加的奋战 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_528",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_528.png",
+      "localPath": "/assets/cards/CATA_528.png",
+      "sha256": "b99789489ff116f40656603b12527f1a30b0fdc4a4f893d501fddc94c7f72d36",
+      "byteLength": 440802,
+      "purpose": "海洋咒符 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_556",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_556.png",
+      "localPath": "/assets/cards/CATA_556.png",
+      "sha256": "b7b46becd3859b03fc46ef4c17118dec6f0b9f7223e8102dcaf3c716c5551104",
+      "byteLength": 494360,
+      "purpose": "载蛋雏龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_565",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_565.png",
+      "localPath": "/assets/cards/CATA_565.png",
+      "sha256": "b3870cf4c4b879d607e1b654ca0a4d470a422ff31f02d5bc7ad30ef92a0de719",
+      "byteLength": 515426,
+      "purpose": "天空之墙哨兵 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_582",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_582.png",
+      "localPath": "/assets/cards/CATA_582.png",
+      "sha256": "3ff7a427a9430811744d2048574ac0b55ba049368fad4a6d6361602746cd4c0e",
+      "byteLength": 468052,
+      "purpose": "灼热裂隙 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_584",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_584.png",
+      "localPath": "/assets/cards/CATA_584.png",
+      "sha256": "c510a75939292767ff2ed0405b99b51ce65b5351f53e356da839b77b9fbc8ad9",
+      "byteLength": 496398,
+      "purpose": "喷发火山 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_585",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_585.png",
+      "localPath": "/assets/cards/CATA_585.png",
+      "sha256": "7f9ea73997d5a9a495c9509cc3968929534bfeb7a712234146c7d003eafba4b9",
+      "byteLength": 475090,
+      "purpose": "烈火炙烤 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_722",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_722.png",
+      "localPath": "/assets/cards/CATA_722.png",
+      "sha256": "92cd4c7c5b544e10c9d3a40001d17fd9885f30c4dc28561255253fc3cfab36cd",
+      "byteLength": 496358,
+      "purpose": "末世特使 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_785",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_785.png",
+      "localPath": "/assets/cards/CATA_785.png",
+      "sha256": "21771aaaac0bb6eb5228ca1159984968b1111ab91e4bb37f3ae0618ddee613e9",
+      "byteLength": 479937,
+      "purpose": "暮光祭礼 的官方中文渲染图"
+    },
+    {
+      "id": "card:CATA_EVENT_401",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_EVENT_401.png",
+      "localPath": "/assets/cards/CATA_EVENT_401.png",
+      "sha256": "129a6d278bc5cbe5d5aa2d9ea6551e4b1765fc71916cb6a402d93406b0e71682",
+      "byteLength": 501795,
+      "purpose": "坑道地卜师 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_BAR_311",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_BAR_311.png",
+      "localPath": "/assets/cards/CORE_BAR_311.png",
+      "sha256": "711ca138208a7b877938217bc34cd332dd7d39940044d8219b2382d1ae9be61a",
+      "byteLength": 491104,
+      "purpose": "噬灵疫病 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_BAR_541",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_BAR_541.png",
+      "localPath": "/assets/cards/CORE_BAR_541.png",
+      "sha256": "93373549bc0c80cbf0dafe07a920d5044ddd368e7267d5a38d06d1f0061c078f",
+      "byteLength": 482708,
+      "purpose": "符文宝珠 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_BT_187",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_BT_187.png",
+      "localPath": "/assets/cards/CORE_BT_187.png",
+      "sha256": "ecc751119e880a1019db4d9e9a023f3978aaee34f3ae1ef7b51dc87ed2998ef1",
+      "byteLength": 530871,
+      "purpose": "凯恩·日怒 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_CS2_004",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_CS2_004.png",
+      "localPath": "/assets/cards/CORE_CS2_004.png",
+      "sha256": "d0e5287ebdf24775eb6cd02c26520b55f1ec2558c958c4c74ed6a558fea964f2",
+      "byteLength": 462614,
+      "purpose": "真言术：盾 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_CS2_024",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_CS2_024.png",
+      "localPath": "/assets/cards/CORE_CS2_024.png",
+      "sha256": "e23505f33055fcefc53ceebafee0dc54da34fc41c29872378d28be9b51884f0b",
+      "byteLength": 472461,
+      "purpose": "寒冰箭 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_CS2_029",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_CS2_029.png",
+      "localPath": "/assets/cards/CORE_CS2_029.png",
+      "sha256": "5aa4057385dd3f4b7b023330f2692575aaf7fba0cc4c514a1f25f3d636bc836d",
+      "byteLength": 476876,
+      "purpose": "火球术 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_CS2_072",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_CS2_072.png",
+      "localPath": "/assets/cards/CORE_CS2_072.png",
+      "sha256": "248fda25231af07fce1c2ed51255c0f9c226eb59c1f20cfafd106d8aa5bf309e",
+      "byteLength": 472189,
+      "purpose": "背刺 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_DRG_107",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_DRG_107.png",
+      "localPath": "/assets/cards/CORE_DRG_107.png",
+      "sha256": "8c9a3fc039f8fe79341645a4f049092ba77455c5ce35f51ae8aaa20d5edac849",
+      "byteLength": 525899,
+      "purpose": "紫罗兰魔翼鸦 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_EDR_003",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_EDR_003.png",
+      "localPath": "/assets/cards/CORE_EDR_003.png",
+      "sha256": "f968027c031c26e86733d4e509d18549eeac4cecf557d8bc0a9812f6f16c3ca2",
+      "byteLength": 530853,
+      "purpose": "法瑞克 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_EX1_012",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_EX1_012.png",
+      "localPath": "/assets/cards/CORE_EX1_012.png",
+      "sha256": "149d891390e15dc8dc3bd399a0c5b67527954aede61aeab907d93a826936585f",
+      "byteLength": 541070,
+      "purpose": "血法师萨尔诺斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_EX1_145",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_EX1_145.png",
+      "localPath": "/assets/cards/CORE_EX1_145.png",
+      "sha256": "535a410bd5d0355452c45bea4f3c7f935ec224c2280a1477a2a6b328ba1cfe6b",
+      "byteLength": 465688,
+      "purpose": "伺机待发 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_EX1_169",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_EX1_169.png",
+      "localPath": "/assets/cards/CORE_EX1_169.png",
+      "sha256": "708fc122befc447164da397d660cc8e6b7121cf34907f77f347428e2c07fc223",
+      "byteLength": 453244,
+      "purpose": "激活 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_GIL_531",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_GIL_531.png",
+      "localPath": "/assets/cards/CORE_GIL_531.png",
+      "sha256": "5fc90c508d399b3ea3c670c9d8d7cb03457ee533d39622b9103bd2f67ef3bc55",
+      "byteLength": 508868,
+      "purpose": "女巫的学徒 的官方中文渲染图"
     },
     {
       "id": "card:CORE_GVG_053",
@@ -767,6 +2522,24 @@
       "purpose": "盾甲侍女 的官方中文渲染图"
     },
     {
+      "id": "card:CORE_ICC_038",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_ICC_038.png",
+      "localPath": "/assets/cards/CORE_ICC_038.png",
+      "sha256": "d86d2d329be73a490ce30ccfcc01cf6368d0f8b92ac249f97664049965c647b9",
+      "byteLength": 486128,
+      "purpose": "正义保护者 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_KAR_061",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_KAR_061.png",
+      "localPath": "/assets/cards/CORE_KAR_061.png",
+      "sha256": "412eaa3414aecdcbd9686b278e955994ef2d66ab1ae85815123b3b8c7746a371",
+      "byteLength": 520956,
+      "purpose": "馆长 的官方中文渲染图"
+    },
+    {
       "id": "card:CORE_OG_149",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_OG_149.png",
@@ -774,6 +2547,96 @@
       "sha256": "c902b550f921a74f48f78184963a4b6b9172f2680b3bf45e3d695932e9653858",
       "byteLength": 515392,
       "purpose": "暴虐食尸鬼 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_REV_990",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_REV_990.png",
+      "localPath": "/assets/cards/CORE_REV_990.png",
+      "sha256": "c86e8d8909d93cf14fb67c239821c78cf6ad5ee1f89fa5023966853ab761d6cb",
+      "byteLength": 493532,
+      "purpose": "赤红深渊 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_RLK_567",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_RLK_567.png",
+      "localPath": "/assets/cards/CORE_RLK_567.png",
+      "sha256": "5b3738ca86085b9468a1dfcf69e157e41eab2199ec06459b20026403c0064ce8",
+      "byteLength": 480449,
+      "purpose": "殒命暗影 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_SCH_713",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_SCH_713.png",
+      "localPath": "/assets/cards/CORE_SCH_713.png",
+      "sha256": "aeb79eacf1a011683917abc38e24ec75d8a21876586603b348a8ee27edc2e92f",
+      "byteLength": 497669,
+      "purpose": "异教低阶牧师 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_SW_072",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_SW_072.png",
+      "localPath": "/assets/cards/CORE_SW_072.png",
+      "sha256": "c3829802af50bdad5ea9a4c5ebb72ffb2ccec68f48621b80dae14705d13e50d7",
+      "byteLength": 498309,
+      "purpose": "锈烂蝰蛇 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_UNG_205",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_UNG_205.png",
+      "localPath": "/assets/cards/CORE_UNG_205.png",
+      "sha256": "ae522a2eee00aba4684ebc74cc079b48c352ae4db1a9c0623f03f40489f728b6",
+      "byteLength": 497790,
+      "purpose": "冰川裂片 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_UNG_809",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_UNG_809.png",
+      "localPath": "/assets/cards/CORE_UNG_809.png",
+      "sha256": "ba3fb0442105e7cf69f466c50ab607a61d9817f6560ad3ac38b28e90db808003",
+      "byteLength": 491451,
+      "purpose": "火羽精灵 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_WC_042",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_WC_042.png",
+      "localPath": "/assets/cards/CORE_WC_042.png",
+      "sha256": "f67c978be354268e2ea643bdef504183e630bf08d74d58f9102fc9d5c0cca163",
+      "byteLength": 494487,
+      "purpose": "哀嚎蒸汽 的官方中文渲染图"
+    },
+    {
+      "id": "card:CORE_YOP_001",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CORE_YOP_001.png",
+      "localPath": "/assets/cards/CORE_YOP_001.png",
+      "sha256": "e3e93d1434d1e322c30d03d0f17070aae00a580877e6a0b58a275e64ff53031a",
+      "byteLength": 471963,
+      "purpose": "伊利达雷研习 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_008",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_008.png",
+      "localPath": "/assets/cards/CS2_008.png",
+      "sha256": "a0726e42deafcefbbfc2cb4cbf3309d5de5c58349b7519861ee46c014b632f37",
+      "byteLength": 371725,
+      "purpose": "月火术 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_012",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_012.png",
+      "localPath": "/assets/cards/CS2_012.png",
+      "sha256": "d2c13bbb895a2ce081ddac114fc9cd4ba4b146bcafec6bea18b72a5215d8a615",
+      "byteLength": 436306,
+      "purpose": "横扫 的官方中文渲染图"
     },
     {
       "id": "card:CS2_023",
@@ -792,6 +2655,60 @@
       "sha256": "984a6b702a159da9402a8180f3113f0b99760a019bbd2c3b6254bae97893ec80",
       "byteLength": 416404,
       "purpose": "火球术 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_050",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_050.png",
+      "localPath": "/assets/cards/CS2_050.png",
+      "sha256": "3ccc2928605a030d9c1acac791faff8c871f611ff0057de1b06edc0345412dde",
+      "byteLength": 481551,
+      "purpose": "灼热图腾 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_051",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_051.png",
+      "localPath": "/assets/cards/CS2_051.png",
+      "sha256": "1862fc1828dcf025ecb612b568a88b01299180c51edfb0198b18b21def2a3930",
+      "byteLength": 480063,
+      "purpose": "石爪图腾 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_052",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_052.png",
+      "localPath": "/assets/cards/CS2_052.png",
+      "sha256": "2efdb1f964d8843ca19d5c5502704a428674a0c2c2fa86ca23c312b374a82782",
+      "byteLength": 494280,
+      "purpose": "空气之怒图腾 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_058",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_058.png",
+      "localPath": "/assets/cards/CS2_058.png",
+      "sha256": "2eaa9b90c1ded95498033e8b6e1783573bb8b28d3e165e96fdc4ee01a5b971a4",
+      "byteLength": 502142,
+      "purpose": "力量图腾 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_082",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_082.png",
+      "localPath": "/assets/cards/CS2_082.png",
+      "sha256": "a40235b8db1dd321c0d538fc26fa3e521e5d781e4b35056dfaeb7f443d43c1b3",
+      "byteLength": 436675,
+      "purpose": "邪恶短刀 的官方中文渲染图"
+    },
+    {
+      "id": "card:CS2_101t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CS2_101t.png",
+      "localPath": "/assets/cards/CS2_101t.png",
+      "sha256": "923ea10a048f6fb0568d5ae774f1a18bf67a979b0cc25aecbd2c9b52bce5293a",
+      "byteLength": 488037,
+      "purpose": "白银之手新兵 的官方中文渲染图"
     },
     {
       "id": "card:CS2_105",
@@ -947,6 +2864,141 @@
       "purpose": "野猪 的官方中文渲染图"
     },
     {
+      "id": "card:DED_002",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DED_002.png",
+      "localPath": "/assets/cards/DED_002.png",
+      "sha256": "d564041c68255c751b570526f838ded1d7627300852ec6fb4788fa7aec17befa",
+      "byteLength": 459893,
+      "purpose": "月光指引 的官方中文渲染图"
+    },
+    {
+      "id": "card:DED_509",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DED_509.png",
+      "localPath": "/assets/cards/DED_509.png",
+      "sha256": "a93223103f49b003467ce261919c38fd545e3a6347c4db2c958b7bae6a1b8c33",
+      "byteLength": 514536,
+      "purpose": "艳丽的金刚鹦鹉 的官方中文渲染图"
+    },
+    {
+      "id": "card:DEEP_026",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DEEP_026.png",
+      "localPath": "/assets/cards/DEEP_026.png",
+      "sha256": "e0063b644c0e5f7e3cc77e0a8d36b355a035df8746911975b6e7a955dfb9e384",
+      "byteLength": 473211,
+      "purpose": "大地坠饰 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_136",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_136.png",
+      "localPath": "/assets/cards/DINO_136.png",
+      "sha256": "4c663632340d64c69f468fa260c731191d6aca892337e2e559f5ee8b23e32630",
+      "byteLength": 465473,
+      "purpose": "盛宴之角 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_136t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_136t.png",
+      "localPath": "/assets/cards/DINO_136t.png",
+      "sha256": "be63980b3ece953b260cde42017f9230eef7d3bc6e2eaf66b5e5ff7c999cfc19",
+      "byteLength": 494144,
+      "purpose": "贪婪的迅猛龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_410",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_410.png",
+      "localPath": "/assets/cards/DINO_410.png",
+      "sha256": "49393983a918945b764c124469c5c85670740541ffac91b4778aabccf8b856f4",
+      "byteLength": 523671,
+      "purpose": "凯洛斯的蛋 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_410t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_410t.png",
+      "localPath": "/assets/cards/DINO_410t.png",
+      "sha256": "2447db3aa893e68601c0429327b3889767ff535640af967f5847e05992e327cf",
+      "byteLength": 504428,
+      "purpose": "凯洛斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_410t2",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_410t2.png",
+      "localPath": "/assets/cards/DINO_410t2.png",
+      "sha256": "4a5a94dd54e44fde805a5727a95e89105ff734812b3fd7473f38796b2bc91a02",
+      "byteLength": 522354,
+      "purpose": "凯洛斯的蛋 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_410t3",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_410t3.png",
+      "localPath": "/assets/cards/DINO_410t3.png",
+      "sha256": "bd9896cf70e54dab07a3f39aa14ec8c9838165f4c1fe76db00002d5b602e2d1e",
+      "byteLength": 522846,
+      "purpose": "凯洛斯的蛋 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_410t4",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_410t4.png",
+      "localPath": "/assets/cards/DINO_410t4.png",
+      "sha256": "27c4d69e84d117865f65d5fc9119dc70073834b77c94d7bc7ef7758f56b11618",
+      "byteLength": 526552,
+      "purpose": "凯洛斯的蛋 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_410t5",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_410t5.png",
+      "localPath": "/assets/cards/DINO_410t5.png",
+      "sha256": "bbe790a7f1c0392f1653d91c9e03f1d3a0335807a0164fbfbc18cd1c16eb4cdb",
+      "byteLength": 521760,
+      "purpose": "凯洛斯的蛋 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_411",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_411.png",
+      "localPath": "/assets/cards/DINO_411.png",
+      "sha256": "4c4faa2b70b918c4c9094e22d4217751a87d781b01d5551416e904b18de2264e",
+      "byteLength": 497635,
+      "purpose": "神圣布蛋者 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_417",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_417.png",
+      "localPath": "/assets/cards/DINO_417.png",
+      "sha256": "fd6f093d9530d9f4dd0d9d9f72d80c70641cfa4a17c4f4b0d2cfac06eb27295b",
+      "byteLength": 467528,
+      "purpose": "安魂仪典 的官方中文渲染图"
+    },
+    {
+      "id": "card:DINO_426",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DINO_426.png",
+      "localPath": "/assets/cards/DINO_426.png",
+      "sha256": "461008aa583e10b207a58ed83971ec100e6da153ae04487a9e1296a49e7edea1",
+      "byteLength": 483241,
+      "purpose": "生命仪式 的官方中文渲染图"
+    },
+    {
+      "id": "card:DMF_058",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DMF_058.png",
+      "localPath": "/assets/cards/DMF_058.png",
+      "sha256": "7950a68fc889cc80edc6bbcd877012acfcbe772a63bf758d676c80d336e1c67d",
+      "byteLength": 389646,
+      "purpose": "日蚀 的官方中文渲染图"
+    },
+    {
       "id": "card:DRG_066",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DRG_066.png",
@@ -963,6 +3015,204 @@
       "sha256": "311faf1461837c647594c838cb4f196106d3806d5d4f5e949bc1e2c801f9ab33",
       "byteLength": 515965,
       "purpose": "暗鳞治愈者 的官方中文渲染图"
+    },
+    {
+      "id": "card:DS1_178",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/DS1_178.png",
+      "localPath": "/assets/cards/DS1_178.png",
+      "sha256": "400441430e8f635ab66f03c029ac971391f0ad7f7d717215d4647fa68986d5ff",
+      "byteLength": 487020,
+      "purpose": "苔原犀牛 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_000",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_000.png",
+      "localPath": "/assets/cards/EDR_000.png",
+      "sha256": "2a686afcaeee52b5795e81139d1ba990af05513c9367a75d122f117e2107d885",
+      "byteLength": 534764,
+      "purpose": "伊瑟拉，翡翠守护巨龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_258",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_258.png",
+      "localPath": "/assets/cards/EDR_258.png",
+      "sha256": "786bbbab7fce3af5009611339037df49eff4af817fe4f21068971398fc4b6f51",
+      "byteLength": 544105,
+      "purpose": "坚韧的托雷斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_456",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_456.png",
+      "localPath": "/assets/cards/EDR_456.png",
+      "sha256": "61bc7e88ef67e14821e7c03dac5f672bd9f251c274bf23cfbeb50cb1b457d961",
+      "byteLength": 526135,
+      "purpose": "黑暗的龙骑士 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_457",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_457.png",
+      "localPath": "/assets/cards/EDR_457.png",
+      "sha256": "af012f1bb569a115f36c6e888693d96bb3a13b9dcd6fc6fa6648c78cdcb1660f",
+      "byteLength": 513793,
+      "purpose": "龙巢守护者 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_463",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_463.png",
+      "localPath": "/assets/cards/EDR_463.png",
+      "sha256": "a3c01302162e4fcc9dc3bc67c3c9e677bbf23c1ece8006f134598bffdd2e00dd",
+      "byteLength": 490265,
+      "purpose": "暮光侵扰 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_492",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_492.png",
+      "localPath": "/assets/cards/EDR_492.png",
+      "sha256": "ed3c0a4856e5d6b424ad3f18c9feef5585904e170a10ba3a603c273fc6ea4c82",
+      "byteLength": 489410,
+      "purpose": "鸭妈妈 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_810t",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_810t.png",
+      "localPath": "/assets/cards/EDR_810t.png",
+      "sha256": "dbd3eedf69aad8b95ec52bb9d7641a024ab33b63c491957d0f01767001eebe4c",
+      "byteLength": 489454,
+      "purpose": "饱胀水蛭 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_813",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_813.png",
+      "localPath": "/assets/cards/EDR_813.png",
+      "sha256": "433d24dd2011e0b77187a2215484503c4bbec6de2d0d40941964d7c3b9d803c4",
+      "byteLength": 468058,
+      "purpose": "病变虫群 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_814",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_814.png",
+      "localPath": "/assets/cards/EDR_814.png",
+      "sha256": "128feb8f10ec9083a90e46bb998064c3b37f6f7cfaf688cd6b016cd9b967aa86",
+      "byteLength": 468187,
+      "purpose": "感染吐息 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_840",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_840.png",
+      "localPath": "/assets/cards/EDR_840.png",
+      "sha256": "a2a41c1ce1ef4f06ba4b99b369a8e551b92b9a54f3065197fa881d614dfe4503",
+      "byteLength": 464376,
+      "purpose": "恐怖收割 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_844",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_844.png",
+      "localPath": "/assets/cards/EDR_844.png",
+      "sha256": "1ec367b2256463d6004dc802a9f8779d3861b2618f40f465c61e213700a7d041",
+      "byteLength": 531135,
+      "purpose": "纳拉雷克斯，龙群先锋 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_846",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_846.png",
+      "localPath": "/assets/cards/EDR_846.png",
+      "sha256": "75b9a29905979b95420deda6b1ce874dd93b488d115bf5d1cfa03c67dd5fd6c5",
+      "byteLength": 495341,
+      "purpose": "莎拉达希尔 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_849",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_849.png",
+      "localPath": "/assets/cards/EDR_849.png",
+      "sha256": "2bb51a7dd0c856b37d7df99f75be0b29f3fc69fbc6d7d28d30abc8cf0fa14952",
+      "byteLength": 493009,
+      "purpose": "梦缚迅猛龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_856",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_856.png",
+      "localPath": "/assets/cards/EDR_856.png",
+      "sha256": "426b5547af993f292df3d952967e80adc4e08c95dc2b6d00e990f4aff0c77620",
+      "byteLength": 522486,
+      "purpose": "梦魇之王萨维斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:EDR_970",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EDR_970.png",
+      "localPath": "/assets/cards/EDR_970.png",
+      "sha256": "dd2a6369ad87a59a9df25c6009d80a8486779be956bbd34f17479e29e3f1a823",
+      "byteLength": 505995,
+      "purpose": "卡多雷女祭司 的官方中文渲染图"
+    },
+    {
+      "id": "card:END_004",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/END_004.png",
+      "localPath": "/assets/cards/END_004.png",
+      "sha256": "b7a27cbc89c76e24ae90b125d76b9f1b133283420bef1aade12daef820a7b9b7",
+      "byteLength": 513067,
+      "purpose": "愤怒残魂 的官方中文渲染图"
+    },
+    {
+      "id": "card:END_011",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/END_011.png",
+      "localPath": "/assets/cards/END_011.png",
+      "sha256": "441db7b2ed94c2ac3a90dde82793c6ab649fe0bc8b9eeab71171d0af9b027a24",
+      "byteLength": 472121,
+      "purpose": "加速光环 的官方中文渲染图"
+    },
+    {
+      "id": "card:END_033",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/END_033.png",
+      "localPath": "/assets/cards/END_033.png",
+      "sha256": "84e355e6ce39697389d4f34c909f5fca27b524ac2446a254caa57a557e053ba3",
+      "byteLength": 500380,
+      "purpose": "先觉蜿变幼龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:ETC_080",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ETC_080.png",
+      "localPath": "/assets/cards/ETC_080.png",
+      "sha256": "eb362052cf973a4e94c93beedafcdf7e19528bf45ed3e14b97db04ca4fd3163b",
+      "byteLength": 522743,
+      "purpose": "乐队经理精英牛头人酋长 的官方中文渲染图"
+    },
+    {
+      "id": "card:ETC_208",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ETC_208.png",
+      "localPath": "/assets/cards/ETC_208.png",
+      "sha256": "bbdfe0ba16cd2309c1bed2c48c922fbda57e8d3d140be1d3faa8d164a652a1fd",
+      "byteLength": 486194,
+      "purpose": "荆棘谷之心 的官方中文渲染图"
+    },
+    {
+      "id": "card:ETC_836",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ETC_836.png",
+      "localPath": "/assets/cards/ETC_836.png",
+      "sha256": "bbc6d41080539975392e7daf2606bd79a4dcf9aba4688ad3ce7001d935d8a7bd",
+      "byteLength": 535743,
+      "purpose": "穆克拉先生 的官方中文渲染图"
     },
     {
       "id": "card:EX1_025",
@@ -992,6 +3242,15 @@
       "purpose": "麻风侏儒 的官方中文渲染图"
     },
     {
+      "id": "card:EX1_173",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_173.png",
+      "localPath": "/assets/cards/EX1_173.png",
+      "sha256": "b20a045aea2ff7e5ebf2561e534408556717898ceb612187c3aa754bbd62c9d9",
+      "byteLength": 410345,
+      "purpose": "星火术 的官方中文渲染图"
+    },
+    {
       "id": "card:EX1_400",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_400.png",
@@ -999,6 +3258,15 @@
       "sha256": "60528bf41ed625d0f057e4237a887dc4343ddf77d84cc18eb71910ce460fd667",
       "byteLength": 460322,
       "purpose": "旋风斩 的官方中文渲染图"
+    },
+    {
+      "id": "card:EX1_544",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_544.png",
+      "localPath": "/assets/cards/EX1_544.png",
+      "sha256": "17d7eda9cf0f4872b54735f836431a9836af1fca48e444cda208cfcaf36b22b3",
+      "byteLength": 397986,
+      "purpose": "照明弹 的官方中文渲染图"
     },
     {
       "id": "card:EX1_556",
@@ -1019,6 +3287,51 @@
       "purpose": "盾牌格挡 的官方中文渲染图"
     },
     {
+      "id": "card:EX1_620",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/EX1_620.png",
+      "localPath": "/assets/cards/EX1_620.png",
+      "sha256": "970535872969366dcde7625066abf111de4e2d0905178fe02f5b37fb3bac07d1",
+      "byteLength": 489711,
+      "purpose": "熔核巨人 的官方中文渲染图"
+    },
+    {
+      "id": "card:FIR_929",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/FIR_929.png",
+      "localPath": "/assets/cards/FIR_929.png",
+      "sha256": "850a364f6beb643d411abf63eef2b3d428e75700d24700b210d67f1f2f17397d",
+      "byteLength": 492275,
+      "purpose": "活体烈焰 的官方中文渲染图"
+    },
+    {
+      "id": "card:FIR_939",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/FIR_939.png",
+      "localPath": "/assets/cards/FIR_939.png",
+      "sha256": "18d6fbb85432b7cff76525e48d9c8f549da0621e29fb2a0747d5b7b7eda4fccd",
+      "byteLength": 460773,
+      "purpose": "影焰晕染 的官方中文渲染图"
+    },
+    {
+      "id": "card:FIR_959",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/FIR_959.png",
+      "localPath": "/assets/cards/FIR_959.png",
+      "sha256": "ba5a58108e1fa3a9dc9eaa65f307821f79a7f1487f9bcc489dc3c34bba16eef3",
+      "byteLength": 530524,
+      "purpose": "火光之龙菲莱克 的官方中文渲染图"
+    },
+    {
+      "id": "card:FP1_030",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/FP1_030.png",
+      "localPath": "/assets/cards/FP1_030.png",
+      "sha256": "f53c7ebe3f0c0d74da4e616b4a5e17361c825b578ad7e600423ebd9a86cd512f",
+      "byteLength": 518523,
+      "purpose": "洛欧塞布 的官方中文渲染图"
+    },
+    {
       "id": "card:GAME_005",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/GAME_005.png",
@@ -1026,6 +3339,501 @@
       "sha256": "20765f194242db5d4debe4627e81896b97a3c9be4eb88d7e9854f3d3e6fec0e2",
       "byteLength": 431500,
       "purpose": "幸运币 的官方中文渲染图"
+    },
+    {
+      "id": "card:GDB_463",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/GDB_463.png",
+      "localPath": "/assets/cards/GDB_463.png",
+      "sha256": "93f41aa19667907d12fb2e837ba2b764564239b3d1338e880983f3ba1074e615",
+      "byteLength": 503451,
+      "purpose": "困窘的机械师 的官方中文渲染图"
+    },
+    {
+      "id": "card:GDB_846",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/GDB_846.png",
+      "localPath": "/assets/cards/GDB_846.png",
+      "sha256": "b6202131ff084337c4164a81fa0506cd24368ffb0be9a26a9fa627cc073e5799",
+      "byteLength": 533457,
+      "purpose": "大主教奈丽 的官方中文渲染图"
+    },
+    {
+      "id": "card:GVG_108",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/GVG_108.png",
+      "localPath": "/assets/cards/GVG_108.png",
+      "sha256": "dac8851bfa233ea34a11cb4a029ee8a91dc3e4296cf7c79846024a1e8417251d",
+      "byteLength": 497454,
+      "purpose": "侏儒变形师 的官方中文渲染图"
+    },
+    {
+      "id": "card:HERO_11bpt",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_11bpt.png",
+      "localPath": "/assets/cards/HERO_11bpt.png",
+      "sha256": "dc831e452998a171419db0c9d03f2eccd54f934e725e8623362b562fc1ccf4bc",
+      "byteLength": 497969,
+      "purpose": "脆弱的食尸鬼 的官方中文渲染图"
+    },
+    {
+      "id": "card:ICC_085",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ICC_085.png",
+      "localPath": "/assets/cards/ICC_085.png",
+      "sha256": "9c73071bad96d77bdf78aaaa2f1b17770ed63e5f84828a219b8399c9dc15716d",
+      "byteLength": 463508,
+      "purpose": "终极感染 的官方中文渲染图"
+    },
+    {
+      "id": "card:ICC_415",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ICC_415.png",
+      "localPath": "/assets/cards/ICC_415.png",
+      "sha256": "1c7652797dab669f9115fe7239ef90a26788353c8712e72ba1e31e5b828aa037",
+      "byteLength": 512737,
+      "purpose": "缝合追踪者 的官方中文渲染图"
+    },
+    {
+      "id": "card:ICC_706",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ICC_706.png",
+      "localPath": "/assets/cards/ICC_706.png",
+      "sha256": "74f229a8cb3f512ea0acb80d9893054c95ca0afa780b9a8397347ffb66785413",
+      "byteLength": 508413,
+      "purpose": "蛛魔拆解者 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_035",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_035.png",
+      "localPath": "/assets/cards/JAIL_035.png",
+      "sha256": "f2985c2c87d271d0f7118e44a10398b608b954b5194b6a8fb39212d17bbb160c",
+      "byteLength": 500445,
+      "purpose": "警戒哨卫 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_312",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_312.png",
+      "localPath": "/assets/cards/JAIL_312.png",
+      "sha256": "549d3d1c6bdfd99efd9c3bb979cd76a1e3594d484ebc12a90a531865bd688034",
+      "byteLength": 452770,
+      "purpose": "私藏魔杖 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_319",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_319.png",
+      "localPath": "/assets/cards/JAIL_319.png",
+      "sha256": "3c0b7c219b2884adf1a83aa210bba8a0779ef6c9ece006a54cf22d84d0b5f5ba",
+      "byteLength": 489807,
+      "purpose": "万能钥匙 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_321",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_321.png",
+      "localPath": "/assets/cards/JAIL_321.png",
+      "sha256": "40a10ee88348d57563413e265959f6b190bd41a5adbd302d817671eda6a9e362",
+      "byteLength": 526783,
+      "purpose": "机灵的即兴舞者 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_327",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_327.png",
+      "localPath": "/assets/cards/JAIL_327.png",
+      "sha256": "54bcf0d8a0a665858b47503032c368b4488281adbe6b07dfdd27efb3aa085e08",
+      "byteLength": 487361,
+      "purpose": "援军光环 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_328",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_328.png",
+      "localPath": "/assets/cards/JAIL_328.png",
+      "sha256": "7f90485a4aecf2b5a081279988d41d102d9a385232bcb35ca6ef48d64b800223",
+      "byteLength": 515654,
+      "purpose": "血色斗士 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_384",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_384.png",
+      "localPath": "/assets/cards/JAIL_384.png",
+      "sha256": "81925f21c7cfed36662a599c7f0a353974f395882930afc1cd217fad99089c82",
+      "byteLength": 526304,
+      "purpose": "破链灾星霍格 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_397",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_397.png",
+      "localPath": "/assets/cards/JAIL_397.png",
+      "sha256": "cfee2e276557c2f801091008ee146719aa3a7d4634bd7fadde3531875e3f9ffe",
+      "byteLength": 545905,
+      "purpose": "指挥官碧阿崔克丝 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_421",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_421.png",
+      "localPath": "/assets/cards/JAIL_421.png",
+      "sha256": "ab4ac52840466209a6ee54532ba825bca20fe99b5eeb94ced79e138c437a073f",
+      "byteLength": 539689,
+      "purpose": "突牙 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_441",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_441.png",
+      "localPath": "/assets/cards/JAIL_441.png",
+      "sha256": "ef831be8e3a1ddd617428f1532d04a3425e98de8458cafb46e2ad7414cee8548",
+      "byteLength": 475677,
+      "purpose": "饮血术 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_444",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_444.png",
+      "localPath": "/assets/cards/JAIL_444.png",
+      "sha256": "371c813f9a3afcd0d6a26595161f2a40483ad425eada75ecc31fef7e98e42e87",
+      "byteLength": 509530,
+      "purpose": "锯骨巨魔 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_446",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_446.png",
+      "localPath": "/assets/cards/JAIL_446.png",
+      "sha256": "f8632d2c2565ffda44cf00e201f6330d275a86e3b575c69d26d5efc8cb79f843",
+      "byteLength": 532054,
+      "purpose": "鲜血医师萨安娜 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_450",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_450.png",
+      "localPath": "/assets/cards/JAIL_450.png",
+      "sha256": "a3a1a87c72133a6f804473106f8097e7c829f323c98b0977d8badd341b15cce3",
+      "byteLength": 461685,
+      "purpose": "残骸大炮 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_454",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_454.png",
+      "localPath": "/assets/cards/JAIL_454.png",
+      "sha256": "45eaa666d1fed107d1a5cfb4e5cc759c826cd386a0ba21ecfa671c2de6bf60cd",
+      "byteLength": 470809,
+      "purpose": "紧急手术 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_457",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_457.png",
+      "localPath": "/assets/cards/JAIL_457.png",
+      "sha256": "e8edb9dc2538ba5c00f4889efa99a1bdca89300001589a9c730d7f60920cd2b4",
+      "byteLength": 523820,
+      "purpose": "被破解的安保机器人 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_458",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_458.png",
+      "localPath": "/assets/cards/JAIL_458.png",
+      "sha256": "fe11eeb888c199bcfb3a85654fde74a4cee188b33770da1090cde15b8f987799",
+      "byteLength": 481779,
+      "purpose": "小朋友 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_503",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_503.png",
+      "localPath": "/assets/cards/JAIL_503.png",
+      "sha256": "989797e3799d14f5278d372ff6baa7e9d9fecfeb2bbba93bf662d607ddfafc15",
+      "byteLength": 460738,
+      "purpose": "黑掌的链镖 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_504",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_504.png",
+      "localPath": "/assets/cards/JAIL_504.png",
+      "sha256": "53e6aeceb26b65f4334cf68548f1a2eef00e52752c06e8d1d2bc386d3fa47574",
+      "byteLength": 529749,
+      "purpose": "艾雅，玉莲帮主 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_509",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_509.png",
+      "localPath": "/assets/cards/JAIL_509.png",
+      "sha256": "4d34bd65a2ac27ad1a22cdec5204ec790b77926c9821d81323e4539aceadca27",
+      "byteLength": 531540,
+      "purpose": "背叛者高弗雷 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_514",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_514.png",
+      "localPath": "/assets/cards/JAIL_514.png",
+      "sha256": "f787e6367f7408f56a343557022ca112b27e33b945f88135b1fdf5a58991ee2f",
+      "byteLength": 469860,
+      "purpose": "秘密监控 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_516",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_516.png",
+      "localPath": "/assets/cards/JAIL_516.png",
+      "sha256": "c560e8c4b60e27bfdd8e2b136b408230c25cbb016d856dd42936eefe0feb9e77",
+      "byteLength": 516414,
+      "purpose": "血色招募者 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_719",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_719.png",
+      "localPath": "/assets/cards/JAIL_719.png",
+      "sha256": "95301fee78582826feb2dddb872c45c79576f893b0df47c75b841fa78fdc0f00",
+      "byteLength": 544307,
+      "purpose": "伊莉达·寻罪 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_720",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_720.png",
+      "localPath": "/assets/cards/JAIL_720.png",
+      "sha256": "88b16dc059810d46eba1e32411bf9b34154c4dd894aef545f6e227b70e09d8bf",
+      "byteLength": 490318,
+      "purpose": "玉莲帮荷官 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_730",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_730.png",
+      "localPath": "/assets/cards/JAIL_730.png",
+      "sha256": "a77b89192b045051fa9fbabf5dacd2c9224fb78999dfff395e7d040c96114a09",
+      "byteLength": 463861,
+      "purpose": "星尘之镰 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_732",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_732.png",
+      "localPath": "/assets/cards/JAIL_732.png",
+      "sha256": "3d821e425e4c9a17a4317c994462470a1ac1be24a222207ab4052d93ec25c5cf",
+      "byteLength": 472232,
+      "purpose": "虚空灵魂 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_733",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_733.png",
+      "localPath": "/assets/cards/JAIL_733.png",
+      "sha256": "e717b4bc452ff2a22d59da2682834b7cc6817b7ffc9c3a6b7be85e7d3159282d",
+      "byteLength": 512393,
+      "purpose": "邪恶的虚鳞纳迦 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_734",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_734.png",
+      "localPath": "/assets/cards/JAIL_734.png",
+      "sha256": "24020214c05a88e74dc7f702886b276274f4659b9434a8333e1095a1381e7250",
+      "byteLength": 523430,
+      "purpose": "魂狱破坏者 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_800",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_800.png",
+      "localPath": "/assets/cards/JAIL_800.png",
+      "sha256": "210a2cfe39d100d92157348a4a594f8ae7938600f5b848ff6deb0629a868f03d",
+      "byteLength": 536494,
+      "purpose": "穆格·兹伊 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_831",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_831.png",
+      "localPath": "/assets/cards/JAIL_831.png",
+      "sha256": "aeadbda564bb1a49b00b8375d465cd89b43f5ebc32760a4d1b8d623c546e54ff",
+      "byteLength": 537232,
+      "purpose": "下水道之王 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_877",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_877.png",
+      "localPath": "/assets/cards/JAIL_877.png",
+      "sha256": "052a4a9086e19dda4ad289437c291437d953dc8d68ea387c392db84ff9e1bf49",
+      "byteLength": 495415,
+      "purpose": "下水道管网 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_891",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_891.png",
+      "localPath": "/assets/cards/JAIL_891.png",
+      "sha256": "f212c75b92cf77e6317dd120de7b6280b7d53cbc865c8bbdb4440fba5ede30b4",
+      "byteLength": 467967,
+      "purpose": "虚空冲击 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_892",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_892.png",
+      "localPath": "/assets/cards/JAIL_892.png",
+      "sha256": "0fc0f0840cd6a9271b9dbb666940b66c15b4d7e6bde636405ab17f40fab4b4cb",
+      "byteLength": 485077,
+      "purpose": "宇宙具象 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_912",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_912.png",
+      "localPath": "/assets/cards/JAIL_912.png",
+      "sha256": "4c368331d0f8e5762e7492dbe56ebbef63e88cde8a6bfbe01a9a036829dca1f9",
+      "byteLength": 529643,
+      "purpose": "预言师 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_940",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_940.png",
+      "localPath": "/assets/cards/JAIL_940.png",
+      "sha256": "8fe33dd618c1ccf71f5e4715459751a3339cef8c070d26f42f5f7df7f4882d32",
+      "byteLength": 475940,
+      "purpose": "不死徒刑 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_941",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_941.png",
+      "localPath": "/assets/cards/JAIL_941.png",
+      "sha256": "712cf065f8cc89442ffa0f9218c360e7cc025487bcf8365303540845158bd642",
+      "byteLength": 483062,
+      "purpose": "神圣之拥 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAIL_998",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAIL_998.png",
+      "localPath": "/assets/cards/JAIL_998.png",
+      "sha256": "30ac041a25ec2842a09b6f11684180ce82019be45846cb6bbad503963bcd3487",
+      "byteLength": 497517,
+      "purpose": "迪菲亚私运者 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAM_028",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAM_028.png",
+      "localPath": "/assets/cards/JAM_028.png",
+      "sha256": "bbf7a32282d02bd762e35ee2b5df599065b0c2ef451973c490478f69553eced3",
+      "byteLength": 511589,
+      "purpose": "鲜血树人 的官方中文渲染图"
+    },
+    {
+      "id": "card:JAM_034",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/JAM_034.png",
+      "localPath": "/assets/cards/JAM_034.png",
+      "sha256": "90cf456c3b41df2224c33fb8b84dd525da817a4e5b0e38984c48fb8f8ffb122b",
+      "byteLength": 525027,
+      "purpose": "音箱践踏者 的官方中文渲染图"
+    },
+    {
+      "id": "card:KAR_114",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/KAR_114.png",
+      "localPath": "/assets/cards/KAR_114.png",
+      "sha256": "234a78804baa198060b494e6e6d4ede2d65caa21b6f8ac651e4bddf92ca0a6e1",
+      "byteLength": 500340,
+      "purpose": "巴内斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:LEG_CS3_015",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/LEG_CS3_015.png",
+      "localPath": "/assets/cards/LEG_CS3_015.png",
+      "sha256": "705e9ce6808a335651b596fd4fff9be0ab9379aa657198f40b98485edd991f15",
+      "byteLength": 496584,
+      "purpose": "选种饲养员 的官方中文渲染图"
+    },
+    {
+      "id": "card:LOE_011",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/LOE_011.png",
+      "localPath": "/assets/cards/LOE_011.png",
+      "sha256": "9a31f7475cf5b4d0cf26817590a4833ba8fe576d187e4b9d80ae3019e2fc9661",
+      "byteLength": 517502,
+      "purpose": "雷诺·杰克逊 的官方中文渲染图"
+    },
+    {
+      "id": "card:LOOT_014",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/LOOT_014.png",
+      "localPath": "/assets/cards/LOOT_014.png",
+      "sha256": "ed97c7190892820f7f81c32a043f57926aa2b39d3e475ce1fab8f7f9e76ec38e",
+      "byteLength": 480748,
+      "purpose": "狗头人图书管理员 的官方中文渲染图"
+    },
+    {
+      "id": "card:MIS_703",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/MIS_703.png",
+      "localPath": "/assets/cards/MIS_703.png",
+      "sha256": "7eebec8123f86f3621ccf509f1c737b615fdb5c811328b1e11ee1d4cac97e101",
+      "byteLength": 523211,
+      "purpose": "地狱火！ 的官方中文渲染图"
+    },
+    {
+      "id": "card:MIS_707",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/MIS_707.png",
+      "localPath": "/assets/cards/MIS_707.png",
+      "sha256": "6fd95c75a608255b633005282fe2bfd2db3bdda3cd7e098e3c421cb2dad55c45",
+      "byteLength": 472143,
+      "purpose": "批量生产 的官方中文渲染图"
+    },
+    {
+      "id": "card:REV_018",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/REV_018.png",
+      "localPath": "/assets/cards/REV_018.png",
+      "sha256": "82e6a4690b5a333bbf4c2dbf93a5c88c5d315b968ba481f6e0abbf2881a5ebe3",
+      "byteLength": 504401,
+      "purpose": "雷纳索尔王子 的官方中文渲染图"
+    },
+    {
+      "id": "card:REV_360",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/REV_360.png",
+      "localPath": "/assets/cards/REV_360.png",
+      "sha256": "66587ff2046895ac804f0ed28bc40e77d935049c682d5eba19a3a177b1fc6b16",
+      "byteLength": 505707,
+      "purpose": "灵体偷猎者 的官方中文渲染图"
+    },
+    {
+      "id": "card:REV_361",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/REV_361.png",
+      "localPath": "/assets/cards/REV_361.png",
+      "sha256": "d958800de178f714b6b564d076f4e4f925d087caac47fb0fccbb9b5694a98215",
+      "byteLength": 474546,
+      "purpose": "野性之魂 的官方中文渲染图"
+    },
+    {
+      "id": "card:RLK_828",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/RLK_828.png",
+      "localPath": "/assets/cards/RLK_828.png",
+      "sha256": "0b75ab3b456fe54467925ba1da27b69f3857ec1e2931ada140c020b29e57a613",
+      "byteLength": 486655,
+      "purpose": "奎尔萨拉斯的希望 的官方中文渲染图"
     },
     {
       "id": "card:RLK_843",
@@ -1037,6 +3845,42 @@
       "purpose": "奥术箭 的官方中文渲染图"
     },
     {
+      "id": "card:SC_000",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/SC_000.png",
+      "localPath": "/assets/cards/SC_000.png",
+      "sha256": "b7743e6140efd550321555feb41ccc9721f36b4b46581082cc9876e0acee71e2",
+      "byteLength": 529125,
+      "purpose": "孵化池 的官方中文渲染图"
+    },
+    {
+      "id": "card:SCH_311",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/SCH_311.png",
+      "localPath": "/assets/cards/SCH_311.png",
+      "sha256": "47312c19ac0f11d743a3ec8ee372f396458b36c73edb78a3dc20eb3ef86f9713",
+      "byteLength": 462563,
+      "purpose": "活化扫帚 的官方中文渲染图"
+    },
+    {
+      "id": "card:SCH_427",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/SCH_427.png",
+      "localPath": "/assets/cards/SCH_427.png",
+      "sha256": "f3d0afa33f7facc3775288d53bb93d72d113fc0fdc6be2955cba0cf3d5054746",
+      "byteLength": 477917,
+      "purpose": "雷霆绽放 的官方中文渲染图"
+    },
+    {
+      "id": "card:SCH_514",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/SCH_514.png",
+      "localPath": "/assets/cards/SCH_514.png",
+      "sha256": "cdfb1541708d556bbc82a1ebcac0e8cdd35ee832febe8c2504b5c484de9113ca",
+      "byteLength": 477717,
+      "purpose": "亡者复生 的官方中文渲染图"
+    },
+    {
       "id": "card:skele21",
       "kind": "CARD",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/skele21.png",
@@ -1044,6 +3888,510 @@
       "sha256": "fb69e9458b77d0bb042bc46fb3c6054733b877b7c2481b246ff5fa741bb17901",
       "byteLength": 465439,
       "purpose": "损坏的傀儡 的官方中文渲染图"
+    },
+    {
+      "id": "card:SW_062",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/SW_062.png",
+      "localPath": "/assets/cards/SW_062.png",
+      "sha256": "6d884cad9ed6f7a3a8d202edc8a504b4424dcf15e2a59dd88eeb9378908ab923",
+      "byteLength": 506849,
+      "purpose": "闪金镇豺狼人 的官方中文渲染图"
+    },
+    {
+      "id": "card:SW_460",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/SW_460.png",
+      "localPath": "/assets/cards/SW_460.png",
+      "sha256": "482535699a5d4e8dde8ddaec484e96dc683e8dc4fbb2389205e92099c8e7afac",
+      "byteLength": 422009,
+      "purpose": "集群撕咬 的官方中文渲染图"
+    },
+    {
+      "id": "card:TID_001",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TID_001.png",
+      "localPath": "/assets/cards/TID_001.png",
+      "sha256": "96a2f6ba4fb279aba963e921f6e35392afea6f49c670765a7bc9b4bd48342327",
+      "byteLength": 474330,
+      "purpose": "月光射线 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_003",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_003.png",
+      "localPath": "/assets/cards/TIME_003.png",
+      "sha256": "23e4136648570667e142584220f7e4d3f85562dfe4893401831f62b65d407342",
+      "byteLength": 505586,
+      "purpose": "传送门卫士 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_009",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_009.png",
+      "localPath": "/assets/cards/TIME_009.png",
+      "sha256": "983719951f961f2a789872e88fecb0c7a72cebf6421f9c1adb176cdebbf0eaf2",
+      "byteLength": 542191,
+      "purpose": "明日巨匠格尔宾 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_009t1",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_009t1.png",
+      "localPath": "/assets/cards/TIME_009t1.png",
+      "sha256": "8c1d6b688b495714fbca5df2c39b99fd8b69c481e618bc6fac35c0d7fb952ccb",
+      "byteLength": 514349,
+      "purpose": "侏儒光环 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_009t2",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_009t2.png",
+      "localPath": "/assets/cards/TIME_009t2.png",
+      "sha256": "21db6cb7a1a8ca8f6c8703cb63c6d29129f57271faadb397a1180ff3d520dbb6",
+      "byteLength": 507263,
+      "purpose": "梅卡托克的光环 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_019",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_019.png",
+      "localPath": "/assets/cards/TIME_019.png",
+      "sha256": "2ccef8bd7df7dea0f0c0ddceb53fb49a979be6650ceddc4afd2535713f324ecf",
+      "byteLength": 508366,
+      "purpose": "时间流具象 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_034",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_034.png",
+      "localPath": "/assets/cards/TIME_034.png",
+      "sha256": "5bc5ed77e470d35ae26ad31f5e5e3637a3c94c602ee34c259ed5b7a441634840",
+      "byteLength": 523583,
+      "purpose": "现场播报员 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_433",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_433.png",
+      "localPath": "/assets/cards/TIME_433.png",
+      "sha256": "2f945e6344eba0a3b9eedb7ae87bff153fccef0242901fdd24a409df3098451f",
+      "byteLength": 484993,
+      "purpose": "抹除存在 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_609",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_609.png",
+      "localPath": "/assets/cards/TIME_609.png",
+      "sha256": "84d837c472ca6031f0fe44dd8da2be2a5973ecfd3fa754d340130ffebd5e7947",
+      "byteLength": 539030,
+      "purpose": "游侠将军希尔瓦娜斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_609t1",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_609t1.png",
+      "localPath": "/assets/cards/TIME_609t1.png",
+      "sha256": "45218d96b2e9106e889ebf901b9860ccfc91c5244cfadc86c3f9f13511ebe33e",
+      "byteLength": 540643,
+      "purpose": "游侠队长奥蕾莉亚 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_609t2",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_609t2.png",
+      "localPath": "/assets/cards/TIME_609t2.png",
+      "sha256": "1dbf453914338ff65db588871420f0de5b1b8016e4c726395757b2c048fb7048",
+      "byteLength": 538306,
+      "purpose": "游侠新兵温蕾萨 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_700",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_700.png",
+      "localPath": "/assets/cards/TIME_700.png",
+      "sha256": "0660f0018533fe6ce98dc147799b85712e25a2e25db369668b49971927a61d17",
+      "byteLength": 477704,
+      "purpose": "时序光环 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_701",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_701.png",
+      "localPath": "/assets/cards/TIME_701.png",
+      "sha256": "99a875c3b970c4bd020be035b1f5dcdf9cf0be5ce3a41610caadc22194917fa7",
+      "byteLength": 469392,
+      "purpose": "波涛形塑 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_855",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_855.png",
+      "localPath": "/assets/cards/TIME_855.png",
+      "sha256": "1365607729785b6ac5294cf81c0b433ab1d3cd2447bf294e3228990c1e9463e9",
+      "byteLength": 471172,
+      "purpose": "奥术弹幕 的官方中文渲染图"
+    },
+    {
+      "id": "card:TIME_EVENT_999",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TIME_EVENT_999.png",
+      "localPath": "/assets/cards/TIME_EVENT_999.png",
+      "sha256": "30e3dbe76b8265f9123a44ebab992a35110ad81a75b2c16812e8207cae8d29a8",
+      "byteLength": 470290,
+      "purpose": "时间之沙 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_100",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_100.png",
+      "localPath": "/assets/cards/TLC_100.png",
+      "sha256": "e883691ce0ac3cb75a49c20fc47e3f572c2133c7d192a010a3f45570325c0abe",
+      "byteLength": 533885,
+      "purpose": "导航员伊莉斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_106",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_106.png",
+      "localPath": "/assets/cards/TLC_106.png",
+      "sha256": "34798722932bf554b22f16c400acce1631be06ed7445f3a638fc1513d0d9527b",
+      "byteLength": 517941,
+      "purpose": "末日使者安布拉 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_226",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_226.png",
+      "localPath": "/assets/cards/TLC_226.png",
+      "sha256": "4d00f1ba1f0c488972cd5c389a88fa61a7ad23698447a9d920d84bb597c0d0e3",
+      "byteLength": 514202,
+      "purpose": "咒术图书管理员 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_249",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_249.png",
+      "localPath": "/assets/cards/TLC_249.png",
+      "sha256": "0861b374fc6c0b0f5367cef27751f4be770f11c3156bd08216040416fcbc143b",
+      "byteLength": 484946,
+      "purpose": "炽烈烬火 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_252",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_252.png",
+      "localPath": "/assets/cards/TLC_252.png",
+      "sha256": "e8b11a21c6fd0d53fdb0645ca338aa1e57a417f633994ae654f37cc855160d15",
+      "byteLength": 505626,
+      "purpose": "蚀解软泥怪 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_427",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_427.png",
+      "localPath": "/assets/cards/TLC_427.png",
+      "sha256": "84eb596d8233becc835b272d2f83cfb3c27952d84abc9570a905778a6f67f97e",
+      "byteLength": 498111,
+      "purpose": "抛石鱼人 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_436",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_436.png",
+      "localPath": "/assets/cards/TLC_436.png",
+      "sha256": "0c7a8a7b341872d08cac780644725464acb42c702f8a6432590bb21b14394594",
+      "byteLength": 505488,
+      "purpose": "重生的翼手龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_438",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_438.png",
+      "localPath": "/assets/cards/TLC_438.png",
+      "sha256": "ecdba925b73a1c1294142307c13ec7f141de07851cb0646d43e30b500811a2d1",
+      "byteLength": 518106,
+      "purpose": "紫色珍鳃鱼人 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_515",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_515.png",
+      "localPath": "/assets/cards/TLC_515.png",
+      "sha256": "2f28d655872bda4cad15cbb765edc2a3b35f58b9966de42787aa9a65057e1b91",
+      "byteLength": 460511,
+      "purpose": "异教地图 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_522",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_522.png",
+      "localPath": "/assets/cards/TLC_522.png",
+      "sha256": "ddb664caef82938c1f190c85c7895b6653d94bf2119fc8b57aef08b291353b5c",
+      "byteLength": 508608,
+      "purpose": "潜踪大师奥普 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_600",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_600.png",
+      "localPath": "/assets/cards/TLC_600.png",
+      "sha256": "4bb90439d38fb81528441c0d7fb10aef634a3f9b9814e03e80e8d24eb649dbf7",
+      "byteLength": 514892,
+      "purpose": "乘风浮龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_603",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_603.png",
+      "localPath": "/assets/cards/TLC_603.png",
+      "sha256": "76fb0611fdfd05be78f2729ec80686cffc0bc7657da467a7a78626bada19c719",
+      "byteLength": 491337,
+      "purpose": "栉龙 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_816",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_816.png",
+      "localPath": "/assets/cards/TLC_816.png",
+      "sha256": "658c4d93fde144973920f81309ed0a27ddbb41ca6ab8143987a5df196770fbbe",
+      "byteLength": 474666,
+      "purpose": "墓晨太阳花 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_817",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_817.png",
+      "localPath": "/assets/cards/TLC_817.png",
+      "sha256": "6b2c60fbb6273e9b2bfd0bb96838759980162bf95b85ec9a3e1f5e2e4e340fa7",
+      "byteLength": 518235,
+      "purpose": "寻求平衡 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_902",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_902.png",
+      "localPath": "/assets/cards/TLC_902.png",
+      "sha256": "2b486cd8a8a8c2af62b3e887834d059566654680c7f8d20f807bc22b129099fd",
+      "byteLength": 477722,
+      "purpose": "虫害侵扰 的官方中文渲染图"
+    },
+    {
+      "id": "card:TLC_EVENT_402",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TLC_EVENT_402.png",
+      "localPath": "/assets/cards/TLC_EVENT_402.png",
+      "sha256": "a9ad3b08132c7318559cbe2354b377f6d014f2be67ab9a65d678b8ab2623b3dc",
+      "byteLength": 461100,
+      "purpose": "末日使者之杖 的官方中文渲染图"
+    },
+    {
+      "id": "card:TOY_353",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TOY_353.png",
+      "localPath": "/assets/cards/TOY_353.png",
+      "sha256": "c19494e6c4c492b32790573c77dccf32e3ca38983f7deca0d3819dfeea6b2b35",
+      "byteLength": 470011,
+      "purpose": "拼布好朋友 的官方中文渲染图"
+    },
+    {
+      "id": "card:TOY_850",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TOY_850.png",
+      "localPath": "/assets/cards/TOY_850.png",
+      "sha256": "39555a413d16e6f2fdce8520247c9b49741e3b0fcfea08f0716f0f296c2d3ba4",
+      "byteLength": 504434,
+      "purpose": "魔法妙妙屋 的官方中文渲染图"
+    },
+    {
+      "id": "card:TOY_851",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TOY_851.png",
+      "localPath": "/assets/cards/TOY_851.png",
+      "sha256": "abc296c97a08043ebd9d084ce2d6a3866c6c9ee4f792e85052a9f5dca1c6a002",
+      "byteLength": 481269,
+      "purpose": "无底玩具箱 的官方中文渲染图"
+    },
+    {
+      "id": "card:TOY_883",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TOY_883.png",
+      "localPath": "/assets/cards/TOY_883.png",
+      "sha256": "94c6a79b9998da55381162926d5ec77c18e9b65b3f7a1923123afa2b41f2a1dd",
+      "byteLength": 481518,
+      "purpose": "掀桌子 的官方中文渲染图"
+    },
+    {
+      "id": "card:TSC_032",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TSC_032.png",
+      "localPath": "/assets/cards/TSC_032.png",
+      "sha256": "b032d2a30a81af5d71934d93cb083e3c5a1f6a523c3bd21286e23b8c5b87bde5",
+      "byteLength": 526861,
+      "purpose": "剑圣奥卡尼 的官方中文渲染图"
+    },
+    {
+      "id": "card:TSC_654",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TSC_654.png",
+      "localPath": "/assets/cards/TSC_654.png",
+      "sha256": "dfcc75d3c0b5a0034eceb050143987bd86c1dc4fb81d84d752c44fb0eaa041a8",
+      "byteLength": 446121,
+      "purpose": "水栖形态 的官方中文渲染图"
+    },
+    {
+      "id": "card:TSC_908",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TSC_908.png",
+      "localPath": "/assets/cards/TSC_908.png",
+      "sha256": "d34c60b5346db4da2e12b321bc21889a5f31b527ea67b6121dc15395bbd8b754",
+      "byteLength": 525515,
+      "purpose": "海中向导芬利爵士 的官方中文渲染图"
+    },
+    {
+      "id": "card:TSC_926",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TSC_926.png",
+      "localPath": "/assets/cards/TSC_926.png",
+      "sha256": "61537de851c31ef7917af31374c712dc5524edc75482552a8c2c9a0ac020de6a",
+      "byteLength": 502174,
+      "purpose": "掩息海星 的官方中文渲染图"
+    },
+    {
+      "id": "card:TTN_078",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TTN_078.png",
+      "localPath": "/assets/cards/TTN_078.png",
+      "sha256": "823b382e3dea6dd17c3403bc7dcf08e07996c159fce3c63c70a9db6d89bb6852",
+      "byteLength": 511213,
+      "purpose": "神话观测者 的官方中文渲染图"
+    },
+    {
+      "id": "card:TTN_081",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TTN_081.png",
+      "localPath": "/assets/cards/TTN_081.png",
+      "sha256": "a2dc1f59f78068645dd450a8e7da58d8001f7003b002fa3e60949764f23b34cd",
+      "byteLength": 464838,
+      "purpose": "颤地觉醒 的官方中文渲染图"
+    },
+    {
+      "id": "card:TTN_462",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TTN_462.png",
+      "localPath": "/assets/cards/TTN_462.png",
+      "sha256": "75cfc2f5e9f68703ac68ff74a84a81e7b41c25d96312b49ee967de8685d478f6",
+      "byteLength": 508523,
+      "purpose": "被禁锢的恐魔 的官方中文渲染图"
+    },
+    {
+      "id": "card:TTN_742",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TTN_742.png",
+      "localPath": "/assets/cards/TTN_742.png",
+      "sha256": "ee66ad0524557097586de9bedaf02ec518eb098d77d85f41ad38753f7ac1345f",
+      "byteLength": 495795,
+      "purpose": "星空投影师 的官方中文渲染图"
+    },
+    {
+      "id": "card:TTN_924",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/TTN_924.png",
+      "localPath": "/assets/cards/TTN_924.png",
+      "sha256": "f5a3d7fa09d0136f3158f7e7f534bfa7edb6b2ad8a0217a51bb182a532a57b84",
+      "byteLength": 505288,
+      "purpose": "锋鳞 的官方中文渲染图"
+    },
+    {
+      "id": "card:ULD_003",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ULD_003.png",
+      "localPath": "/assets/cards/ULD_003.png",
+      "sha256": "026fff16cfd650be66ce6c0d68d34e788f579bf5f87bc04718a8e8e78708e013",
+      "byteLength": 547384,
+      "purpose": "了不起的杰弗里斯 的官方中文渲染图"
+    },
+    {
+      "id": "card:ULD_212",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/ULD_212.png",
+      "localPath": "/assets/cards/ULD_212.png",
+      "sha256": "16c2c130447601dd4717da5d967f4a12ad57efa11f1df21eb2deaadf07549fec",
+      "byteLength": 502569,
+      "purpose": "刺血狂蝎 的官方中文渲染图"
+    },
+    {
+      "id": "card:UNG_809t1",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/UNG_809t1.png",
+      "localPath": "/assets/cards/UNG_809t1.png",
+      "sha256": "505a2e5f5e2605b9768d33d57b5ed29847c9d28a8c025ef11bf3f286c26c273c",
+      "byteLength": 452710,
+      "purpose": "烈焰元素 的官方中文渲染图"
+    },
+    {
+      "id": "card:UNG_919",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/UNG_919.png",
+      "localPath": "/assets/cards/UNG_919.png",
+      "sha256": "2aad54d99e2a29107ec369ea4f51061bab45f015a45a076ebdb44962754e0d3f",
+      "byteLength": 531099,
+      "purpose": "沼泽之王爵德 的官方中文渲染图"
+    },
+    {
+      "id": "card:VAC_907",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/VAC_907.png",
+      "localPath": "/assets/cards/VAC_907.png",
+      "sha256": "7d8f28b1a3c27e626f241ed0a1b33ee31918e62ed989c4b6af461a4b428b1cca",
+      "byteLength": 450783,
+      "purpose": "星夜露宿 的官方中文渲染图"
+    },
+    {
+      "id": "card:WC_007",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/WC_007.png",
+      "localPath": "/assets/cards/WC_007.png",
+      "sha256": "4d147cf9656a1721fa569f5c90e2e8b2c531a24324bda52bf3940277f59fa834",
+      "byteLength": 390209,
+      "purpose": "毒蛇花 的官方中文渲染图"
+    },
+    {
+      "id": "card:WORK_040",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/WORK_040.png",
+      "localPath": "/assets/cards/WORK_040.png",
+      "sha256": "3e0c1685b92b6ab5aa40f5fc2d5ead7a5103ca32373dcb0256b38363bde70e39",
+      "byteLength": 497207,
+      "purpose": "笨拙的杂役 的官方中文渲染图"
+    },
+    {
+      "id": "card:WW_331",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/WW_331.png",
+      "localPath": "/assets/cards/WW_331.png",
+      "sha256": "516878fdf0b5fe2520988af8bb29881f819fd2127dcb6bb7625afb5a992976e6",
+      "byteLength": 479506,
+      "purpose": "奇迹推销员 的官方中文渲染图"
+    },
+    {
+      "id": "card:WW_337",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/WW_337.png",
+      "localPath": "/assets/cards/WW_337.png",
+      "sha256": "53ee859fb30a5aef718112044a4131ae6287f68a99495f05db21a43dbd7d9ca6",
+      "byteLength": 534312,
+      "purpose": "荒芜之地的精魂 的官方中文渲染图"
+    },
+    {
+      "id": "card:WW_815",
+      "kind": "CARD",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/WW_815.png",
+      "localPath": "/assets/cards/WW_815.png",
+      "sha256": "f8133cec766219f2fb3be0772454c9b70e36ea9553d26716abc6114317ef01fc",
+      "byteLength": 523944,
+      "purpose": "迷失者塞尔杜林 的官方中文渲染图"
     },
     {
       "id": "hero_power:HERO_01bp",
@@ -1055,6 +4403,60 @@
       "purpose": "全副武装！ 的官方中文渲染图"
     },
     {
+      "id": "hero_power:HERO_02bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_02bp.png",
+      "localPath": "/assets/hero-powers/HERO_02bp.png",
+      "sha256": "0887dd577dc71616854f51efb9f25770b834c0336cc7742e08d842e2962c33cb",
+      "byteLength": 373551,
+      "purpose": "图腾召唤 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_03bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_03bp.png",
+      "localPath": "/assets/hero-powers/HERO_03bp.png",
+      "sha256": "dbcbb116cce5cfc0d79cc25cefa60a2ea24b832e558954d232e2bd10cf149863",
+      "byteLength": 375338,
+      "purpose": "匕首精通 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_04bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_04bp.png",
+      "localPath": "/assets/hero-powers/HERO_04bp.png",
+      "sha256": "22db48bc6763e8320f6ce91d4ca0279feb3cf1da012a9bdd9a16253465d2d2f9",
+      "byteLength": 387787,
+      "purpose": "援军 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_05bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_05bp.png",
+      "localPath": "/assets/hero-powers/HERO_05bp.png",
+      "sha256": "f0c08938cb62e751a2ed689b2b608a25700946d6317ea3740b637e227c317238",
+      "byteLength": 380995,
+      "purpose": "稳固射击 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_06bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_06bp.png",
+      "localPath": "/assets/hero-powers/HERO_06bp.png",
+      "sha256": "648ad40d5fabb766f6870f31cd1afa713b5143204c9b7f7d7adf11b5f0c3e371",
+      "byteLength": 388532,
+      "purpose": "变形 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_07bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_07bp.png",
+      "localPath": "/assets/hero-powers/HERO_07bp.png",
+      "sha256": "72c0132e8c6379a842218fb1fad2f4f1b93c25b4773adae1540d8278a49ff9be",
+      "byteLength": 386147,
+      "purpose": "生命分流 的官方中文渲染图"
+    },
+    {
       "id": "hero_power:HERO_08bp",
       "kind": "HERO_POWER",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_08bp.png",
@@ -1062,6 +4464,51 @@
       "sha256": "ec6c1032c05bea2c4345b161eaeb9535853b71aa8f5c008587ce25ecf2e42c69",
       "byteLength": 382583,
       "purpose": "火焰冲击 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_09bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_09bp.png",
+      "localPath": "/assets/hero-powers/HERO_09bp.png",
+      "sha256": "b79e7c02a6601a242cfa0b2d77a1633d18afccc658b33353432edda1f6b1646f",
+      "byteLength": 375468,
+      "purpose": "次级治疗术 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_10bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_10bp.png",
+      "localPath": "/assets/hero-powers/HERO_10bp.png",
+      "sha256": "f200437fce4fe9eb123ad4b0cc6667eb5e9aa9395ac274a4b5b12b181798c8b6",
+      "byteLength": 391794,
+      "purpose": "恶魔之爪 的官方中文渲染图"
+    },
+    {
+      "id": "hero_power:HERO_11bp",
+      "kind": "HERO_POWER",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_11bp.png",
+      "localPath": "/assets/hero-powers/HERO_11bp.png",
+      "sha256": "3f7483e236762afdaadf3408efa1fec511060d4328f0754fec4f08b86af96074",
+      "byteLength": 399274,
+      "purpose": "食尸鬼冲锋 的官方中文渲染图"
+    },
+    {
+      "id": "hero-art:AV_113",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/AV_113.png",
+      "localPath": "/assets/hero-art/AV_113.png",
+      "sha256": "5d002f09469dd118297b4ad97fe6b2cbde45f1acbb6f37410da7340153383d41",
+      "byteLength": 235783,
+      "purpose": "AV_113 的官方原画"
+    },
+    {
+      "id": "hero-art:CATA_190h",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/CATA_190h.png",
+      "localPath": "/assets/hero-art/CATA_190h.png",
+      "sha256": "1a4c927fefbb926dad4e897e21065d764ac9f0bd3deebc091ff54d986a8d08b3",
+      "byteLength": 298809,
+      "purpose": "CATA_190h 的官方原画"
     },
     {
       "id": "hero-art:HERO_01",
@@ -1073,6 +4520,60 @@
       "purpose": "HERO_01 的官方原画"
     },
     {
+      "id": "hero-art:HERO_02",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_02.png",
+      "localPath": "/assets/hero-art/HERO_02.png",
+      "sha256": "125312d7f32a4bc2566bd21ec964288495a006d6068f927b678e760a347cb81d",
+      "byteLength": 306239,
+      "purpose": "HERO_02 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_03",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_03.png",
+      "localPath": "/assets/hero-art/HERO_03.png",
+      "sha256": "d741d3a1042f0976317ddebeeb4edeea72814910b74a580d64a109415fca3b03",
+      "byteLength": 323085,
+      "purpose": "HERO_03 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_04",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_04.png",
+      "localPath": "/assets/hero-art/HERO_04.png",
+      "sha256": "f31916386525704b3032015b9341331c7e05e773f35839702db2f8765cd138c8",
+      "byteLength": 283527,
+      "purpose": "HERO_04 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_05",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_05.png",
+      "localPath": "/assets/hero-art/HERO_05.png",
+      "sha256": "3962b3415560307b6764fd5404f1df0621fdb8d4cb29e8d8bd20ee6dd5df3623",
+      "byteLength": 267368,
+      "purpose": "HERO_05 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_06",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_06.png",
+      "localPath": "/assets/hero-art/HERO_06.png",
+      "sha256": "e696e34dd7cbe015ece42b72f65a9b6d7043acb364ab7acb96370e76a3472c45",
+      "byteLength": 394284,
+      "purpose": "HERO_06 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_07",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_07.png",
+      "localPath": "/assets/hero-art/HERO_07.png",
+      "sha256": "b76c363ee7812cee20239b8ecd70e83871d087104e51eea69cdeaedf2ac2f0b6",
+      "byteLength": 338750,
+      "purpose": "HERO_07 的官方原画"
+    },
+    {
       "id": "hero-art:HERO_08",
       "kind": "HERO_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_08.png",
@@ -1080,6 +4581,42 @@
       "sha256": "229e41c393c153c1258131ce609c94366ebf56dcf32fd0518d6a21d974ec375a",
       "byteLength": 336546,
       "purpose": "HERO_08 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_09",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_09.png",
+      "localPath": "/assets/hero-art/HERO_09.png",
+      "sha256": "052e901b26d9383aa874b810fb90d997ceca4fa7573da58371bec8236167d42d",
+      "byteLength": 396751,
+      "purpose": "HERO_09 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_10",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_10.png",
+      "localPath": "/assets/hero-art/HERO_10.png",
+      "sha256": "64c7e1501909d694823f6eb7ab46094774938e05eeb036982e9f5ea3719eadf4",
+      "byteLength": 334005,
+      "purpose": "HERO_10 的官方原画"
+    },
+    {
+      "id": "hero-art:HERO_11",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_11.png",
+      "localPath": "/assets/hero-art/HERO_11.png",
+      "sha256": "6daa23b78166721e0169cdec8f09c0a08b2b3b91044ef0a4b63584ebc7f0baee",
+      "byteLength": 439860,
+      "purpose": "HERO_11 的官方原画"
+    },
+    {
+      "id": "hero-art:WW_0700",
+      "kind": "HERO_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/WW_0700.png",
+      "localPath": "/assets/hero-art/WW_0700.png",
+      "sha256": "946678bd0f32504633db096231eb6907ea9b644e97a487cd8a4ca82a12dbb7dd",
+      "byteLength": 229745,
+      "purpose": "WW_0700 的官方原画"
     },
     {
       "id": "hero-power-art:HERO_01bp",
@@ -1091,6 +4628,60 @@
       "purpose": "HERO_01bp 的官方原画"
     },
     {
+      "id": "hero-power-art:HERO_02bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_02bp.png",
+      "localPath": "/assets/hero-power-art/HERO_02bp.png",
+      "sha256": "887dafe4396bba263decb0b777d204747bf0e49a8db597fec69a0c1608b0fa33",
+      "byteLength": 244430,
+      "purpose": "HERO_02bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_03bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_03bp.png",
+      "localPath": "/assets/hero-power-art/HERO_03bp.png",
+      "sha256": "63f6817566c8cb7a132a25379d0ad061d1681a9308e8109d553b425cbec9eaeb",
+      "byteLength": 241251,
+      "purpose": "HERO_03bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_04bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_04bp.png",
+      "localPath": "/assets/hero-power-art/HERO_04bp.png",
+      "sha256": "6bede03b44fad35107771b23f2c263ffc4b0fde4405d50933fcac89689f9a0e6",
+      "byteLength": 198161,
+      "purpose": "HERO_04bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_05bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_05bp.png",
+      "localPath": "/assets/hero-power-art/HERO_05bp.png",
+      "sha256": "ce041f027414df4648ae08d0527f0faf8f9f6effc8740e53d114653fdf52aa8e",
+      "byteLength": 231665,
+      "purpose": "HERO_05bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_06bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_06bp.png",
+      "localPath": "/assets/hero-power-art/HERO_06bp.png",
+      "sha256": "06d6a7f29ec2af4f04cae688e71d5567b8d7f91ac33fb588da0f94171a36e0ed",
+      "byteLength": 363677,
+      "purpose": "HERO_06bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_07bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_07bp.png",
+      "localPath": "/assets/hero-power-art/HERO_07bp.png",
+      "sha256": "b662cfeb7e5cfc3cb362692ba5b75444ea2c34d68312658c7532078dc77cd9d1",
+      "byteLength": 293709,
+      "purpose": "HERO_07bp 的官方原画"
+    },
+    {
       "id": "hero-power-art:HERO_08bp",
       "kind": "HERO_POWER_ART",
       "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_08bp.png",
@@ -1098,6 +4689,51 @@
       "sha256": "bf6d742dec424883e5a230e4bcbb4271fd230018381b6fefb4f24778480f7017",
       "byteLength": 259191,
       "purpose": "HERO_08bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_09bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_09bp.png",
+      "localPath": "/assets/hero-power-art/HERO_09bp.png",
+      "sha256": "9877bb75059023d273b87df3e528ac214eb72c1b363970b604655652d02841b9",
+      "byteLength": 245989,
+      "purpose": "HERO_09bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_10bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_10bp.png",
+      "localPath": "/assets/hero-power-art/HERO_10bp.png",
+      "sha256": "33d4db4535aacbe60af715b5f022b71e80677df40733d43ac6edce127f8434aa",
+      "byteLength": 202483,
+      "purpose": "HERO_10bp 的官方原画"
+    },
+    {
+      "id": "hero-power-art:HERO_11bp",
+      "kind": "HERO_POWER_ART",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/orig/HERO_11bp.png",
+      "localPath": "/assets/hero-power-art/HERO_11bp.png",
+      "sha256": "f3e813b225ade88ff8d04cc229e02fb174086b885ff4e278ff1e07efdf981511",
+      "byteLength": 223865,
+      "purpose": "HERO_11bp 的官方原画"
+    },
+    {
+      "id": "hero:AV_113",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/AV_113.png",
+      "localPath": "/assets/heroes/AV_113.png",
+      "sha256": "e3f87ffaf654d4984500080d83ed410e5759d536cd49fb23338eb38edfbe4cf5",
+      "byteLength": 516080,
+      "purpose": "野兽追猎者塔维什 的官方中文渲染图"
+    },
+    {
+      "id": "hero:CATA_190h",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/CATA_190h.png",
+      "localPath": "/assets/heroes/CATA_190h.png",
+      "sha256": "1ee4b43ae9802d9e77aed71f283b64ec19229a84e4aae0c74bbf06c5e8475aac",
+      "byteLength": 524083,
+      "purpose": "灭世者死亡之翼 的官方中文渲染图"
     },
     {
       "id": "hero:HERO_01",
@@ -1109,6 +4745,60 @@
       "purpose": "加尔鲁什·地狱咆哮 的官方中文渲染图"
     },
     {
+      "id": "hero:HERO_02",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_02.png",
+      "localPath": "/assets/heroes/HERO_02.png",
+      "sha256": "6815cb4d5c8c167b30ea478482004efa6deb342420cca3dab66ba7b3ed25d677",
+      "byteLength": 466244,
+      "purpose": "萨尔 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_03",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_03.png",
+      "localPath": "/assets/heroes/HERO_03.png",
+      "sha256": "c8e96233a1e93591594074cba28d7a04a52d6176ecfaf83d2aa25bf4803763e0",
+      "byteLength": 478086,
+      "purpose": "瓦莉拉·萨古纳尔 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_04",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_04.png",
+      "localPath": "/assets/heroes/HERO_04.png",
+      "sha256": "460922b07836818ee08105ab51edccc63822e1d618caaf18cc82a039f38aabba",
+      "byteLength": 470009,
+      "purpose": "乌瑟尔·光明使者 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_05",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_05.png",
+      "localPath": "/assets/heroes/HERO_05.png",
+      "sha256": "ae38aa41482fffcca51149a246fa4c39589a4790ebbc63409b484c6cf1e8ccde",
+      "byteLength": 457074,
+      "purpose": "雷克萨 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_06",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_06.png",
+      "localPath": "/assets/heroes/HERO_06.png",
+      "sha256": "0ca784ecb6adc45f2635f7fe85d2a4cd6988966b5edaa55af8f8723bf751a24b",
+      "byteLength": 476646,
+      "purpose": "玛法里奥·怒风 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_07",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_07.png",
+      "localPath": "/assets/heroes/HERO_07.png",
+      "sha256": "4e6fcdf171917492225f491a4021fb57d3af9c4cc410f6a347ab1fbaa24b2a84",
+      "byteLength": 467337,
+      "purpose": "古尔丹 的官方中文渲染图"
+    },
+    {
       "id": "hero:HERO_08",
       "kind": "HERO",
       "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_08.png",
@@ -1116,6 +4806,42 @@
       "sha256": "893eb757858978d7e6e6f140a435f954fd3d119cdcfcb0e3fa6f4a8e8e20ed9d",
       "byteLength": 484621,
       "purpose": "吉安娜·普罗德摩尔 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_09",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_09.png",
+      "localPath": "/assets/heroes/HERO_09.png",
+      "sha256": "641d5df1b44631d1af0cf78f9f2dd731c553f99bfdc85a4c197b75b31a2dfbc7",
+      "byteLength": 490816,
+      "purpose": "安度因·乌瑞恩 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_10",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_10.png",
+      "localPath": "/assets/heroes/HERO_10.png",
+      "sha256": "65009434b42d5e8d784d2826b71cc628b148d7f2e1c2dc0d854b5ca8296bf981",
+      "byteLength": 477521,
+      "purpose": "伊利丹·怒风 的官方中文渲染图"
+    },
+    {
+      "id": "hero:HERO_11",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/HERO_11.png",
+      "localPath": "/assets/heroes/HERO_11.png",
+      "sha256": "91ece41a8cfb686cdc1a991baf9c618f9ab013c6b8e21254ca1d1cb827fa2a30",
+      "byteLength": 377755,
+      "purpose": "巫妖王 的官方中文渲染图"
+    },
+    {
+      "id": "hero:WW_0700",
+      "kind": "HERO",
+      "sourceUrl": "https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/WW_0700.png",
+      "localPath": "/assets/heroes/WW_0700.png",
+      "sha256": "86400692f6c6eb93c9ba74073cb7b71f45573a56e05ba51e1e272b7a64675b08",
+      "byteLength": 506455,
+      "purpose": "孤胆游侠雷诺 的官方中文渲染图"
     }
   ]
 }

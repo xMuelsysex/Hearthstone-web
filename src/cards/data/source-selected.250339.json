@@ -1,0 +1,5919 @@
+{
+  "schemaVersion": 1,
+  "build": 250339,
+  "locale": "zhCN",
+  "cutoffDate": "2026-08-31",
+  "sourceUrl": "https://api.hearthstonejson.com/v1/250339/zhCN/cards.json",
+  "sourceSha256": "4c815ace15781d07e45588265971a7e4e46e2b91bc47c640378c488fea16e5bf",
+  "sourceByteLength": 10038512,
+  "officialFormatSource": {
+    "sourceUrl": "https://hearthstone.blizzard.com/en-us/news/24293283",
+    "publishedAt": "2026-08-24",
+    "title": "36.4 Patch Notes"
+  },
+  "selectedCards": [
+    {
+      "id": "RLK_843",
+      "dbfId": 86274,
+      "name": "奥术箭",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "RETURN_OF_THE_LICH_KING",
+      "text": "造成$2点伤害。<b>法力渴求（8）：</b>改为造成$3点伤害。",
+      "mechanics": [
+        "MANATHIRST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BAR_541",
+      "dbfId": 63056,
+      "name": "符文宝珠",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "THE_BARRENS",
+      "text": "造成$2点伤害。<b>发现</b>一张法术牌。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DRG_066",
+      "dbfId": 55416,
+      "name": "辟法奇美拉",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "DRAGONS",
+      "text": "<b>剧毒</b>。<b>扰魔</b>",
+      "mechanics": [
+        "ELUSIVE",
+        "POISONOUS"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BOT_563",
+      "dbfId": 49356,
+      "name": "战争机兵",
+      "cost": 5,
+      "attack": 6,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "BOOMSDAY",
+      "text": "<b>磁力</b>",
+      "mechanics": [
+        "MAGNETIC"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BOT_309",
+      "dbfId": 48529,
+      "name": "可升级机器人",
+      "cost": 2,
+      "attack": 1,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "BOOMSDAY",
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_029",
+      "dbfId": 315,
+      "name": "火球术",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "造成$6点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_023",
+      "dbfId": 555,
+      "name": "奥术智慧",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "抽两张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_182",
+      "dbfId": 90,
+      "name": "冰风雪人",
+      "cost": 4,
+      "attack": 4,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "CS2_120",
+      "dbfId": 1369,
+      "name": "淡水鳄",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_168",
+      "dbfId": 191,
+      "name": "鱼人袭击者",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "MURLOC",
+      "races": [
+        "MURLOC"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_172",
+      "dbfId": 216,
+      "name": "血沼迅猛龙",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_200",
+      "dbfId": 1686,
+      "name": "石拳食人魔",
+      "cost": 6,
+      "attack": 6,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "CS2_189",
+      "dbfId": 389,
+      "name": "精灵弓箭手",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>造成1点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_196",
+      "dbfId": 257,
+      "name": "剃刀猎手",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>召唤一个1/1的野猪。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_179",
+      "dbfId": 635,
+      "name": "森金持盾卫士",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>嘲讽</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BT_233",
+      "dbfId": 57718,
+      "name": "剑盾猛攻",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "BLACK_TEMPLE",
+      "text": "对一个随从造成$2点伤害。获得2点护甲值。",
+      "collectible": true
+    },
+    {
+      "id": "EX1_606",
+      "dbfId": 1023,
+      "name": "盾牌格挡",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "获得5点护甲值。抽一张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_106",
+      "dbfId": 401,
+      "name": "炽炎战斧",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "EX1_400",
+      "dbfId": 636,
+      "name": "旋风斩",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "对所有随从造成$1点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_105",
+      "dbfId": 1007,
+      "name": "英勇打击",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "在本回合中，使你的英雄获得+4攻击力。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_108",
+      "dbfId": 785,
+      "name": "斩杀",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "消灭一个受伤的敌方随从。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_119",
+      "dbfId": 1370,
+      "name": "绿洲钳嘴龟",
+      "cost": 4,
+      "attack": 2,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_118",
+      "dbfId": 1653,
+      "name": "岩浆暴怒者",
+      "cost": 3,
+      "attack": 5,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_121",
+      "dbfId": 41,
+      "name": "霜狼步兵",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>嘲讽</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_150",
+      "dbfId": 413,
+      "name": "雷矛特种兵",
+      "cost": 5,
+      "attack": 4,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>造成2点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DS1_055",
+      "dbfId": 582,
+      "name": "暗鳞治愈者",
+      "cost": 5,
+      "attack": 4,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>为所有友方角色恢复#2点生命值。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "NAGA",
+      "races": [
+        "NAGA"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EX1_025",
+      "dbfId": 523,
+      "name": "机械幼龙技工",
+      "cost": 4,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>召唤一个2/1的机械幼龙。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_186",
+      "dbfId": 712,
+      "name": "作战傀儡",
+      "cost": 7,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "collectible": true
+    },
+    {
+      "id": "CORE_GVG_053",
+      "dbfId": 69741,
+      "name": "盾甲侍女",
+      "cost": 5,
+      "attack": 5,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "CORE_HIDDEN",
+      "text": "<b>战吼：</b>\n获得5点护甲值。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_OG_149",
+      "dbfId": 120573,
+      "name": "暴虐食尸鬼",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>战吼：</b>对所有其他随从造成1点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EX1_029",
+      "dbfId": 658,
+      "name": "麻风侏儒",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "text": "<b>亡语：</b>对敌方英雄造成2点伤害。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EX1_556",
+      "dbfId": 778,
+      "name": "麦田傀儡",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "text": "<b>亡语：</b>召唤一个2/1的损坏的傀儡。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_001",
+      "dbfId": 2539,
+      "name": "炎枪术",
+      "cost": 5,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "对一个随从造成$25点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "AT_006",
+      "dbfId": 2549,
+      "name": "达拉然铁骑士",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>法术伤害+1</b>\n<b>激励：</b>获得<b>法术伤害+1</b>。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_007",
+      "dbfId": 2571,
+      "name": "嗜法者",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>战吼：</b>双方玩家各获取一张随机法术牌，你获取的那张法力值消耗减少（2）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_064",
+      "dbfId": 2729,
+      "name": "怒袭",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "造成$3点伤害。获得3点\n护甲值。",
+      "collectible": true
+    },
+    {
+      "id": "AT_066",
+      "dbfId": 2711,
+      "name": "奥格瑞玛狼骑士",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>激励：</b>使你的武器获得+1攻击力。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_068",
+      "dbfId": 2754,
+      "name": "加固",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "使你具有<b>嘲讽</b>的随从获得+2/+2。",
+      "collectible": true
+    },
+    {
+      "id": "AT_082",
+      "dbfId": 2486,
+      "name": "低阶侍从",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "text": "<b>激励：</b>\n获得+1攻击力。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_002",
+      "dbfId": 2541,
+      "name": "轮回",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>奥秘：</b>当一个友方随从死亡时，随机召唤一个法力值消耗相同的随从。",
+      "mechanics": [
+        "SECRET"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_003",
+      "dbfId": 2545,
+      "name": "英雄之魂",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "你的英雄技能会额外造成1点伤害。",
+      "mechanics": [
+        "HEROPOWER_DAMAGE"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_005",
+      "dbfId": 2542,
+      "name": "变形术：野猪",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "使一个随从变形成为一个4/2并具有<b>冲锋</b>的野猪。",
+      "collectible": true
+    },
+    {
+      "id": "AT_065",
+      "dbfId": 2756,
+      "name": "国王护卫者",
+      "cost": 3,
+      "attack": 3,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你控制任何具有<b>嘲讽</b>的随从，便获得+1耐久度。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_069",
+      "dbfId": 2733,
+      "name": "格斗陪练师",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>嘲讽</b>\n<b>战吼：</b>使一个随从获得<b>嘲讽</b>。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_071",
+      "dbfId": 2758,
+      "name": "阿莱克丝塔萨的勇士",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你的手牌中有龙牌，便获得+1攻击力和<b>冲锋</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_086",
+      "dbfId": 2576,
+      "name": "破坏者",
+      "cost": 3,
+      "attack": 4,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>下个回合敌方英雄技能的法力值消耗增加（5）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_088",
+      "dbfId": 2491,
+      "name": "穆戈尔的勇士",
+      "cost": 6,
+      "attack": 8,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "50%几率攻击错误的敌人。",
+      "mechanics": [
+        "FORGETFUL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_105",
+      "dbfId": 2502,
+      "name": "受伤的克瓦迪尔",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>对自身造成3点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_106",
+      "dbfId": 2259,
+      "name": "圣光勇士",
+      "cost": 3,
+      "attack": 4,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>\n<b>沉默</b>一个恶魔。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_108",
+      "dbfId": 2627,
+      "name": "重甲战马",
+      "cost": 4,
+      "attack": 5,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TGT",
+      "text": "<b>战吼：</b>揭示双方牌库里的一张随从牌。如果你的牌法力值消耗较大，则获得<b>冲锋</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_004",
+      "dbfId": 2572,
+      "name": "奥术冲击",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "对一个随从造成$2点伤害。该法术受到的<b>法术伤害</b>增益效果翻倍。",
+      "mechanics": [
+        "RECEIVES_DOUBLE_SPELLDAMAGE_BONUS"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_008",
+      "dbfId": 2544,
+      "name": "考达拉幼龙",
+      "cost": 6,
+      "attack": 6,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "你可以使用任意次数的英雄技能。",
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_017",
+      "dbfId": 2569,
+      "name": "暮光守护者",
+      "cost": 4,
+      "attack": 2,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你的手牌中有龙牌，便获得+1攻击力和<b>嘲讽</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_067",
+      "dbfId": 2753,
+      "name": "猛犸人头领",
+      "cost": 4,
+      "attack": 5,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "同时对其攻击目标相邻的随从造成伤害。",
+      "collectible": true
+    },
+    {
+      "id": "AT_080",
+      "dbfId": 2517,
+      "name": "要塞指挥官",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "每个回合你可以使用两次英雄技能。",
+      "collectible": true
+    },
+    {
+      "id": "AT_098",
+      "dbfId": 2573,
+      "name": "杂耍吞法者",
+      "cost": 6,
+      "attack": 6,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>战吼：</b>复制对手的英雄技能。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_099",
+      "dbfId": 2598,
+      "name": "科多兽骑手",
+      "cost": 6,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>激励：</b>召唤一个3/5的作战科多兽。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_113",
+      "dbfId": 2509,
+      "name": "征募官",
+      "cost": 5,
+      "attack": 5,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TGT",
+      "text": "<b>激励：</b>将一个2/2的侍从置入你的手牌。",
+      "mechanics": [
+        "INSPIRE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_009",
+      "dbfId": 2546,
+      "name": "罗宁",
+      "cost": 8,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>亡语：</b>将三张奥术飞弹置入你的手牌。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_070",
+      "dbfId": 2757,
+      "name": "天空上尉库拉格",
+      "cost": 7,
+      "attack": 4,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>冲冲冲冲锋</b>\n每有一个友方海盗，本牌的法力值消耗便减少（1）点。",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "race": "PIRATE",
+      "races": [
+        "PIRATE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_072",
+      "dbfId": 2760,
+      "name": "瓦里安·乌瑞恩",
+      "cost": 10,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>战吼：</b>抽三张牌。将抽到的随从牌直接置入战场。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_122",
+      "dbfId": 2724,
+      "name": "穿刺者戈莫克",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "<b>战吼：</b>如果你拥有至少四个其他随从，则造成4点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CS2_boar",
+      "dbfId": 298,
+      "name": "野猪",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "LEGACY",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ]
+    },
+    {
+      "id": "EX1_025t",
+      "dbfId": 59,
+      "name": "机械幼龙",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "set": "LEGACY",
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL",
+        "DRAGON"
+      ]
+    },
+    {
+      "id": "skele21",
+      "dbfId": 471,
+      "name": "损坏的傀儡",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "set": "EXPERT1",
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ]
+    },
+    {
+      "id": "GAME_005",
+      "dbfId": 1746,
+      "name": "幸运币",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "NEUTRAL",
+      "set": "CORE",
+      "text": "在本回合中，获得一个\n法力水晶。"
+    },
+    {
+      "id": "HERO_11bpt",
+      "dbfId": 78164,
+      "name": "脆弱的食尸鬼",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "FREE",
+      "set": "BASIC",
+      "text": "<b>冲锋</b>。在你的回合结束时死亡。",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ]
+    },
+    {
+      "id": "CS2_101t",
+      "dbfId": 1652,
+      "name": "白银之手新兵",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "FREE",
+      "set": "LEGACY"
+    },
+    {
+      "id": "CS2_050",
+      "dbfId": 537,
+      "name": "灼热图腾",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "race": "TOTEM",
+      "races": [
+        "TOTEM"
+      ]
+    },
+    {
+      "id": "CS2_051",
+      "dbfId": 850,
+      "name": "石爪图腾",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>嘲讽</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "race": "TOTEM",
+      "races": [
+        "TOTEM"
+      ]
+    },
+    {
+      "id": "CS2_052",
+      "dbfId": 458,
+      "name": "空气之怒图腾",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>法术伤害+1</b>",
+      "mechanics": [
+        "SPELLPOWER"
+      ],
+      "race": "TOTEM",
+      "races": [
+        "TOTEM"
+      ]
+    },
+    {
+      "id": "CS2_058",
+      "dbfId": 62320,
+      "name": "力量图腾",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "在你的回合结束时，使另一个友方随从获得+1攻击力。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "TOTEM",
+      "races": [
+        "TOTEM"
+      ]
+    },
+    {
+      "id": "CS2_082",
+      "dbfId": 485,
+      "name": "邪恶短刀",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "ROGUE",
+      "rarity": "FREE",
+      "set": "LEGACY"
+    },
+    {
+      "id": "DINO_136t",
+      "dbfId": 118502,
+      "name": "贪婪的迅猛龙",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "DEMONHUNTER",
+      "set": "THE_LOST_CITY",
+      "text": "<b>突袭</b>",
+      "mechanics": [
+        "RUSH"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ]
+    },
+    {
+      "id": "DINO_410t",
+      "dbfId": 118495,
+      "name": "凯洛斯",
+      "cost": 10,
+      "attack": 20,
+      "health": 20,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "set": "THE_LOST_CITY",
+      "text": "<b>嘲讽</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ]
+    },
+    {
+      "id": "DINO_410t2",
+      "dbfId": 122542,
+      "name": "凯洛斯的蛋",
+      "cost": 3,
+      "attack": 0,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>召唤一枚开裂加剧的蛋。<i>（再破壳4次即可孵化为一只20/20并具有<b>嘲讽</b>的野兽！）</i>",
+      "mechanics": [
+        "DEATHRATTLE"
+      ]
+    },
+    {
+      "id": "DINO_410t3",
+      "dbfId": 122543,
+      "name": "凯洛斯的蛋",
+      "cost": 3,
+      "attack": 0,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>召唤一枚严重开裂的蛋。<i>（再破壳3次即可孵化为一只20/20并具有<b>嘲讽</b>的野兽！）</i>",
+      "mechanics": [
+        "DEATHRATTLE"
+      ]
+    },
+    {
+      "id": "DINO_410t4",
+      "dbfId": 122545,
+      "name": "凯洛斯的蛋",
+      "cost": 3,
+      "attack": 0,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>召唤一枚完全裂开的蛋。<i>（再破壳2次即可孵化为一只20/20并具有<b>嘲讽</b>的野兽！）</i>",
+      "mechanics": [
+        "DEATHRATTLE"
+      ]
+    },
+    {
+      "id": "DINO_410t5",
+      "dbfId": 122546,
+      "name": "凯洛斯的蛋",
+      "cost": 3,
+      "attack": 0,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>召唤\n一只20/20并具有<b>嘲讽</b>的凯洛斯。<i>（破壳即可孵化！）</i>",
+      "mechanics": [
+        "DEATHRATTLE"
+      ]
+    },
+    {
+      "id": "UNG_809t1",
+      "dbfId": 42044,
+      "name": "烈焰元素",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "set": "UNGORO",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ]
+    },
+    {
+      "id": "CATA_153t",
+      "dbfId": 125443,
+      "name": "奥拉基尔的灌能之手",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "set": "CATACLYSM",
+      "text": "相邻的随从拥有+{0}攻击力。<i><b>兆示</b>两次后升级。</i>1相邻的随从拥有+{0}攻击力。<i><b>兆示</b>一次后升级。</i>1相邻的随从拥有+{0}攻击力。",
+      "mechanics": [
+        "AURA"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ]
+    },
+    {
+      "id": "JAIL_732",
+      "dbfId": 126662,
+      "name": "虚空灵魂",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "随机召唤一个法力值消耗为（1）的恶魔。提升你此后的虚空灵魂效果。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_479t3",
+      "dbfId": 123140,
+      "name": "天空幼龙",
+      "cost": 3,
+      "attack": 4,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "set": "CATACLYSM",
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ]
+    },
+    {
+      "id": "EDR_810t",
+      "dbfId": 114302,
+      "name": "饱胀水蛭",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "DEATHKNIGHT",
+      "set": "EMERALD_DREAM",
+      "text": "在你的回合结束时，你的英雄会从生命值最低的敌人处偷取1点生命值。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ]
+    },
+    {
+      "id": "HERO_08",
+      "dbfId": 637,
+      "name": "吉安娜·普罗德摩尔",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_08bp",
+      "dbfId": 807,
+      "name": "火焰冲击",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "MAGE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n造成$1点伤害。"
+    },
+    {
+      "id": "CORE_CS2_029",
+      "dbfId": 69501,
+      "name": "火球术",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "造成$6点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CORE_EX1_012",
+      "dbfId": 69655,
+      "name": "血法师萨尔诺斯",
+      "cost": 2,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "CORE",
+      "text": "<b>法术伤害+1</b>，<b>亡语：</b>抽一张牌。",
+      "mechanics": [
+        "DEATHRATTLE",
+        "SPELLPOWER"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_UNG_205",
+      "dbfId": 102227,
+      "name": "冰川裂片",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>战吼：</b>\n<b>冻结</b>一个敌人。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_CS2_024",
+      "dbfId": 111365,
+      "name": "寒冰箭",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "对一个角色造成$3点伤害，并使其<b>冻结</b>。",
+      "mechanics": [
+        "FREEZE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "FIR_929",
+      "dbfId": 115655,
+      "name": "活体烈焰",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "<b>亡语：</b>抽一张火焰法术牌。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_226",
+      "dbfId": 117535,
+      "name": "咒术图书管理员",
+      "cost": 3,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "EPIC",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>抽一张法术牌。<b>延系：</b>召唤一个本随从的复制。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_249",
+      "dbfId": 118222,
+      "name": "炽烈烬火",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>造成2点伤害，随机分配到所有敌人身上。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_855",
+      "dbfId": 119528,
+      "name": "奥术弹幕",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "对一个敌人造成$3点伤害，并随机对两个其他敌人造成$2点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CORE_DRG_107",
+      "dbfId": 120971,
+      "name": "紫罗兰魔翼鸦",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>亡语：</b>将一张“奥术飞弹”法术牌置入你的\n手牌。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL",
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_EVENT_999",
+      "dbfId": 121675,
+      "name": "时间之沙",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "EVENT",
+      "text": "<b>回溯</b>。<b>发现</b>一张任意职业的法术牌。<i>（在<b>回溯</b>后改为你的职业！）</i>",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_458",
+      "dbfId": 122632,
+      "name": "大法师卡雷",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "<b>战吼：</b>使你手牌和牌库中所有法术牌获得<b>法术伤害+1</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_485",
+      "dbfId": 123410,
+      "name": "激寒急流",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "造成$2点伤害。随机对一个敌方随从造成$1点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_489",
+      "dbfId": 123692,
+      "name": "奥术涌流",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "<b>裂变</b>\n造成$4点伤害。对所有敌人造成$2点伤害。123743造成$4点伤害。对所有敌人造成$2点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_EVENT_401",
+      "dbfId": 124074,
+      "name": "坑道地卜师",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "EVENT",
+      "text": "<b>预备</b>。<b>法术伤害+1</b>",
+      "mechanics": [
+        "SPELLPOWER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_312",
+      "dbfId": 126109,
+      "name": "私藏魔杖",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "获取3张奥术飞弹。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_319",
+      "dbfId": 126116,
+      "name": "万能钥匙",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>发现</b>一张法术牌，或者刷新你的选项<i>（每次刷新时有20%的几率会受到5点伤害！）</i>",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_321",
+      "dbfId": 126253,
+      "name": "机灵的即兴舞者",
+      "cost": 5,
+      "attack": 4,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>预备</b>。<b>战吼：</b>如果你在本回合中施放过法术，随机施放两个法师<b>奥秘</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_BAR_541",
+      "dbfId": 126982,
+      "name": "符文宝珠",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "MAGE",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "造成$2点伤害。<b>发现</b>一张法术牌。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_07",
+      "dbfId": 893,
+      "name": "古尔丹",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "WARLOCK",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_07bp",
+      "dbfId": 300,
+      "name": "生命分流",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "WARLOCK",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n抽一张牌并受到$2点伤害。"
+    },
+    {
+      "id": "EX1_620",
+      "dbfId": 1372,
+      "name": "熔核巨人",
+      "cost": 20,
+      "attack": 8,
+      "health": 8,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "EXPERT1",
+      "text": "你的英雄每缺失一点生命值，本牌的法力值消耗便减少（1）点。",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "FP1_030",
+      "dbfId": 1914,
+      "name": "洛欧塞布",
+      "cost": 5,
+      "attack": 5,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "NAXX",
+      "text": "<b>战吼：</b>下个回合敌方法术的法力值消耗增加（5）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "GVG_108",
+      "dbfId": 2076,
+      "name": "侏儒变形师",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "GVG",
+      "text": "<b>战吼：</b>\n将一个友方随从随机变形成为一个法力值消耗相同的随从。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ICC_706",
+      "dbfId": 42791,
+      "name": "蛛魔拆解者",
+      "cost": 6,
+      "attack": 5,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "ICECROWN",
+      "text": "法术的法力值消耗增加（2）点。",
+      "mechanics": [
+        "AURA"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "LOOT_014",
+      "dbfId": 43122,
+      "name": "狗头人图书管理员",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "WARLOCK",
+      "rarity": "COMMON",
+      "set": "LOOTAPALOOZA",
+      "text": "<b>战吼：</b>\n抽一张牌。对你的英雄造成2点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BOT_568",
+      "dbfId": 49423,
+      "name": "莫瑞甘的灵界",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARLOCK",
+      "rarity": "LEGENDARY",
+      "set": "BOOMSDAY",
+      "text": "抽三张牌。这些牌为<b>临时</b>牌。",
+      "collectible": true
+    },
+    {
+      "id": "SCH_311",
+      "dbfId": 59029,
+      "name": "活化扫帚",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "SCHOLOMANCE",
+      "text": "<b>突袭，战吼：</b>使你的其他随从获得<b>突袭</b>。",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "SCH_514",
+      "dbfId": 59223,
+      "name": "亡者复生",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "classes": [
+        "PRIEST",
+        "WARLOCK"
+      ],
+      "rarity": "COMMON",
+      "set": "SCHOLOMANCE",
+      "text": "对你的英雄造成$3点伤害。将两个在本局对战中死亡的友方随从移回你的手牌。",
+      "collectible": true
+    },
+    {
+      "id": "SW_062",
+      "dbfId": 64710,
+      "name": "闪金镇豺狼人",
+      "cost": 10,
+      "attack": 5,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "STORMWIND",
+      "text": "<b>突袭</b>\n你每有一张其他手牌，本牌的法力值消耗便减少（1）点。",
+      "mechanics": [
+        "RUSH"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AV_312",
+      "dbfId": 67756,
+      "name": "献祭召唤者",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARLOCK",
+      "rarity": "EPIC",
+      "set": "ALTERAC_VALLEY",
+      "text": "<b>战吼：</b>消灭一个友方随从。从你的牌库中召唤一个法力值消耗增加（1）点的随从。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TSC_908",
+      "dbfId": 71781,
+      "name": "海中向导芬利爵士",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_SUNKEN_CITY",
+      "text": "<b>战吼：</b>将你的手牌和牌库底的牌交换。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "MURLOC",
+      "races": [
+        "MURLOC"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "REV_018",
+      "dbfId": 79767,
+      "name": "雷纳索尔王子",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "REVENDRETH",
+      "text": "你的套牌容量和初始生命值为40。",
+      "collectible": true
+    },
+    {
+      "id": "JAM_028",
+      "dbfId": 94798,
+      "name": "鲜血树人",
+      "cost": 5,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "DRUID",
+      "classes": [
+        "DRUID",
+        "WARLOCK"
+      ],
+      "rarity": "COMMON",
+      "set": "BATTLE_OF_THE_BANDS",
+      "text": "消耗生命值，而非法力值。",
+      "collectible": true
+    },
+    {
+      "id": "JAM_034",
+      "dbfId": 95405,
+      "name": "音箱践踏者",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "BATTLE_OF_THE_BANDS",
+      "text": "<b>可交易</b>\n<b>战吼：</b>下个回合敌方法术的法力值消耗增加（2）点。",
+      "mechanics": [
+        "BATTLECRY",
+        "TRADEABLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TTN_924",
+      "dbfId": 97352,
+      "name": "锋鳞",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "TITANS",
+      "text": "卡牌的法力值消耗不能低于（2）点。",
+      "mechanics": [
+        "AURA"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TTN_462",
+      "dbfId": 97614,
+      "name": "被禁锢的恐魔",
+      "cost": 9,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "WARLOCK",
+      "rarity": "EPIC",
+      "set": "TITANS",
+      "text": "在本局对战中，你每在你的回合受到一点伤害，本牌的法力值消耗便减少（1）点。",
+      "collectible": true
+    },
+    {
+      "id": "TTN_742",
+      "dbfId": 98403,
+      "name": "星空投影师",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TITANS",
+      "text": "<b>战吼：</b>选择一个友方随从，将它的一张<b>临时</b>复制置入你的手牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TOY_883",
+      "dbfId": 105097,
+      "name": "掀桌子",
+      "cost": 10,
+      "type": "SPELL",
+      "cardClass": "WARLOCK",
+      "rarity": "COMMON",
+      "set": "WHIZBANGS_WORKSHOP",
+      "text": "对所有敌方随从造成$3点伤害。你每有一张其他手牌，本牌的法力值消耗便减少（1）点。",
+      "collectible": true
+    },
+    {
+      "id": "MIS_703",
+      "dbfId": 105502,
+      "name": "地狱火！",
+      "cost": 4,
+      "attack": 6,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "WARLOCK",
+      "rarity": "RARE",
+      "set": "WHIZBANGS_WORKSHOP",
+      "text": "<b>嘲讽</b>。<b>战吼：</b>将你的英雄的剩余生命值变为15。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "race": "DEMON",
+      "races": [
+        "DEMON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "MIS_707",
+      "dbfId": 105539,
+      "name": "批量生产",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARLOCK",
+      "rarity": "COMMON",
+      "set": "WHIZBANGS_WORKSHOP",
+      "text": "抽两张牌。对你的英雄造成$3点伤害。将两张本牌的复制洗入你的牌库。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_496",
+      "dbfId": 122720,
+      "name": "诅咒之链",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARLOCK",
+      "rarity": "EPIC",
+      "set": "CATACLYSM",
+      "text": "直到敌方回合结束，夺取一个敌方随从的控制权。在本回合中，该随从无法攻击。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_509",
+      "dbfId": 126125,
+      "name": "背叛者高弗雷",
+      "cost": 4,
+      "attack": 5,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "WARLOCK",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>对战开始时：</b>过量抽取的牌会在你手牌中有空位时返回手牌，且其法力值消耗减少（1）点。",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_514",
+      "dbfId": 126477,
+      "name": "秘密监控",
+      "cost": 10,
+      "type": "SPELL",
+      "cardClass": "WARLOCK",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "抽三张牌。你每有一张手牌，本牌的法力值消耗便减少（1）点。",
+      "collectible": true
+    },
+    {
+      "id": "HERO_11",
+      "dbfId": 78065,
+      "name": "巫妖王",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_11bp",
+      "dbfId": 78162,
+      "name": "食尸鬼冲锋",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "FREE",
+      "set": "BASIC",
+      "text": "<b>英雄技能</b>\n召唤一个1/1并具有<b>冲锋</b>的食尸鬼。它会在回合结束时死亡。"
+    },
+    {
+      "id": "CORE_SW_072",
+      "dbfId": 102221,
+      "name": "锈烂蝰蛇",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>可交易</b>\n<b>战吼：</b>摧毁对手的武器。",
+      "mechanics": [
+        "BATTLECRY",
+        "TRADEABLE"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_814",
+      "dbfId": 114305,
+      "name": "感染吐息",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "造成$2点伤害。召唤一条0/2的水蛭。",
+      "collectible": true
+    },
+    {
+      "id": "EDR_813",
+      "dbfId": 114967,
+      "name": "病变虫群",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "text": "<b>抉择：</b>召唤两只1/1的蚂蚁；或者消耗2份<b>残骸</b>，对一个随从造成$4点伤害。",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_856",
+      "dbfId": 115139,
+      "name": "梦魇之王萨维斯",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "EMERALD_DREAM",
+      "text": "<b>战吼：</b>从你的牌库中<b>发现</b>一张随从牌。使其获得<b>黑暗之赐</b>。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "race": "DEMON",
+      "races": [
+        "DEMON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_436",
+      "dbfId": 117434,
+      "name": "重生的翼手龙",
+      "cost": 5,
+      "attack": 4,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "EPIC",
+      "set": "THE_LOST_CITY",
+      "text": "<b><b>突袭</b>。吸血</b>\n消耗<b>残骸</b>而非\n法力值。",
+      "mechanics": [
+        "LIFESTEAL",
+        "RUSH"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD",
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_106",
+      "dbfId": 117877,
+      "name": "末日使者安布拉",
+      "cost": 7,
+      "attack": 6,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>触发本局对战中死亡的5个友方随从的<b>亡语</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_252",
+      "dbfId": 118252,
+      "name": "蚀解软泥怪",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>消灭一个友方随从，将一张骸骨置入你的手牌。骸骨可以使一个随从获得被消灭随从的攻击力和生命值。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DINO_410",
+      "dbfId": 118487,
+      "name": "凯洛斯的蛋",
+      "cost": 3,
+      "attack": 0,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>亡语：</b>召唤一枚轻微开裂的蛋。<i>（破壳5次即可孵化为一只20/20并具有<b>嘲讽</b>的野兽！）</i>",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DINO_411",
+      "dbfId": 118496,
+      "name": "神圣布蛋者",
+      "cost": 2,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>抽一张攻击力为0的随从牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DINO_417",
+      "dbfId": 118559,
+      "name": "安魂仪典",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "使你的随从获得+1攻击力和<b>突袭</b>。它们会在你的回合结束时死亡。",
+      "collectible": true
+    },
+    {
+      "id": "CORE_EDR_003",
+      "dbfId": 118765,
+      "name": "法瑞克",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "LEGENDARY",
+      "set": "CORE",
+      "text": "你获得的<b>残骸</b>量为正常的两倍。<b>战吼：</b>抽一张消耗<b>残骸</b>的牌。",
+      "mechanics": [
+        "AURA",
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_003",
+      "dbfId": 119314,
+      "name": "传送门卫士",
+      "cost": 3,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "text": "<b>回溯</b>。<b>战吼：</b>随机抽一张随从牌，使其获得+2/+2。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_EVENT_402",
+      "dbfId": 120658,
+      "name": "末日使者之杖",
+      "cost": 3,
+      "attack": 1,
+      "health": 6,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "LEGENDARY",
+      "set": "EVENT",
+      "text": "<b>亡语：</b>消灭所有随从。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "END_004",
+      "dbfId": 121058,
+      "name": "愤怒残魂",
+      "cost": 7,
+      "attack": 5,
+      "health": 4,
+      "type": "MINION",
+      "classes": [
+        "DEATHKNIGHT",
+        "DEMONHUNTER"
+      ],
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "在本回合中每有一个随从死亡，本牌的法力值消耗便减少（1）点。<b>战吼：</b>抽两张牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DEMON",
+      "races": [
+        "UNDEAD",
+        "DEMON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_998",
+      "dbfId": 125914,
+      "name": "迪菲亚私运者",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>预备</b>。<b>战吼：</b>使一个友方随从获得+2攻击力和<b>突袭</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_441",
+      "dbfId": 126254,
+      "name": "饮血术",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>吸血</b>。对一个随从造成$3点伤害。复原你的英雄技能。",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_444",
+      "dbfId": 126260,
+      "name": "锯骨巨魔",
+      "cost": 5,
+      "attack": 5,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>预备</b>。<b>战吼：</b>消灭你的所有其他随从。每消灭一个，抽一张牌并复原一个法力水晶。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_446",
+      "dbfId": 126365,
+      "name": "鲜血医师萨安娜",
+      "cost": 4,
+      "attack": 4,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>战吼：</b>获得一项消耗<b>残骸</b>的第二英雄\n技能。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_450",
+      "dbfId": 126502,
+      "name": "残骸大炮",
+      "cost": 2,
+      "attack": 1,
+      "health": 3,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "在你的英雄\n攻击后，召唤一个1/1的脆弱的食尸鬼。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_454",
+      "dbfId": 126911,
+      "name": "紧急手术",
+      "cost": 5,
+      "type": "SPELL",
+      "cardClass": "DEATHKNIGHT",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "选择一个敌方随从。召唤四个3/1并具有<b>吸血</b>的亡灵攻击该随从。",
+      "collectible": true
+    },
+    {
+      "id": "HERO_10",
+      "dbfId": 56550,
+      "name": "伊利丹·怒风",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_10bp",
+      "dbfId": 60224,
+      "name": "恶魔之爪",
+      "cost": 1,
+      "type": "HERO_POWER",
+      "cardClass": "DEMONHUNTER",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n在本回合中+$a1\n攻击力。"
+    },
+    {
+      "id": "CORE_YOP_001",
+      "dbfId": 97377,
+      "name": "伊利达雷研习",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>发现</b>一张<b>流放</b>牌。你的下一张<b>流放</b>牌法力值消耗减少（1）点。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_BT_187",
+      "dbfId": 102184,
+      "name": "凯恩·日怒",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "LEGENDARY",
+      "set": "CORE",
+      "text": "<b>冲锋</b>\n所有友方攻击无视\n<b>嘲讽</b>。",
+      "mechanics": [
+        "AURA",
+        "CHARGE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_SCH_713",
+      "dbfId": 102224,
+      "name": "异教低阶牧师",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "CORE",
+      "text": "<b>战吼：</b>下个回合你的对手法术的法力值消耗增加（1）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_840",
+      "dbfId": 114654,
+      "name": "恐怖收割",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "抽一张牌。随机召唤一个<b>休眠</b>的魔种。",
+      "collectible": true
+    },
+    {
+      "id": "TLC_902",
+      "dbfId": 117686,
+      "name": "虫害侵扰",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "text": "获取两张法力值消耗为（1）的格里什毒刺虫。毒刺虫可以造成$2点伤害并召唤一只2/1具有<b>突袭</b>的异种虫幼体。",
+      "collectible": true
+    },
+    {
+      "id": "DINO_136",
+      "dbfId": 118503,
+      "name": "盛宴之角",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "召唤三只2/1并具有<b>突袭</b>的迅猛龙。<b>流放：</b>使其在本回合中获得攻击时<b>免疫</b>。",
+      "mechanics": [
+        "OUTCAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_526",
+      "dbfId": 122770,
+      "name": "布洛克斯加的奋战",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "对所有随从造成$1点伤害。每有一个随从死亡，抽一\n张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_528",
+      "dbfId": 122773,
+      "name": "海洋咒符",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "在你的下个回合开始时，召唤一个3/3并具有<b>嘲讽</b>的纳迦。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_719",
+      "dbfId": 126211,
+      "name": "伊莉达·寻罪",
+      "cost": 4,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>吸血</b>。<b>战吼：</b>除1张牌外，将你的牌库送入虚空。在你的回合开始时，从虚空中获取两张牌。",
+      "mechanics": [
+        "BATTLECRY",
+        "LIFESTEAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_730",
+      "dbfId": 126660,
+      "name": "星尘之镰",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "在你的英雄攻击后，获取一张虚空灵魂。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_733",
+      "dbfId": 126663,
+      "name": "邪恶的虚鳞纳迦",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>嘲讽</b>。<b>亡语：</b>获取一张虚空灵魂。",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "race": "NAGA",
+      "races": [
+        "NAGA"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_734",
+      "dbfId": 126664,
+      "name": "魂狱破坏者",
+      "cost": 3,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>嘲讽</b>。<b>战吼：</b>从你的牌库中<b>发现</b>一张牌。如果你的牌库已空，改为获得+4/+4。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_891",
+      "dbfId": 127157,
+      "name": "虚空冲击",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "对一个随从造成$3点伤害。如果该随从死亡，获取一张虚空灵魂。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_892",
+      "dbfId": 127159,
+      "name": "宇宙具象",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DEMONHUNTER",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "造成$2点伤害。随机将一张恶魔猎手法术牌洗入你的牌库。<b>流放：</b>重复一次。",
+      "mechanics": [
+        "OUTCAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_06",
+      "dbfId": 274,
+      "name": "玛法里奥·怒风",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "DRUID",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_06bp",
+      "dbfId": 1123,
+      "name": "变形",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "DRUID",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n本回合+$a1攻击力。+$d1护甲值。"
+    },
+    {
+      "id": "CS2_012",
+      "dbfId": 64,
+      "name": "横扫",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "对一个敌人造成$4点伤害，并对所有其他敌人\n造成$1点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CS2_008",
+      "dbfId": 467,
+      "name": "月火术",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "造成$1点伤害。",
+      "collectible": true
+    },
+    {
+      "id": "EX1_173",
+      "dbfId": 823,
+      "name": "星火术",
+      "cost": 6,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "造成$5点伤害。抽一张牌。",
+      "collectible": true
+    },
+    {
+      "id": "KAR_114",
+      "dbfId": 39941,
+      "name": "巴内斯",
+      "cost": 5,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "KARA",
+      "text": "<b>战吼：</b>随机挑选你牌库里的一个随从，召唤一个1/1的复制。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ICC_085",
+      "dbfId": 42759,
+      "name": "终极感染",
+      "cost": 10,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "EPIC",
+      "set": "ICECROWN",
+      "text": "造成$5点伤害。抽五张牌。获得5点护甲值。召唤一个5/5的食尸鬼。",
+      "collectible": true
+    },
+    {
+      "id": "BOT_054",
+      "dbfId": 47887,
+      "name": "生物计划",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "COMMON",
+      "set": "BOOMSDAY",
+      "text": "每个玩家获得两个法力水晶。",
+      "collectible": true
+    },
+    {
+      "id": "BT_255",
+      "dbfId": 56622,
+      "name": "凯尔萨斯·逐日者",
+      "cost": 6,
+      "attack": 4,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "BLACK_TEMPLE",
+      "text": "在每回合中，你每施放三个法术，第三个法术的法力值消耗为（1）点。",
+      "mechanics": [
+        "AURA"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "SCH_427",
+      "dbfId": 60016,
+      "name": "雷霆绽放",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "classes": [
+        "DRUID",
+        "SHAMAN"
+      ],
+      "rarity": "COMMON",
+      "set": "SCHOLOMANCE",
+      "text": "复原两个法力水晶。<b>过载：</b>（2）",
+      "mechanics": [
+        "OVERLOAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DMF_058",
+      "dbfId": 61450,
+      "name": "日蚀",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "COMMON",
+      "set": "DARKMOON_FAIRE",
+      "text": "在本回合中，你施放的下一个法术将施放两次。",
+      "collectible": true
+    },
+    {
+      "id": "DED_002",
+      "dbfId": 65583,
+      "name": "月光指引",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "RARE",
+      "set": "STORMWIND",
+      "text": "<b>发现</b>你牌库中一张牌的复制。如果你在本回合中使用这张复制，则抽取本体。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_EX1_169",
+      "dbfId": 69550,
+      "name": "激活",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "RARE",
+      "set": "CORE",
+      "text": "在本回合中，获得一个\n法力水晶。",
+      "collectible": true
+    },
+    {
+      "id": "AV_295",
+      "dbfId": 70320,
+      "name": "占领冷齿矿洞",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "EPIC",
+      "set": "ALTERAC_VALLEY",
+      "text": "<b>抉择：</b>抽取你法力值消耗最低的牌；或者抽取你法力值消耗最高的牌。",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TSC_654",
+      "dbfId": 73774,
+      "name": "水栖形态",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "RARE",
+      "set": "THE_SUNKEN_CITY",
+      "text": "<b>探底</b>。如果你在本回合中有足够的法力值使用选中的牌，则抽取这张牌。",
+      "mechanics": [
+        "DREDGE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TID_001",
+      "dbfId": 76117,
+      "name": "月光射线",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "COMMON",
+      "set": "THE_SUNKEN_CITY",
+      "text": "对一个敌人造成$1点伤害两次。",
+      "collectible": true
+    },
+    {
+      "id": "DEEP_026",
+      "dbfId": 102426,
+      "name": "大地坠饰",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "classes": [
+        "DRUID",
+        "PRIEST"
+      ],
+      "rarity": "COMMON",
+      "set": "WILD_WEST",
+      "text": "从你的牌库中<b>发现</b>一张随从牌，为你的英雄恢复等同于其法力值消耗的生命值。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TOY_850",
+      "dbfId": 104596,
+      "name": "魔法妙妙屋",
+      "cost": 2,
+      "health": 3,
+      "type": "LOCATION",
+      "cardClass": "DRUID",
+      "rarity": "COMMON",
+      "set": "WHIZBANGS_WORKSHOP",
+      "text": "在本回合中获得<b>法术伤害+1</b>。",
+      "collectible": true
+    },
+    {
+      "id": "TOY_851",
+      "dbfId": 104665,
+      "name": "无底玩具箱",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "COMMON",
+      "set": "WHIZBANGS_WORKSHOP",
+      "text": "从你的牌库中<b>发现</b>一张牌。如果你拥有<b>法术伤害</b>，复制发现的牌。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "VAC_907",
+      "dbfId": 105813,
+      "name": "星夜露宿",
+      "cost": 8,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "EPIC",
+      "set": "ISLAND_VACATION",
+      "text": "<b>选择三次：</b>抽两张牌；获得5点护甲值；或者复原三个法力水晶。",
+      "collectible": true
+    },
+    {
+      "id": "TIME_701",
+      "dbfId": 120746,
+      "name": "波涛形塑",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "DRUID",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "text": "从你的牌库中<b>发现</b>一张牌。将其余选项置于牌库底。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_05",
+      "dbfId": 31,
+      "name": "雷克萨",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "HUNTER",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_05bp",
+      "dbfId": 229,
+      "name": "稳固射击",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "HUNTER",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n对敌方英雄造成$2点伤害。0<b>英雄技能</b>\n造成$2点伤害。"
+    },
+    {
+      "id": "DS1_178",
+      "dbfId": 699,
+      "name": "苔原犀牛",
+      "cost": 5,
+      "attack": 2,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "你的野兽拥有<b>冲锋</b>。",
+      "mechanics": [
+        "AURA"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_063",
+      "dbfId": 2633,
+      "name": "酸喉",
+      "cost": 3,
+      "attack": 4,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "每当有敌方随从受到伤害时，将其消灭。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "AT_063t",
+      "dbfId": 2634,
+      "name": "恐鳞",
+      "cost": 3,
+      "attack": 4,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "TGT",
+      "text": "在你的回合结束时，对所有敌人造成\n1点伤害。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "LOE_011",
+      "dbfId": 2883,
+      "name": "雷诺·杰克逊",
+      "cost": 6,
+      "attack": 4,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "LOE",
+      "text": "<b>战吼：</b>如果你的牌库里没有相同的牌，则为你的英雄恢复所有生命值。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "UNG_919",
+      "dbfId": 41366,
+      "name": "沼泽之王爵德",
+      "cost": 6,
+      "attack": 9,
+      "health": 9,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "UNGORO",
+      "text": "在你的对手使用一张随从牌后，攻击该随从。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ICC_415",
+      "dbfId": 42707,
+      "name": "缝合追踪者",
+      "cost": 3,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "COMMON",
+      "set": "ICECROWN",
+      "text": "<b>战吼：</b>\n从你的牌库中<b>发现</b>一张随从牌的复制。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ULD_212",
+      "dbfId": 53435,
+      "name": "刺血狂蝎",
+      "cost": 6,
+      "attack": 6,
+      "health": 9,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "EPIC",
+      "set": "ULDUM",
+      "text": "<b>战吼：</b>从你对手的手牌中召唤一个随从。攻击该随从。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ULD_003",
+      "dbfId": 53756,
+      "name": "了不起的杰弗里斯",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "ULDUM",
+      "text": "<b>战吼：</b>如果你的牌库里没有相同的牌，则可以许愿获取一张完美的卡牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "BAR_074",
+      "dbfId": 62583,
+      "name": "前沿哨所",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "THE_BARRENS",
+      "text": "无法攻击。在你的对手抽一张牌后，使其法力值消耗增加（1）点<i>（最高不超过10点）</i>。",
+      "mechanics": [
+        "CANT_ATTACK",
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "WC_007",
+      "dbfId": 63334,
+      "name": "毒蛇花",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "COMMON",
+      "set": "THE_BARRENS",
+      "text": "使一只友方野兽获得<b>剧毒</b>。",
+      "collectible": true
+    },
+    {
+      "id": "SW_460",
+      "dbfId": 65044,
+      "name": "集群撕咬",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "RARE",
+      "set": "STORMWIND",
+      "text": "选择一个敌方随从，使你的所有随从攻击该随从，并将死亡的友方随从移回你的手牌。",
+      "collectible": true
+    },
+    {
+      "id": "AV_113",
+      "dbfId": 67803,
+      "name": "野兽追猎者塔维什",
+      "cost": 6,
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "ALTERAC_VALLEY",
+      "text": "<b>战吼：</b><b>发现</b>并施放两张强化的<b>奥秘</b>牌。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TSC_032",
+      "dbfId": 72007,
+      "name": "剑圣奥卡尼",
+      "cost": 4,
+      "attack": 2,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_SUNKEN_CITY",
+      "text": "<b>战吼：</b><b>秘密</b>选择一项，当本随从存活时，<b>反制</b>你对手使用的下一张随从牌或法术牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TSC_926",
+      "dbfId": 72333,
+      "name": "掩息海星",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "EPIC",
+      "set": "THE_SUNKEN_CITY",
+      "text": "<b>战吼：</b><b>沉默</b>所有其他随从。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "REV_360",
+      "dbfId": 78412,
+      "name": "灵体偷猎者",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "RARE",
+      "set": "REVENDRETH",
+      "text": "<b>战吼：</b>随机召唤一个<b>休眠</b>的灵种。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "REV_361",
+      "dbfId": 78416,
+      "name": "野性之魂",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "EPIC",
+      "set": "REVENDRETH",
+      "text": "召唤两个不同的<b>休眠</b>灵种。使你的灵种提前1回合唤醒。",
+      "collectible": true
+    },
+    {
+      "id": "RLK_828",
+      "dbfId": 84400,
+      "name": "奎尔萨拉斯的希望",
+      "cost": 6,
+      "attack": 4,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "RETURN_OF_THE_LICH_KING",
+      "text": "在你的英雄攻击后，使你的所有随从获得+1/+1<i>（无论它们在哪）</i>。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ETC_080",
+      "dbfId": 90749,
+      "name": "乐队经理精英牛头人酋长",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "BATTLE_OF_THE_BANDS",
+      "text": "在构筑你的套牌时，用3张牌组建一支乐队。<b>战吼：发现</b>其中一张！",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "ETC_836",
+      "dbfId": 91498,
+      "name": "穆克拉先生",
+      "cost": 6,
+      "attack": 10,
+      "health": 10,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "BATTLE_OF_THE_BANDS",
+      "text": "<b>突袭</b>。<b>战吼：</b>用香蕉填满你对手的手牌。",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TTN_078",
+      "dbfId": 97047,
+      "name": "神话观测者",
+      "cost": 2,
+      "attack": 1,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "RARE",
+      "set": "TITANS",
+      "text": "在你召唤一个攻击力高于本随从的随从后，使所有友方随从获得+1攻击力。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TTN_081",
+      "dbfId": 97096,
+      "name": "颤地觉醒",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "COMMON",
+      "set": "TITANS",
+      "text": "获取三张4/1的冰虫，其法力值消耗为（1）点。",
+      "collectible": true
+    },
+    {
+      "id": "WW_331",
+      "dbfId": 100101,
+      "name": "奇迹推销员",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "WILD_WEST",
+      "text": "<b>亡语：</b>获取一张<b>可交易</b>的蛇油。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "WW_815",
+      "dbfId": 100180,
+      "name": "迷失者塞尔杜林",
+      "cost": 4,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "WILD_WEST",
+      "text": "<b>战吼：</b>如果你的套牌里没有相同的牌，在本回合中获得<b>免疫</b>并攻击所有敌人。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TOY_353",
+      "dbfId": 103153,
+      "name": "拼布好朋友",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "RARE",
+      "set": "WHIZBANGS_WORKSHOP",
+      "text": "获取全部3种动物伙伴，其法力值消耗减少（1）点。",
+      "collectible": true
+    },
+    {
+      "id": "WW_0700",
+      "dbfId": 103471,
+      "name": "孤胆游侠雷诺",
+      "cost": 8,
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "WILD_WEST",
+      "text": "<b>战吼：</b>如果你的套牌里没有相同的牌，将所有敌方随从移出对战。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "WORK_040",
+      "dbfId": 110853,
+      "name": "笨拙的杂役",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "RARE",
+      "set": "ISLAND_VACATION",
+      "text": "在任意卡牌被抽到后，将其变为\n<b>临时</b>卡牌。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "GDB_846",
+      "dbfId": 111074,
+      "name": "大主教奈丽",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "SPACE",
+      "text": "<b>战吼：</b>将你的\n英雄技能替换为追踪术<i>（从你的牌库中<b>\n发现</b>一张牌）</i>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAENEI",
+      "races": [
+        "DRAENEI"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "GDB_463",
+      "dbfId": 111313,
+      "name": "困窘的机械师",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "SPACE",
+      "text": "<b>圣盾</b>。<b><b>法术迸发</b>：</b>抽一张德莱尼牌。",
+      "mechanics": [
+        "DIVINE_SHIELD",
+        "SPELLBURST"
+      ],
+      "race": "DRAENEI",
+      "races": [
+        "DRAENEI"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "SC_000",
+      "dbfId": 112799,
+      "name": "孵化池",
+      "cost": 1,
+      "health": 2,
+      "type": "LOCATION",
+      "classes": [
+        "DEATHKNIGHT",
+        "HUNTER",
+        "WARLOCK",
+        "DEMONHUNTER"
+      ],
+      "rarity": "COMMON",
+      "set": "SPACE",
+      "text": "获取一张1/1的跳虫。<b>亡语：</b>在本回合中，你的异虫随从拥有<b>突袭</b>。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "LEG_CS3_015",
+      "dbfId": 113351,
+      "name": "选种饲养员",
+      "cost": 2,
+      "attack": 1,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "RARE",
+      "set": "LEGACY",
+      "text": "<b>战吼：</b>\n从你的牌库中<b>发现</b>一张野兽牌的复制。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_609t1",
+      "dbfId": 119705,
+      "name": "游侠队长奥蕾莉亚",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "set": "TIME_TRAVEL",
+      "text": "<b>战吼：</b><b>发现</b>一张法术牌。如果你使用过希尔瓦娜斯或温蕾萨，每使用过一位，重复一次。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ]
+    },
+    {
+      "id": "TIME_609t2",
+      "dbfId": 119706,
+      "name": "游侠新兵温蕾萨",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "set": "TIME_TRAVEL",
+      "text": "<b>战吼：</b>使你牌库中的随从牌获得+1/+1。如果你使用过奥蕾莉亚或希尔瓦娜斯，每使用过一位，重复一次。",
+      "mechanics": [
+        "BATTLECRY"
+      ]
+    },
+    {
+      "id": "TIME_609",
+      "dbfId": 119707,
+      "name": "游侠将军希尔瓦娜斯",
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "TIME_TRAVEL",
+      "text": "<b>奇闻</b>\n<b>战吼：</b>对所有敌人造成2点伤害。如果你使用过奥蕾莉亚或温蕾萨，每使用过一位，重复一次。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_831",
+      "dbfId": 125998,
+      "name": "下水道之王",
+      "cost": 6,
+      "attack": 6,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "构筑套牌时，选择三张私藏的野兽牌。<b>战吼：</b>从中<b>发现</b>一张，其法力值消耗减少（3）点。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_877",
+      "dbfId": 126295,
+      "name": "下水道管网",
+      "cost": 2,
+      "health": 2,
+      "type": "LOCATION",
+      "cardClass": "HUNTER",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "召唤一只2/1并具有“<b>亡语：</b>抽一张牌”的老鼠。",
+      "collectible": true
+    },
+    {
+      "id": "EX1_544",
+      "dbfId": 896,
+      "name": "照明弹",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "RARE",
+      "set": "EXPERT1",
+      "text": "所有随从失去<b>潜行</b>，摧毁所有敌方<b>奥秘</b>，抽一张牌。",
+      "collectible": true
+    },
+    {
+      "id": "ETC_208",
+      "dbfId": 97363,
+      "name": "荆棘谷之心",
+      "cost": 8,
+      "type": "SPELL",
+      "cardClass": "HUNTER",
+      "rarity": "LEGENDARY",
+      "set": "BATTLE_OF_THE_BANDS",
+      "text": "<b>可交易</b>\n复活所有法力值消耗大于或等于（5）点的友方野兽。",
+      "mechanics": [
+        "TRADEABLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DED_509",
+      "dbfId": 65619,
+      "name": "艳丽的金刚鹦鹉",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "COMMON",
+      "set": "STORMWIND",
+      "text": "<b>战吼：</b>重复你使用的上一个<b>战吼</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "WW_337",
+      "dbfId": 100124,
+      "name": "荒芜之地的精魂",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "LEGENDARY",
+      "set": "WILD_WEST",
+      "text": "<b>战吼：</b>如果你的套牌里没有相同的牌，则获取一张<i>永久</i>的\n幻象牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD",
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_04",
+      "dbfId": 671,
+      "name": "乌瑟尔·光明使者",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "PALADIN",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_04bp",
+      "dbfId": 472,
+      "name": "援军",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "PALADIN",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n召唤一个{0}的白银之手新兵。"
+    },
+    {
+      "id": "CORE_ICC_038",
+      "dbfId": 69705,
+      "name": "正义保护者",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>嘲讽</b>\n<b>圣盾</b>",
+      "mechanics": [
+        "DIVINE_SHIELD",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_258",
+      "dbfId": 114544,
+      "name": "坚韧的托雷斯",
+      "cost": 5,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "LEGENDARY",
+      "set": "EMERALD_DREAM",
+      "text": "<b>圣盾</b>。<b>嘲讽</b>\n你的<b><b>圣盾</b></b>承受三次伤害才会破灭。",
+      "mechanics": [
+        "AURA",
+        "DIVINE_SHIELD",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_438",
+      "dbfId": 117562,
+      "name": "紫色珍鳃鱼人",
+      "cost": 2,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>从你的牌库中随机施放一个法力值消耗小于或等于（2）点的法术<i>（尽可能以本随从为目标）</i>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "MURLOC",
+      "races": [
+        "MURLOC"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_009",
+      "dbfId": 119918,
+      "name": "明日巨匠格尔宾",
+      "cost": 8,
+      "attack": 6,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "LEGENDARY",
+      "set": "TIME_TRAVEL",
+      "text": "<b>奇闻</b>\n<b>战吼：</b>将每种不同的光环从你的牌库中置入战场。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_009t1",
+      "dbfId": 119919,
+      "name": "侏儒光环",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "PALADIN",
+      "set": "TIME_TRAVEL",
+      "text": "<b>可交易</b>\n在你的回合结束时，为你的所有角色恢复#4点生命值。持续3回合。",
+      "mechanics": [
+        "TRADEABLE"
+      ]
+    },
+    {
+      "id": "TIME_009t2",
+      "dbfId": 119920,
+      "name": "梅卡托克的光环",
+      "cost": 5,
+      "type": "SPELL",
+      "cardClass": "PALADIN",
+      "set": "TIME_TRAVEL",
+      "text": "<b>可交易</b>\n在你的回合结束时，随机使一个友方随从获得+4/+4和<b>圣盾</b>。持续3回合。",
+      "mechanics": [
+        "TRADEABLE"
+      ]
+    },
+    {
+      "id": "TIME_019",
+      "dbfId": 120011,
+      "name": "时间流具象",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "text": "<b>战吼：</b>如果你控制着光环，对所有敌人造成3点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_700",
+      "dbfId": 120644,
+      "name": "时序光环",
+      "cost": 5,
+      "type": "SPELL",
+      "cardClass": "PALADIN",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "在你的回合\n结束时，召唤一条3/5并具有<b>嘲讽</b>的龙。持续3回合。",
+      "collectible": true
+    },
+    {
+      "id": "END_011",
+      "dbfId": 121150,
+      "name": "加速光环",
+      "cost": 2,
+      "type": "SPELL",
+      "classes": [
+        "DRUID",
+        "PALADIN"
+      ],
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "在你的回合开始时，获得一个临时的法力水晶。持续\n3回合。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_472",
+      "dbfId": 123106,
+      "name": "灵感之槌",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "PALADIN",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "<b>亡语：</b>随机触发一个友方随从的回合结束效果。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_473",
+      "dbfId": 123109,
+      "name": "诺兹多姆，青铜守护巨龙",
+      "cost": 5,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "在你的回合结束时，使你的随从获得<b>圣盾</b>，已有圣盾的随从改为获得+3/+3。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_474",
+      "dbfId": 123112,
+      "name": "矛心哨卫",
+      "cost": 4,
+      "attack": 3,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "在你的回合结束时，随机获取一张神圣法术牌，其法力值消耗减少（3）点。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_475",
+      "dbfId": 123114,
+      "name": "破鳞盾卫",
+      "cost": 6,
+      "attack": 3,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "在你的回合结束时，对所有敌人造成\n2点伤害。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_479",
+      "dbfId": 123139,
+      "name": "飞龙机动",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "PALADIN",
+      "rarity": "EPIC",
+      "set": "CATACLYSM",
+      "text": "<b>裂变</b>\n召唤两条4/2的幼龙。使你的随从获得+1攻击力和<b>圣盾</b>。123141召唤两条4/2的幼龙。使你的随从获得+1攻击力和<b>圣盾</b>。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_035",
+      "dbfId": 125660,
+      "name": "警戒哨卫",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>嘲讽</b>。<b>战吼：</b>如果你的牌库中没有中立卡牌，召唤两个警戒哨卫。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_327",
+      "dbfId": 126617,
+      "name": "援军光环",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "PALADIN",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "在你的回合结束时，从你的牌库中召唤一个法力值消耗小于或等于（2）点的随从。持续3回合。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_397",
+      "dbfId": 126621,
+      "name": "指挥官碧阿崔克丝",
+      "cost": 5,
+      "attack": 5,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>嘲讽</b>。构筑套牌时，选择一张法力值消耗为（2）的随从牌。它的十张复制会加入你的套牌！",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_516",
+      "dbfId": 127319,
+      "name": "血色招募者",
+      "cost": 5,
+      "attack": 4,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>战吼：</b>从你的牌库中召唤两个法力值消耗小于或等于（2）点的随从，并使其获得<b>突袭</b>。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_328",
+      "dbfId": 126618,
+      "name": "血色斗士",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "PALADIN",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>亡语：</b>如果你的牌库中没有中立卡牌，随机获取一张圣骑士牌，其法力值消耗减少（2）点。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_09",
+      "dbfId": 813,
+      "name": "安度因·乌瑞恩",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "PRIEST",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_09bp",
+      "dbfId": 479,
+      "name": "次级治疗术",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "PRIEST",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n恢复#2点生命值。"
+    },
+    {
+      "id": "EDR_463",
+      "dbfId": 114310,
+      "name": "暮光侵扰",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "text": "<b>抉择：</b>消灭一个攻击力小于或等于3的随从；或者随机召唤一个法力值消耗为（2）的随从。",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_970",
+      "dbfId": 115461,
+      "name": "卡多雷女祭司",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "PRIEST",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "text": "<b>战吼：</b>直到你的下个回合，使所有敌方随从获得-2攻击力。<b>灌注</b>你的英雄技能。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_816",
+      "dbfId": 117317,
+      "name": "墓晨太阳花",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "抽两张牌。<b>延系：</b>本牌法力值消耗减少（2）点。",
+      "collectible": true
+    },
+    {
+      "id": "TLC_817",
+      "dbfId": 117544,
+      "name": "寻求平衡",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>任务：</b>施放4个神圣法术。<b>奖励：</b>生命之息。<b>任务：</b>施放4个暗影法术。<b>奖励：</b>死亡之触。",
+      "mechanics": [
+        "QUEST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "DINO_426",
+      "dbfId": 118628,
+      "name": "生命仪式",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "<b>发现</b>一张法力值消耗为（3）的随从牌，召唤一个它的2/3的复制。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_433",
+      "dbfId": 120492,
+      "name": "抹除存在",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "<b>回溯</b>。<b>沉默</b>并消灭一个随机敌方随从。",
+      "collectible": true
+    },
+    {
+      "id": "CORE_CS2_004",
+      "dbfId": 120786,
+      "name": "真言术：盾",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "使一个随从获得+2生命值。\n抽一张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_302",
+      "dbfId": 122779,
+      "name": "愈合",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "为一个随从恢复所有生命值。抽一张牌。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_308",
+      "dbfId": 123570,
+      "name": "麦迪文的胜利",
+      "cost": 5,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "EPIC",
+      "set": "CATACLYSM",
+      "text": "对所有随从造成$4点伤害。如果你控制着<b>传说</b>牌，本牌的法力值消耗为（1）点。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_912",
+      "dbfId": 124079,
+      "name": "预言师",
+      "cost": 7,
+      "attack": 6,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "PRIEST",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>预备</b>。<b>嘲讽</b>。<b>亡语：</b>为你的英雄恢复#6点生命值。随机召唤一个法力值消耗为（6）的随从。",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_940",
+      "dbfId": 126867,
+      "name": "不死徒刑",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "随机触发本局对战中死亡的一个友方随从的<b>亡语</b>。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_941",
+      "dbfId": 126896,
+      "name": "神圣之拥",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "恢复#4点生命值。获取一张能造成4点伤害的黑暗之拥。",
+      "collectible": true
+    },
+    {
+      "id": "CAP_801",
+      "dbfId": 127061,
+      "name": "幽魂不散",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "使一个随从获得+2/+3，<b>复生</b>和<b>嘲讽</b>。",
+      "collectible": true
+    },
+    {
+      "id": "CAP_804",
+      "dbfId": 127065,
+      "name": "捉鬼专家",
+      "cost": 3,
+      "attack": 3,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>战吼：</b>使一个友方随从获得<b>复生</b>。如果其已经拥有<b>复生</b>，召唤一个它的复制。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CAP_806",
+      "dbfId": 127068,
+      "name": "雷斯·范盖斯特",
+      "cost": 7,
+      "attack": 5,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "PRIEST",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>战吼：</b>复活在本局对战中你的<b>复生</b>过的随从，并使其攻击随机敌方随从。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CAP_805",
+      "dbfId": 127092,
+      "name": "灵质处决",
+      "cost": 4,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "消灭所有随从。每个\n玩家各获取一张法力值消耗\n为（3）的法术牌，该法术可以重新召唤其\n被消灭的随从。",
+      "collectible": true
+    },
+    {
+      "id": "CORE_BAR_311",
+      "dbfId": 130582,
+      "name": "噬灵疫病",
+      "cost": 3,
+      "type": "SPELL",
+      "cardClass": "PRIEST",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>吸血</b>\n造成$4点伤害，随机分配到所有敌方随从\n身上。",
+      "mechanics": [
+        "LIFESTEAL",
+        "ImmuneToSpellpower"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_03",
+      "dbfId": 930,
+      "name": "瓦莉拉·萨古纳尔",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "ROGUE",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_03bp",
+      "dbfId": 730,
+      "name": "匕首精通",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "ROGUE",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n装备一把1/2的\n匕首。"
+    },
+    {
+      "id": "CORE_CS2_072",
+      "dbfId": 69521,
+      "name": "背刺",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "ROGUE",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "对一个未受伤的随从造成$2点\n伤害。",
+      "collectible": true
+    },
+    {
+      "id": "CORE_EX1_145",
+      "dbfId": 69623,
+      "name": "伺机待发",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "ROGUE",
+      "rarity": "EPIC",
+      "set": "CORE",
+      "text": "在本回合中，你所施放的下一个法术的法力值消耗减少（2）点。",
+      "collectible": true
+    },
+    {
+      "id": "EDR_000",
+      "dbfId": 113321,
+      "name": "伊瑟拉，翡翠守护巨龙",
+      "cost": 9,
+      "attack": 4,
+      "health": 12,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "EMERALD_DREAM",
+      "text": "<b>对战开始时：</b>双方玩家的法力值上限提高5点。<b>战吼：</b>获得3个法力水晶。",
+      "mechanics": [
+        "BATTLECRY",
+        "START_OF_GAME_KEYWORD"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_844",
+      "dbfId": 114849,
+      "name": "纳拉雷克斯，龙群先锋",
+      "cost": 7,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "EMERALD_DREAM",
+      "text": "你每个回合使用的第一张龙牌法力值消耗为（1）点。",
+      "mechanics": [
+        "AURA"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_846",
+      "dbfId": 115090,
+      "name": "莎拉达希尔",
+      "cost": 8,
+      "type": "SPELL",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "EMERALD_DREAM",
+      "text": "获取全部5张梦境牌。如果你在本牌在你手中时使用过法力值消耗更高的牌，腐蚀这些梦境牌！",
+      "collectible": true
+    },
+    {
+      "id": "FIR_959",
+      "dbfId": 115756,
+      "name": "火光之龙菲莱克",
+      "cost": 10,
+      "attack": 7,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "EMERALD_DREAM",
+      "text": "<b>免疫</b>火焰法术。<b>战吼：</b>随机对敌人施放消耗总计15点法力值的火焰法术。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_515",
+      "dbfId": 117697,
+      "name": "异教地图",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "ROGUE",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "text": "从你的牌库中<b>发现</b>一张牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_100",
+      "dbfId": 117762,
+      "name": "导航员伊莉斯",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>如果你的套牌中的牌有10种不同的法力值消耗，制造一个自定义的地标。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_522",
+      "dbfId": 119532,
+      "name": "潜踪大师奥普",
+      "cost": 6,
+      "attack": 6,
+      "health": 4,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b><b>潜行</b>。</b><b>战吼，连击，亡语：</b>施放刀扇。",
+      "mechanics": [
+        "BATTLECRY",
+        "COMBO",
+        "DEATHRATTLE",
+        "STEALTH"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_200",
+      "dbfId": 123060,
+      "name": "古神的眼线",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "<b>战吼：</b>选择你手牌中的一张牌，将其变形成为幸运币。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DEMON",
+      "races": [
+        "DEMON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_201",
+      "dbfId": 123072,
+      "name": "暮光主母",
+      "cost": 9,
+      "attack": 4,
+      "health": 12,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "EPIC",
+      "set": "CATACLYSM",
+      "text": "<b>战吼：</b>将所有敌方随从移回其拥有者的\n手牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_785",
+      "dbfId": 123605,
+      "name": "暮光祭礼",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "ROGUE",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "<b>兆示</b>{0}。<b>连击：</b>造成$3点伤害。",
+      "mechanics": [
+        "COMBO"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_154",
+      "dbfId": 125450,
+      "name": "希奈丝特拉",
+      "cost": 6,
+      "attack": 5,
+      "health": 5,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "<b>巨型+2</b>\n你的其他职业的法术会施放两次。",
+      "mechanics": [
+        "AURA",
+        "COLOSSAL"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_503",
+      "dbfId": 125988,
+      "name": "黑掌的链镖",
+      "cost": 3,
+      "attack": 3,
+      "health": 2,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "ROGUE",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "你手牌中每有一张幸运币，本牌的法力值消耗便减少（1）点。<b>亡语：</b>抽一张牌。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_504",
+      "dbfId": 125989,
+      "name": "艾雅，玉莲帮主",
+      "cost": 6,
+      "attack": 6,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "你始终为后手。<b>战吼：</b>在本局对战中，将你的幸运币替换为所选的升级后的伪造幸运币，并获取3张。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_RLK_567",
+      "dbfId": 126088,
+      "name": "殒命暗影",
+      "cost": 0,
+      "type": "SPELL",
+      "cardClass": "ROGUE",
+      "rarity": "LEGENDARY",
+      "set": "CORE",
+      "text": "每当你施放一个法术，变形成为该法术的复制。",
+      "collectible": true
+    },
+    {
+      "id": "JAIL_720",
+      "dbfId": 126221,
+      "name": "玉莲帮荷官",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>亡语：</b>获取\n一张幸运币。",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CAP_004",
+      "dbfId": 127055,
+      "name": "伪装的特工",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "ROGUE",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "可以使用在对战面板的任意一侧。<b>突袭</b>。<b>亡语：</b>你的对手抽两张牌。",
+      "mechanics": [
+        "DEATHRATTLE",
+        "RUSH"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_02",
+      "dbfId": 1066,
+      "name": "萨尔",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "SHAMAN",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_02bp",
+      "dbfId": 687,
+      "name": "图腾召唤",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "SHAMAN",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n随机召唤一个基础图腾。"
+    },
+    {
+      "id": "CORE_UNG_809",
+      "dbfId": 111469,
+      "name": "火羽精灵",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>战吼：</b>将一张1/2的元素牌置入你的手牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_849",
+      "dbfId": 114933,
+      "name": "梦缚迅猛龙",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "在你使用一张随从牌后，随机使其获得一项<b>额外效果</b>。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_427",
+      "dbfId": 117381,
+      "name": "抛石鱼人",
+      "cost": 2,
+      "attack": 1,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>获取一张\n法力值消耗为（1）的石头。石头可以造成$3点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "MURLOC",
+      "races": [
+        "MURLOC"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_603",
+      "dbfId": 117719,
+      "name": "栉龙",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>抽一张牌。<b>亡语：</b>弃掉该牌。",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_KAR_061",
+      "dbfId": 120180,
+      "name": "馆长",
+      "cost": 5,
+      "attack": 4,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "LEGENDARY",
+      "set": "CORE",
+      "text": "<b>嘲讽</b>。<b>战吼：</b>抽取野兽牌，龙牌和鱼人牌各一张。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_WC_042",
+      "dbfId": 120881,
+      "name": "哀嚎蒸汽",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "在你使用一张元素牌后，获得+1攻击力。",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_722",
+      "dbfId": 122639,
+      "name": "末世特使",
+      "cost": 5,
+      "attack": 5,
+      "health": 4,
+      "type": "MINION",
+      "classes": [
+        "DEATHKNIGHT",
+        "ROGUE",
+        "SHAMAN",
+        "WARLOCK",
+        "WARRIOR",
+        "DEMONHUNTER"
+      ],
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "<b>嘲讽</b>。<b>战吼：</b><b>兆示</b>{0}。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_497",
+      "dbfId": 122832,
+      "name": "奥卓克希昂",
+      "cost": 6,
+      "attack": 6,
+      "health": 7,
+      "type": "MINION",
+      "classes": [
+        "DEATHKNIGHT",
+        "ROGUE",
+        "SHAMAN",
+        "WARLOCK",
+        "WARRIOR",
+        "DEMONHUNTER"
+      ],
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "<b>战吼：</b><b>兆示</b>{0}。使死亡之翼的法力值消耗减少（{1}）点。<i>（随<b>兆示</b>的次数提升！）</i>",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_565",
+      "dbfId": 122953,
+      "name": "天空之墙哨兵",
+      "cost": 2,
+      "attack": 0,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "<b>嘲讽</b>。<b>战吼：</b><b>兆示</b>{0}。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_153",
+      "dbfId": 125442,
+      "name": "奥拉基尔，风暴之主",
+      "cost": 8,
+      "attack": 2,
+      "health": 8,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "<b>巨型+2\n<b>突袭。</b>风怒。</b><b>战吼：</b>获取2张法力值消耗等同于本随从攻击力的随从牌，这两张牌的法力值消耗为（1）点。",
+      "mechanics": [
+        "BATTLECRY",
+        "COLOSSAL",
+        "RUSH",
+        "WINDFURY"
+      ],
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_190h",
+      "dbfId": 125467,
+      "name": "灭世者死亡之翼",
+      "cost": 10,
+      "health": 30,
+      "type": "HERO",
+      "classes": [
+        "DEATHKNIGHT",
+        "ROGUE",
+        "SHAMAN",
+        "WARLOCK",
+        "WARRIOR",
+        "DEMONHUNTER"
+      ],
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "<b>战吼：</b>选择并释放{0}项灾变！<i><b>兆示</b>两次后升级。</i>@<b>战吼：</b>选择并释放{0}项灾变！<i><b>兆示</b>一次后升级。</i>@<b>战吼：</b>选择并释放{0}项灾变！",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_800",
+      "dbfId": 126416,
+      "name": "穆格·兹伊",
+      "cost": 6,
+      "attack": 6,
+      "health": 7,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>对战开始时：</b>如果你的套牌中没有其他随从牌，获得穆格的英雄技能。如果没有法术牌，获得兹伊的技能！",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_457",
+      "dbfId": 127688,
+      "name": "被破解的安保机器人",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>预备</b>。<b>战吼：</b>使你的其他随从获得+1/+1。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "MECHANICAL",
+      "races": [
+        "ELEMENTAL",
+        "MECHANICAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_458",
+      "dbfId": 127711,
+      "name": "小朋友",
+      "cost": 4,
+      "attack": 2,
+      "health": 3,
+      "durability": 0,
+      "type": "WEAPON",
+      "cardClass": "SHAMAN",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>战吼：</b>选择你的元素弹药！<i>（在你的英雄攻击后，另选一种。）</i>",
+      "mechanics": [
+        "BATTLECRY",
+        "TRIGGER_VISUAL"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CORE_GIL_531",
+      "dbfId": 130790,
+      "name": "女巫的学徒",
+      "cost": 0,
+      "attack": 0,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "SHAMAN",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>嘲讽，战吼：</b>随机将一张萨满祭司法术牌置入你的手牌。",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "HERO_01",
+      "dbfId": 7,
+      "name": "加尔鲁什·地狱咆哮",
+      "health": 30,
+      "type": "HERO",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "HERO_SKINS",
+      "collectible": true
+    },
+    {
+      "id": "HERO_01bp",
+      "dbfId": 725,
+      "name": "全副武装！",
+      "cost": 2,
+      "type": "HERO_POWER",
+      "cardClass": "WARRIOR",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>英雄技能</b>\n获得$d2点护甲值。"
+    },
+    {
+      "id": "CORE_REV_990",
+      "dbfId": 111459,
+      "name": "赤红深渊",
+      "cost": 1,
+      "health": 3,
+      "type": "LOCATION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "CORE",
+      "text": "对一个随从造成1点伤害，并使其获得+2攻击力。",
+      "collectible": true
+    },
+    {
+      "id": "EDR_456",
+      "dbfId": 114218,
+      "name": "黑暗的龙骑士",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "text": "<b>战吼：</b>如果你的手牌中有龙牌，<b>发现</b>一张具有<b>黑暗之赐</b>的龙牌。",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "race": "DEMON",
+      "races": [
+        "DEMON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_457",
+      "dbfId": 114219,
+      "name": "龙巢守护者",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "<b>战吼：</b>如果你的手牌中有龙牌，装备一把2/2的剑。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "EDR_492",
+      "dbfId": 115365,
+      "name": "鸭妈妈",
+      "cost": 4,
+      "attack": 2,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "<b>战吼：</b>召唤三只1/1并具有<b>突袭</b>的小鸭子。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "FIR_939",
+      "dbfId": 115688,
+      "name": "影焰晕染",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "造成$2点伤害。<b>发现</b>一张具有<b>黑暗之赐</b>的战士随从牌。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TLC_600",
+      "dbfId": 117714,
+      "name": "乘风浮龙",
+      "cost": 8,
+      "attack": 6,
+      "health": 6,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "<b>战吼：</b>造成5点伤害，获得5点护甲值。<b>延系：</b>法力值消耗减少（3）点。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "TIME_034",
+      "dbfId": 120503,
+      "name": "现场播报员",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "text": "<b>回溯</b>。<b>战吼：</b>双方玩家各随机装备一把武器，使你的武器获得+1/+1。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "END_033",
+      "dbfId": 121196,
+      "name": "先觉蜿变幼龙",
+      "cost": 7,
+      "attack": 5,
+      "health": 8,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "<b>扰魔</b>。如果你的手牌中有其他龙牌，本牌的法力值消耗减少（3）点。",
+      "mechanics": [
+        "ELUSIVE"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_556",
+      "dbfId": 122933,
+      "name": "载蛋雏龙",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "<b>战吼：</b>随机获取一张法力值消耗小于或等于（3）点的龙牌。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CATA_582",
+      "dbfId": 123157,
+      "name": "灼热裂隙",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "对所有随从造成$1点伤害。在本回合中，使你的英雄获得+3攻击力。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_584",
+      "dbfId": 123163,
+      "name": "喷发火山",
+      "cost": 3,
+      "health": 3,
+      "type": "LOCATION",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "造成3点伤害，随机分配到所有敌人身上。如果你在本回合中使用过火焰法术牌，再造成3点。",
+      "collectible": true
+    },
+    {
+      "id": "CATA_585",
+      "dbfId": 123164,
+      "name": "烈火炙烤",
+      "cost": 1,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "对一个受伤的随从造成$8点伤害。如果伤害超过目标生命值，将能造成剩余伤害的本牌移回手牌。",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_421",
+      "dbfId": 125803,
+      "name": "突牙",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>冲锋</b>。如果在你的某个回合中有四个友方角色受到伤害，从手牌或牌库中召唤本随从。",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "JAIL_384",
+      "dbfId": 126002,
+      "name": "破链灾星霍格",
+      "cost": 8,
+      "attack": 10,
+      "health": 10,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>嘲讽</b>。<b>对战开始时：</b>复制你套牌中所有其他<b>传说</b>卡牌。",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD",
+        "TAUNT"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CAP_105",
+      "dbfId": 127017,
+      "name": "钩手拖曳",
+      "cost": 2,
+      "type": "SPELL",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>发现</b>一张海盗牌。召唤两个1/1的火炮手。",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "collectible": true
+    },
+    {
+      "id": "CAP_107",
+      "dbfId": 127099,
+      "name": "火炮长",
+      "cost": 1,
+      "attack": 3,
+      "health": 1,
+      "type": "MINION",
+      "cardClass": "WARRIOR",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>战吼：</b>获取一张1/1的火炮手。火炮手能在回合结束时随机对一个敌人造成1点伤害。",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "race": "PIRATE",
+      "races": [
+        "PIRATE",
+        "DRAENEI"
+      ],
+      "collectible": true
+    }
+  ],
+  "sourcedDecks": [
+    {
+      "id": "standard-firestone-burn-mage-4-v1",
+      "name": "Burn Mage #4 Legend",
+      "format": "STANDARD",
+      "ownerClass": "MAGE",
+      "sourceDate": "2026-08-20",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/burn-mage-4-legend-unknown-score-9-2/",
+      "deckCode": "AAECAf0EBpegBOilB8u2B4i+B53ZB6TZBwz9ngTTngaF5gbHhweflgfOmweLsQeSxAesxgeqyQet2geG4AcAAA==",
+      "heroPowerId": "HERO_08bp",
+      "heroId": "HERO_08",
+      "cardIds": [
+        "CORE_CS2_029",
+        "CORE_CS2_029",
+        "CORE_EX1_012",
+        "CORE_UNG_205",
+        "CORE_UNG_205",
+        "CORE_CS2_024",
+        "CORE_CS2_024",
+        "FIR_929",
+        "FIR_929",
+        "TLC_226",
+        "TLC_226",
+        "TLC_249",
+        "TLC_249",
+        "TIME_855",
+        "CORE_DRG_107",
+        "CORE_DRG_107",
+        "TIME_EVENT_999",
+        "CATA_458",
+        "CATA_485",
+        "CATA_485",
+        "CATA_489",
+        "CATA_489",
+        "CATA_EVENT_401",
+        "CATA_EVENT_401",
+        "JAIL_312",
+        "JAIL_319",
+        "JAIL_321",
+        "JAIL_321",
+        "CORE_BAR_541",
+        "CORE_BAR_541"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "wild-cardmaster-highfrey-warlock-v1",
+      "name": "高弗雷猪术",
+      "format": "WILD",
+      "ownerClass": "WARLOCK",
+      "sourceDate": "2026-07-12",
+      "sourceName": "微信小程序 HS 卡牌大师（数据来源含 Firestone）",
+      "sourceUrl": "https://www.iyingdi.com/tz/post/5711596",
+      "deckCode": "AAEBAf0GBvoOj4ID5bAEl+8EnrgGrdkHEdwKnBCnzgLy0AKVzQPXzgPG+QOskQTO5AWt6QXI+AXO+gXjgAaJtQbDuAbgvgeN3AcAAA==",
+      "heroPowerId": "HERO_07bp",
+      "heroId": "HERO_07",
+      "cardIds": [
+        "EX1_620",
+        "EX1_620",
+        "FP1_030",
+        "GVG_108",
+        "GVG_108",
+        "ICC_706",
+        "ICC_706",
+        "LOOT_014",
+        "LOOT_014",
+        "BOT_568",
+        "SCH_311",
+        "SCH_311",
+        "SCH_514",
+        "SCH_514",
+        "SW_062",
+        "SW_062",
+        "AV_312",
+        "AV_312",
+        "TSC_908",
+        "REV_018",
+        "JAM_028",
+        "JAM_028",
+        "JAM_034",
+        "JAM_034",
+        "TTN_924",
+        "TTN_924",
+        "TTN_462",
+        "TTN_462",
+        "TTN_742",
+        "TTN_742",
+        "TOY_883",
+        "TOY_883",
+        "MIS_703",
+        "MIS_707",
+        "MIS_707",
+        "CATA_496",
+        "CATA_496",
+        "JAIL_509",
+        "JAIL_514",
+        "JAIL_514"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "standard-firestone-egg-death-knight-v1",
+      "name": "Egg Death Knight #54 Legend",
+      "format": "STANDARD",
+      "ownerClass": "DEATHKNIGHT",
+      "sourceDate": "2026-08-31",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/egg-death-knight-54-legend-unknown-score-7-1/",
+      "sourceEvidence": {
+        "provider": "HSReplay",
+        "url": "https://hsreplay.net/decks/2Yz13CIhhcZEfY9Fw75U9f/",
+        "checkedAt": "2026-09-02",
+        "scope": "DECK_CODE_AND_CARD_LIST",
+        "deckCodeUrl": "https://hsreplay.net/decks/AAECAfHhBAzNngbDgwf1mAfsmwfXnQfgnQftnweSpAfSrgfa1wed2we%2F3wcJ054Ggf0Gl4IHupUHn54H4rEHrtoHtNoHptwHAAA%3D/"
+      },
+      "deckCode": "AAECAfHhBAzNngbDgwf1mAfsmwfXnQfgnQftnweSpAfSrgfa1wed2we/3wcJ054Ggf0Gl4IHupUHn54H4rEHrtoHtNoHptwHAAA=",
+      "heroPowerId": "HERO_11bp",
+      "heroId": "HERO_11",
+      "cardIds": [
+        "CORE_SW_072",
+        "CORE_UNG_205",
+        "CORE_UNG_205",
+        "EDR_814",
+        "EDR_814",
+        "EDR_813",
+        "EDR_813",
+        "EDR_856",
+        "TLC_436",
+        "TLC_436",
+        "TLC_106",
+        "TLC_252",
+        "DINO_410",
+        "DINO_411",
+        "DINO_417",
+        "DINO_417",
+        "CORE_EDR_003",
+        "TIME_003",
+        "TLC_EVENT_402",
+        "END_004",
+        "END_004",
+        "JAIL_998",
+        "JAIL_441",
+        "JAIL_441",
+        "JAIL_444",
+        "JAIL_444",
+        "JAIL_446",
+        "JAIL_450",
+        "JAIL_450",
+        "JAIL_454"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "standard-firestone-void-soul-demon-hunter-v1",
+      "name": "Void Soul Demon Hunter #114 Legend",
+      "format": "STANDARD",
+      "ownerClass": "DEMONHUNTER",
+      "sourceDate": "2026-08-30",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/void-soul-demon-hunter-114-legend-unknown-score-19-6/",
+      "deckCode": "AAECAea5AwSongbNngaSvweD2gcN4fgF0J4G054G3v8GtpcH550Hlb8HxN0Hxt0Hx90HyN0HteEHt+EHAAA=",
+      "heroPowerId": "HERO_10bp",
+      "heroId": "HERO_10",
+      "cardIds": [
+        "CORE_YOP_001",
+        "CORE_YOP_001",
+        "CORE_BT_187",
+        "CORE_SW_072",
+        "CORE_SCH_713",
+        "CORE_SCH_713",
+        "CORE_UNG_205",
+        "CORE_UNG_205",
+        "EDR_840",
+        "EDR_840",
+        "TLC_902",
+        "TLC_902",
+        "DINO_136",
+        "DINO_136",
+        "CATA_526",
+        "CATA_528",
+        "CATA_528",
+        "JAIL_719",
+        "JAIL_730",
+        "JAIL_730",
+        "JAIL_732",
+        "JAIL_732",
+        "JAIL_733",
+        "JAIL_733",
+        "JAIL_734",
+        "JAIL_734",
+        "JAIL_891",
+        "JAIL_891",
+        "JAIL_892",
+        "JAIL_892"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "wild-firestone-mill-druid-v1",
+      "name": "Mill Druid #138 Legend",
+      "format": "WILD",
+      "ownerClass": "DRUID",
+      "sourceDate": "2026-08-29",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/mill-druid-138-legend-unknown-score-4-0/",
+      "sourceEvidence": {
+        "provider": "HSReplay",
+        "url": "https://hsreplay.net/decks/DGS5jsfZlvkLV1zZa5iq1f/",
+        "checkedAt": "2026-09-02",
+        "scope": "DECK_CODE_AND_CARD_LIST",
+        "deckCodeUrl": "https://hsreplay.net/decks/AAEBAZICCECFuAKuugOK4AOwpQTV0gSaoAbZsQYL0wO3BofOAo%2F2AvDUA6%2BABK6fBK7ABJSxBtW6BqqvBwAA/"
+      },
+      "deckCode": "AAEBAZICCECFuAKuugOK4AOwpQTV0gSaoAbZsQYL0wO3BofOAo/2AvDUA6+ABK6fBK7ABJSxBtW6BqqvBwAA",
+      "heroPowerId": "HERO_06bp",
+      "heroId": "HERO_06",
+      "cardIds": [
+        "CS2_012",
+        "CS2_008",
+        "CS2_008",
+        "EX1_173",
+        "EX1_173",
+        "KAR_114",
+        "ICC_085",
+        "ICC_085",
+        "BOT_054",
+        "BOT_054",
+        "BT_255",
+        "SCH_427",
+        "SCH_427",
+        "DMF_058",
+        "DED_002",
+        "DED_002",
+        "CORE_EX1_169",
+        "CORE_EX1_169",
+        "AV_295",
+        "TSC_654",
+        "TSC_654",
+        "TID_001",
+        "DEEP_026",
+        "TOY_850",
+        "TOY_850",
+        "TOY_851",
+        "VAC_907",
+        "VAC_907",
+        "TIME_701",
+        "TIME_701"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "wild-firestone-renathal-reno-hunter-v1",
+      "name": "Renathal Reno Hunter #142 Legend",
+      "format": "WILD",
+      "ownerClass": "HUNTER",
+      "sourceDate": "2026-08-24",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/renathal-reno-hunter-142-legend-garallyun-score-14-4/",
+      "sourceEvidence": {
+        "provider": "HSReplay",
+        "url": "https://hsreplay.net/decks/0ZH6UjWYHFtqH7wFaq36Dh/",
+        "checkedAt": "2026-09-02",
+        "scope": "DECK_CODE_AND_CARD_LIST",
+        "deckCodeUrl": "https://hsreplay.net/decks/AAEBAR8ouwX6DskUyhTDFpbDAtPNAruhA%2FyjA%2FfoA%2BbuA5T8A9uRBMeyBI21BMzkBNDkBJfvBLCTBf3EBerKBa3pBZf2Bcj2Bcj4BYWOBtSOBtCeBvGlBq%2BoBoXiBuLjBtHlBp%2FxBsf1BpmnB5qnB5unB67YB9faBwAAAQSAB%2F3EBebuA%2F3EBdP4Bf3EBZyOBq7YBwHTgASu2AcA/"
+      },
+      "deckCode": "AAEBAR8ouwX6DskUyhTDFpbDAtPNAruhA/yjA/foA+buA5T8A9uRBMeyBI21BMzkBNDkBJfvBLCTBf3EBerKBa3pBZf2Bcj2Bcj4BYWOBtSOBtCeBvGlBq+oBoXiBuLjBtHlBp/xBsf1BpmnB5qnB5unB67YB9faBwAAAQSAB/3EBebuA/3EBdP4Bf3EBZyOBq7YBwHTgASu2AcA",
+      "heroPowerId": "HERO_05bp",
+      "heroId": "HERO_05",
+      "cardIds": [
+        "DS1_178",
+        "FP1_030",
+        "AT_063",
+        "AT_063t",
+        "LOE_011",
+        "UNG_919",
+        "ICC_415",
+        "ULD_212",
+        "ULD_003",
+        "BAR_074",
+        "WC_007",
+        "SW_460",
+        "AV_113",
+        "TSC_032",
+        "TSC_926",
+        "REV_360",
+        "REV_361",
+        "REV_018",
+        "RLK_828",
+        "ETC_080",
+        "ETC_836",
+        "JAM_034",
+        "TTN_078",
+        "TTN_081",
+        "TTN_924",
+        "WW_331",
+        "WW_815",
+        "CORE_SCH_713",
+        "TOY_353",
+        "WW_0700",
+        "WORK_040",
+        "GDB_846",
+        "GDB_463",
+        "SC_000",
+        "LEG_CS3_015",
+        "TIME_609t1",
+        "TIME_609t2",
+        "TIME_609",
+        "JAIL_831",
+        "JAIL_877"
+      ],
+      "sideboards": [
+        {
+          "ownerCardId": "ETC_080",
+          "cardIds": [
+            "EX1_544",
+            "WC_007",
+            "ETC_208"
+          ]
+        },
+        {
+          "ownerCardId": "JAIL_831",
+          "cardIds": [
+            "DED_509",
+            "DED_509",
+            "WW_337"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "standard-firestone-aura-paladin-v1",
+      "name": "Aura Paladin #50 Legend",
+      "format": "STANDARD",
+      "ownerClass": "PALADIN",
+      "sourceDate": "2026-08-30",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/aura-paladin-50-legend-unknown-score-10-2/",
+      "sourceEvidence": {
+        "provider": "HSReplay",
+        "url": "https://hsreplay.net/decks/gpwpBBtnoFNo67786XwgNf/",
+        "checkedAt": "2026-09-02",
+        "scope": "DECK_CODE_AND_CARD_LIST",
+        "deckCodeUrl": "https://hsreplay.net/decks/AAECAZ8FBvD%2BBu6oB%2B%2BoB%2FCoB%2BXBB53dBwzJoAS6lgfLqQfErge%2BsgfiwQfowQfqwQeDwgfc1QeZ3QfX4gcAAQGa3Qed3QcAAA%3D%3D/"
+      },
+      "deckCode": "AAECAZ8FBvD+Bu6oB++oB/CoB+XBB53dBwzJoAS6lgfLqQfErge+sgfiwQfowQfqwQeDwgfc1QeZ3QfX4gcAAQGa3Qed3QcAAA==",
+      "heroPowerId": "HERO_04bp",
+      "heroId": "HERO_04",
+      "cardIds": [
+        "CORE_ICC_038",
+        "CORE_ICC_038",
+        "EDR_258",
+        "TLC_438",
+        "TLC_438",
+        "TIME_009",
+        "TIME_009t1",
+        "TIME_009t2",
+        "TIME_019",
+        "TIME_019",
+        "TIME_700",
+        "TIME_700",
+        "END_011",
+        "END_011",
+        "CATA_472",
+        "CATA_472",
+        "CATA_473",
+        "CATA_474",
+        "CATA_474",
+        "CATA_475",
+        "CATA_475",
+        "CATA_479",
+        "CATA_479",
+        "JAIL_035",
+        "JAIL_035",
+        "JAIL_327",
+        "JAIL_327",
+        "JAIL_397",
+        "JAIL_516",
+        "JAIL_516"
+      ],
+      "sideboards": [
+        {
+          "ownerCardId": "JAIL_397",
+          "cardIds": [
+            "JAIL_328"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "standard-firestone-quest-priest-v1",
+      "name": "Quest Priest #428 Legend",
+      "format": "STANDARD",
+      "ownerClass": "PRIEST",
+      "sourceDate": "2026-08-29",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/quest-priest-428-legend-unknown-score-8-2/",
+      "deckCode": "AAECAa0GBsODB6iWB6ytB9XgB9zgB5b8BwyG/QaFhgfFlAfkngfSrwebvweyxQevyQeT3wew3wfZ4Af04AcAAA==",
+      "heroPowerId": "HERO_09bp",
+      "heroId": "HERO_09",
+      "cardIds": [
+        "EDR_463",
+        "EDR_463",
+        "EDR_856",
+        "EDR_970",
+        "EDR_970",
+        "TLC_816",
+        "TLC_816",
+        "TLC_817",
+        "DINO_426",
+        "DINO_426",
+        "TIME_433",
+        "CORE_CS2_004",
+        "CORE_CS2_004",
+        "CATA_302",
+        "CATA_302",
+        "CATA_308",
+        "CATA_308",
+        "JAIL_912",
+        "JAIL_912",
+        "JAIL_940",
+        "JAIL_940",
+        "JAIL_941",
+        "JAIL_941",
+        "CAP_801",
+        "CAP_804",
+        "CAP_804",
+        "CAP_806",
+        "CAP_805",
+        "CAP_805",
+        "CORE_BAR_311"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "standard-firestone-control-rogue-v1",
+      "name": "Control Rogue #102 Legend",
+      "format": "STANDARD",
+      "ownerClass": "ROGUE",
+      "sourceDate": "2026-08-30",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/control-rogue-102-legend-unknown-score-9-1/",
+      "sourceEvidence": {
+        "provider": "HSReplay",
+        "url": "https://hsreplay.net/decks/QDPCy0ZMusj50EJkbwlHuh/",
+        "checkedAt": "2026-09-02",
+        "scope": "DECK_CODE_AND_CARD_LIST",
+        "deckCodeUrl": "https://hsreplay.net/decks/AAECAaIHCqn1BqGBB5KDB8ODB6yIB4KYB%2BylB4rUB6XYB4jZBwqRnwT3nwTTngbBlwe0wQfAwQfVxQek2AeN2gfP4AcAAA%3D%3D/"
+      },
+      "deckCode": "AAECAaIHCqn1BqGBB5KDB8ODB6yIB4KYB+ylB4rUB6XYB4jZBwqRnwT3nwTTngbBlwe0wQfAwQfVxQek2AeN2gfP4AcAAA==",
+      "heroPowerId": "HERO_03bp",
+      "heroId": "HERO_03",
+      "cardIds": [
+        "CORE_CS2_072",
+        "CORE_CS2_072",
+        "CORE_EX1_145",
+        "CORE_EX1_145",
+        "CORE_UNG_205",
+        "CORE_UNG_205",
+        "EDR_000",
+        "EDR_844",
+        "EDR_846",
+        "EDR_856",
+        "FIR_959",
+        "TLC_515",
+        "TLC_515",
+        "TLC_100",
+        "TLC_522",
+        "CATA_200",
+        "CATA_200",
+        "CATA_201",
+        "CATA_201",
+        "CATA_785",
+        "CATA_785",
+        "CATA_154",
+        "JAIL_503",
+        "JAIL_503",
+        "JAIL_504",
+        "CORE_RLK_567",
+        "JAIL_720",
+        "JAIL_720",
+        "CAP_004",
+        "CAP_004"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "standard-firestone-menagerie-shaman-v1",
+      "name": "Menagerie Shaman #450 Legend",
+      "format": "STANDARD",
+      "ownerClass": "SHAMAN",
+      "sourceDate": "2026-08-29",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/menagerie-shaman-450-legend-unknown-score-6-0/",
+      "sourceEvidence": {
+        "provider": "HSReplay",
+        "url": "https://hsreplay.net/decks/m6Yl6wdsRfTO8MIOunnIxh/",
+        "checkedAt": "2026-09-02",
+        "scope": "DECK_CODE_AND_CARD_LIST",
+        "deckCodeUrl": "https://hsreplay.net/decks/AAECAaoICM2eBsODB%2FSqB9C%2FB4LUB5vUB9DbB9%2FlBwvTngbt5gb1gQeFlQfXlwfgnQexsAePvgfJwAfI5Qfm%2FQcAAA%3D%3D/"
+      },
+      "deckCode": "AAECAaoICM2eBsODB/SqB9C/B4LUB5vUB9DbB9/lBwvTngbt5gb1gQeFlQfXlwfgnQexsAePvgfJwAfI5Qfm/QcAAA==",
+      "heroPowerId": "HERO_02bp",
+      "heroId": "HERO_02",
+      "cardIds": [
+        "CORE_SW_072",
+        "CORE_UNG_205",
+        "CORE_UNG_205",
+        "CORE_UNG_809",
+        "CORE_UNG_809",
+        "EDR_849",
+        "EDR_849",
+        "EDR_856",
+        "TLC_427",
+        "TLC_427",
+        "TLC_603",
+        "TLC_603",
+        "DINO_411",
+        "DINO_411",
+        "CORE_KAR_061",
+        "CORE_WC_042",
+        "CORE_WC_042",
+        "CATA_722",
+        "CATA_722",
+        "CATA_497",
+        "CATA_565",
+        "CATA_565",
+        "CATA_153",
+        "CATA_190h",
+        "JAIL_800",
+        "JAIL_457",
+        "JAIL_457",
+        "JAIL_458",
+        "CORE_GIL_531",
+        "CORE_GIL_531"
+      ],
+      "sideboards": []
+    },
+    {
+      "id": "standard-firestone-dragon-warrior-v1",
+      "name": "Dragon Warrior #23 Legend",
+      "format": "STANDARD",
+      "ownerClass": "WARRIOR",
+      "sourceDate": "2026-08-29",
+      "sourceName": "Firestone（经 Hearthstone-Decks.net 收录）",
+      "sourceUrl": "https://hearthstone-decks.net/dragon-warrior-23-legend-unknown-score-22-12/",
+      "deckCode": "AAECAQcC69YHstgHDuPmBqr8Bqv8BqWFB+iHB9KXB7etB+yyB7XAB5XCB5vCB5zCB6ngB/vgBwAA",
+      "heroPowerId": "HERO_01bp",
+      "heroId": "HERO_01",
+      "cardIds": [
+        "CORE_REV_990",
+        "CORE_REV_990",
+        "EDR_456",
+        "EDR_456",
+        "EDR_457",
+        "EDR_457",
+        "EDR_492",
+        "EDR_492",
+        "FIR_939",
+        "FIR_939",
+        "TLC_600",
+        "TLC_600",
+        "TIME_034",
+        "TIME_034",
+        "END_033",
+        "END_033",
+        "CATA_556",
+        "CATA_556",
+        "CATA_582",
+        "CATA_582",
+        "CATA_584",
+        "CATA_584",
+        "CATA_585",
+        "CATA_585",
+        "JAIL_421",
+        "JAIL_384",
+        "CAP_105",
+        "CAP_105",
+        "CAP_107",
+        "CAP_107"
+      ],
+      "sideboards": []
+    }
+  ]
+}

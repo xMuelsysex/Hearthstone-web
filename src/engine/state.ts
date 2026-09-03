@@ -33,6 +33,10 @@ export type GameEntityV1 = {
   armor: number
   durability: number
   exhausted: boolean
+  /** True only during the turn a rush/charge minion was summoned. */
+  summonedThisTurn?: boolean
+  /** Remaining attacks in the current turn; windfury starts with two. */
+  attacksRemaining?: number
   poisonousLethal: boolean
   destroyMarked: boolean
   deathrattleResolved: boolean

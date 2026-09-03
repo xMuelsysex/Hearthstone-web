@@ -1,7 +1,11 @@
+import legacyActiveLogFixture from '@/log/fixtures/legacy-249896-active-log.json' with { type: 'json' }
+import legacyElusiveBattlecryFixture from '@/log/fixtures/legacy-249896-elusive-battlecry-log.json' with { type: 'json' }
 import { commandFromAction } from '@/engine/commands'
 import { createGameState } from '@/engine/setup'
 import { SessionController } from '@/app/session/SessionController'
 import { GameRepository, MemoryStorageAdapter } from '@/storage/repository'
+import { createEmptyStorageRoot } from '@/storage/schema'
+import type { ActiveGameLogV1 } from '@/log/schema'
 
 function fixtureController(storage = new MemoryStorageAdapter(), gameId = 'game-fixed') {
   let tick = 0
@@ -23,6 +27,43 @@ describe('SessionController', () => {
     expect(await restored.restore()).toBe(true)
     expect(restored.snapshot()?.view.phase).toBe('MULLIGAN')
     expect(storage.writes).toBe(2)
+  })
+
+  it('restores and continues a historical legacy active log through persistence', async () => {
+    const storage = new MemoryStorageAdapter()
+    const repository = new GameRepository(storage)
+    const legacyLog = legacyActiveLogFixture as unknown as ActiveGameLogV1
+    repository.commitRoot({ ...createEmptyStorageRoot(), activeGameLog: legacyLog })
+    const controller = new SessionController(repository, { now: () => '2026-08-30T12:00:03.000Z' }, { gameId: () => 'unused' }, 'PLAYER')
+
+    expect(await controller.restore()).toBe(true)
+    expect(controller.snapshot()?.view.phase).toBe('PLAY')
+    const endTurn = controller.snapshot()?.legalActions.find((item) => item.type === 'END_TURN')
+    if (!endTurn) throw new Error('missing legacy continuation')
+    await controller.dispatchAction(endTurn)
+
+    expect(controller.getActiveLog()?.cardDataVersion).toBe('249896-zhCN-v1')
+    expect(controller.getDebugSnapshot().state?.game.pendingDecision).toBeNull()
+    expect(controller.getDebugSnapshot().state?.game.activePlayerId).toBe('OPPONENT')
+    expect(Object.values(controller.getDebugSnapshot().state?.game.entities ?? {}).every((entity) => entity.summonedThisTurn === undefined && entity.attacksRemaining === undefined)).toBe(true)
+  })
+
+  it('restores and continues a legacy targeted battlecry log with SPELL evidence', async () => {
+    const storage = new MemoryStorageAdapter()
+    const repository = new GameRepository(storage)
+    const legacyLog = legacyElusiveBattlecryFixture as unknown as ActiveGameLogV1
+    repository.commitRoot({ ...createEmptyStorageRoot(), activeGameLog: legacyLog })
+    const controller = new SessionController(repository, { now: () => '2026-08-30T13:00:14.000Z' }, { gameId: () => 'unused' }, 'OPPONENT')
+
+    expect(await controller.restore()).toBe(true)
+    const endTurn = controller.snapshot()?.legalActions.find((item) => item.type === 'END_TURN')
+    if (!endTurn) throw new Error('missing legacy continuation')
+    await controller.dispatchAction(endTurn)
+
+    expect(controller.getActiveLog()?.batches).toHaveLength(14)
+    expect(controller.getDebugSnapshot().state?.game.activePlayerId).toBe('PLAYER')
+    expect(controller.getDebugSnapshot().state?.game.players.PLAYER.heroEntityId).toBe(1)
+    expect(controller.getDebugSnapshot().state?.game.entities['1']?.health).toBe(28)
   })
 
   it('keeps the previous authoritative state when persistence fails', async () => {

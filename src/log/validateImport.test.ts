@@ -1,3 +1,5 @@
+import legacyActiveLogFixture from './fixtures/legacy-249896-active-log.json' with { type: 'json' }
+import legacyElusiveBattlecryFixture from './fixtures/legacy-249896-elusive-battlecry-log.json' with { type: 'json' }
 import { commandFromAction } from '@/engine/commands'
 import { getLegalActions } from '@/engine/legalActions'
 import { resolveCommand } from '@/engine/resolveCommand'
@@ -29,6 +31,23 @@ describe('log import', () => {
     const source = fileOf('{}', IMPORT_BYTE_LIMIT + 1)
     await expect(validateAndImportLog(source.file, createEmptyStorageRoot(), new GameRepository(new MemoryStorageAdapter()))).rejects.toThrow('IMPORT_FILE_TOO_LARGE')
     expect(source.reads()).toBe(0)
+  })
+
+  it('imports a real 249896 active log fixture and keeps it resumable', async () => {
+    const repository = new GameRepository(new MemoryStorageAdapter())
+    const result = await validateAndImportLog(fileOf(JSON.stringify(legacyActiveLogFixture)).file, createEmptyStorageRoot(), repository)
+    expect(result.log.cardDataVersion).toBe('249896-zhCN-v1')
+    expect(result.log.status).toBe('in_progress')
+    expect(result.root.activeGameLog?.contentDigest).toBe(legacyActiveLogFixture.contentDigest)
+  })
+
+  it('imports a real 249896 targeted battlecry log with legacy SPELL evidence', async () => {
+    const repository = new GameRepository(new MemoryStorageAdapter())
+    const result = await validateAndImportLog(fileOf(JSON.stringify(legacyElusiveBattlecryFixture)).file, createEmptyStorageRoot(), repository)
+    const evidence = result.log.batches.at(-1)?.legalityEvidence[0]
+    expect(evidence?.actionKind).toBe('SPELL')
+    expect(evidence?.excluded.map((entry) => entry.entityId)).toEqual([5])
+    expect(result.log.currentStateHash).toBe(legacyElusiveBattlecryFixture.currentStateHash)
   })
 
   it('reexecutes, hashes and installs an active log in one write', async () => {

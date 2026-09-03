@@ -26,3 +26,4 @@ junit.xml
 *~
 .DS_Store
 Thumbs.db
+.ace-tool/

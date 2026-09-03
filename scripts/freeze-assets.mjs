@@ -4,17 +4,14 @@ import { basename, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const snapshot = JSON.parse(await readFile(resolve(root, 'src/cards/data/source-selected.249896.json'), 'utf8'))
+const snapshot = JSON.parse(await readFile(resolve(root, 'src/cards/data/source-selected.250339.json'), 'utf8'))
 const assets = []
-const originalArtAssets = [
-  ...snapshot.selectedCards
-    .filter((card) => card.type === 'MINION')
-    .map((card) => ({ id: card.id, kind: 'CARD_ART', folder: 'card-art' })),
-  { id: 'HERO_01', kind: 'HERO_ART', folder: 'hero-art' },
-  { id: 'HERO_08', kind: 'HERO_ART', folder: 'hero-art' },
-  { id: 'HERO_01bp', kind: 'HERO_POWER_ART', folder: 'hero-power-art' },
-  { id: 'HERO_08bp', kind: 'HERO_POWER_ART', folder: 'hero-power-art' },
-]
+const originalArtAssets = snapshot.selectedCards.flatMap((card) => {
+  if (card.type === 'MINION') return [{ id: card.id, kind: 'CARD_ART', folder: 'card-art' }]
+  if (card.type === 'HERO') return [{ id: card.id, kind: 'HERO_ART', folder: 'hero-art' }]
+  if (card.type === 'HERO_POWER') return [{ id: card.id, kind: 'HERO_POWER_ART', folder: 'hero-power-art' }]
+  return []
+})
 
 async function hashFile(path) {
   const bytes = await readFile(path)

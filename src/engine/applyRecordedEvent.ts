@@ -30,7 +30,7 @@ function moveEntity(state: AuthoritativeSessionStateV1, entity: GameEntityV1, zo
   if (zone === 'WEAPON') player.weaponEntityId = entity.id
 }
 
-function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1): void {
+function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1, legacyCardDataVersion: boolean): void {
   const { game } = state
   switch (event.type) {
     case 'COMMAND_ACCEPTED':
@@ -51,6 +51,9 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       game.phase = 'PLAY'
       game.pendingDecision = null
       return
+    case 'RNG_ADVANCED':
+      game.rng = event.rng
+      return
     case 'TURN_ENDED': {
       const player = game.players[event.actorId]
       player.mana.temporary = 0
@@ -65,8 +68,19 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       player.mana.current = player.mana.maximum
       player.mana.temporary = 0
       player.heroPowerUsed = false
-      getEntity(game, player.heroEntityId).exhausted = false
-      for (const id of player.board) getEntity(game, id).exhausted = false
+      const hero = getEntity(game, player.heroEntityId)
+      hero.exhausted = false
+      if (legacyCardDataVersion) {
+        for (const id of player.board) getEntity(game, id).exhausted = false
+        return
+      }
+      hero.attacksRemaining = 1
+      for (const id of player.board) {
+        const entity = getEntity(game, id)
+        entity.exhausted = false
+        entity.attacksRemaining = entity.keywords.includes('WINDFURY') ? 2 : 1
+        entity.summonedThisTurn = false
+      }
       return
     }
     case 'CARD_DRAWN': {
@@ -74,6 +88,12 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       const player = game.players[event.actorId]
       removeId(player.deck, entity.id)
       moveEntity(state, entity, event.burned ? 'GRAVEYARD' : 'HAND')
+      return
+    }
+    case 'CARD_ADDED': {
+      game.entities[String(event.entity.id)] = structuredClone(event.entity)
+      game.nextEntityId = Math.max(game.nextEntityId, event.entity.id + 1)
+      moveEntity(state, getEntity(game, event.entity.id), event.burned ? 'GRAVEYARD' : 'HAND')
       return
     }
     case 'FATIGUE_INCREASED':
@@ -87,22 +107,46 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
         const board = game.players[event.actorId].board
         removeId(board, entity.id)
         board.splice(event.placementIndex ?? board.length, 0, entity.id)
-        entity.exhausted = true
+        if (legacyCardDataVersion) {
+          entity.exhausted = true
+          delete entity.summonedThisTurn
+          delete entity.attacksRemaining
+        } else {
+          const canAttackImmediately = entity.keywords.includes('CHARGE') || entity.keywords.includes('RUSH')
+          entity.exhausted = !canAttackImmediately
+          entity.summonedThisTurn = canAttackImmediately
+          entity.attacksRemaining = canAttackImmediately ? (entity.keywords.includes('WINDFURY') ? 2 : 1) : 0
+        }
       }
       return
     }
     case 'MANATHIRST_BONUS_APPLIED':
       return
-    case 'ATTACK_DECLARED':
-      getEntity(game, event.sourceEntityId).exhausted = true
+    case 'ATTACK_DECLARED': {
+      const source = getEntity(game, event.sourceEntityId)
+      if (legacyCardDataVersion) {
+        source.exhausted = true
+        return
+      }
+      if (source.attacksRemaining === undefined) source.attacksRemaining = 1
+      source.attacksRemaining = Math.max(0, source.attacksRemaining - 1)
+      source.exhausted = source.attacksRemaining === 0
       return
+    }
     case 'HERO_POWER_USED':
       spendMana(state, event.actorId, event.manaCost)
       game.players[event.actorId].heroPowerUsed = true
       return
+    case 'HERO_POWER_REFRESHED':
+      game.players[event.actorId].heroPowerUsed = false
+      return
     case 'DAMAGE_BATCH_APPLIED':
       for (const packet of event.packets) {
         const target = getEntity(game, packet.targetEntityId)
+        if (!legacyCardDataVersion && target.type === 'MINION' && target.keywords.includes('DIVINE_SHIELD')) {
+          target.keywords = target.keywords.filter((keyword) => keyword !== 'DIVINE_SHIELD')
+          continue
+        }
         let remaining = packet.amount
         if (target.type === 'HERO' && target.armor > 0) {
           const absorbed = Math.min(target.armor, remaining)
@@ -130,8 +174,21 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'MINION_SUMMONED': {
       game.entities[String(event.entity.id)] = structuredClone(event.entity)
       game.nextEntityId = Math.max(game.nextEntityId, event.entity.id + 1)
+      if (event.fromDeck) removeId(game.players[event.actorId].deck, event.entity.id)
       const board = game.players[event.actorId].board
       board.splice(Math.min(event.placementIndex, board.length), 0, event.entity.id)
+      return
+    }
+    case 'MINION_BUFFED': {
+      const entity = getEntity(game, event.targetEntityId)
+      entity.attack += event.attackGain
+      entity.health += event.healthGain
+      entity.maxHealth += event.healthGain
+      return
+    }
+    case 'MINION_KEYWORD_GRANTED': {
+      const entity = getEntity(game, event.targetEntityId)
+      entity.keywords = [...new Set([...entity.keywords, event.keyword])]
       return
     }
     case 'ARMOR_GAINED':
@@ -140,6 +197,11 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'CHARACTER_HEALED': {
       const entity = getEntity(game, event.targetEntityId)
       entity.health = Math.min(entity.maxHealth, entity.health + event.amount)
+      return
+    }
+    case 'HERO_HEALTH_SET': {
+      const hero = getEntity(game, game.players[event.actorId].heroEntityId)
+      hero.health = Math.max(0, Math.min(hero.maxHealth, event.health))
       return
     }
     case 'TEMPORARY_HERO_ATTACK_GAINED':
@@ -153,6 +215,15 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       if (event.replacedEntityId !== null) moveEntity(state, getEntity(game, event.replacedEntityId), 'GRAVEYARD')
       moveEntity(state, getEntity(game, event.entityId), 'WEAPON')
       player.weaponEntityId = event.entityId
+      return
+    }
+    case 'WEAPON_CREATED_AND_EQUIPPED': {
+      const player = game.players[event.actorId]
+      game.entities[String(event.entity.id)] = structuredClone(event.entity)
+      game.nextEntityId = Math.max(game.nextEntityId, event.entity.id + 1)
+      if (event.replacedEntityId !== null) moveEntity(state, getEntity(game, event.replacedEntityId), 'GRAVEYARD')
+      moveEntity(state, getEntity(game, event.entity.id), 'WEAPON')
+      player.weaponEntityId = event.entity.id
       return
     }
     case 'WEAPON_DURABILITY_LOST': {
@@ -197,17 +268,24 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
   }
 }
 
-export function applyRecordedEvent(state: AuthoritativeSessionStateV1, event: RecordedEventV1): AuthoritativeSessionStateV1 {
+export function applyRecordedEvent(state: AuthoritativeSessionStateV1, event: RecordedEventV1, options: { legacyCardDataVersion?: boolean } = {}): AuthoritativeSessionStateV1 {
   const next = cloneSessionState(state)
-  if (event.scope === 'GAME') applyGameEvent(next, event.payload)
+  if (event.scope === 'GAME') applyGameEvent(next, event.payload, options.legacyCardDataVersion === true)
   else next.scenario = applyScenarioEvent(next.scenario, event.payload)
   next.game.nextEventSequence += 1
   return next
 }
 
-export function createEntityFromDefinition(id: EntityId, definitionId: string, ownerId: PlayerId, zone: GameEntityV1['zone'], exhausted = false): GameEntityV1 {
+export function createEntityFromDefinition(
+  id: EntityId,
+  definitionId: string,
+  ownerId: PlayerId,
+  zone: GameEntityV1['zone'],
+  exhausted = false,
+  options: { legacyCardDataVersion?: boolean } = {},
+): GameEntityV1 {
   const card = getCardDefinition(definitionId)
-  return {
+  const entity: GameEntityV1 = {
     id,
     definitionId,
     ownerId,
@@ -227,7 +305,14 @@ export function createEntityFromDefinition(id: EntityId, definitionId: string, o
     keywords: [...card.keywords],
     races: [...card.races],
     attachedCardIds: [],
+    summonedThisTurn: false,
+    attacksRemaining: exhausted ? 0 : card.keywords.includes('WINDFURY') ? 2 : 1,
   }
+  if (options.legacyCardDataVersion) {
+    delete entity.summonedThisTurn
+    delete entity.attacksRemaining
+  }
+  return entity
 }
 
 export function playerForEntity(state: AuthoritativeSessionStateV1, entityId: EntityId): PlayerId {

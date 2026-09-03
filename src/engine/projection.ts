@@ -1,6 +1,6 @@
 import { getCardDefinition } from '@/cards/registry'
 import type { CardDefinitionId } from '@/cards/types'
-import { getLegalActions } from '@/engine/legalActions'
+import { getLegalActions, type LegalActionDependencies } from '@/engine/legalActions'
 import { getEntity, otherPlayer, type AuthoritativeSessionStateV1, type EntityId, type PlayerId } from '@/engine/state'
 
 export type PublicEntityViewModel = {
@@ -102,6 +102,6 @@ export function projectPlayerView(state: AuthoritativeSessionStateV1, viewerId: 
   }
 }
 
-export function projectLegalActions(state: AuthoritativeSessionStateV1, viewerId: PlayerId) {
-  return getLegalActions(state, viewerId)
+export function projectLegalActions(state: AuthoritativeSessionStateV1, viewerId: PlayerId, dependencies: LegalActionDependencies = {}) {
+  return getLegalActions(state, viewerId, dependencies)
 }

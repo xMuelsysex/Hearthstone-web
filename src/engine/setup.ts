@@ -4,6 +4,12 @@ import { createRng, shuffleWithRng } from '@/engine/rng'
 import { RULES_VERSION, type AuthoritativeSessionStateV1, type EntityId, type GameEntityV1, type GameStateV1, type PlayerId, type PlayerStateV1 } from '@/engine/state'
 import { createScenarioState, type ScenarioStateV1 } from '@/scenarios/state'
 
+export type GameParticipantSetupV1 = {
+  heroId: string
+  heroPowerId: string
+  deck: readonly string[]
+}
+
 export type GameSetupV1 = {
   seed: number
   scenarioId?: ScenarioStateV1['id']
@@ -12,6 +18,8 @@ export type GameSetupV1 = {
   opponentDeck?: readonly string[]
   playerDeckTop?: readonly string[]
   opponentDeckTop?: readonly string[]
+  playerProfile?: GameParticipantSetupV1
+  opponentProfile?: GameParticipantSetupV1
 }
 
 function createPlayer(id: PlayerId, heroEntityId: EntityId, heroPowerEntityId: EntityId): PlayerStateV1 {
@@ -44,9 +52,19 @@ function arrangeDeck(definitions: readonly string[], pinnedTop: readonly string[
 }
 
 export function createGameState(setup: GameSetupV1): AuthoritativeSessionStateV1 {
-  const playerDeck = setup.playerDeck ?? DECKS_V1[0]?.cards
-  const opponentDeck = setup.opponentDeck ?? DECKS_V1[1]?.cards
-  if (!playerDeck || !opponentDeck) throw new Error('MISSING_DECKS')
+  const playerProfile = setup.playerProfile ?? {
+    heroId: 'HERO_08',
+    heroPowerId: 'HERO_08bp',
+    deck: setup.playerDeck ?? DECKS_V1[0]?.cards ?? [],
+  }
+  const opponentProfile = setup.opponentProfile ?? {
+    heroId: 'HERO_01',
+    heroPowerId: 'HERO_01bp',
+    deck: setup.opponentDeck ?? DECKS_V1[1]?.cards ?? [],
+  }
+  const playerDeck = playerProfile.deck
+  const opponentDeck = opponentProfile.deck
+  if (playerDeck.length === 0 || opponentDeck.length === 0) throw new Error('MISSING_DECKS')
   const startingPlayerId = setup.startingPlayerId ?? 'PLAYER'
   const playerOrder = arrangeDeck(playerDeck, setup.playerDeckTop ?? [], setup.seed)
   const opponentOrder = arrangeDeck(opponentDeck, setup.opponentDeckTop ?? [], playerOrder.rngState.state)
@@ -60,10 +78,10 @@ export function createGameState(setup: GameSetupV1): AuthoritativeSessionStateV1
     return entity.id
   }
 
-  const playerHero = add('HERO_08', 'PLAYER', 'HERO')
-  const playerPower = add('HERO_08bp', 'PLAYER', 'HERO_POWER')
-  const opponentHero = add('HERO_01', 'OPPONENT', 'HERO')
-  const opponentPower = add('HERO_01bp', 'OPPONENT', 'HERO_POWER')
+  const playerHero = add(playerProfile.heroId, 'PLAYER', 'HERO')
+  const playerPower = add(playerProfile.heroPowerId, 'PLAYER', 'HERO_POWER')
+  const opponentHero = add(opponentProfile.heroId, 'OPPONENT', 'HERO')
+  const opponentPower = add(opponentProfile.heroPowerId, 'OPPONENT', 'HERO_POWER')
   const players: Record<PlayerId, PlayerStateV1> = {
     PLAYER: createPlayer('PLAYER', playerHero, playerPower),
     OPPONENT: createPlayer('OPPONENT', opponentHero, opponentPower),

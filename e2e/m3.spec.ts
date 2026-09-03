@@ -34,7 +34,7 @@ test('M3 Chromium gate keeps Discover in a true focus-contained dialog', async (
     root: readyRoot(),
   })
   await page.goto('/')
-  await page.getByRole('button', { name: '开始展示战' }).click()
+  await page.getByRole('button', { name: '开始对局' }).click()
   await page.getByRole('button', { name: /确认换牌/ }).click()
   await page.getByRole('button', { name: '跳过动画' }).click()
   await expect(page.locator('.hearth-board')).toHaveAttribute('data-animation-state', 'complete')

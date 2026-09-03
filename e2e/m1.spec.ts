@@ -18,7 +18,7 @@ async function initializeReadyStorage(page: Page): Promise<void> {
 
 async function startShowcase(page: Page, skipAnimations = true): Promise<void> {
   await page.goto('/')
-  await page.getByRole('button', { name: '开始展示战' }).click()
+  await page.getByRole('button', { name: '开始对局' }).click()
   await page.getByRole('button', { name: /确认换牌/ }).click()
   if (skipAnimations) await page.getByRole('button', { name: '跳过动画' }).click()
   await expect(page.locator('.player-hand')).toBeVisible()
@@ -178,6 +178,40 @@ async function createSourceLogs(browser: Browser): Promise<{ active: string; com
   return { active, completed }
 }
 
+test('all eleven official heroes start a class-specific showcase with signature cards', async ({ page }) => {
+  await initializeReadyStorage(page)
+  await page.goto('/')
+  const classNames = ['MAGE', 'DEATHKNIGHT', 'DEMONHUNTER', 'DRUID', 'HUNTER', 'PALADIN', 'PRIEST', 'ROGUE', 'SHAMAN', 'WARLOCK', 'WARRIOR']
+  await expect(page.locator('.class-option')).toHaveCount(classNames.length)
+
+  for (const className of classNames) {
+    const option = page.locator(`.class-option[data-showcase-class="${className}"]`)
+    const signatureIds = await option.locator('.class-signature img').evaluateAll((images) => images.map((image) => image.getAttribute('src')?.split('/').pop()?.replace(/\.png$/, '')).filter((id): id is string => Boolean(id)))
+    await option.click()
+    await expect(option).toHaveAttribute('aria-checked', 'true')
+    await page.getByRole('button', { name: '开始对局' }).click()
+    await page.getByRole('button', { name: /确认换牌/ }).click()
+    await page.getByRole('button', { name: '跳过动画' }).click()
+    await expect(page.locator(`.player-lane .hero-strip[data-hero-class="${className}"]`)).toHaveCount(1)
+    await expect(page.locator('.player-lane .hero-power-slot')).toHaveCount(1)
+    for (const signatureId of signatureIds) {
+      await expect(page.locator(`.player-hand .game-card[data-card-definition-id="${signatureId}"]`)).toHaveCount(1)
+    }
+
+    await clickControlAndWaitForBatch(page, page.getByRole('button', { name: '结束回合' }))
+    const heroPower = page.locator('.hero-player .hero-power-slot')
+    if (className === 'MAGE' || className === 'HUNTER' || className === 'PRIEST') {
+      await dragAndWaitForBatch(page, heroPower, hero(page, '旅店老板'), 'hero-power')
+    } else {
+      await clickControlAndWaitForBatch(page, heroPower)
+    }
+
+    await page.evaluate(({ key, root }) => localStorage.setItem(key, JSON.stringify(root)), { key: STORAGE_KEY, root: readyRoot() })
+    await page.reload()
+    await expect(page.locator('.class-option')).toHaveCount(classNames.length)
+  }
+})
+
 test('first launch tutorial completes all five real-card steps and persists completion', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { name: '法力渴求' })).toBeVisible()
@@ -249,7 +283,7 @@ test('showcase completes five keywords, exports a completed log, summarizes it, 
   await expect(page.getByRole('heading', { name: '最近完成对局' })).toBeVisible()
   await expect(page.locator('.log-summary')).toContainText('胜利')
 
-  await page.getByRole('button', { name: '开始展示战' }).click()
+  await page.getByRole('button', { name: '开始对局' }).click()
   await expect(page.locator('.scene-turn-control')).toContainText('确认换牌')
   await expect(page.locator('.drag-hint')).toHaveCount(0)
   await page.getByRole('button', { name: /确认换牌/ }).click()
@@ -324,9 +358,9 @@ test('multi-tab start and active-log import reject conflicts while completed imp
   await page.goto('/')
   await secondPage.goto('/')
 
-  await page.getByRole('button', { name: '开始展示战' }).click()
+  await page.getByRole('button', { name: '开始对局' }).click()
   const activeGameId = await page.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? '{}').activeGameLog.gameId, STORAGE_KEY)
-  await secondPage.getByRole('button', { name: '开始展示战' }).click()
+  await secondPage.getByRole('button', { name: '开始对局' }).click()
   await expect(secondPage.getByRole('status')).toContainText('ACTIVE_GAME_CONFLICT')
   await expect.poll(() => secondPage.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? '{}').activeGameLog.gameId, STORAGE_KEY)).toBe(activeGameId)
 
@@ -358,7 +392,7 @@ test('blocked official assets render explicit fallbacks and the 720p layout has 
   await page.setViewportSize({ width: 1280, height: 720 })
   await page.route(/\/assets\/(?:board|card-back|cards|heroes|hero-powers)\//, (route) => route.abort())
   await page.goto('/?debug')
-  await page.getByRole('button', { name: '开始展示战' }).click()
+  await page.getByRole('button', { name: '开始对局' }).click()
 
   await expect(page.locator('.board-art')).toHaveCount(0)
   await expect(page.locator('.hearth-board')).toHaveCSS('background-image', /gradient/)

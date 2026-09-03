@@ -12,7 +12,7 @@ const assetSchema = z.object({
 
 export const assetManifestSchema = z.object({
   schemaVersion: z.literal(1),
-  assets: z.array(assetSchema).max(128),
+  assets: z.array(assetSchema).max(1024),
 }).strict()
 
 export type AssetManifest = z.infer<typeof assetManifestSchema>

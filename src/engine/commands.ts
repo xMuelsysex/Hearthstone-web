@@ -1,5 +1,5 @@
 import type { CardDefinitionId } from '@/cards/types'
-import { getLegalActions } from '@/engine/legalActions'
+import { getLegalActions, type LegalActionDependencies } from '@/engine/legalActions'
 import type { AuthoritativeSessionStateV1, CommandId, DecisionId, EntityId, PlayerId } from '@/engine/state'
 
 export type GameCommand =
@@ -11,7 +11,7 @@ export type GameCommand =
   | { type: 'END_TURN' | 'CONCEDE'; actorId: PlayerId; commandId: CommandId }
 
 export type TargetLegalityEvidence = {
-  actionKind: 'SPELL' | 'HERO_POWER'
+  actionKind: 'SPELL' | 'HERO_POWER' | 'BATTLECRY'
   actorId: PlayerId
   publicCandidateEntityIds: EntityId[]
   excluded: Array<{ entityId: EntityId; reason: 'ELUSIVE' }>
@@ -72,13 +72,13 @@ export function commandFromAction(
   }
 }
 
-export function validateCommand(state: AuthoritativeSessionStateV1, command: GameCommand): ValidationResult {
-  return validateAgainstLegalActions(state, command)
+export function validateCommand(state: AuthoritativeSessionStateV1, command: GameCommand, dependencies: LegalActionDependencies = {}): ValidationResult {
+  return validateAgainstLegalActions(state, command, dependencies)
 }
 
-function validateAgainstLegalActions(state: AuthoritativeSessionStateV1, command: GameCommand): ValidationResult {
+function validateAgainstLegalActions(state: AuthoritativeSessionStateV1, command: GameCommand, dependencies: LegalActionDependencies): ValidationResult {
   // Deferred import avoids a second legality implementation while keeping the public command module small.
-  const actions = getLegalActions(state, command.actorId)
+  const actions = getLegalActions(state, command.actorId, dependencies)
   if (command.type === 'CONFIRM_MULLIGAN') {
     const descriptor = actions.find((item): item is MulliganActionDescriptor => item.type === command.type)
     if (!descriptor) return { ok: false, code: 'ILLEGAL_MULLIGAN' }

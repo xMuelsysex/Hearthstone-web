@@ -27,6 +27,7 @@ export type PlayerSessionValue = {
   resetTutorialStep(): void
   nextTutorialStep(): void | Promise<void>
   skipTutorial(): void | Promise<void>
+  startShowcase(): Promise<void>
   restartShowcase(): Promise<void>
   exportLog(): void
   exitToMenu(): void

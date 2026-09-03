@@ -1,7 +1,7 @@
 import { CARD_DATA_VERSION } from '@/cards/data/cards.v1'
 import { RULES_VERSION, type AuthoritativeSessionStateV1 } from '@/engine/state'
 import type { ProvisionalCommandBatchV1 } from '@/engine/resolveCommand'
-import { hashCanonicalValue, hashStateV1, type Sha256Hex } from '@/log/hash'
+import { hashCanonicalValue, hashStateV1, isSupportedCardDataVersion, type Sha256Hex, type SupportedCardDataVersion } from '@/log/hash'
 import { LOG_SCHEMA_VERSION, type ActiveGameLogV1, type AnyGameLogV1, type CommandBatchV1, type CompletedGameLogV1 } from '@/log/schema'
 import { SCENARIO_VERSION } from '@/scenarios/state'
 
@@ -42,10 +42,10 @@ export async function createActiveGameLog(
   return withContentDigest(log)
 }
 
-export async function hashProvisionalBatch(batch: ProvisionalCommandBatchV1): Promise<CommandBatchV1> {
+export async function hashProvisionalBatch(batch: ProvisionalCommandBatchV1, cardDataVersion: SupportedCardDataVersion = CARD_DATA_VERSION): Promise<CommandBatchV1> {
   const events = []
   for (const item of batch.events) {
-    events.push({ sequence: item.sequence, event: item.event, postStateHash: await hashStateV1(item.postState) })
+    events.push({ sequence: item.sequence, event: item.event, postStateHash: await hashStateV1(item.postState, cardDataVersion) })
   }
   const last = events.at(-1)
   if (!last) throw new Error('EMPTY_BATCH')
@@ -53,12 +53,14 @@ export async function hashProvisionalBatch(batch: ProvisionalCommandBatchV1): Pr
 }
 
 export async function appendBatch(log: ActiveGameLogV1, provisional: ProvisionalCommandBatchV1, updatedAt: string): Promise<ActiveGameLogV1 | CompletedGameLogV1> {
-  if (await hashStateV1(provisional.baseState) !== log.currentStateHash) throw new Error('BATCH_BASE_STATE_MISMATCH')
+  if (!isSupportedCardDataVersion(log.cardDataVersion)) throw new Error(`UNSUPPORTED_CARD_DATA_VERSION:${log.cardDataVersion}`)
+  const cardDataVersion = log.cardDataVersion
+  if (await hashStateV1(provisional.baseState, cardDataVersion) !== log.currentStateHash) throw new Error('BATCH_BASE_STATE_MISMATCH')
   const expectedBatchSequence = log.batches.at(-1)?.sequence === undefined ? log.initialState.game.nextBatchSequence : (log.batches.at(-1)?.sequence ?? 0) + 1
   if (provisional.sequence !== expectedBatchSequence) throw new Error(`BATCH_SEQUENCE_MISMATCH:${expectedBatchSequence}`)
   const expectedEventSequence = log.batches.at(-1)?.events.at(-1)?.sequence === undefined ? log.initialState.game.nextEventSequence : (log.batches.at(-1)?.events.at(-1)?.sequence ?? 0) + 1
   if (provisional.events[0]?.sequence !== expectedEventSequence) throw new Error(`EVENT_SEQUENCE_MISMATCH:${expectedEventSequence}`)
-  const batch = await hashProvisionalBatch(provisional)
+  const batch = await hashProvisionalBatch(provisional, cardDataVersion)
   const base: ActiveGameLogV1 = {
     ...log,
     updatedAt,

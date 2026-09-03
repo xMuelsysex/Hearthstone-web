@@ -1,5 +1,6 @@
+import { CARD_DATA_VERSION } from '@/cards/data/cards.v1'
 import type { AuthoritativeSessionStateV1, PlayerId } from '@/engine/state'
-import { hashStateV1 } from '@/log/hash'
+import { hashStateV1, isSupportedCardDataVersion, type SupportedCardDataVersion } from '@/log/hash'
 import { replayLogFrames, ReplayLogIntegrityError, type ReplayFrameMetaV1 } from '@/log/replay'
 import type { AnyGameLogV1 } from '@/log/schema'
 import {
@@ -95,6 +96,10 @@ function artifactStatus(log: AnyGameLogV1, requested?: ReplayArtifactStatus): Re
   return log.status === 'completed' ? 'completed' : 'active'
 }
 
+function supportedCardDataVersion(log: AnyGameLogV1): SupportedCardDataVersion {
+  return isSupportedCardDataVersion(log.cardDataVersion) ? log.cardDataVersion : CARD_DATA_VERSION
+}
+
 function frameKind(state: AuthoritativeSessionStateV1, meta: ReplayFrameMetaV1, log: AnyGameLogV1): ReplayFrameKindV1 {
   if (meta.kind === 'initial') return 'initial'
   if (state.game.pendingDecision?.kind === 'DISCOVER') return 'pending-discover'
@@ -146,6 +151,7 @@ function divergenceFromError(log: AnyGameLogV1, error: unknown): ReplayDivergenc
 
 async function buildFrames(log: AnyGameLogV1, viewer: ReplayViewer): Promise<readonly ReplayFrameV1[]> {
   const version = replayVersionTuple(log)
+  const cardDataVersion = supportedCardDataVersion(log)
   const frames: ReplayFrameV1[] = []
   let finalState: AuthoritativeSessionStateV1 | null = null
   await replayLogFrames(log, async (state, meta) => {
@@ -158,7 +164,7 @@ async function buildFrames(log: AnyGameLogV1, viewer: ReplayViewer): Promise<rea
       eventSequence: meta.eventSequence,
       eventType: meta.eventType,
       safeEventId: meta.safeEventId,
-      frameHash: await hashStateV1(state),
+      frameHash: await hashStateV1(state, cardDataVersion),
       version,
       view: projectReplayView(state, viewer),
     }
@@ -173,7 +179,7 @@ async function buildFrames(log: AnyGameLogV1, viewer: ReplayViewer): Promise<rea
       eventSequence: frames.at(-1)?.eventSequence ?? null,
       eventType: frames.at(-1)?.eventType ?? null,
       safeEventId: frames.at(-1)?.safeEventId ?? null,
-      frameHash: await hashStateV1(finalState),
+      frameHash: await hashStateV1(finalState, cardDataVersion),
       version,
       view: projectReplayView(finalState, viewer),
     }))

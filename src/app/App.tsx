@@ -5,7 +5,8 @@ import { SessionController, type SessionSnapshot } from '@/app/session/SessionCo
 import { chooseTavernKeeperAction, type AiObservationV1 } from '@/ai/tavernKeeper'
 import type { LegalActionDescriptor } from '@/engine/commands'
 import { projectLegalActions, projectPlayerView } from '@/engine/projection'
-import { createShowcaseState } from '@/scenarios/showcase'
+import { createShowcaseState, type ShowcasePlayerClass } from '@/scenarios/showcase'
+import { SHOWCASE_DECKS_V1 } from '@/cards/decks'
 import { applyTutorialAction, getTutorialActions, startTutorialStep, TUTORIAL_STEPS, type TutorialStepSession } from '@/scenarios/tutorial'
 import { BrowserStorageAdapter } from '@/storage/browserStorage'
 import { GameRepository, MemoryStorageAdapter } from '@/storage/repository'
@@ -62,6 +63,7 @@ export function App() {
   const firstLaunchTutorial = storageError === null && controller.getActiveLog() === null && !controller.getRoot().tutorialCompleted
   const [screen, setScreen] = useState<'menu' | 'session'>(firstLaunchTutorial ? 'session' : 'menu')
   const [mode, setMode] = useState<'showcase' | 'tutorial'>(firstLaunchTutorial ? 'tutorial' : 'showcase')
+  const [showcaseClass, setShowcaseClass] = useState<ShowcasePlayerClass>('MAGE')
   const [snapshot, setSnapshot] = useState<SessionSnapshot | null>(() => controller.snapshot())
   const [tutorialSession, setTutorialSession] = useState<TutorialStepSession | null>(() => firstLaunchTutorial ? startTutorialStep(TUTORIAL_STEPS[0]!.id) : null)
   const [tutorialIndex, setTutorialIndex] = useState(0)
@@ -95,7 +97,7 @@ export function App() {
   }, [])
 
   async function startShowcase(): Promise<void> {
-    const initialState = createShowcaseState()
+    const initialState = createShowcaseState(showcaseClass)
     const starting = controller.start(initialState)
     setMode('showcase')
     setTutorialSession(null)
@@ -117,6 +119,16 @@ export function App() {
       setScreen('menu')
       setNotice(`展示战启动失败：${error instanceof Error ? error.message : 'UNKNOWN_ERROR'}`)
     }
+  }
+
+  async function startShowcaseFromTutorial(): Promise<void> {
+    try {
+      await controller.markTutorialCompleted()
+    } catch (error) {
+      setNotice(`教程状态保存失败：${error instanceof Error ? error.message : 'UNKNOWN_ERROR'}`)
+      return
+    }
+    await startShowcase()
   }
 
   function startTutorial(index = 0): void {
@@ -233,6 +245,7 @@ export function App() {
     busy: snapshot.busy,
     error: snapshot.error,
     tutorial: null,
+    startShowcase,
     dispatchAction: dispatchShowcaseAction,
     resetTutorialStep: () => undefined,
     nextTutorialStep: () => undefined,
@@ -256,6 +269,7 @@ export function App() {
       totalSteps: TUTORIAL_STEPS.length,
       complete: tutorialSession.complete,
     },
+    startShowcase: startShowcaseFromTutorial,
     dispatchAction: dispatchTutorialAction,
     resetTutorialStep: () => setTutorialSession(startTutorialStep(tutorialSession.stepId)),
     nextTutorialStep: async () => {
@@ -302,6 +316,9 @@ export function App() {
         tutorialCompleted={root.tutorialCompleted}
         completedLogs={completedLogs}
         storageError={storageError}
+        showcaseDecks={SHOWCASE_DECKS_V1}
+        selectedShowcaseClass={showcaseClass}
+        onSelectShowcaseClass={setShowcaseClass}
         onShowcase={() => void startShowcase()}
         onResume={() => { setMode('showcase'); setSnapshot(controller.snapshot()); setScreen('session') }}
         onTutorial={() => startTutorial(0)}

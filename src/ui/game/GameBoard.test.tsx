@@ -28,6 +28,7 @@ function makeSession(view: PlayerViewModel, legalActions: LegalActionDescriptor[
     resetTutorialStep: vi.fn(),
     nextTutorialStep: vi.fn(),
     skipTutorial: vi.fn(),
+    startShowcase: vi.fn(async () => undefined),
     restartShowcase: vi.fn(async () => undefined),
     exportLog: vi.fn(),
     exitToMenu: vi.fn(),
@@ -470,14 +471,35 @@ describe('GameBoard public UI boundaries', () => {
     expect(spellCard).toHaveAttribute('data-card-effect-ready', 'true')
 
     const sourceCard = container.querySelector(`.player-board [data-entity-id="${source.id}"]`)
-    expect(sourceCard).toHaveClass('card-attackable', 'card-projected-death')
+    expect(sourceCard).toHaveClass('card-attackable')
+    expect(sourceCard).not.toHaveClass('card-projected-death')
     expect(sourceCard).toHaveAttribute('data-card-attackable', 'true')
-    expect(sourceCard).toHaveAttribute('data-predicted-death', 'true')
-    expect(sourceCard?.querySelector('[data-predicted-death]')).toHaveAccessibleName('预告：攻击后预计死亡')
+    expect(sourceCard).not.toHaveAttribute('data-predicted-death')
 
     const targetCard = container.querySelector(`.opponent-board [data-entity-id="${target.id}"]`)
-    expect(targetCard).toHaveClass('card-projected-death')
-    expect(targetCard).toHaveAttribute('data-predicted-death', 'true')
+    expect(targetCard).not.toHaveClass('card-projected-death')
+    expect(targetCard).not.toHaveAttribute('data-predicted-death')
+
+    if (!(sourceCard instanceof HTMLElement) || !(targetCard instanceof HTMLElement)) throw new Error('attack highlight card fixtures missing')
+    fireEvent.pointerDown(sourceCard, { pointerId: 4, pointerType: 'mouse', button: 0, clientX: 320, clientY: 280 })
+    expect(sourceCard).not.toHaveClass('card-projected-death')
+
+    const originalElementFromPoint = document.elementFromPoint
+    try {
+      Object.defineProperty(document, 'elementFromPoint', { configurable: true, value: vi.fn(() => targetCard) })
+      fireEvent.pointerMove(window, { pointerId: 4, clientX: 420, clientY: 220 })
+      expect(sourceCard).toHaveClass('card-projected-death')
+      expect(targetCard).toHaveClass('card-projected-death')
+      expect(sourceCard?.querySelector('[data-predicted-death]')).toHaveAccessibleName('预告：攻击后预计死亡')
+
+      Object.defineProperty(document, 'elementFromPoint', { configurable: true, value: vi.fn(() => sourceCard) })
+      fireEvent.pointerMove(window, { pointerId: 4, clientX: 320, clientY: 280 })
+      expect(sourceCard).not.toHaveClass('card-projected-death')
+      expect(targetCard).not.toHaveClass('card-projected-death')
+    } finally {
+      Object.defineProperty(document, 'elementFromPoint', { configurable: true, value: originalElementFromPoint })
+    }
+    fireEvent.pointerUp(window, { pointerId: 4, clientX: 320, clientY: 280 })
   })
 
   it('uses the battlefield card size for hero and hero-power inspections', () => {

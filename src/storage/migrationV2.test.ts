@@ -1,3 +1,4 @@
+import legacyActiveLogFixture from '@/log/fixtures/legacy-249896-active-log.json' with { type: 'json' }
 import { createShowcaseState } from '@/scenarios/showcase'
 import { SessionController } from '@/app/session/SessionController'
 import { buildStorageRootV2FromV1, MIGRATION_RAW_BYTE_LIMIT } from '@/storage/migrationV2'
@@ -27,6 +28,16 @@ describe('V1 to V2 migration', () => {
     expect(migrated.finalizedGames['migration-game']).toMatchObject({ eligible: false, source: 'V1_MIGRATION' })
     expect(migrated.wallet.gold).toBe(500)
     expect(migrated.rewardLedger).toEqual({})
+  })
+
+  it('migrates the historical 249896 active log without changing its evidence', async () => {
+    const raw = JSON.stringify({ schemaVersion: 1, activeGameLog: legacyActiveLogFixture, completedGameLogs: [], tutorialCompleted: false })
+    const migrated = await buildStorageRootV2FromV1(raw, { now: '2026-08-30T12:00:04.000Z' })
+
+    expect(migrated.activeGameLog?.gameId).toBe('legacy-249896-active')
+    expect(migrated.activeGameLog?.cardDataVersion).toBe('249896-zhCN-v1')
+    expect(migrated.activeGameLog?.contentDigest).toBe(legacyActiveLogFixture.contentDigest)
+    expect(migrated.migration.sourceRaw?.sha256).toMatch(/^[0-9a-f]{64}$/)
   })
 
   it('rejects raw input over the one MiB migration budget before parsing', async () => {

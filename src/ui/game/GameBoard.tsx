@@ -11,10 +11,15 @@ const KEYWORD_LABELS: Record<string, string> = {
   MAGNETIC: '磁力',
   TAUNT: '嘲讽',
   DEATHRATTLE: '亡语',
+  CHARGE: '冲锋',
+  RUSH: '突袭',
+  DIVINE_SHIELD: '圣盾',
+  WINDFURY: '风怒',
 }
 
 const EVENT_LABELS: Record<string, string> = {
   CARD_PLAYED: '打出卡牌',
+  CARD_ADDED: '获得卡牌',
   ATTACK_DECLARED: '发起攻击',
   DAMAGE_BATCH_APPLIED: '伤害结算',
   MINION_DEATH_BATCH: '随从死亡',
@@ -26,6 +31,12 @@ const EVENT_LABELS: Record<string, string> = {
   TURN_STARTED: '新回合开始',
   GAME_CONCEDED: '旅店老板认输',
   GAME_ENDED: '对局结束',
+  MINION_SUMMONED: '召唤随从',
+  MINION_BUFFED: '随从强化',
+  MINION_KEYWORD_GRANTED: '获得关键词',
+  WEAPON_CREATED_AND_EQUIPPED: '装备武器',
+  HERO_HEALTH_SET: '英雄生命变化',
+  HERO_POWER_REFRESHED: '英雄技能复原',
 }
 
 const KEYWORD_DESCRIPTIONS: Record<string, string> = {
@@ -36,6 +47,10 @@ const KEYWORD_DESCRIPTIONS: Record<string, string> = {
   MAGNETIC: '将机械牌贴到左侧机械随从上。',
   TAUNT: '敌人必须优先攻击具有嘲讽的随从。',
   DEATHRATTLE: '死亡时触发额外效果。',
+  CHARGE: '召唤当回合即可攻击英雄。',
+  RUSH: '召唤当回合即可攻击随从。',
+  DIVINE_SHIELD: '抵挡一次伤害。',
+  WINDFURY: '每个回合可以攻击两次。',
 }
 
 const INSPECTION_TOOLTIP_ID = 'card-keyword-tooltip'
@@ -531,7 +546,7 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
   const heroPowerInteractive = onHeroPowerPointerDown !== undefined || onHeroPowerActivate !== undefined
   const resolvedHeroPowerDisabled = heroPowerDisabled ?? !heroPowerInteractive
   return (
-    <section className={`hero-strip hero-${entity.controllerId.toLowerCase()}`} aria-label={label} data-health-current={currentHealth} data-health-max={entity.maxHealth} data-hero-attack-current={currentAttack} data-armor={entity.armor} data-mana-current={mana.current} data-mana-max={mana.maximum} data-mana-temporary={mana.temporary}>
+    <section className={`hero-strip hero-${entity.controllerId.toLowerCase()}`} aria-label={label} data-hero-class={getCardDefinition(entity.definitionId).cardClass} data-health-current={currentHealth} data-health-max={entity.maxHealth} data-hero-attack-current={currentAttack} data-armor={entity.armor} data-mana-current={mana.current} data-mana-max={mana.maximum} data-mana-temporary={mana.temporary}>
       <div className="hero-core">
         <div
           className={`hero-portrait ${onEntityPointerDown ? 'drag-source' : ''} ${entityDropTargetClassName}`}
@@ -931,7 +946,11 @@ export function GameBoard() {
     : null
   const playActions = session.legalActions.filter((action): action is PlayCardAction => action.type === 'PLAY_CARD')
   const attackActions = session.legalActions.filter((action): action is Extract<LegalActionDescriptor, { type: 'ATTACK' }> => action.type === 'ATTACK')
-  const projectedDeathEntityIds = new Set(attackActions.flatMap((action) => action.projectedDeathEntityIds))
+  const activeAttackAction = activeDropAction?.type === 'ATTACK'
+    && activeDropAction.attackTargetId !== activeDropAction.attackSourceId
+    ? activeDropAction
+    : null
+  const projectedDeathEntityIds = new Set(activeAttackAction?.projectedDeathEntityIds ?? [])
   const cardDefinitionForAction = (action: PlayCardAction): string | undefined => publicEntityForId(action.cardInstanceId)?.definitionId
   const targetingSpell = drag?.kind === 'HAND_CARD'
     && drag.handExited
@@ -1006,6 +1025,7 @@ export function GameBoard() {
             {Array.from({ length: tutorial.totalSteps }, (_, index) => <span key={index} className={index + 1 === tutorial.stepNumber ? 'current' : index + 1 < tutorial.stepNumber ? 'complete' : ''} aria-label={`第 ${index + 1} 步`} />)}
           </div>
           <div className="coach-actions">
+            <button type="button" onClick={() => void session.startShowcase()}>跳过教程并开始对局</button>
             <button type="button" className="secondary" onClick={session.skipTutorial}>跳过教程</button>
             <button type="button" className="secondary" onClick={session.resetTutorialStep}>重置本步</button>
             {tutorial.complete ? <button type="button" onClick={session.nextTutorialStep}>{tutorial.stepNumber === tutorial.totalSteps ? '完成教程' : '下一步'}</button> : null}
