@@ -1,5 +1,22 @@
+@font-face {
+  font-family: 'GBJenLei';
+  src: url('/assets/card-frames/fonts/GBJenLei-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BlizzardGlobal';
+  src: url('/assets/card-frames/fonts/BlizzardGlobal.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
   font-family: Georgia, 'Times New Roman', serif;
+  --hearthstone-number-font: 'Belwe Bold', 'Belwe', 'Noto Serif Display', 'Roboto Slab', 'Rockwell Extra Bold', 'Noto Serif', Georgia, 'Times New Roman', serif;
   color: #f9e6ba;
   background: #17110d;
   font-synthesis: none;
@@ -143,19 +160,37 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
   text-shadow: 0 2px 2px #000;
   transform: translateX(-50%);
 }
-.drag-preview {  position: fixed; z-index: 30; width: 220px; pointer-events: none; transform: translate(-50%, calc(-50% + 12px)) rotate(-3deg); transform-origin: center; }
+.drag-preview { position: fixed; z-index: 30; width: 220px; pointer-events: none; transform: translate(-50%, calc(-50% + 12px)) rotate(-3deg); transform-origin: center; }
 .drag-preview .game-card { width: 220px; height: auto; aspect-ratio: 512 / 776; }
 .drag-preview > span { display: block; margin-top: -2px; padding: 5px 9px; border: 1px solid #8fe6ff; border-radius: 8px; background: rgb(5 25 32 / 94%); color: #dffefa; font-size: .72rem; text-align: center; }
+.card-draw-animation-layer { position: fixed; inset: 0; z-index: 34; overflow: visible; pointer-events: none; }
+.card-draw-animation { position: fixed; left: 0; top: 0; width: 68px; aspect-ratio: 1526 / 2128; pointer-events: none; transform: translate(-50%, -50%); transform-origin: center; animation: card-draw-flight .78s cubic-bezier(.22, .78, .25, 1) var(--draw-delay, 0ms) both; }
+.card-draw-animation::before { content: ''; position: absolute; inset: -10px; z-index: 0; border-radius: 13px; background: radial-gradient(ellipse, rgb(255 205 91 / 78%), rgb(225 109 25 / 36%) 42%, transparent 72%); filter: blur(8px); opacity: .84; }
+.card-draw-animation::after { content: ''; position: absolute; inset: -24% -65%; z-index: 2; background: linear-gradient(105deg, transparent 42%, rgb(255 250 209 / 88%) 49%, transparent 56%); mix-blend-mode: screen; transform: translateX(-125%) rotate(12deg); animation: card-draw-shine .78s cubic-bezier(.22, .78, .25, 1) var(--draw-delay, 0ms) both; }
+.card-draw-art { position: relative; z-index: 1; width: 100%; height: 100%; display: block; object-fit: cover; border: 2px solid #f7da8f; border-radius: 8px; box-shadow: 0 8px 15px rgb(0 0 0 / 72%), 0 0 12px rgb(255 194 65 / 76%), inset 0 0 0 1px rgb(255 249 205 / 76%); }
+.card-draw-animation.is-burned .card-draw-art { animation: card-draw-burn .78s ease var(--draw-delay, 0ms) both; }
+.card-draw-spark { position: absolute; left: 50%; top: 50%; z-index: 3; width: 7px; height: 7px; border-radius: 50%; background: #fff8c9; box-shadow: 0 0 7px 2px #ffd15a, 0 0 18px 5px rgb(217 94 17 / 74%); opacity: 0; transform: translate(-50%, -50%); animation: card-draw-spark .78s ease var(--draw-delay, 0ms) both; }
+.attack-animation-layer { position: fixed; inset: 0; z-index: 28; width: 100vw; height: 100dvh; overflow: visible; pointer-events: none; }
+.attack-trail-shadow { fill: none; stroke: rgb(23 9 3 / 88%); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: .24 .76; stroke-dashoffset: 1; filter: blur(5px); vector-effect: non-scaling-stroke; animation: attack-trail-sweep .62s cubic-bezier(.2, .8, .2, 1) both; }
+.attack-trail { fill: none; stroke: url(#attack-material-gradient); stroke-width: 11; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: .24 .76; stroke-dashoffset: 1; filter: url(#attack-material-glow); vector-effect: non-scaling-stroke; animation: attack-trail-sweep .62s cubic-bezier(.2, .8, .2, 1) both; }
+.attack-trail-glint { fill: none; stroke: #fff7c4; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: .08 .92; stroke-dashoffset: 1; opacity: .95; vector-effect: non-scaling-stroke; animation: attack-trail-sweep .5s cubic-bezier(.2, .8, .2, 1) .04s both; }
+.attack-impact { transform-box: fill-box; transform-origin: center; opacity: 0; animation: attack-impact-burst .46s cubic-bezier(.17, .84, .28, 1) .27s both; }
+.attack-impact-ring { fill: none; stroke: #ffd66e; stroke-width: 5; opacity: .88; filter: drop-shadow(0 0 8px rgb(255 175 44 / 88%)); }
+.attack-impact-star { fill: rgb(255 187 51 / 30%); stroke: #fff5bd; stroke-width: 3; stroke-linejoin: round; filter: drop-shadow(0 0 7px rgb(255 144 28 / 88%)); }
+.attack-impact-core { fill: #fff9d5; stroke: #e27b18; stroke-width: 4; filter: drop-shadow(0 0 6px #ffbb43); }
+.game-card.attack-animation-source, .hero-portrait.attack-animation-source { z-index: 12; will-change: translate, scale; animation: attack-source-lunge .68s cubic-bezier(.18, .8, .26, 1) both; }
+.game-card.attack-animation-target, .hero-portrait.attack-animation-target { z-index: 11; will-change: scale, filter; animation: attack-target-hit .46s cubic-bezier(.2, .8, .25, 1) .27s both; }
 .target-arrow-layer { position: fixed; inset: 0; z-index: 29; width: 100vw; height: 100dvh; overflow: visible; pointer-events: none; }
-.target-arrow { fill: none; stroke: #ffd76a; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 3px 5px rgb(0 0 0 / 72%)); vector-effect: non-scaling-stroke; }
-.target-arrow--spell { stroke: #7de4ff; }
-.target-arrow--hero-power { stroke: #dca0ff; }
-.target-arrow--attack { stroke: #ff7666; }
-.target-arrow.is-valid { stroke: #b9ffac; }
-.target-arrow-head { fill: #ffd76a; }
-.target-arrow-head--spell { fill: #7de4ff; }
-.target-arrow-head--hero-power { fill: #dca0ff; }
-.target-arrow-head--attack { fill: #ff7666; }
+.target-arrow-shadow { fill: none; stroke: rgb(27 11 3 / 90%); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; filter: blur(3px); vector-effect: non-scaling-stroke; }
+.target-arrow { fill: none; stroke: url(#target-arrow-material-gradient); stroke-width: 11; stroke-linecap: round; stroke-linejoin: round; filter: url(#target-arrow-material-glow); vector-effect: non-scaling-stroke; }
+.target-arrow.is-valid { stroke: url(#target-arrow-material-valid-gradient); }
+.target-arrow-core { fill: none; stroke: #fff6bd; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: .16 .84; stroke-dashoffset: 1; opacity: .92; vector-effect: non-scaling-stroke; animation: target-arrow-flow .9s linear infinite; }
+.target-arrow-sheen { fill: none; stroke: rgb(255 255 231 / 86%); stroke-width: 1.7; stroke-linecap: round; stroke-dasharray: .045 .955; stroke-dashoffset: 1; vector-effect: non-scaling-stroke; animation: target-arrow-flow .58s linear infinite reverse; }
+.target-arrow.is-valid ~ .target-arrow-core { stroke: #efffd7; }
+.target-arrow-head-shadow { fill: rgb(27 11 3 / 90%); }
+.target-arrow-head { fill: url(#target-arrow-material-gradient); }
+.target-arrow-head.is-valid { fill: url(#target-arrow-material-valid-gradient); }
+.target-arrow-head-core { fill: #fff3aa; opacity: .92; }
 .discover-overlay { position: fixed; inset: 0; z-index: 25; width: min(900px, calc(100vw - 40px)); max-width: none; max-height: calc(100dvh - 48px); margin: auto; overflow: visible; padding: 24px; border: 1px solid #86e2e1; border-radius: 24px; background: linear-gradient(145deg, rgb(13 48 57 / 98%), rgb(5 16 23 / 99%)); color: #f9e6ba; box-shadow: 0 24px 80px rgb(0 0 0 / 70%), inset 0 0 30px rgb(104 219 255 / 10%); }
 .discover-overlay::backdrop { background: rgb(3 10 15 / 76%); backdrop-filter: blur(4px); }
 .settings-overlay { position: fixed; inset: 0; z-index: 45; width: min(420px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); margin: auto; padding: 26px; border: 1px solid #86e2e1; border-radius: 22px; background: linear-gradient(145deg, rgb(13 48 57 / 98%), rgb(5 16 23 / 99%)); color: #f9e6ba; box-shadow: 0 24px 80px rgb(0 0 0 / 70%), inset 0 0 30px rgb(104 219 255 / 10%); }
@@ -194,9 +229,9 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .hero-art { position: absolute; left: -58%; top: -39%; width: 216%; height: auto; max-width: none; display: block; border-radius: 0; opacity: 1; }
 .hero-portrait > .hero-art-window > .asset-fallback.hero-art { inset: 0; width: 100%; height: 100%; padding: 8px; border-radius: inherit; }
 .hero-portrait::before, .hero-portrait::after { display: none; }
-.hero-health-badge { position: absolute; right: -16px; bottom: -12px; z-index: 3; min-width: 38px; height: 38px; padding: 0 6px; display: grid; place-items: center; border: 3px solid #fff1c4; border-radius: 50%; color: #fff; background: radial-gradient(circle at 35% 28%, #f06b60, #a51e28 64%, #4f0e19); box-shadow: 0 3px 8px #000, inset 0 0 6px rgb(255 220 165 / 42%); font: 800 1.12rem/1 Georgia, serif; text-align: center; }
+.hero-health-badge { position: absolute; right: -16px; bottom: -12px; z-index: 3; min-width: 38px; height: 38px; padding: 0 6px; display: grid; place-items: center; border: 3px solid #fff1c4; border-radius: 50%; color: #fff; background: radial-gradient(circle at 35% 28%, #f06b60, #a51e28 64%, #4f0e19); box-shadow: 0 3px 8px #000, inset 0 0 6px rgb(255 220 165 / 42%); font: 800 1.12rem/1 var(--hearthstone-number-font); text-align: center; }
 .hero-player .hero-health-badge { color: #fff; background: radial-gradient(circle at 35% 28%, #9df06b, #2d9c38 62%, #0d431d); }
-.hero-attack-badge, .hero-armor-badge { position: absolute; z-index: 3; min-width: 26px; height: 26px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #fff1c4; border-radius: 50%; color: #fff; box-shadow: 0 2px 7px #000, inset 0 0 5px rgb(255 255 255 / 34%); font: 800 .82rem/1 Georgia, serif; text-align: center; }
+.hero-attack-badge, .hero-armor-badge { position: absolute; z-index: 3; min-width: 26px; height: 26px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #fff1c4; border-radius: 50%; color: #fff; box-shadow: 0 2px 7px #000, inset 0 0 5px rgb(255 255 255 / 34%); font: 800 .82rem/1 var(--hearthstone-number-font); text-align: center; }
 .hero-attack-badge { left: -9px; bottom: -7px; background: radial-gradient(circle at 35% 28%, #ffe38c, #c87916 64%, #6f310b); }
 .hero-attack-badge--temporary { color: #72ffae; }
 .hero-armor-badge { left: -9px; top: -7px; background: radial-gradient(circle at 35% 28%, #d7f6ff, #438bb7 64%, #153c66); }
@@ -216,13 +251,13 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .hero-power-art-window { position: relative; width: 88px; height: 88px; overflow: hidden; border: 0; border-radius: 50%; background: transparent; box-shadow: none; }
 .hero-power-art { position: absolute; left: -59%; top: -40%; width: 220%; height: auto; max-width: none; display: block; border-radius: 0; }
 .hero-power-art-window > .asset-fallback.hero-power-art { inset: 0; width: 100%; height: 100%; padding: 4px; border-radius: inherit; }
-.hero-power-cost { position: absolute; left: -7px; top: -9px; z-index: 2; min-width: 26px; height: 26px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #e7f9ff; border-radius: 50%; color: #fff; background: radial-gradient(circle at 34% 26%, #9be4ff, #267bc2 62%, #0e315e); box-shadow: 0 2px 5px #000, inset 0 0 4px rgb(255 255 255 / 62%); font: 800 .78rem/1 Georgia, serif; text-shadow: 0 1px 2px #03203a; }
+.hero-power-cost { position: absolute; left: -7px; top: -9px; z-index: 2; min-width: 26px; height: 26px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #e7f9ff; border-radius: 50%; color: #fff; background: radial-gradient(circle at 34% 26%, #9be4ff, #267bc2 62%, #0e315e); box-shadow: 0 2px 5px #000, inset 0 0 4px rgb(255 255 255 / 62%); font: 800 .78rem/1 var(--hearthstone-number-font); text-shadow: 0 1px 2px #03203a; }
 .hero-power-slot > span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .weapon-slot { display: flex; align-items: center; gap: 5px; color: #f5c56d; }
 .weapon-art-window { position: relative; width: 46px; height: 46px; flex: 0 0 auto; overflow: hidden; border: 2px solid #d4b778; border-radius: 50%; background: #2e2320; box-shadow: 0 2px 7px #000, inset 0 0 5px rgb(255 244 191 / 32%); }
 .weapon-art { position: absolute; left: -41%; top: -30%; width: 190%; height: auto; max-width: none; display: block; border-radius: 0; }
 .weapon-art-window > .asset-fallback.weapon-art { inset: 0; width: 100%; height: 100%; padding: 4px; border-radius: inherit; }
-.weapon-stat { position: absolute; bottom: -2px; z-index: 2; min-width: 20px; height: 20px; padding: 0 3px; display: grid; place-items: center; border: 1px solid #fff1c4; border-radius: 50%; color: #fff; box-shadow: 0 2px 5px #000, inset 0 0 4px rgb(255 255 255 / 34%); font: 800 .72rem/1 Georgia, serif; }
+.weapon-stat { position: absolute; bottom: -2px; z-index: 2; min-width: 20px; height: 20px; padding: 0 3px; display: grid; place-items: center; border: 1px solid #fff1c4; border-radius: 50%; color: #fff; box-shadow: 0 2px 5px #000, inset 0 0 4px rgb(255 255 255 / 34%); font: 800 .72rem/1 var(--hearthstone-number-font); }
 .weapon-attack { left: -4px; background: radial-gradient(circle at 35% 28%, #ffe38c, #c87916 64%, #6f310b); }
 .weapon-durability { right: -4px; background: radial-gradient(circle at 35% 28%, #ff8174, #c03635 66%, #681722); }
 .weapon-name { max-width: 12ch; overflow: hidden; font-size: .66rem; text-overflow: ellipsis; white-space: nowrap; }
@@ -232,7 +267,7 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .mana-tray::before { content: ''; position: absolute; inset: 3px; border: 1px solid rgb(151 225 250 / 26%); border-radius: 8px 17px 17px 8px; pointer-events: none; }
 .opponent-hand > .mana-tray { bottom: 4px; }
 .player-hand > .mana-tray { top: -58px; }
-.mana-crystal-value { position: relative; z-index: 1; min-width: 46px; color: #eafcff; font: 900 1.12rem/1 Georgia, serif; letter-spacing: -.03em; text-align: right; text-shadow: 0 2px 3px #021426, 0 0 8px rgb(112 218 255 / 62%); white-space: nowrap; }
+.mana-crystal-value { position: relative; z-index: 1; min-width: 46px; color: #eafcff; font: 900 1.12rem/1 var(--hearthstone-number-font); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -.03em; text-align: right; text-shadow: 0 2px 3px #021426, 0 0 8px rgb(112 218 255 / 62%); white-space: nowrap; }
 .mana-crystal-list { position: relative; z-index: 1; min-width: 0; max-width: 190px; display: flex; flex-wrap: wrap; justify-content: flex-end; align-content: center; gap: 2px; }
 .mana-crystal-gem { position: relative; width: 15px; height: 22px; flex: 0 0 auto; clip-path: polygon(50% 0, 100% 24%, 100% 76%, 50% 100%, 0 76%, 0 24%); border: 1px solid #c8f8ff; background: linear-gradient(145deg, #d8fbff 0%, #52d2ff 25%, #1379cf 59%, #071e53 100%); box-shadow: 0 0 5px rgb(78 201 255 / 80%), inset 1px 1px 2px rgb(255 255 255 / 72%), inset -2px -3px 4px rgb(1 14 55 / 78%); }
 .mana-crystal-gem::before { content: ''; position: absolute; inset: 2px; clip-path: inherit; background: linear-gradient(145deg, rgb(255 255 255 / 58%), transparent 28% 55%, rgb(1 15 57 / 48%)); }
@@ -240,7 +275,7 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .mana-crystal-gem--empty::before { opacity: .36; }
 .mana-crystal-gem--temporary { border-color: #e3d6ff; background: linear-gradient(145deg, #f4efff 0%, #b69bff 27%, #5b43bb 61%, #211651 100%); box-shadow: 0 0 7px rgb(187 154 255 / 88%), inset 1px 1px 2px rgb(255 255 255 / 76%), inset -2px -3px 4px rgb(17 8 61 / 80%); }
 .mana-crystal-gem-shine { position: absolute; left: 3px; top: 3px; z-index: 1; width: 4px; height: 8px; border-radius: 50%; background: rgb(255 255 255 / 82%); filter: blur(.2px); opacity: .78; transform: rotate(28deg); }
-.mana-crystal-temporary { position: absolute; right: 5px; top: -10px; z-index: 2; min-width: 21px; padding: 2px 4px; border: 1px solid #e1d6ff; border-radius: 999px; color: #fff; background: linear-gradient(180deg, #8f6cff, #3e2a91); box-shadow: 0 2px 5px #000, 0 0 8px rgb(183 151 255 / 62%); font: 800 .56rem/1 Arial, sans-serif; text-align: center; }
+.mana-crystal-temporary { position: absolute; right: 5px; top: -10px; z-index: 2; min-width: 21px; padding: 2px 4px; border: 1px solid #e1d6ff; border-radius: 999px; color: #fff; background: linear-gradient(180deg, #8f6cff, #3e2a91); box-shadow: 0 2px 5px #000, 0 0 8px rgb(183 151 255 / 62%); font: 800 .56rem/1 var(--hearthstone-number-font); text-align: center; }
 .opponent-hand, .player-hand { position: relative; min-width: 0; display: flex; align-items: flex-end; justify-content: center; overflow: visible; }
 .opponent-hand { min-height: 96px; padding: 4px 8%; }
 .opponent-hand-card { position: relative; width: 78px; height: 108px; margin-left: -34px; transform: rotate(var(--fan-angle)) translateY(var(--fan-lift)); transform-origin: bottom center; z-index: var(--fan-order); transition: transform .18s ease, filter .18s ease; }
@@ -299,7 +334,7 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .deck-pile::after { inset: 2px -3px -3px 2px; border-width: 1px; transform: rotate(2deg); }
 .deck-pile-art { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; border: 2px solid #e5ba68; border-radius: 8px; box-shadow: 0 5px 11px rgb(0 0 0 / 72%); }
 .deck-tracker--opponent .deck-pile-art { border-color: #b9e8ed; }
-.deck-count { position: absolute; right: -14px; bottom: -12px; z-index: 2; min-width: 36px; height: 36px; padding: 0 5px; display: grid; place-items: center; border: 2px solid #fff1c4; border-radius: 50%; color: #fff; background: radial-gradient(circle at 34% 24%, #73d8ff, #1c69b1 63%, #0b2b59); box-shadow: 0 3px 7px #000; font: 800 .92rem/1 Georgia, serif; }
+.deck-count { position: absolute; right: -14px; bottom: -12px; z-index: 2; min-width: 36px; height: 36px; padding: 0 5px; display: grid; place-items: center; border: 2px solid #fff1c4; border-radius: 50%; color: #fff; background: radial-gradient(circle at 34% 24%, #73d8ff, #1c69b1 63%, #0b2b59); box-shadow: 0 3px 7px #000; font: 800 .92rem/1 var(--hearthstone-number-font); }
 .deck-tracker--empty .deck-pile-art { filter: grayscale(1) brightness(.45); opacity: .72; }
 .deck-tracker--empty .deck-count { color: #c0c0c0; background: radial-gradient(circle at 34% 24%, #9c9c9c, #4b4b4b 63%, #202020); }
 .deck-copy { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -330,15 +365,16 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .debug-panel pre { overflow: auto; font: 11px/1.4 monospace; }
 
 .hearth-board > .settle-animation-marker { position: absolute; inset: 0; z-index: 2; display: block; pointer-events: none; opacity: 0; }
-.settle-animation-marker.is-running { opacity: 1; animation: settle-pulse .48s ease both; }
+.settle-animation-marker.is-running { opacity: 1; animation: settle-pulse var(--settle-duration, .82s) ease both; }
 [data-tutorial-highlight="true"] { position: relative; z-index: 3; outline: 3px solid #8fe6ff; outline-offset: 5px; filter: drop-shadow(0 0 16px rgb(91 221 255 / 78%)); }
 [data-tutorial-role="excluded"] { outline-style: dashed; outline-color: #ffca78; filter: drop-shadow(0 0 14px rgb(255 202 120 / 74%)); }
 
 .inspection-layer { position: fixed; left: 30%; top: 50%; right: auto; bottom: auto; z-index: 40; width: min(300px, calc(100vw - 36px)); display: grid; gap: 7px; pointer-events: none; transform: translate(-50%, -50%); }
 .inspection-layer.large-card-preview { left: max(22%, 220px); top: 50%; width: min(440px, calc(100vw - 32px)); gap: 0; transform: translate(-50%, -50%); }
 .inspection-layer.battlefield-card-preview { left: max(22%, 220px); top: 50%; width: min(440px, calc(100vw - 32px)); gap: 0; transform: translate(-50%, -50%); }
-.hand-hover-preview { width: 220px; gap: 8px; transform: translate(-50%, -50%); }
-.hand-hover-card.game-card { width: 220px; height: auto; aspect-ratio: 512 / 776; filter: drop-shadow(0 16px 24px rgb(0 0 0 / 68%)); }
+.hand-hover-preview { width: min(320px, calc(100vw - 24px)); gap: 8px; transform: translate(-50%, -50%); }
+.hand-hover-card.game-card { width: min(320px, calc(100vw - 24px)); height: auto; aspect-ratio: 512 / 776; filter: drop-shadow(0 18px 30px rgb(0 0 0 / 72%)); }
+.player-hand > .game-card[data-inspection-active="true"] { opacity: 0; }
 .inspection-card { display: grid; grid-template-columns: 68px minmax(0, 1fr); gap: 10px; padding: 10px; border: 1px solid #a8e8e4; border-radius: 14px; background: linear-gradient(145deg, rgb(7 36 43 / 98%), rgb(6 17 24 / 98%)); box-shadow: 0 14px 34px rgb(0 0 0 / 58%), inset 0 0 16px rgb(109 227 219 / 10%); }
 .inspection-card--pure { display: block; padding: 0; border: 0; border-radius: 16px; background: transparent; box-shadow: none; }
 .inspection-card-art { width: 68px; height: auto; aspect-ratio: 512 / 776; box-shadow: none; border-radius: 9px; }
@@ -352,6 +388,53 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .keyword-tooltip { padding: 8px 10px; border: 1px solid #86e2e1; border-radius: 9px; background: rgb(4 15 21 / 98%); color: #d9fbff; font-size: .7rem; line-height: 1.45; box-shadow: 0 10px 24px rgb(0 0 0 / 46%); }
 .discover-overlay .inspection-layer { position: absolute; left: auto; top: auto; right: 18px; bottom: 18px; width: min(280px, calc(100% - 36px)); transform: none; }
 
+@keyframes card-draw-flight {
+  0% { opacity: 0; transform: translate(-50%, -50%) translate(0, 0) rotate(-18deg) scale(.52); }
+  10% { opacity: 1; }
+  54% { transform: translate(-50%, -50%) translate(calc(var(--draw-dx) * .54), calc(var(--draw-dy) * .54)) rotate(7deg) scale(1.08); }
+  82% { opacity: 1; transform: translate(-50%, -50%) translate(calc(var(--draw-dx) * .86), calc(var(--draw-dy) * .86)) rotate(-2deg) scale(.96); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--draw-dx), var(--draw-dy)) rotate(0) scale(1); }
+}
+@keyframes card-draw-shine {
+  0%, 28% { opacity: 0; transform: translateX(-125%) rotate(12deg); }
+  58% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(125%) rotate(12deg); }
+}
+@keyframes card-draw-burn {
+  0%, 62% { filter: saturate(1) brightness(1); opacity: 1; }
+  100% { filter: saturate(.3) brightness(1.7); opacity: .08; }
+}
+@keyframes card-draw-spark {
+  0%, 12% { opacity: 0; transform: translate(-50%, -50%) scale(.3); }
+  42% { opacity: .9; transform: translate(-50%, -50%) scale(1.35); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+}
+@keyframes attack-source-lunge {
+  0%, 100% { translate: 0 0; scale: 1; }
+  24% { translate: calc(var(--attack-dx, 0px) * .18) calc(var(--attack-dy, 0px) * .18); scale: 1.03; }
+  43% { translate: calc(var(--attack-dx, 0px) * .34) calc(var(--attack-dy, 0px) * .34); scale: 1.08; }
+  58% { translate: calc(var(--attack-dx, 0px) * .12) calc(var(--attack-dy, 0px) * .12); scale: 1.02; }
+}
+@keyframes attack-target-hit {
+  0%, 100% { scale: 1; filter: brightness(1); }
+  32% { scale: .93; filter: brightness(1.55) saturate(1.22); }
+  58% { scale: 1.06; filter: brightness(1.2); }
+}
+@keyframes attack-trail-sweep {
+  0% { opacity: 0; stroke-dashoffset: 1; }
+  16% { opacity: 1; }
+  100% { opacity: 0; stroke-dashoffset: -1; }
+}
+@keyframes attack-impact-burst {
+  0% { opacity: 0; transform: scale(.22) rotate(-18deg); }
+  30% { opacity: 1; transform: scale(1.12) rotate(6deg); }
+  72% { opacity: .8; transform: scale(.88) rotate(0); }
+  100% { opacity: 0; transform: scale(1.28) rotate(8deg); }
+}
+@keyframes target-arrow-flow {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: -1; }
+}
 @keyframes settle-pulse { 0% { filter: brightness(1); } 48% { filter: brightness(1.55) saturate(1.2); transform: scale(1.012); } 100% { filter: brightness(1); transform: scale(1); } }
 
 @media (min-width: 900px) and (max-height: 800px) {
@@ -464,13 +547,19 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
   .action-panel { width: 100%; }
   .drag-preview { width: 150px; transform: translate(-50%, calc(-50% + 12px)) rotate(-3deg) scale(.86); transform-origin: center; }
   .drag-preview .game-card { width: 150px; height: auto; aspect-ratio: 512 / 776; }
-  .target-arrow { stroke-width: 5; }
+  .card-draw-animation { width: 54px; }
+  .attack-trail-shadow { stroke-width: 14; }
+  .attack-trail { stroke-width: 8; }
+  .target-arrow-shadow { stroke-width: 14; }
+  .target-arrow { stroke-width: 8; }
+  .target-arrow-core { stroke-width: 2.5; }
+  .target-arrow-sheen { stroke-width: 1.4; }
   .inspection-layer { left: 50%; top: auto; right: auto; bottom: 18px; transform: translateX(-50%); }
   .inspection-layer.large-card-preview, .inspection-layer.battlefield-card-preview { left: 40%; top: 50%; bottom: auto; width: min(300px, calc(100vw - 24px)); transform: translate(-50%, -50%); }
   .inspection-card--pure .inspection-card-art { width: min(300px, calc(100vw - 24px)); }
   .projected-death-marker { top: -25px; width: 32px; height: 32px; font-size: 1.25rem; }
-  .hand-hover-preview { left: auto; top: auto; right: auto; bottom: auto; width: 150px; transform: translate(-50%, -50%); }
-  .hand-hover-card.game-card { width: 150px; }
+  .hand-hover-preview { left: auto; top: auto; right: auto; bottom: auto; width: min(220px, calc(100vw - 24px)); transform: translate(-50%, -50%); }
+  .hand-hover-card.game-card { width: min(220px, calc(100vw - 24px)); }
   .discover-overlay { width: calc(100vw - 20px); padding: 16px; border-radius: 18px; }
   .discover-choices { gap: 8px; }
   .discover-choices .game-card { width: 118px; height: auto; aspect-ratio: 512 / 776; }
@@ -491,6 +580,36 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 }
 
 .card-preview-page { min-height: 100dvh; padding: clamp(24px, 5vw, 64px); color: #f9e6ba; background: radial-gradient(circle at 50% 8%, rgb(91 57 30 / 52%), transparent 34%), linear-gradient(145deg, #24160d, #0d0907 68%); }
+
+.card-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  aspect-ratio: 512 / 776;
+  isolation: isolate;
+  container-type: inline-size;
+}
+.card-frame-original, .card-frame-dynamic-asset { position: absolute; display: block; max-width: none; pointer-events: none; user-select: none; }
+.card-frame-original { inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: fill; }
+.card-frame-dynamic-asset { z-index: 2; }
+.card-frame .card-frame-stat-cover { z-index: 2; }
+.card-frame .card-frame-stat-asset { z-index: 3; }
+.card-frame-number { position: absolute; z-index: 4; display: grid; place-items: center; pointer-events: none; color: #fff; font: 900 11.5cqw/.85 'GBJenLei', serif; font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .45cqw rgb(18 26 42 / 84%); paint-order: stroke fill; text-shadow: 0 .55cqw .35cqw rgb(0 0 0 / 78%), 0 0 .25cqw rgb(0 0 0 / 88%); }
+.card-frame-stat--buffed { color: #7dffaf; }
+.card-frame-stat--damaged { color: #ff958b; }
+.card-frame-cost { color: #fff; }
+.card-preview-gallery { width: min(100%, 620px); display: grid; gap: 12px; margin: 0 auto 12px; }
+.card-preview-gallery-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; color: #d8c39b; }
+.card-preview-gallery-heading span { color: #efb85d; font-size: .75rem; font-weight: 800; letter-spacing: .12em; }
+.card-preview-gallery-heading strong { color: #fff0c2; font-size: .92rem; }
+.card-preview-gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.card-preview-sample { min-width: 0; display: grid; justify-items: center; gap: 8px; }
+.card-preview-sample-frame { width: min(220px, 100%); aspect-ratio: 512 / 776; filter: drop-shadow(0 14px 16px rgb(0 0 0 / 60%)); }
+.card-preview-sample-caption { width: 100%; display: grid; gap: 2px; color: #cdb58a; text-align: center; }
+.card-preview-sample-caption strong { overflow: hidden; color: #fff0c2; font-size: .86rem; text-overflow: ellipsis; white-space: nowrap; }
+.card-preview-sample-caption span { font-size: .72rem; }
 .card-preview-header { width: min(1100px, 100%); margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
 .card-preview-eyebrow { color: #efb85d; font-size: .75rem; font-weight: 800; letter-spacing: .16em; }
 .card-preview-header h1 { margin: 10px 0 8px; color: #fff2c5; font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1; }
@@ -500,12 +619,29 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .card-preview-stage { display: grid; justify-items: center; gap: 14px; }
 .layered-card { position: relative; width: min(340px, 76vw); aspect-ratio: 512 / 776; overflow: visible; isolation: isolate; filter: drop-shadow(0 24px 28px rgb(0 0 0 / 62%)); }
 .layered-card-art-source { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; user-select: none; }
-.card-cost, .layered-card-cost { position: absolute; top: 10%; left: 5%; z-index: 6; width: 21%; aspect-ratio: 1; display: grid; place-items: center; clip-path: polygon(24% 0, 76% 0, 100% 50%, 76% 100%, 24% 100%, 0 50%); color: #fff; background: radial-gradient(circle at 33% 25%, #c4f3ff 0 7%, #6bc5ed 24%, #1b65b0 68%, #0b2859 100%); box-shadow: 0 2px 5px rgb(0 0 0 / 72%), inset 0 -8px 10px rgb(2 28 88 / 38%); font: 900 clamp(1.45rem, 3.4vw, 2rem)/.9 Georgia, 'Times New Roman', serif; font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .8px rgb(10 26 48 / 82%); paint-order: stroke fill; text-shadow: 0 2px 1px rgb(0 0 0 / 70%), 0 0 1px rgb(0 0 0 / 88%); }
-.card-stat, .layered-card-stat { position: absolute; bottom: 12%; z-index: 6; width: 15%; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgb(255 244 207 / 72%); border-radius: 50%; color: #fff; box-shadow: 0 2px 5px rgb(0 0 0 / 72%), inset 0 0 5px rgb(255 255 255 / 30%); font: 900 clamp(1.15rem, 2.9vw, 1.65rem)/.88 Georgia, 'Times New Roman', serif; font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .85px rgb(35 16 6 / 82%); paint-order: stroke fill; text-shadow: 0 2px 1px rgb(0 0 0 / 72%), 0 0 1px rgb(0 0 0 / 88%); }
+.card-cost, .layered-card-cost { position: absolute; top: 10%; left: 5%; z-index: 6; width: 21%; aspect-ratio: 1; display: grid; place-items: center; clip-path: polygon(24% 0, 76% 0, 100% 50%, 76% 100%, 24% 100%, 0 50%); color: #fff; background: radial-gradient(circle at 33% 25%, #c4f3ff 0 7%, #6bc5ed 24%, #1b65b0 68%, #0b2859 100%); box-shadow: 0 2px 5px rgb(0 0 0 / 72%), inset 0 -8px 10px rgb(2 28 88 / 38%); font: 900 clamp(1.45rem, 3.4vw, 2rem)/.9 var(--hearthstone-number-font); font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .8px rgb(10 26 48 / 82%); paint-order: stroke fill; text-shadow: 0 2px 1px rgb(0 0 0 / 70%), 0 0 1px rgb(0 0 0 / 88%); }
+.card-stat, .layered-card-stat { position: absolute; bottom: 12%; z-index: 6; width: 15%; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgb(255 244 207 / 72%); border-radius: 50%; color: #fff; box-shadow: 0 2px 5px rgb(0 0 0 / 72%), inset 0 0 5px rgb(255 255 255 / 30%); font: 900 clamp(1.15rem, 2.9vw, 1.65rem)/.88 var(--hearthstone-number-font); font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .85px rgb(35 16 6 / 82%); paint-order: stroke fill; text-shadow: 0 2px 1px rgb(0 0 0 / 72%), 0 0 1px rgb(0 0 0 / 88%); }
 .layered-card-attack { left: 10%; background: radial-gradient(circle at 34% 24%, #ffe59b, #c47719 63%, #63320b); }
 .layered-card-health { right: 9%; background: radial-gradient(circle at 34% 24%, #ff8d7e, #c03635 64%, #681722); }
 .layered-card-health.is-damaged { color: #ffd0c9; }
 .card-preview-caption { margin: 0; color: #bba47d; font-size: .75rem; letter-spacing: .04em; }
+.card-preview-runtime-views { width: min(100%, 620px); display: grid; gap: 12px; }
+.card-preview-runtime-view-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; gap: 10px; }
+.card-preview-layer-debug { width: min(100%, 620px); display: grid; gap: 12px; }
+.card-preview-layer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.card-preview-layer { min-width: 0; display: grid; gap: 5px; color: #d8c39b; font-size: .68rem; line-height: 1.35; }
+.card-preview-layer-frame { width: 100%; aspect-ratio: 512 / 776; border: 1px solid rgb(225 184 97 / 38%); border-radius: 6px; background: rgb(11 7 5 / 86%); box-shadow: 0 8px 16px rgb(0 0 0 / 32%); overflow: hidden; }
+.card-preview-layer-frame .card-frame { width: 100%; height: 100%; }
+.card-preview-layer strong { color: #fff0c2; font-size: .72rem; }
+.card-preview-layer > span { color: #bba47d; }
+.card-preview-runtime-view { min-width: 0; display: grid; justify-items: center; gap: 7px; color: #d8c39b; font-size: .72rem; font-weight: 800; }
+.card-preview-runtime-card.game-card { width: min(140px, 100%); aspect-ratio: 512 / 776; }
+.card-preview-runtime-card .card-frame { width: 100%; height: 100%; }
+.card-preview-runtime-state { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid rgb(197 146 65 / 38%); border-radius: 10px; color: #d8c39b; background: rgb(18 10 6 / 44%); }
+.card-preview-runtime-state span { font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
+.card-preview-runtime-state strong { color: #fff0c2; font-size: .92rem; }
+.card-preview-controls > button { min-height: 40px; padding: 8px 12px; border: 1px solid #e5ba68; border-radius: 8px; color: #2a170a; background: #e8ad4e; font-weight: 800; }
+.card-preview-controls > button:disabled { opacity: .35; }
 .card-preview-panel { padding: 24px; border: 1px solid rgb(225 184 97 / 58%); border-radius: 22px; background: linear-gradient(145deg, rgb(63 38 20 / 94%), rgb(24 14 9 / 98%)); box-shadow: 0 18px 50px rgb(0 0 0 / 44%), inset 0 0 24px rgb(255 197 97 / 7%); }
 .card-preview-panel-heading { display: grid; gap: 5px; color: #f3ca79; }
 .card-preview-panel-heading strong { color: #fff0c2; font-size: 1.25rem; }
@@ -530,6 +666,9 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 
 @media (max-width: 800px) {
   .card-preview-page { padding: 24px 16px 40px; }
+  .card-preview-layer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card-preview-layer { font-size: .72rem; }
+
   .card-preview-header { display: grid; gap: 18px; }
   .card-preview-back { justify-self: start; }
   .card-preview-layout { grid-template-columns: 1fr; margin-top: 28px; gap: 30px; }

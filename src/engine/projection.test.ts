@@ -12,6 +12,17 @@ describe('player projection', () => {
     expect(view.opponent).not.toHaveProperty('deck')
   })
 
+  it('projects the current cost carried by the entity', () => {
+    const state = createGameState({ seed: 7 })
+    const entityId = state.game.players.PLAYER.hand[0]
+    if (entityId === undefined) throw new Error('missing hand fixture')
+    const entity = getEntity(state.game, entityId)
+    entity.cost = 0
+
+    const view = projectPlayerView(state, 'PLAYER')
+    expect(view.self.hand.find((card) => card.id === entityId)).toHaveProperty('cost', 0)
+  })
+
   it('projects equipped weapons as public combat information', () => {
     const state = createGameState({ seed: 6 })
     const weaponId = state.game.players.OPPONENT.deck.find((id) => getEntity(state.game, id).definitionId === 'CS2_106')

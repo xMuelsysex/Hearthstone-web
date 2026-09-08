@@ -1,9 +1,10 @@
 import { useEffect, useState, type ComponentType } from 'react'
 import { PlayerSessionProvider } from '@/app/context/PlayerSessionContext'
-import type { PlayerSessionValue } from '@/app/context/playerSession'
+import type { BattleAnimation, PlayerSessionValue } from '@/app/context/playerSession'
 import { SessionController, type SessionSnapshot } from '@/app/session/SessionController'
 import { chooseTavernKeeperAction, type AiObservationV1 } from '@/ai/tavernKeeper'
 import type { LegalActionDescriptor } from '@/engine/commands'
+import type { RecordedEventV1 } from '@/engine/events'
 import { projectLegalActions, projectPlayerView } from '@/engine/projection'
 import { createShowcaseState, type ShowcasePlayerClass } from '@/scenarios/showcase'
 import { SHOWCASE_DECKS_V1 } from '@/cards/decks'
@@ -54,6 +55,32 @@ function downloadJson(text: string, filename: string): void {
 
 function batchEventTypes(snapshot: SessionSnapshot | null): string[] {
   return snapshot?.lastBatch?.events.map((recorded) => recorded.event.payload.type) ?? []
+}
+
+type AnimationRecord = {
+  sequence: number
+  event: RecordedEventV1
+}
+
+function animationsFromEvents(events: readonly AnimationRecord[]): BattleAnimation[] {
+  return events.flatMap(({ sequence, event: recorded }): BattleAnimation[] => {
+    if (recorded.scope !== 'GAME') return []
+    const payload = recorded.payload
+    if (payload.type === 'CARD_DRAWN') {
+      return [{ type: 'DRAW', actorId: payload.actorId, sequence, burned: payload.burned }]
+    }
+    if (payload.type === 'MULLIGAN_CONFIRMED') {
+      return payload.drawnEntityIds.map(() => ({ type: 'DRAW' as const, actorId: payload.actorId, sequence, burned: false }))
+    }
+    if (payload.type === 'ATTACK_DECLARED') {
+      return [{ type: 'ATTACK', actorId: payload.actorId, sequence, sourceEntityId: payload.sourceEntityId, targetEntityId: payload.targetEntityId }]
+    }
+    return []
+  })
+}
+
+function batchAnimations(snapshot: SessionSnapshot | null): BattleAnimation[] {
+  return animationsFromEvents(snapshot?.lastBatch?.events ?? [])
 }
 
 export function App() {
@@ -241,6 +268,7 @@ export function App() {
     view: snapshot.view,
     legalActions: snapshot.legalActions,
     lastEventTypes: batchEventTypes(snapshot),
+    lastAnimations: batchAnimations(snapshot),
     lastEventKey: snapshot.lastBatch ? String(snapshot.lastBatch.sequence) : '',
     busy: snapshot.busy,
     error: snapshot.error,
@@ -258,6 +286,7 @@ export function App() {
     view: tutorialView,
     legalActions: tutorialLegalActions,
     lastEventTypes: tutorialSession.lastBatch?.events.map((recorded) => recorded.event.payload.type) ?? [],
+    lastAnimations: animationsFromEvents(tutorialSession.lastBatch?.events ?? []),
     lastEventKey: tutorialSession.lastBatch ? `${tutorialSession.stepId}-${tutorialSession.acceptedActionCount}` : '',
     busy: false,
     error: null,

@@ -2,13 +2,13 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { PlayerSessionProvider } from '@/app/context/PlayerSessionContext'
-import type { LegalActionDescriptor, PlayerSessionValue, PlayerViewModel, PublicEntityViewModel } from '@/app/context/playerSession'
+import type { BattleAnimation, LegalActionDescriptor, PlayerSessionValue, PlayerViewModel, PublicEntityViewModel } from '@/app/context/playerSession'
 import { CARD_DEFINITIONS_V1 } from '@/cards/registry'
 import { projectPlayerView } from '@/engine/projection'
 import { createShowcaseState } from '@/scenarios/showcase'
 import { GameBoard } from '@/ui/game/GameBoard'
 
-type SessionOverrides = Partial<Pick<PlayerSessionValue, 'mode' | 'tutorial' | 'error' | 'busy' | 'lastEventKey' | 'lastEventTypes'>>
+type SessionOverrides = Partial<Pick<PlayerSessionValue, 'mode' | 'tutorial' | 'error' | 'busy' | 'lastEventKey' | 'lastEventTypes' | 'lastAnimations'>>
 
 function publicView(): PlayerViewModel {
   return projectPlayerView(createShowcaseState(), 'PLAYER')
@@ -20,6 +20,7 @@ function makeSession(view: PlayerViewModel, legalActions: LegalActionDescriptor[
     view,
     legalActions,
     lastEventTypes: [],
+    lastAnimations: [] as BattleAnimation[],
     lastEventKey: '',
     busy: false,
     error: null,
@@ -59,6 +60,7 @@ function multiKeywordFixture(view: PlayerViewModel): PublicEntityViewModel {
   return {
     id: 9401,
     definitionId: 'DRG_066',
+    cost: 3,
     name: '多关键词测试随从',
     assetPath: '/assets/cards/DRG_066.png',
     attack: 3,
@@ -97,6 +99,7 @@ describe('GameBoard public UI boundaries', () => {
     const publicCard = screen.getByRole('button', { name: new RegExp(card.name) })
     await user.hover(publicCard)
     expect(publicCard).toHaveAttribute('data-inspection-key', `entity:${card.id}`)
+    expect(publicCard).toHaveAttribute('data-inspection-active', 'true')
     expect(publicCard).toHaveAttribute('aria-describedby', 'card-keyword-tooltip')
     expect(screen.getByRole('img', { name: `${card.name}公开预览` })).toBeInTheDocument()
     expect(screen.getByRole('tooltip')).toHaveTextContent('法力渴求')
@@ -267,8 +270,64 @@ describe('GameBoard public UI boundaries', () => {
     expect(arrow).toHaveAttribute('data-arrow-kind', 'attack')
     expect(arrow).toHaveAttribute('data-arrow-source-entity-id', String(source.id))
 
+    expect(arrow).toHaveAttribute('data-arrow-material', 'hearthstone-rope')
+    expect(arrow?.querySelector('.target-arrow-core')).toBeInTheDocument()
+    expect(arrow?.querySelector('.target-arrow-sheen')).toBeInTheDocument()
+
     fireEvent.pointerUp(window, { pointerId: 2, clientX: 320, clientY: 280 })
     expect(container.querySelector('[data-target-arrow]')).toBeNull()
+  })
+
+  it('keeps the settle marker alive for staggered draw flights', () => {
+    const view = publicView()
+    const session = makeSession(view, [], {
+      lastEventKey: 'draw-2',
+      lastAnimations: [
+        { type: 'DRAW', actorId: 'PLAYER', sequence: 41, burned: false },
+        { type: 'DRAW', actorId: 'PLAYER', sequence: 42, burned: false },
+      ],
+    })
+    const { container } = renderBoard(session)
+
+    expect(container.querySelector('[data-settle-animation-marker]')).toHaveStyle('--settle-duration: 865ms')
+  })
+
+  it('renders a draw flight from the owning deck into the hand', () => {
+    const view = publicView()
+    const session = makeSession(view, [], {
+      lastEventKey: 'draw-1',
+      lastAnimations: [{ type: 'DRAW', actorId: 'PLAYER', sequence: 41, burned: false }],
+    })
+    const { container } = renderBoard(session)
+
+    const drawAnimation = container.querySelector('[data-card-draw-animation]')
+    expect(drawAnimation).toBeInTheDocument()
+    expect(drawAnimation).toHaveAttribute('data-draw-owner', 'self')
+    expect(drawAnimation).toHaveAttribute('data-draw-sequence', '41')
+    expect(drawAnimation).toHaveAttribute('data-draw-burned', 'false')
+    expect(drawAnimation?.querySelector('.card-draw-art')).toHaveAttribute('src', '/assets/card-back/in-a-dark-wood.png')
+    expect(container.querySelector('.hearth-board')).toHaveAttribute('data-animation-state', 'running')
+  })
+
+  it('renders an attack lunge, trail, and impact for the latest attack event', () => {
+    const view = publicView()
+    const source = view.self.board.find((entity) => entity.definitionId === 'BOT_309')
+    const target = view.opponent.board[0]
+    if (!source || !target) throw new Error('attack animation fixtures missing')
+    const session = makeSession(view, [], {
+      lastEventKey: 'attack-1',
+      lastAnimations: [{ type: 'ATTACK', actorId: 'PLAYER', sequence: 42, sourceEntityId: source.id, targetEntityId: target.id }],
+    })
+    const { container } = renderBoard(session)
+
+    expect(container.querySelector(`.player-board [data-entity-id="${source.id}"]`)).toHaveClass('attack-animation-source')
+    expect(container.querySelector(`.opponent-board [data-entity-id="${target.id}"]`)).toHaveClass('attack-animation-target')
+    const attackAnimation = container.querySelector('[data-attack-animation]')
+    expect(attackAnimation).toBeInTheDocument()
+    expect(attackAnimation).toHaveAttribute('data-attack-source-entity-id', String(source.id))
+    expect(attackAnimation).toHaveAttribute('data-attack-target-entity-id', String(target.id))
+    expect(attackAnimation?.querySelector('.attack-trail')).toBeInTheDocument()
+    expect(attackAnimation?.querySelector('[data-attack-impact]')).toBeInTheDocument()
   })
 
   it('shows a target arrow immediately for an actionable targeted hero power', () => {
@@ -295,6 +354,7 @@ describe('GameBoard public UI boundaries', () => {
     view.self.board = minions.map((definition, index) => ({
       id: 9500 + index,
       definitionId: definition.id,
+      cost: definition.cost,
       name: definition.name,
       assetPath: `/assets/cards/${definition.id}.png`,
       attack: definition.attack,
@@ -327,6 +387,7 @@ describe('GameBoard public UI boundaries', () => {
     const weapon: PublicEntityViewModel = {
       id: 9402,
       definitionId: 'CS2_106',
+      cost: 2,
       name: '炽炎战斧',
       assetPath: '/assets/cards/CS2_106.png',
       attack: 3,
@@ -384,6 +445,7 @@ describe('GameBoard public UI boundaries', () => {
     const weapon: PublicEntityViewModel = {
       id: 9403,
       definitionId: 'CS2_106',
+      cost: 2,
       name: '炽炎战斧',
       assetPath: '/assets/cards/CS2_106.png',
       attack: 3,

@@ -288,6 +288,7 @@ export function createEntityFromDefinition(
   const entity: GameEntityV1 = {
     id,
     definitionId,
+    cost: card.cost,
     ownerId,
     controllerId: ownerId,
     zone,
@@ -309,6 +310,7 @@ export function createEntityFromDefinition(
     attacksRemaining: exhausted ? 0 : card.keywords.includes('WINDFURY') ? 2 : 1,
   }
   if (options.legacyCardDataVersion) {
+    delete entity.cost
     delete entity.summonedThisTurn
     delete entity.attacksRemaining
   }

@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
 import type { LegalActionDescriptor } from '@/engine/commands'
+import type { EntityId, PlayerId } from '@/engine/state'
 import type { PlayerViewModel, PublicEntityViewModel } from '@/engine/projection'
 import type { TutorialStepId } from '@/scenarios/tutorial'
 
@@ -14,11 +15,16 @@ export type TutorialUiState = {
   complete: boolean
 }
 
+export type BattleAnimation =
+  | { type: 'DRAW'; actorId: PlayerId; sequence: number; burned: boolean }
+  | { type: 'ATTACK'; actorId: PlayerId; sequence: number; sourceEntityId: EntityId; targetEntityId: EntityId }
+
 export type PlayerSessionValue = {
   mode: 'showcase' | 'tutorial'
   view: PlayerViewModel
   legalActions: LegalActionDescriptor[]
   lastEventTypes: string[]
+  lastAnimations: BattleAnimation[]
   lastEventKey: string
   busy: boolean
   error: string | null

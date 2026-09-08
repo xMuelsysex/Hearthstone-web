@@ -1,7 +1,10 @@
-import { useEffect, useMemo, useRef, useState, type AnimationEvent as ReactAnimationEvent, type CSSProperties, type FocusEvent as ReactFocusEvent, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type AnimationEvent as ReactAnimationEvent, type CSSProperties, type FocusEvent as ReactFocusEvent, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import { getCardDefinition } from '@/cards/registry'
 import type { CardDefinitionId } from '@/cards/types'
-import { usePlayerSession, type LegalActionDescriptor, type PlayerViewModel, type PublicEntityViewModel } from '@/app/context/playerSession'
+import { usePlayerSession, type BattleAnimation, type LegalActionDescriptor, type PlayerViewModel, type PublicEntityViewModel } from '@/app/context/playerSession'
+import { AssetImage } from '@/ui/AssetImage'
+import { CardFace } from '@/ui/card/CardFace'
+import { artAssetPath, cardRuntimeValues } from '@/ui/card/cardRuntime'
 
 const KEYWORD_LABELS: Record<string, string> = {
   MANATHIRST: '法力渴求',
@@ -110,6 +113,7 @@ function inspectionAttributes(inspection: InspectionBinding | undefined, hasKeyw
   if (!inspection) return {}
   return {
     'data-inspection-key': inspection.sourceKey,
+    'data-inspection-active': inspection.active ? 'true' : undefined,
     onPointerEnter: inspection.onPointerEnter,
     onPointerMove: inspection.onPointerMove,
     onPointerLeave: inspection.onPointerLeave,
@@ -147,6 +151,7 @@ function choiceEntity(choiceDefinitionId: CardDefinitionId, index: number): Drag
   return {
     id: -(index + 1),
     definitionId: choiceDefinitionId,
+    cost: card.cost,
     name: card.name,
     assetPath: `/assets/cards/${card.id}.png`,
     attack: card.attack,
@@ -187,6 +192,64 @@ function isDragPreviewOutsideHand(x: number, y: number, entityId: number): boole
 }
 
 type Point = { x: number; y: number }
+type AttackMotion = { dx: number; dy: number }
+type DrawFlight = {
+  animation: Extract<BattleAnimation, { type: 'DRAW' }>
+  from: Point
+  to: Point
+}
+type AttackFlight = {
+  animation: Extract<BattleAnimation, { type: 'ATTACK' }>
+  source: Point
+  target: Point
+  dx: number
+  dy: number
+  path: string
+}
+type AnimationGeometry = {
+  key: string
+  draws: DrawFlight[]
+  attacks: AttackFlight[]
+}
+
+const EMPTY_ANIMATION_GEOMETRY: AnimationGeometry = { key: '', draws: [], attacks: [] }
+const DRAW_ANIMATION_DURATION_MS = 780
+const DRAW_ANIMATION_STAGGER_MS = 85
+const ATTACK_ANIMATION_DURATION_MS = 730
+const SETTLE_ANIMATION_MIN_DURATION_MS = 820
+
+function animationDurationMs(animations: readonly BattleAnimation[]): number {
+  const drawCount = animations.filter((animation) => animation.type === 'DRAW').length
+  const drawDuration = drawCount === 0 ? 0 : DRAW_ANIMATION_DURATION_MS + (drawCount - 1) * DRAW_ANIMATION_STAGGER_MS
+  const attackDuration = animations.some((animation) => animation.type === 'ATTACK') ? ATTACK_ANIMATION_DURATION_MS : 0
+  return Math.max(SETTLE_ANIMATION_MIN_DURATION_MS, drawDuration, attackDuration)
+}
+
+function centerOf(element: Element | null): Point | null {
+  if (!element) return null
+  const rect = element.getBoundingClientRect()
+  return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+}
+
+function fallbackDrawPoint(owner: 'self' | 'opponent', position: 'deck' | 'hand'): Point {
+  const width = typeof window === 'undefined' ? 0 : window.innerWidth
+  const height = typeof window === 'undefined' ? 0 : window.innerHeight
+  if (position === 'deck') return { x: width * .84, y: owner === 'self' ? height * .78 : height * .22 }
+  return { x: width * .46, y: owner === 'self' ? height * .84 : height * .16 }
+}
+
+function attackAnimationPath(start: Point, end: Point): string {
+  const dx = end.x - start.x
+  const dy = end.y - start.y
+  const distance = Math.hypot(dx, dy)
+  if (distance < 1) return `M ${start.x} ${start.y} L ${end.x} ${end.y}`
+  const bend = Math.min(28, Math.max(10, distance * .08))
+  const control = {
+    x: start.x + dx * .5 - (dy / distance) * bend,
+    y: start.y + dy * .5 + (dx / distance) * bend,
+  }
+  return `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`
+}
 
 function dropTargetPoint(target: DropTarget | null): Point | null {
   if (!target) return null
@@ -266,41 +329,6 @@ function actionForKeyboard(payload: DragPayload, actions: LegalActionDescriptor[
   return actions.find((action) => action.type === 'USE_HERO_POWER') ?? null
 }
 
-function AssetImage({ src, alt, className, fallbackSrc }: { src: string; alt: string; className?: string; fallbackSrc?: string }) {
-  const [fallbackAttemptedFor, setFallbackAttemptedFor] = useState<string | null>(null)
-  const [failedSource, setFailedSource] = useState<string | null>(null)
-  const showingFallback = fallbackSrc !== undefined && fallbackAttemptedFor === src
-  if (failedSource === src) return <span className={`asset-fallback ${className ?? ''}`} role="img" aria-label={`${alt}素材加载失败`}>素材加载失败</span>
-  const imageSrc = showingFallback ? fallbackSrc : src
-  return <img src={imageSrc} alt={alt} className={className} draggable={false} onError={() => {
-    if (!showingFallback && fallbackSrc) {
-      setFallbackAttemptedFor(src)
-      return
-    }
-    setFailedSource(src)
-  }} />
-}
-
-function artAssetPath(entity: PublicEntityViewModel): string {
-  if (entity.assetPath.startsWith('/assets/cards/')) return `/assets/card-art/${entity.definitionId}.png`
-  if (entity.assetPath.startsWith('/assets/heroes/')) return `/assets/hero-art/${entity.definitionId}.png`
-  if (entity.assetPath.startsWith('/assets/hero-powers/')) return `/assets/hero-power-art/${entity.definitionId}.png`
-  return entity.assetPath
-}
-
-function cardRuntimeValues(entity: PublicEntityViewModel) {
-  const definition = getCardDefinition(entity.definitionId)
-  const weapon = definition.type === 'WEAPON'
-  return {
-    definition,
-    valueLabel: weapon ? '耐久' : '生命',
-    currentValue: weapon ? entity.durability : entity.health,
-    maximumValue: weapon ? definition.durability : entity.maxHealth,
-    baseValue: weapon ? definition.durability : definition.health,
-    hasStats: definition.type === 'MINION' || weapon,
-  }
-}
-
 function cardEffectIsReady(entity: PublicEntityViewModel, playable: boolean): boolean {
   if (!playable) return false
   const definition = getCardDefinition(entity.definitionId)
@@ -321,7 +349,7 @@ function InspectionLayer({ source }: { source: InspectionSource }) {
     ? `生命 ${entity.health}/${entity.maxHealth}`
     : values.hasStats
       ? `攻击 ${entity.attack} · ${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
-      : `费用 ${values.definition.cost}`
+      : `费用 ${values.cost}`
   const positionStyle = source.mode === 'hand' ? { left: `${source.x}px`, top: `${source.y}px` } : undefined
   return (
     <div
@@ -343,7 +371,7 @@ function InspectionLayer({ source }: { source: InspectionSource }) {
             className={`inspection-card-art game-card compact ${battlefieldCardPreview ? 'battlefield-inspection-card' : largeCardPreview ? `large-inspection-card large-inspection-card--${values.definition.type.toLowerCase()}` : ''}`}
             data-card-definition-id={entity.definitionId}
             data-entity-id={entity.id}
-            data-card-cost-current={values.definition.cost}
+            data-card-cost-current={values.cost}
             data-card-attack-current={values.hasStats ? entity.attack : undefined}
             data-card-value-current={values.hasStats ? values.currentValue : undefined}
             data-card-value-max={values.hasStats ? values.maximumValue : undefined}
@@ -366,41 +394,6 @@ function InspectionLayer({ source }: { source: InspectionSource }) {
   )
 }
 
-type CardFaceProps = {
-  entity: PublicEntityViewModel
-  imageAlt?: string
-  battlefield?: boolean
-}
-
-function CardFace({ entity, imageAlt, battlefield = false }: CardFaceProps) {
-  const values = cardRuntimeValues(entity)
-  const attackState = entity.attack > values.definition.attack ? 'buffed' : entity.attack < values.definition.attack ? 'debuffed' : 'base'
-  const valueState = values.currentValue < values.maximumValue
-    ? 'damaged'
-    : values.maximumValue > values.baseValue
-      ? 'buffed'
-      : values.maximumValue < values.baseValue
-        ? 'debuffed'
-        : 'base'
-  return (
-    <>
-      {battlefield ? <span className="battlefield-art-window"><AssetImage src={artAssetPath(entity)} fallbackSrc={entity.assetPath} alt={imageAlt ?? `${entity.name}原画`} className="battlefield-card-art" /></span> : <AssetImage src={entity.assetPath} alt={imageAlt ?? `${entity.name}卡图`} />}
-      {!battlefield && values.definition.type !== 'HERO' ? <span className="card-cost layered-card-cost" aria-label={`费用 ${values.definition.cost}`} data-card-cost-current={values.definition.cost}>{values.definition.cost}</span> : null}
-      {values.hasStats ? <span
-        className="card-stats"
-        aria-label={`攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`}
-        data-card-attack-current={entity.attack}
-        data-card-value-current={values.currentValue}
-        data-card-value-max={values.maximumValue}
-        data-card-value-label={values.valueLabel}
-      >
-        <span className={`card-stat layered-card-stat layered-card-attack card-attack card-stat--${attackState}`}>{entity.attack}</span>
-        <span className={`card-stat layered-card-stat layered-card-health card-health card-stat--${valueState}`}>{values.currentValue}</span>
-      </span> : null}
-    </>
-  )
-}
-
 type CardProps = {
   entity: PublicEntityViewModel
   compact?: boolean
@@ -418,15 +411,17 @@ type CardProps = {
   attackable?: boolean
   effectReady?: boolean
   projectedDeath?: boolean
+  attackSource?: AttackMotion | true | undefined
+  attackTarget?: boolean
 }
 
-function Card({ entity, compact = false, selected = false, onToggle, onPointerDown, onActivate, dropTargetId, dropTargetClassName = '', battlefield = false, style, inspection, tutorialHighlight, playable = false, attackable = false, effectReady = false, projectedDeath = false }: CardProps) {
+function Card({ entity, compact = false, selected = false, onToggle, onPointerDown, onActivate, dropTargetId, dropTargetClassName = '', battlefield = false, style, inspection, tutorialHighlight, playable = false, attackable = false, effectReady = false, projectedDeath = false, attackSource, attackTarget = false }: CardProps) {
   const values = cardRuntimeValues(entity)
   const baseAccessibleLabel = values.hasStats
     ? `${entity.name}，攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
     : values.definition.type === 'HERO'
       ? `${entity.name}英雄，生命 ${entity.health}/${entity.maxHealth}`
-      : `${entity.name}，费用 ${values.definition.cost}`
+      : `${entity.name}，费用 ${values.cost}`
   const cardStatusLabels = [
     playable ? '可使用' : null,
     attackable ? '可攻击' : null,
@@ -438,12 +433,16 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
     <CardFace entity={entity} battlefield={battlefield} />
     {projectedDeath ? <span className="projected-death-marker" role="img" aria-label="预告：攻击后预计死亡" data-predicted-death="true">☠</span> : null}
   </>
-  const className = `game-card ${battlefield ? 'battlefield-card' : ''} ${compact ? 'compact' : ''} ${selected ? 'selected' : ''} ${entity.exhausted ? 'exhausted' : ''} ${onPointerDown ? 'drag-source' : ''} ${playable ? 'card-playable' : ''} ${attackable ? 'card-attackable' : ''} ${effectReady ? 'card-effect-ready' : ''} ${projectedDeath ? 'card-projected-death' : ''} ${dropTargetClassName}`
+  const attackStyle = attackSource && attackSource !== true
+    ? { '--attack-dx': `${attackSource.dx}px`, '--attack-dy': `${attackSource.dy}px` } as CSSProperties
+    : undefined
+  const resolvedStyle = style || attackStyle ? { ...(style ?? {}), ...(attackStyle ?? {}) } : undefined
+  const className = `game-card ${battlefield ? 'battlefield-card' : ''} ${compact ? 'compact' : ''} ${selected ? 'selected' : ''} ${entity.exhausted ? 'exhausted' : ''} ${onPointerDown ? 'drag-source' : ''} ${playable ? 'card-playable' : ''} ${attackable ? 'card-attackable' : ''} ${effectReady ? 'card-effect-ready' : ''} ${projectedDeath ? 'card-projected-death' : ''} ${attackSource !== undefined ? 'attack-animation-source' : ''} ${attackTarget ? 'attack-animation-target' : ''} ${dropTargetClassName}`
   const commonProps = {
     'data-drop-target': dropTargetId === undefined ? undefined : `entity:${dropTargetId}`,
     'data-card-definition-id': entity.definitionId,
     'data-entity-id': entity.id,
-    'data-card-cost-current': values.definition.cost,
+    'data-card-cost-current': values.cost,
     'data-card-attack-current': values.hasStats ? entity.attack : undefined,
     'data-card-value-current': values.hasStats ? values.currentValue : undefined,
     'data-card-value-max': values.hasStats ? values.maximumValue : undefined,
@@ -452,8 +451,10 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
     'data-card-attackable': attackable ? 'true' : undefined,
     'data-card-effect-ready': effectReady ? 'true' : undefined,
     'data-predicted-death': projectedDeath ? 'true' : undefined,
+    'data-attack-animation-source': attackSource !== undefined ? 'true' : undefined,
+    'data-attack-animation-target': attackTarget ? 'true' : undefined,
     onPointerDown,
-    style,
+    style: resolvedStyle,
   }
   const publicInspectionProps = inspectionAttributes(inspection, entity.keywords.length > 0)
   const highlightProps = tutorialAttributes(tutorialHighlight)
@@ -530,6 +531,8 @@ type HeroProps = {
   heroPowerInspection?: InspectionBinding | undefined
   tutorialHighlight?: TutorialHighlight | undefined
   heroPowerTutorialHighlight?: TutorialHighlight | undefined
+  attackSource?: AttackMotion | true | undefined
+  attackTarget?: boolean
 }
 
 function healthPercent(entity: PublicEntityViewModel): number {
@@ -537,19 +540,22 @@ function healthPercent(entity: PublicEntityViewModel): number {
   return Math.round(Math.max(0, Math.min(1, entity.health / maximum)) * 100)
 }
 
-function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onEntityActivate, onHeroPowerPointerDown, onHeroPowerActivate, entityDropTargetClassName = '', heroPowerDropTargetClassName = '', heroPowerDisabled, inspection, weaponInspection, heroPowerInspection, tutorialHighlight, heroPowerTutorialHighlight }: HeroProps) {
+function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onEntityActivate, onHeroPowerPointerDown, onHeroPowerActivate, entityDropTargetClassName = '', heroPowerDropTargetClassName = '', heroPowerDisabled, inspection, weaponInspection, heroPowerInspection, tutorialHighlight, heroPowerTutorialHighlight, attackSource, attackTarget = false }: HeroProps) {
   const currentHealth = Math.max(0, entity.health)
   const currentAttack = Math.max(0, entity.attack + (weapon?.attack ?? 0))
-  const heroPowerDefinition = getCardDefinition(heroPower.definitionId)
   const weaponDefinition = weapon ? getCardDefinition(weapon.definitionId) : null
   const healthWidth = healthPercent(entity)
   const heroPowerInteractive = onHeroPowerPointerDown !== undefined || onHeroPowerActivate !== undefined
   const resolvedHeroPowerDisabled = heroPowerDisabled ?? !heroPowerInteractive
+  const attackStyle = attackSource && attackSource !== true
+    ? { '--attack-dx': `${attackSource.dx}px`, '--attack-dy': `${attackSource.dy}px` } as CSSProperties
+    : undefined
   return (
     <section className={`hero-strip hero-${entity.controllerId.toLowerCase()}`} aria-label={label} data-hero-class={getCardDefinition(entity.definitionId).cardClass} data-health-current={currentHealth} data-health-max={entity.maxHealth} data-hero-attack-current={currentAttack} data-armor={entity.armor} data-mana-current={mana.current} data-mana-max={mana.maximum} data-mana-temporary={mana.temporary}>
       <div className="hero-core">
         <div
-          className={`hero-portrait ${onEntityPointerDown ? 'drag-source' : ''} ${entityDropTargetClassName}`}
+          className={`hero-portrait ${onEntityPointerDown ? 'drag-source' : ''} ${attackSource !== undefined ? 'attack-animation-source' : ''} ${attackTarget ? 'attack-animation-target' : ''} ${entityDropTargetClassName}`}
+          style={attackStyle}
         data-drop-target={`entity:${entity.id}`}
         data-card-definition-id={entity.definitionId}
         data-entity-id={entity.id}
@@ -580,7 +586,7 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
           <span className="health-track" aria-hidden="true"><span className="health-fill" data-health-fill={healthWidth} style={{ width: `${healthWidth}%` }} /></span>
         </div>
       </div>
-      {weapon ? <div className="weapon-slot" tabIndex={0} aria-label={`${label}武器 ${weapon.name}，攻击 ${weapon.attack}，耐久 ${weapon.durability}`} data-card-definition-id={weapon.definitionId} data-entity-id={weapon.id} data-card-cost-current={weaponDefinition?.cost} data-card-attack-current={weapon.attack} data-card-value-current={weapon.durability} data-card-value-max={weaponDefinition?.durability} data-card-value-label="耐久" {...inspectionAttributes(weaponInspection, weapon.keywords.length > 0)}>
+      {weapon ? <div className="weapon-slot" tabIndex={0} aria-label={`${label}武器 ${weapon.name}，攻击 ${weapon.attack}，耐久 ${weapon.durability}`} data-card-definition-id={weapon.definitionId} data-entity-id={weapon.id} data-card-cost-current={weapon?.cost} data-card-attack-current={weapon.attack} data-card-value-current={weapon.durability} data-card-value-max={weaponDefinition?.durability} data-card-value-label="耐久" {...inspectionAttributes(weaponInspection, weapon.keywords.length > 0)}>
         <span className="weapon-art-window">
           <AssetImage src={weapon.assetPath} alt={`${weapon.name}武器卡图`} className="weapon-art" />
           <span className="weapon-stat weapon-attack" aria-hidden="true">{weapon.attack}</span>
@@ -593,11 +599,11 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
         className={`hero-power-slot ${onHeroPowerPointerDown ? 'drag-source' : ''} ${heroPowerDropTargetClassName}`}
         data-card-definition-id={heroPower.definitionId}
         data-entity-id={heroPower.id}
-        data-card-cost-current={heroPowerDefinition.cost}
+        data-card-cost-current={heroPower.cost}
         onPointerDown={onHeroPowerPointerDown}
         onClick={onHeroPowerActivate}
         disabled={resolvedHeroPowerDisabled}
-        aria-label={`英雄技能 ${heroPower.name}，费用 ${heroPowerDefinition.cost}`}
+        aria-label={`英雄技能 ${heroPower.name}，费用 ${heroPower.cost}`}
         onKeyDown={onHeroPowerActivate ? (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault()
@@ -609,7 +615,7 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
       >
         <span className="hero-power-art-window">
           <AssetImage src={artAssetPath(heroPower)} fallbackSrc={heroPower.assetPath} alt={`英雄技能 ${heroPower.name}`} className="hero-power-art" />
-          <span className="hero-power-cost" aria-hidden="true" data-card-cost-current={heroPowerDefinition.cost}>{heroPowerDefinition.cost}</span>
+          <span className="hero-power-cost" aria-hidden="true" data-card-cost-current={heroPower.cost}>{heroPower.cost}</span>
         </span>
         <span>{heroPower.name}</span>
         </button>
@@ -659,6 +665,8 @@ export function GameBoard() {
   const [focusInspection, setFocusInspection] = useState<InspectionSource | null>(null)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const suppressClickRef = useRef(false)
+  const entityPositionsRef = useRef(new Map<number, Point>())
+  const [animationGeometry, setAnimationGeometry] = useState<AnimationGeometry>(EMPTY_ANIMATION_GEOMETRY)
   const mulligan = session.legalActions.find((action) => action.type === 'CONFIRM_MULLIGAN')
   const normalActions = session.legalActions.filter((action) => action.type !== 'CONFIRM_MULLIGAN' && action.type !== 'CONCEDE')
   const concede = session.legalActions.find((action) => action.type === 'CONCEDE')
@@ -666,6 +674,40 @@ export function GameBoard() {
 
   const animating = session.lastEventKey !== '' && !skipAnimations && completedAnimationKey !== session.lastEventKey
   const interactionLocked = session.busy || animating
+  const animationEvents = useMemo(() => animating ? session.lastAnimations : [], [animating, session.lastAnimations])
+  const settleAnimationDurationMs = animationDurationMs(animationEvents)
+
+  useLayoutEffect(() => {
+    for (const element of document.querySelectorAll<HTMLElement>('.hearth-board [data-entity-id]')) {
+      const entityId = Number(element.getAttribute('data-entity-id'))
+      const point = centerOf(element)
+      if (Number.isInteger(entityId) && point) entityPositionsRef.current.set(entityId, point)
+    }
+  }, [session.lastEventKey])
+
+  useLayoutEffect(() => {
+    if (!animating || animationGeometry.key === session.lastEventKey) return
+
+    const drawAnimations = animationEvents.filter((animation): animation is Extract<BattleAnimation, { type: 'DRAW' }> => animation.type === 'DRAW')
+    const draws = drawAnimations.map((animation, index) => {
+      const owner = animation.actorId === session.view.viewerId ? 'self' : 'opponent'
+      const from = centerOf(document.querySelector(`[data-deck-owner="${owner}"] .deck-pile`)) ?? fallbackDrawPoint(owner, 'deck')
+      const handTarget = centerOf(document.querySelector(owner === 'self' ? '.player-hand' : '.opponent-hand')) ?? fallbackDrawPoint(owner, 'hand')
+      const spread = (index - (drawAnimations.length - 1) / 2) * 24
+      return { animation, from, to: { x: handTarget.x + spread, y: handTarget.y } }
+    })
+
+    const attackAnimations = animationEvents.filter((animation): animation is Extract<BattleAnimation, { type: 'ATTACK' }> => animation.type === 'ATTACK')
+    const attacks = attackAnimations.flatMap((animation) => {
+      const source = centerOf(document.querySelector(`.hearth-board [data-entity-id="${animation.sourceEntityId}"]`)) ?? entityPositionsRef.current.get(animation.sourceEntityId)
+      const target = centerOf(document.querySelector(`.hearth-board [data-entity-id="${animation.targetEntityId}"]`)) ?? entityPositionsRef.current.get(animation.targetEntityId)
+      if (!source || !target) return []
+      return [{ animation, source, target, dx: target.x - source.x, dy: target.y - source.y, path: attackAnimationPath(source, target) }]
+    })
+
+    setAnimationGeometry({ key: session.lastEventKey, draws, attacks })
+  }, [animating, animationEvents, session.lastEventKey, animationGeometry.key, session.view.viewerId])
+
   const discoverActions = session.legalActions.filter((action): action is Extract<LegalActionDescriptor, { type: 'SELECT_DISCOVER' }> => action.type === 'SELECT_DISCOVER')
   const discoverChoiceIds = discoverActions.map((action) => action.discoverChoiceId)
   const discoverDecisionId = discoverActions[0]?.decisionId
@@ -925,6 +967,14 @@ export function GameBoard() {
     left: `${drag.x}px`,
     top: `${drag.y}px`,
   } : undefined
+  const attackAnimations = animationEvents.filter((animation): animation is Extract<BattleAnimation, { type: 'ATTACK' }> => animation.type === 'ATTACK')
+  const attackSourceIds = new Set(attackAnimations.map((animation) => animation.sourceEntityId))
+  const attackTargetIds = new Set(attackAnimations.map((animation) => animation.targetEntityId))
+  function attackMotionFor(entityId: number): AttackMotion | true | undefined {
+    if (!attackSourceIds.has(entityId)) return undefined
+    const flight = animationGeometry.attacks.find((item) => item.animation.sourceEntityId === entityId)
+    return flight ? { dx: flight.dx, dy: flight.dy } : true
+  }
   const tutorial = session.tutorial
   const visibleEntities = [
     session.view.self.hero,
@@ -1052,13 +1102,15 @@ export function GameBoard() {
               label={opponentLabel}
               mana={session.view.opponent.mana}
               entityDropTargetClassName={entityTargetClass(session.view.opponent.hero.id)}
+              attackSource={attackMotionFor(session.view.opponent.hero.id)}
+              attackTarget={attackTargetIds.has(session.view.opponent.hero.id)}
               inspection={inspectionFor(session.view.opponent.hero)}
               weaponInspection={session.view.opponent.weapon ? inspectionFor(session.view.opponent.weapon) : undefined}
               heroPowerInspection={inspectionFor(session.view.opponent.heroPower)}
               tutorialHighlight={tutorialHighlightFor(session.view.opponent.hero)}
             />
             <div className={`board-row opponent-board ${zoneTargetClass('opponent-board')}`} aria-label="对手战场" data-drop-target="zone:opponent-board">
-              {session.view.opponent.board.length === 0 ? <span className="empty-zone">对手战场为空</span> : session.view.opponent.board.map((entity) => <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} projectedDeath={projectedDeathEntityIds.has(entity.id)} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />)}
+              {session.view.opponent.board.length === 0 ? <span className="empty-zone">对手战场为空</span> : session.view.opponent.board.map((entity) => <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} projectedDeath={projectedDeathEntityIds.has(entity.id)} attackSource={attackMotionFor(entity.id)} attackTarget={attackTargetIds.has(entity.id)} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />)}
             </div>
           </section>
           <div className="board-divider"><span>THE WITCHWOOD</span></div>
@@ -1068,7 +1120,7 @@ export function GameBoard() {
                 {session.view.self.board.length === 0 ? <span className="empty-zone">你的战场为空</span> : session.view.self.board.map((entity) => {
                   const attackable = attackActions.some((action) => action.attackSourceId === entity.id)
                   const payload = boardEntityPayload(entity)
-                  return <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} attackable={attackable} projectedDeath={projectedDeathEntityIds.has(entity.id)} onPointerDown={payload ? (event) => startDrag(payload, event) : undefined} onActivate={payload ? () => activateFromKeyboard(payload) : undefined} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />
+                  return <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} attackable={attackable} projectedDeath={projectedDeathEntityIds.has(entity.id)} attackSource={attackMotionFor(entity.id)} attackTarget={attackTargetIds.has(entity.id)} onPointerDown={payload ? (event) => startDrag(payload, event) : undefined} onActivate={payload ? () => activateFromKeyboard(payload) : undefined} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />
                 })}
               </div>
               <Hero
@@ -1083,6 +1135,8 @@ export function GameBoard() {
                 onHeroPowerActivate={selfHeroPowerCanActivate ? () => activateFromClick({ kind: 'HERO_POWER', entityId: session.view.self.heroPower.id }) : undefined}
                 heroPowerDisabled={!selfHeroPowerCanActivate || interactionLocked}
                 entityDropTargetClassName={entityTargetClass(session.view.self.hero.id)}
+                attackSource={attackMotionFor(session.view.self.hero.id)}
+                attackTarget={attackTargetIds.has(session.view.self.hero.id)}
                 heroPowerDropTargetClassName={entityTargetClass(session.view.self.heroPower.id)}
                 inspection={inspectionFor(session.view.self.hero)}
                 weaponInspection={session.view.self.weapon ? inspectionFor(session.view.self.weapon) : undefined}
@@ -1136,6 +1190,7 @@ export function GameBoard() {
         </div>
         <span
           className={`settle-animation-marker ${animating ? 'is-running' : ''}`}
+          style={{ '--settle-duration': `${settleAnimationDurationMs}ms` } as CSSProperties}
           data-settle-animation-marker="true"
           data-animation-state={animating ? 'running' : 'complete'}
           data-event-key={session.lastEventKey}
@@ -1143,6 +1198,63 @@ export function GameBoard() {
           onAnimationEnd={handleSettleAnimationEnd}
         />
       </section>
+
+      {animating && animationGeometry.draws.length > 0 ? (
+        <div className="card-draw-animation-layer" aria-hidden="true" data-card-draw-animation-layer>
+          {animationGeometry.draws.map((flight, index) => <span
+            key={`draw-${session.lastEventKey}-${flight.animation.sequence}-${index}`}
+            className={`card-draw-animation ${flight.animation.burned ? 'is-burned' : ''}`}
+            style={{
+              left: `${flight.from.x}px`,
+              top: `${flight.from.y}px`,
+              '--draw-dx': `${flight.to.x - flight.from.x}px`,
+              '--draw-dy': `${flight.to.y - flight.from.y}px`,
+              '--draw-delay': `${index * DRAW_ANIMATION_STAGGER_MS}ms`,
+            } as CSSProperties}
+            data-card-draw-animation
+            data-draw-owner={flight.animation.actorId === session.view.viewerId ? 'self' : 'opponent'}
+            data-draw-sequence={flight.animation.sequence}
+            data-draw-burned={String(flight.animation.burned)}
+          >
+            <AssetImage src="/assets/card-back/in-a-dark-wood.png" alt="抽牌动画牌背" className="card-draw-art" />
+            <span className="card-draw-spark" />
+          </span>)}
+        </div>
+      ) : null}
+
+      {animating && animationGeometry.attacks.length > 0 ? (
+        <svg
+          className="attack-animation-layer"
+          aria-hidden="true"
+          data-attack-animation-layer
+          viewBox={`0 0 ${arrowViewport.width} ${arrowViewport.height}`}
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="attack-material-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#fff8c8" />
+              <stop offset=".38" stopColor="#ffd05b" />
+              <stop offset="1" stopColor="#c86713" />
+            </linearGradient>
+            <filter id="attack-material-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+          </defs>
+          {animationGeometry.attacks.map((flight) => <g key={`attack-${session.lastEventKey}-${flight.animation.sequence}`} data-attack-animation data-attack-source-entity-id={flight.animation.sourceEntityId} data-attack-target-entity-id={flight.animation.targetEntityId}>
+            <path className="attack-trail-shadow" d={flight.path} pathLength="1" />
+            <path className="attack-trail" d={flight.path} pathLength="1" />
+            <path className="attack-trail-glint" d={flight.path} pathLength="1" />
+            <g transform={`translate(${flight.target.x} ${flight.target.y})`}>
+              <g className="attack-impact" data-attack-impact>
+                <circle className="attack-impact-ring" cx="0" cy="0" r="42" />
+                <path className="attack-impact-star" d="M 0 -38 L 9 -12 L 34 -18 L 15 3 L 29 28 L 4 15 L -10 39 L -11 13 L -37 20 L -17 -2 L -32 -28 L -6 -14 Z" />
+                <circle className="attack-impact-core" cx="0" cy="0" r="10" />
+              </g>
+            </g>
+          </g>)}
+        </svg>
+      ) : null}
 
       {discoverOpen ? <dialog
         ref={assignDiscoverDialogRef}
@@ -1197,19 +1309,39 @@ export function GameBoard() {
           data-arrow-target-x={targetArrow.end.x}
           data-arrow-target-y={targetArrow.end.y}
           data-arrow-valid={activeDropAction ? 'true' : 'false'}
+          data-arrow-material="hearthstone-rope"
           viewBox={`0 0 ${arrowViewport.width} ${arrowViewport.height}`}
           preserveAspectRatio="none"
         >
           <defs>
-            <marker id="target-arrow-head" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="strokeWidth">
-              <path className={`target-arrow-head target-arrow-head--${targetArrow.kind}`} d="M 0 0 L 13 6.5 L 0 13 Z" />
+            <linearGradient id="target-arrow-material-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#fff8c8" />
+              <stop offset=".38" stopColor="#ffd05b" />
+              <stop offset="1" stopColor="#c86713" />
+            </linearGradient>
+            <linearGradient id="target-arrow-material-valid-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#f8ffe2" />
+              <stop offset=".42" stopColor="#b9ff9a" />
+              <stop offset="1" stopColor="#52ad55" />
+            </linearGradient>
+            <filter id="target-arrow-material-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <marker id="target-arrow-head" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto" markerUnits="userSpaceOnUse">
+              <path className="target-arrow-head-shadow" d="M 0 0 L 22 11 L 0 22 Z" />
+              <path className={`target-arrow-head target-arrow-head--${targetArrow.kind} ${activeDropAction ? 'is-valid' : ''}`} d="M 1 1 L 20 11 L 1 21 Z" />
+              <path className="target-arrow-head-core" d="M 3 4 L 15 11 L 3 18 Z" />
             </marker>
           </defs>
+          <path className="target-arrow-shadow" d={curvedArrowPath(targetArrow.start, targetArrow.end)} />
           <path
             className={`target-arrow target-arrow--${targetArrow.kind} ${activeDropAction ? 'is-valid' : ''}`}
             d={curvedArrowPath(targetArrow.start, targetArrow.end)}
             markerEnd="url(#target-arrow-head)"
           />
+          <path className="target-arrow-core" d={curvedArrowPath(targetArrow.start, targetArrow.end)} pathLength="1" />
+          <path className="target-arrow-sheen" d={curvedArrowPath(targetArrow.start, targetArrow.end)} pathLength="1" />
         </svg>
       ) : null}
 

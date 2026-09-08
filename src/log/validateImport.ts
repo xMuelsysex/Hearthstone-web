@@ -63,6 +63,7 @@ const entitySchema = z.object({
   zone: z.enum(['DECK', 'HAND', 'BOARD', 'GRAVEYARD', 'HERO', 'HERO_POWER', 'WEAPON', 'ATTACHED', 'SET_ASIDE']),
   type: z.enum(['MINION', 'SPELL', 'WEAPON', 'HERO', 'HERO_POWER', 'LOCATION']),
   createdSequence: z.number().int().nonnegative(),
+  cost: z.number().int().min(0).max(20).optional(),
   attack: z.number().int().min(-1000).max(1000),
   health: z.number().int().min(-1000).max(1000),
   maxHealth: z.number().int().nonnegative().max(1000),

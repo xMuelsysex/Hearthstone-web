@@ -22,6 +22,8 @@ export type RngStateV1 = {
 export type GameEntityV1 = {
   id: EntityId
   definitionId: CardDefinitionId
+  /** 当前有效费用；旧日志快照缺失时由兼容路径按卡牌定义读取。 */
+  cost?: number
   ownerId: PlayerId
   controllerId: PlayerId
   zone: EntityZone

@@ -103,10 +103,11 @@ export function resolveCommand(
       case 'PLAY_CARD': {
         const entity = getEntity(workingState.game, accepted.cardInstanceId)
         const card = getCardDefinition(entity.definitionId)
+        const manaCost = entity.cost ?? card.cost
         const availableMana = workingState.game.players[accepted.actorId].mana.current + workingState.game.players[accepted.actorId].mana.temporary
         const manathirstActive = card.manathirstThreshold > 0 && availableMana >= card.manathirstThreshold
         const destination = accepted.playMode === 'MAGNETIC' || card.type === 'WEAPON' ? 'SET_ASIDE' : card.type === 'MINION' ? 'BOARD' : 'GRAVEYARD'
-        emitGame({ type: 'CARD_PLAYED', actorId: accepted.actorId, entityId: entity.id, manaCost: card.cost, destination, placementIndex: accepted.placementIndex ?? null })
+        emitGame({ type: 'CARD_PLAYED', actorId: accepted.actorId, entityId: entity.id, manaCost, destination, placementIndex: accepted.placementIndex ?? null })
         if (manathirstActive) emitGame({ type: 'MANATHIRST_BONUS_APPLIED', sourceEntityId: entity.id, threshold: card.manathirstThreshold, value: card.secondaryValue })
         if (accepted.playMode === 'MAGNETIC') {
           const target = getEntity(workingState.game, accepted.targetEntityId as EntityId)
@@ -151,7 +152,8 @@ export function resolveCommand(
         const player = workingState.game.players[accepted.actorId]
         const heroPower = getEntity(workingState.game, player.heroPowerEntityId)
         const heroPowerDefinition = getCardDefinition(heroPower.definitionId)
-        emitGame({ type: 'HERO_POWER_USED', actorId: accepted.actorId, heroPowerEntityId: heroPower.id, manaCost: heroPowerDefinition.cost })
+        const manaCost = heroPower.cost ?? heroPowerDefinition.cost
+        emitGame({ type: 'HERO_POWER_USED', actorId: accepted.actorId, heroPowerEntityId: heroPower.id, manaCost })
         queue.push(createEffectItem(accepted.actorId, heroPower.id, heroPowerDefinition.effect, accepted.targetEntityId))
         return
       }

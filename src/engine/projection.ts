@@ -6,6 +6,7 @@ import { getEntity, otherPlayer, type AuthoritativeSessionStateV1, type EntityId
 export type PublicEntityViewModel = {
   id: EntityId
   definitionId: string
+  cost: number
   name: string
   assetPath: string
   attack: number
@@ -55,6 +56,7 @@ function publicEntity(state: AuthoritativeSessionStateV1, id: EntityId): PublicE
   return {
     id,
     definitionId: entity.definitionId,
+    cost: entity.cost ?? card.cost,
     name: card.name,
     assetPath: `/assets/${card.type === 'HERO' ? 'heroes' : card.type === 'HERO_POWER' ? 'hero-powers' : 'cards'}/${card.id}.png`,
     attack: entity.attack,

@@ -15,6 +15,7 @@ export function normalizeStateForCardDataVersion(state: AuthoritativeSessionStat
   if (cardDataVersion !== LEGACY_CARD_DATA_VERSIONS[0]) return state
   const normalized = structuredClone(state)
   for (const entity of Object.values(normalized.game.entities)) {
+    delete entity.cost
     delete entity.summonedThisTurn
     delete entity.attacksRemaining
   }

@@ -96,7 +96,7 @@ export function getLegalActions(state: AuthoritativeSessionStateV1, actorId: Pla
   for (const entityId of player.hand) {
     const entity = getEntity(game, entityId)
     const card = getCardDefinition(entity.definitionId)
-    if (card.cost > availableMana) continue
+    if ((entity.cost ?? card.cost) > availableMana) continue
     if (card.type === 'MINION') {
       if (player.board.length < 7) {
         for (let placementIndex = 0; placementIndex <= player.board.length; placementIndex += 1) {
@@ -139,13 +139,15 @@ export function getLegalActions(state: AuthoritativeSessionStateV1, actorId: Pla
     })
   }
 
-  const heroPower = getCardDefinition(getEntity(game, player.heroPowerEntityId).definitionId)
+  const heroPowerEntity = getEntity(game, player.heroPowerEntityId)
+  const heroPower = getCardDefinition(heroPowerEntity.definitionId)
+  const heroPowerCost = heroPowerEntity.cost ?? heroPower.cost
   const heroPowerNeedsBoardSpace = heroPower.effect === 'SUMMON_TOKEN'
     || heroPower.effect === 'SUMMON_TOKENS'
     || heroPower.effect === 'SUMMON_RANDOM_BASIC_TOTEM'
   const heroPowerCanBeUsed = dependencies.legacyCardDataVersion
     ? availableMana >= 2
-    : availableMana >= heroPower.cost && (!heroPowerNeedsBoardSpace || player.board.length < 7)
+    : availableMana >= heroPowerCost && (!heroPowerNeedsBoardSpace || player.board.length < 7)
   if (!player.heroPowerUsed && heroPowerCanBeUsed) {
     for (const option of targetOptions(state, actorId, heroPower.targeting, 'HERO_POWER', dependencies)) {
       actions.push({ id: `${actorId}:hero-power:${option.targetEntityId ?? 'none'}`, type: 'USE_HERO_POWER', actorId, ...option })
