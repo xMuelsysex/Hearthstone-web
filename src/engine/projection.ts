@@ -15,6 +15,8 @@ export type PublicEntityViewModel = {
   armor: number
   durability: number
   exhausted: boolean
+  frozen?: boolean
+  immune?: boolean
   keywords: string[]
   controllerId: PlayerId
 }
@@ -36,7 +38,7 @@ export type PlayerViewModel = {
     hand: PublicEntityViewModel[]
     board: PublicEntityViewModel[]
     deckCount: number
-    mana: { maximum: number; current: number; temporary: number }
+    mana: { maximum: number; current: number; temporary: number; overloadLocked?: number }
   }
   opponent: {
     hero: PublicEntityViewModel
@@ -65,6 +67,8 @@ function publicEntity(state: AuthoritativeSessionStateV1, id: EntityId): PublicE
     armor: entity.armor,
     durability: entity.durability,
     exhausted: entity.exhausted,
+    ...(entity.frozen === undefined ? {} : { frozen: entity.frozen }),
+    ...(entity.immune === undefined ? {} : { immune: entity.immune }),
     keywords: [...entity.keywords],
     controllerId: entity.controllerId,
   }
@@ -89,7 +93,7 @@ export function projectPlayerView(state: AuthoritativeSessionStateV1, viewerId: 
       hand: self.hand.map((id) => publicEntity(state, id)),
       board: self.board.map((id) => publicEntity(state, id)),
       deckCount: self.deck.length,
-      mana: { ...self.mana },
+      mana: { ...self.mana, ...(self.overloadLocked === undefined ? {} : { overloadLocked: self.overloadLocked }) },
     },
     opponent: {
       hero: publicEntity(state, opponent.heroEntityId),
@@ -98,7 +102,7 @@ export function projectPlayerView(state: AuthoritativeSessionStateV1, viewerId: 
       hand: opponent.hand.map((id) => ({ id, hidden: true as const })),
       board: opponent.board.map((id) => publicEntity(state, id)),
       deckCount: opponent.deck.length,
-      mana: { ...opponent.mana },
+      mana: { ...opponent.mana, ...(opponent.overloadLocked === undefined ? {} : { overloadLocked: opponent.overloadLocked }) },
     },
     scenario: structuredClone(state.scenario),
   }

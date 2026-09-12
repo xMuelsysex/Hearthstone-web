@@ -63,10 +63,19 @@ const effects: Record<string, Partial<CardDefinitionV1> & { effect: EffectExecut
   EDR_456: { effect: 'DISCOVER_CARD' },
   TLC_600: { effect: 'DAMAGE_ENEMY_HERO_AND_ARMOR', effectValue: 5, secondaryValue: 5 },
   GAME_005: { effect: 'TEMPORARY_MANA', effectValue: 1 },
+  TLC_522: { effect: 'NONE', battlecryEffect: 'FAN_OF_KNIVES', comboEffect: 'FAN_OF_KNIVES', deathrattleEffect: 'FAN_OF_KNIVES' },
+  CATA_785: { effect: 'NONE', comboEffect: 'COMBO_DAMAGE', effectValue: 3 },
+  CAP_801: { effect: 'BUFF_AND_GRANT_REBORN_TAUNT', effectValue: 2, secondaryValue: 3, targeting: 'FRIENDLY_MINION' },
+  WW_815: { effect: 'GRANT_IMMUNITY_AND_ATTACK_ALL' },
+  CORE_CS2_024: { effect: 'DAMAGE_AND_FREEZE', effectValue: 3, targeting: 'ANY_CHARACTER' },
+  CORE_UNG_205: { effect: 'FREEZE_CHARACTER', targeting: 'ENEMY_CHARACTER' },
+  TSC_926: { effect: 'SILENCE_OTHER_MINIONS' },
+  CORE_EX1_012: { effect: 'NONE', deathrattleEffect: 'DEATHRATTLE_DRAW' },
+  SCH_427: { effect: 'MANA_RESTORE_AND_OVERLOAD', effectValue: 2, secondaryValue: 2 },
 }
 
 const supportedKeywords = new Set<Keyword>([
-  'MANATHIRST', 'POISONOUS', 'ELUSIVE', 'DISCOVER', 'MAGNETIC', 'TAUNT', 'DEATHRATTLE', 'CHARGE', 'RUSH', 'DIVINE_SHIELD', 'WINDFURY',
+  'MANATHIRST', 'POISONOUS', 'ELUSIVE', 'DISCOVER', 'MAGNETIC', 'TAUNT', 'DEATHRATTLE', 'CHARGE', 'RUSH', 'DIVINE_SHIELD', 'WINDFURY', 'STEALTH', 'LIFESTEAL', 'REBORN', 'IMMUNE', 'FREEZE', 'SPELLPOWER', 'OVERLOAD', 'COMBO',
 ])
 const supportedRaces = new Set<Race>(['BEAST', 'DRAGON', 'ELEMENTAL', 'MECHANICAL', 'MURLOC', 'NAGA', 'UNDEAD'])
 const supportedTypes = new Set<CardType>(['MINION', 'SPELL', 'WEAPON', 'HERO', 'HERO_POWER', 'LOCATION'])
@@ -95,7 +104,7 @@ function createDefinition(source: (typeof SELECTED_CARD_SOURCE_V1)[number]): Car
   const override = effects[source.id] ?? { effect: 'NONE' as const }
   const keywords = (source.mechanics ?? []).filter((value): value is Keyword => supportedKeywords.has(value as Keyword))
   const races = (source.races ?? []).filter((value): value is Race => supportedRaces.has(value as Race))
-  const durability = source.type === 'WEAPON' ? (source.health ?? source.durability ?? 0) : (source.durability ?? 0)
+  const durability = source.type === 'WEAPON' || source.type === 'LOCATION' ? (source.health ?? source.durability ?? 0) : (source.durability ?? 0)
   const type = requireCardType(source.type)
   const fallbackCardClass = requireCardClass(source.cardClass)
   const classes = requireCardClasses(source.classes, fallbackCardClass)
@@ -124,6 +133,9 @@ function createDefinition(source: (typeof SELECTED_CARD_SOURCE_V1)[number]): Car
     manathirstThreshold: override.manathirstThreshold ?? 0,
     tokenCardId: override.tokenCardId ?? null,
     targeting: override.targeting ?? 'NONE',
+    battlecryEffect: override.battlecryEffect ?? null,
+    comboEffect: override.comboEffect ?? null,
+    deathrattleEffect: override.deathrattleEffect ?? null,
     assetId: `${type === 'HERO' ? 'hero' : type === 'HERO_POWER' ? 'hero_power' : 'card'}:${source.id}`,
   }
 }

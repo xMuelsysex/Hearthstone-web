@@ -89,7 +89,7 @@ export function MainMenu({ notice, hasActive, canResume, canExport, tutorialComp
       <div className="menu-actions">
         <button type="button" onClick={onShowcase} disabled={hasActive || storageError !== null}>{hasActive ? '已有进行中对局' : '开始对局'}</button>
         {canResume ? <button type="button" className="secondary" onClick={onResume}>继续对局</button> : null}
-        <button type="button" className="secondary" disabled={storageError !== null} onClick={onTutorial}>{tutorialCompleted ? '重新教程' : '开始五步教程'}</button>
+        <button type="button" className="secondary" disabled={storageError !== null} onClick={onTutorial}>{tutorialCompleted ? '重新教程' : '开始教程'}</button>
       </div>
       <div className="menu-utility-actions">
         <button type="button" className="secondary" disabled={storageError !== null} onClick={() => fileInput.current?.click()}>导入 JSON 日志</button>

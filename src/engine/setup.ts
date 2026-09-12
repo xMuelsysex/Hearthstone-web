@@ -36,6 +36,8 @@ function createPlayer(id: PlayerId, heroEntityId: EntityId, heroPowerEntityId: E
     fatigue: 0,
     heroPowerUsed: false,
     mulliganConfirmed: false,
+    cardsPlayedThisTurn: 0,
+    overloadLocked: 0,
   }
 }
 

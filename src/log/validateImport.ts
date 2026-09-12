@@ -24,6 +24,7 @@ const shortString = z.string().min(1).max(128)
 const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('CONFIRM_MULLIGAN'), actorId: z.enum(['PLAYER', 'OPPONENT']), commandId: shortString, mulliganCardInstanceIds: z.array(z.number().int().positive()).max(10) }).strict(),
   z.object({ type: z.literal('PLAY_CARD'), actorId: z.enum(['PLAYER', 'OPPONENT']), commandId: shortString, cardInstanceId: z.number().int().positive(), playMode: z.enum(['NORMAL', 'MAGNETIC']), placementIndex: z.number().int().min(0).max(7).optional(), targetEntityId: z.number().int().positive().optional() }).strict(),
+  z.object({ type: z.literal('ACTIVATE_LOCATION'), actorId: z.enum(['PLAYER', 'OPPONENT']), commandId: shortString, locationEntityId: z.number().int().positive() }).strict(),
   z.object({ type: z.literal('SELECT_DISCOVER'), actorId: z.enum(['PLAYER', 'OPPONENT']), commandId: shortString, decisionId: shortString, discoverChoiceId: shortString }).strict(),
   z.object({ type: z.literal('ATTACK'), actorId: z.enum(['PLAYER', 'OPPONENT']), commandId: shortString, attackSourceId: z.number().int().positive(), attackTargetId: z.number().int().positive() }).strict(),
   z.object({ type: z.literal('USE_HERO_POWER'), actorId: z.enum(['PLAYER', 'OPPONENT']), commandId: shortString, targetEntityId: z.number().int().positive().optional() }).strict(),
@@ -35,7 +36,7 @@ const evidenceSchema = z.object({
   actionKind: z.enum(['SPELL', 'HERO_POWER', 'BATTLECRY']),
   actorId: z.enum(['PLAYER', 'OPPONENT']),
   publicCandidateEntityIds: z.array(z.number().int().positive()).max(32),
-  excluded: z.array(z.object({ entityId: z.number().int().positive(), reason: z.literal('ELUSIVE') }).strict()).max(32),
+  excluded: z.array(z.object({ entityId: z.number().int().positive(), reason: z.enum(['ELUSIVE', 'STEALTH', 'IMMUNE']) }).strict()).max(32),
   selectedTargetEntityId: z.number().int().positive(),
 }).strict()
 
@@ -72,10 +73,14 @@ const entitySchema = z.object({
   exhausted: z.boolean(),
   summonedThisTurn: z.boolean().optional(),
   attacksRemaining: z.number().int().min(0).max(2).optional(),
+  baseAttack: z.number().int().min(-1000).max(1000).optional(),
+  baseMaxHealth: z.number().int().nonnegative().max(1000).optional(),
+  frozen: z.boolean().optional(),
+  immune: z.boolean().optional(),
   poisonousLethal: z.boolean(),
   destroyMarked: z.boolean(),
   deathrattleResolved: z.boolean(),
-  keywords: z.array(z.enum(['MANATHIRST', 'POISONOUS', 'ELUSIVE', 'DISCOVER', 'MAGNETIC', 'TAUNT', 'DEATHRATTLE', 'CHARGE', 'RUSH', 'DIVINE_SHIELD', 'WINDFURY'])).max(16),
+  keywords: z.array(z.enum(['MANATHIRST', 'POISONOUS', 'ELUSIVE', 'DISCOVER', 'MAGNETIC', 'TAUNT', 'DEATHRATTLE', 'CHARGE', 'RUSH', 'DIVINE_SHIELD', 'WINDFURY', 'STEALTH', 'LIFESTEAL', 'REBORN', 'IMMUNE', 'FREEZE', 'SPELLPOWER', 'OVERLOAD', 'COMBO'])).max(16),
   races: z.array(z.enum(['BEAST', 'DRAGON', 'ELEMENTAL', 'MECHANICAL', 'MURLOC', 'NAGA', 'UNDEAD'])).max(16),
   attachedCardIds: z.array(entityIdSchema).max(16),
 }).strict()
@@ -92,6 +97,8 @@ const playerSchema = z.object({
   fatigue: z.number().int().nonnegative().max(100),
   heroPowerUsed: z.boolean(),
   mulliganConfirmed: z.boolean(),
+  cardsPlayedThisTurn: z.number().int().nonnegative().max(60).optional(),
+  overloadLocked: z.number().int().nonnegative().max(10).optional(),
 }).strict()
 const pendingDecisionSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('MULLIGAN'), waitingFor: z.array(playerIdSchema).max(2) }).strict(),

@@ -65,11 +65,20 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       game.turn = event.turn
       const player = game.players[event.actorId]
       player.mana.maximum = Math.min(10, player.mana.maximum + 1)
-      player.mana.current = player.mana.maximum
+      const overload = legacyCardDataVersion ? 0 : player.overloadLocked ?? 0
+      player.mana.current = Math.max(0, player.mana.maximum - overload)
       player.mana.temporary = 0
       player.heroPowerUsed = false
+      if (!legacyCardDataVersion) {
+        player.cardsPlayedThisTurn = 0
+        player.overloadLocked = 0
+      }
       const hero = getEntity(game, player.heroEntityId)
       hero.exhausted = false
+      if (!legacyCardDataVersion) {
+        hero.frozen = false
+        hero.immune = false
+      }
       if (legacyCardDataVersion) {
         for (const id of player.board) getEntity(game, id).exhausted = false
         return
@@ -78,6 +87,13 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       for (const id of player.board) {
         const entity = getEntity(game, id)
         entity.exhausted = false
+        entity.frozen = false
+        entity.immune = false
+        if (entity.type === 'LOCATION') {
+          delete entity.summonedThisTurn
+          delete entity.attacksRemaining
+          continue
+        }
         entity.attacksRemaining = entity.keywords.includes('WINDFURY') ? 2 : 1
         entity.summonedThisTurn = false
       }
@@ -102,11 +118,21 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'CARD_PLAYED': {
       const entity = getEntity(game, event.entityId)
       spendMana(state, event.actorId, event.manaCost)
+      if (!legacyCardDataVersion) {
+        const player = game.players[event.actorId]
+        player.cardsPlayedThisTurn = (player.cardsPlayedThisTurn ?? 0) + 1
+      }
       moveEntity(state, entity, event.destination)
       if (event.destination === 'BOARD') {
         const board = game.players[event.actorId].board
         removeId(board, entity.id)
         board.splice(event.placementIndex ?? board.length, 0, entity.id)
+        if (entity.type === 'LOCATION') {
+          entity.exhausted = false
+          delete entity.summonedThisTurn
+          delete entity.attacksRemaining
+          return
+        }
         if (legacyCardDataVersion) {
           entity.exhausted = true
           delete entity.summonedThisTurn
@@ -120,6 +146,13 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       }
       return
     }
+    case 'LOCATION_ACTIVATED': {
+      const location = getEntity(game, event.entityId)
+      location.exhausted = true
+      location.durability -= event.durabilityCost
+      if (event.destroyed || location.durability <= 0) moveEntity(state, location, 'GRAVEYARD')
+      return
+    }
     case 'MANATHIRST_BONUS_APPLIED':
       return
     case 'ATTACK_DECLARED': {
@@ -130,6 +163,7 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
       }
       if (source.attacksRemaining === undefined) source.attacksRemaining = 1
       source.attacksRemaining = Math.max(0, source.attacksRemaining - 1)
+      source.keywords = source.keywords.filter((keyword) => keyword !== 'STEALTH')
       source.exhausted = source.attacksRemaining === 0
       return
     }
@@ -143,10 +177,12 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'DAMAGE_BATCH_APPLIED':
       for (const packet of event.packets) {
         const target = getEntity(game, packet.targetEntityId)
+        if (!legacyCardDataVersion && target.immune) continue
         if (!legacyCardDataVersion && target.type === 'MINION' && target.keywords.includes('DIVINE_SHIELD')) {
           target.keywords = target.keywords.filter((keyword) => keyword !== 'DIVINE_SHIELD')
           continue
         }
+        const healthBefore = target.health
         let remaining = packet.amount
         if (target.type === 'HERO' && target.armor > 0) {
           const absorbed = Math.min(target.armor, remaining)
@@ -155,6 +191,13 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
         }
         target.health -= remaining
         if (packet.poisonous && remaining > 0 && target.type === 'MINION') target.poisonousLethal = true
+        if (packet.lifesteal && remaining > 0) {
+          const dealt = target.type === 'HERO' ? packet.amount : Math.min(packet.amount, Math.max(0, healthBefore))
+          if (dealt > 0) {
+            const hero = getEntity(game, game.players[getEntity(game, packet.sourceEntityId as EntityId).controllerId].heroEntityId)
+            hero.health = Math.min(hero.maxHealth, hero.health + dealt)
+          }
+        }
       }
       return
     case 'MINION_MARKED_DESTROYED':
@@ -171,6 +214,30 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'DEATHRATTLE_TRIGGERED':
       getEntity(game, event.entityId).deathrattleResolved = true
       return
+    case 'MINION_SILENCED': {
+      const entity = getEntity(game, event.targetEntityId)
+      const card = getCardDefinition(entity.definitionId)
+      entity.attack = entity.baseAttack ?? card.attack
+      entity.maxHealth = entity.baseMaxHealth ?? card.health
+      entity.health = Math.min(entity.health, entity.maxHealth)
+      for (const attachedId of entity.attachedCardIds) moveEntity(state, getEntity(game, attachedId), 'GRAVEYARD')
+      entity.attachedCardIds = []
+      delete entity.baseAttack
+      delete entity.baseMaxHealth
+      entity.keywords = []
+      entity.frozen = false
+      entity.immune = false
+      entity.poisonousLethal = false
+      entity.destroyMarked = false
+      entity.deathrattleResolved = true
+      return
+    }
+    case 'CHARACTER_FROZEN':
+      getEntity(game, event.targetEntityId).frozen = true
+      return
+    case 'CHARACTER_IMMUNITY_GRANTED':
+      getEntity(game, event.targetEntityId).immune = true
+      return
     case 'MINION_SUMMONED': {
       game.entities[String(event.entity.id)] = structuredClone(event.entity)
       game.nextEntityId = Math.max(game.nextEntityId, event.entity.id + 1)
@@ -181,6 +248,9 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     }
     case 'MINION_BUFFED': {
       const entity = getEntity(game, event.targetEntityId)
+      const card = getCardDefinition(entity.definitionId)
+      entity.baseAttack ??= card.attack
+      entity.baseMaxHealth ??= card.health
       entity.attack += event.attackGain
       entity.health += event.healthGain
       entity.maxHealth += event.healthGain
@@ -210,6 +280,16 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'TEMPORARY_MANA_GAINED':
       game.players[event.actorId].mana.temporary += event.amount
       return
+    case 'MANA_RESTORED': {
+      const mana = game.players[event.actorId].mana
+      mana.current = Math.min(mana.maximum, mana.current + event.amount)
+      return
+    }
+    case 'OVERLOAD_APPLIED': {
+      const player = game.players[event.actorId]
+      player.overloadLocked = (player.overloadLocked ?? 0) + event.amount
+      return
+    }
     case 'WEAPON_EQUIPPED': {
       const player = game.players[event.actorId]
       if (event.replacedEntityId !== null) moveEntity(state, getEntity(game, event.replacedEntityId), 'GRAVEYARD')
@@ -248,6 +328,9 @@ function applyGameEvent(state: AuthoritativeSessionStateV1, event: DomainEventV1
     case 'MAGNETIC_MERGED': {
       const source = getEntity(game, event.sourceEntityId)
       const target = getEntity(game, event.targetEntityId)
+      const card = getCardDefinition(target.definitionId)
+      target.baseAttack ??= card.attack
+      target.baseMaxHealth ??= card.health
       source.zone = 'ATTACHED'
       source.controllerId = event.actorId
       target.attack += event.attackGain
@@ -303,6 +386,8 @@ export function createEntityFromDefinition(
     poisonousLethal: false,
     destroyMarked: false,
     deathrattleResolved: false,
+    frozen: false,
+    immune: false,
     keywords: [...card.keywords],
     races: [...card.races],
     attachedCardIds: [],
@@ -311,6 +396,12 @@ export function createEntityFromDefinition(
   }
   if (options.legacyCardDataVersion) {
     delete entity.cost
+    delete entity.summonedThisTurn
+    delete entity.attacksRemaining
+    delete entity.frozen
+    delete entity.immune
+  }
+  if (card.type === 'LOCATION') {
     delete entity.summonedThisTurn
     delete entity.attacksRemaining
   }

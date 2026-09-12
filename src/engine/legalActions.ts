@@ -47,10 +47,20 @@ function targetOptions(
                 return entity.health >= entity.maxHealth
               })
   const excluded = candidates
-    .filter((id) => (dependencies.legacyCardDataVersion
-      ? getEntity(state.game, id).controllerId !== actorId
-      : actionKind !== 'BATTLECRY') && getEntity(state.game, id).keywords.includes('ELUSIVE'))
-    .map((entityId) => ({ entityId, reason: 'ELUSIVE' as const }))
+    .filter((id) => {
+      const entity = getEntity(state.game, id)
+      const blockedByKeyword = (dependencies.legacyCardDataVersion
+        ? entity.controllerId !== actorId
+        : actionKind !== 'BATTLECRY') && (entity.keywords.includes('ELUSIVE') || entity.keywords.includes('STEALTH'))
+      return blockedByKeyword || (entity.controllerId !== actorId && entity.immune === true)
+    })
+    .map((entityId) => {
+      const entity = getEntity(state.game, entityId)
+      return {
+        entityId,
+        reason: entity.immune === true ? 'IMMUNE' as const : entity.keywords.includes('STEALTH') ? 'STEALTH' as const : 'ELUSIVE' as const,
+      }
+    })
   const legal = candidates.filter((id) => !excluded.some((entry) => entry.entityId === id))
   return legal.map((targetEntityId) => {
     if (excluded.length === 0) return { targetEntityId }
@@ -97,14 +107,14 @@ export function getLegalActions(state: AuthoritativeSessionStateV1, actorId: Pla
     const entity = getEntity(game, entityId)
     const card = getCardDefinition(entity.definitionId)
     if ((entity.cost ?? card.cost) > availableMana) continue
-    if (card.type === 'MINION') {
+    if (card.type === 'MINION' || card.type === 'LOCATION') {
       if (player.board.length < 7) {
         for (let placementIndex = 0; placementIndex <= player.board.length; placementIndex += 1) {
           const targets = targetOptions(state, actorId, card.targeting, dependencies.legacyCardDataVersion ? 'SPELL' : 'BATTLECRY', dependencies)
           for (const option of targets) actions.push({ id: `${actorId}:play:${entityId}:normal:${placementIndex}:${option.targetEntityId ?? 'none'}`, type: 'PLAY_CARD', actorId, cardInstanceId: entityId, playMode: 'NORMAL', placementIndex, ...option })
         }
       }
-      if (card.keywords.includes('MAGNETIC')) {
+      if (card.type === 'MINION' && card.keywords.includes('MAGNETIC')) {
         for (const targetEntityId of player.board.filter((id) => getEntity(game, id).races.includes('MECHANICAL'))) {
           actions.push({ id: `${actorId}:play:${entityId}:magnetic:${targetEntityId}`, type: 'PLAY_CARD', actorId, cardInstanceId: entityId, playMode: 'MAGNETIC', targetEntityId })
         }
@@ -115,20 +125,36 @@ export function getLegalActions(state: AuthoritativeSessionStateV1, actorId: Pla
     for (const option of targets) actions.push({ id: `${actorId}:play:${entityId}:normal:${option.targetEntityId ?? 'none'}`, type: 'PLAY_CARD', actorId, cardInstanceId: entityId, playMode: 'NORMAL', ...option })
   }
 
+  for (const entityId of player.board) {
+    const entity = getEntity(game, entityId)
+    if (entity.type !== 'LOCATION' || entity.exhausted || entity.durability <= 0) continue
+    actions.push({ id: `${actorId}:activate-location:${entity.id}`, type: 'ACTIVATE_LOCATION', actorId, locationEntityId: entity.id })
+  }
+
   const enemy = game.players[otherPlayer(actorId)]
-  const taunts = enemy.board.filter((id) => getEntity(game, id).keywords.includes('TAUNT'))
-  const attackers = [...player.board.filter((id) => !getEntity(game, id).exhausted && getEntity(game, id).attack > 0)]
+  const taunts = enemy.board.filter((id) => {
+    const entity = getEntity(game, id)
+    return entity.keywords.includes('TAUNT') && !entity.keywords.includes('STEALTH') && entity.immune !== true
+  })
+  const attackers = [...player.board.filter((id) => {
+    const entity = getEntity(game, id)
+    return !entity.exhausted && !entity.frozen && entity.attack > 0
+  })]
   const hero = getEntity(game, player.heroEntityId)
   const weaponAttack = player.weaponEntityId === null ? 0 : getEntity(game, player.weaponEntityId).attack
-  if (!hero.exhausted && hero.attack + weaponAttack > 0) attackers.push(hero.id)
+  if (!hero.exhausted && !hero.frozen && hero.attack + weaponAttack > 0) attackers.push(hero.id)
   for (const attackSourceId of attackers) {
     const source = getEntity(game, attackSourceId)
     const rushOnly = !dependencies.legacyCardDataVersion && source.summonedThisTurn === true && source.keywords.includes('RUSH')
+    const visibleEnemyBoard = enemy.board.filter((id) => {
+      const entity = getEntity(game, id)
+      return !entity.keywords.includes('STEALTH') && entity.immune !== true
+    })
     const attackTargets = taunts.length > 0
-      ? taunts
+      ? taunts.filter((id) => !getEntity(game, id).keywords.includes('STEALTH'))
       : rushOnly
-        ? enemy.board
-        : [enemy.heroEntityId, ...enemy.board]
+        ? visibleEnemyBoard
+        : [enemy.heroEntityId, ...visibleEnemyBoard]
     for (const attackTargetId of attackTargets) actions.push({
       id: `${actorId}:attack:${attackSourceId}:${attackTargetId}`,
       type: 'ATTACK',

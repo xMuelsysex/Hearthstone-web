@@ -10,10 +10,11 @@ from HearthstoneJSON's original-art endpoint:
 https://art.hearthstonejson.com/v1/orig/RLK_843.png
 https://art.hearthstonejson.com/v1/orig/CS2_082.png
 
-These assets are used only by the card-frame prototype. The frame source is a
-Hearthstone-derived fan resource; it is not an official Blizzard asset. The two
-prototype art files are lightly prepared from the same original-art sources to
-remove endpoint padding/background pixels before fitting the frame art windows.
+These assets are used by the card-frame renderer in the prototype page and live
+game card faces. The frame source is a Hearthstone-derived fan resource; it is
+not an official Blizzard asset. The two prototype art files are lightly prepared
+from the same original-art sources to remove endpoint padding/background pixels
+before fitting the frame art windows.
 The materials/masks PNGs are cropped from the MIT material assets and are used
 as numeric-area covers where the official card image's baked values need to be
 hidden. Complete attack, vitality, and weapon durability material PNGs are used

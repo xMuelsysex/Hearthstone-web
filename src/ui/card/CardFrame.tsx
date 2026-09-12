@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { PublicEntityViewModel } from '@/engine/projection'
+import { AssetImage } from '@/ui/AssetImage'
+import { CARD_FRAME_MATERIALS } from '@/ui/card/cardFrameMaterials'
 import { cardRuntimeValues } from '@/ui/card/cardRuntime'
 
 type CardFrameProps = {
@@ -9,7 +11,7 @@ type CardFrameProps = {
   layer?: CardFrameLayer
 }
 
-type FrameKind = 'MINION' | 'SPELL' | 'WEAPON' | 'HERO'
+type FrameKind = 'MINION' | 'SPELL' | 'WEAPON' | 'HERO' | 'HERO_POWER' | 'LOCATION'
 export type CardFrameLayer = 'composite' | 'original' | 'cost-asset' | 'cost-number' | 'attack-asset' | 'attack-number' | 'value-asset' | 'value-number'
 type Box = { x: number; y: number; width: number; height: number }
 type DynamicLayer = { asset: string; box: Box; textBox: Box; coverAsset?: string }
@@ -27,14 +29,26 @@ const ORIGINAL_CARD_LAYOUTS: Record<FrameKind, OriginalCardLayout> = {
       textBox: { x: 35, y: 82, width: 96, height: 105 },
     },
     attack: {
-      asset: '/assets/card-frames/materials/common/attack.png',
+      asset: CARD_FRAME_MATERIALS.attack,
       box: { x: 25, y: 565, width: 111, height: 123 },
       textBox: { x: 48, y: 584, width: 86, height: 108 },
     },
     value: {
-      asset: '/assets/card-frames/materials/common/vitality.png',
+      asset: CARD_FRAME_MATERIALS.vitality,
       box: { x: 388, y: 570, width: 78, height: 118 },
       textBox: { x: 388, y: 584, width: 88, height: 108 },
+    },
+  },
+  LOCATION: {
+    cost: {
+      asset: '/assets/card-frames/materials/masks/minion-cost-mask.png',
+      box: { x: 35, y: 82, width: 96, height: 105 },
+      textBox: { x: 35, y: 82, width: 96, height: 105 },
+    },
+    value: {
+      asset: CARD_FRAME_MATERIALS.armor,
+      box: { x: 384, y: 591, width: 87, height: 108 },
+      textBox: { x: 384, y: 591, width: 87, height: 108 },
     },
   },
   SPELL: {
@@ -46,19 +60,19 @@ const ORIGINAL_CARD_LAYOUTS: Record<FrameKind, OriginalCardLayout> = {
   },
   WEAPON: {
     cost: {
-      asset: '/assets/card-frames/materials/cost/cost-crystal.png',
+      asset: CARD_FRAME_MATERIALS.costCrystal,
       box: { x: 39, y: 77, width: 102, height: 105 },
       textBox: { x: 39, y: 77, width: 102, height: 105 },
     },
     attack: {
-      asset: '/assets/card-frames/materials/weapon/weapon-attack.png',
-      coverAsset: '/assets/card-frames/materials/weapon/weapon-attack-cover.png',
+      asset: CARD_FRAME_MATERIALS.weaponAttack,
+      coverAsset: CARD_FRAME_MATERIALS.weaponAttackCover,
       box: { x: 48, y: 587, width: 99, height: 97 },
       textBox: { x: 61, y: 584, width: 72, height: 103 },
     },
     value: {
-      asset: '/assets/card-frames/materials/weapon/weapon-durability.png',
-      coverAsset: '/assets/card-frames/materials/weapon/weapon-durability-cover.png',
+      asset: CARD_FRAME_MATERIALS.weaponDurability,
+      coverAsset: CARD_FRAME_MATERIALS.weaponDurabilityCover,
       box: { x: 389, y: 584, width: 92, height: 103 },
       textBox: { x: 391, y: 584, width: 87, height: 103 },
     },
@@ -75,10 +89,17 @@ const ORIGINAL_CARD_LAYOUTS: Record<FrameKind, OriginalCardLayout> = {
       textBox: { x: 384, y: 591, width: 87, height: 108 },
     },
   },
+  HERO_POWER: {
+    cost: {
+      asset: '/assets/card-frames/materials/cost/cost-crystal.png',
+      box: { x: 205, y: 42, width: 102, height: 105 },
+      textBox: { x: 205, y: 42, width: 102, height: 105 },
+    },
+  },
 }
 
 function frameKind(type: string): FrameKind | null {
-  return type === 'MINION' || type === 'SPELL' || type === 'WEAPON' || type === 'HERO' ? type : null
+  return type === 'MINION' || type === 'SPELL' || type === 'WEAPON' || type === 'HERO' || type === 'HERO_POWER' || type === 'LOCATION' ? type : null
 }
 
 function percentage(value: number, base: number): string {
@@ -112,7 +133,7 @@ export function CardFrame({ entity, imagePath, imageAlt, layer = 'composite' }: 
   const descriptionText = plainText(values.definition.text)
   const isHero = kind === 'HERO'
   const showAttack = values.definition.type === 'MINION' || values.definition.type === 'WEAPON' || (isHero && entity.attack > 0)
-  const showValue = values.definition.type === 'MINION' || values.definition.type === 'WEAPON' || isHero
+  const showValue = values.definition.type === 'MINION' || values.definition.type === 'WEAPON' || values.definition.type === 'LOCATION' || isHero
   const currentValue = isHero ? entity.health : values.currentValue
   const maximumValue = isHero ? entity.maxHealth : values.maximumValue
   const baseValue = isHero ? values.definition.health : values.baseValue
@@ -143,7 +164,7 @@ export function CardFrame({ entity, imagePath, imageAlt, layer = 'composite' }: 
       data-card-value-max={maximumValue}
       data-card-value-label={valueLabel}
     >
-      {showOriginal ? <img className="card-frame-original" src={imagePath} alt={imageAlt ?? `${entity.name}官方卡图，卡名和效果来自原卡图`} draggable={false} /> : null}
+      {showOriginal ? <AssetImage className="card-frame-original" src={imagePath} alt={imageAlt ?? `${entity.name}官方卡图，卡名和效果来自原卡图`} /> : null}
       {showCostAsset ? <img className="card-frame-dynamic-asset card-frame-cost-asset" src={layout.cost.asset} alt="" draggable={false} style={boxStyle(layout.cost.box)} /> : null}
       {showCostNumber ? <span className="card-frame-number card-frame-cost" style={boxStyle(layout.cost.textBox)} aria-label={`费用 ${values.cost}`}>{values.cost}</span> : null}
       {showValue && layout.value ? <>

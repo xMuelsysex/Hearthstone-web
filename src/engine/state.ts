@@ -39,6 +39,13 @@ export type GameEntityV1 = {
   summonedThisTurn?: boolean
   /** Remaining attacks in the current turn; windfury starts with two. */
   attacksRemaining?: number
+  /** Base stats retained only after a stat enchantment so silence can remove it. */
+  baseAttack?: number
+  baseMaxHealth?: number
+  /** A frozen character cannot attack until its controller's next turn starts. */
+  frozen?: boolean
+  /** Immune prevents damage for the current turn. */
+  immune?: boolean
   poisonousLethal: boolean
   destroyMarked: boolean
   deathrattleResolved: boolean
@@ -66,6 +73,10 @@ export type PlayerStateV1 = {
   fatigue: number
   heroPowerUsed: boolean
   mulliganConfirmed: boolean
+  /** Number of cards played by this player during the current turn. */
+  cardsPlayedThisTurn?: number
+  /** Crystals locked by overload for the next turn. */
+  overloadLocked?: number
 }
 
 export type MulliganDecisionV1 = {

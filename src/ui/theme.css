@@ -231,10 +231,12 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .hero-portrait::before, .hero-portrait::after { display: none; }
 .hero-health-badge { position: absolute; right: -16px; bottom: -12px; z-index: 3; min-width: 38px; height: 38px; padding: 0 6px; display: grid; place-items: center; border: 3px solid #fff1c4; border-radius: 50%; color: #fff; background: radial-gradient(circle at 35% 28%, #f06b60, #a51e28 64%, #4f0e19); box-shadow: 0 3px 8px #000, inset 0 0 6px rgb(255 220 165 / 42%); font: 800 1.12rem/1 var(--hearthstone-number-font); text-align: center; }
 .hero-player .hero-health-badge { color: #fff; background: radial-gradient(circle at 35% 28%, #9df06b, #2d9c38 62%, #0d431d); }
-.hero-attack-badge, .hero-armor-badge { position: absolute; z-index: 3; min-width: 26px; height: 26px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #fff1c4; border-radius: 50%; color: #fff; box-shadow: 0 2px 7px #000, inset 0 0 5px rgb(255 255 255 / 34%); font: 800 .82rem/1 var(--hearthstone-number-font); text-align: center; }
-.hero-attack-badge { left: -9px; bottom: -7px; background: radial-gradient(circle at 35% 28%, #ffe38c, #c87916 64%, #6f310b); }
+.hero-stat-asset, .weapon-stat-asset, .hero-power-cost-asset { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; filter: drop-shadow(0 2px 4px rgb(0 0 0 / 72%)); }
+.hero-stat-value, .weapon-stat-value, .hero-power-cost-value { position: relative; z-index: 1; }
+.hero-attack-badge, .hero-armor-badge { position: absolute; z-index: 3; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; color: #fff; background: transparent; box-shadow: none; font: 800 .82rem/1 var(--hearthstone-number-font); text-align: center; }
+.hero-attack-badge { left: -12px; bottom: -10px; }
 .hero-attack-badge--temporary { color: #72ffae; }
-.hero-armor-badge { left: -9px; top: -7px; background: radial-gradient(circle at 35% 28%, #d7f6ff, #438bb7 64%, #153c66); }
+.hero-armor-badge { left: -12px; top: -10px; }
 .hero-details { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .hero-details strong { display: grid; gap: 2px; overflow: hidden; color: #fff1c7; font-size: .86rem; }
 .hero-details small { overflow: hidden; color: #b5dadd; font-size: .74rem; font-weight: 400; text-overflow: ellipsis; white-space: nowrap; }
@@ -251,15 +253,15 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .hero-power-art-window { position: relative; width: 88px; height: 88px; overflow: hidden; border: 0; border-radius: 50%; background: transparent; box-shadow: none; }
 .hero-power-art { position: absolute; left: -59%; top: -40%; width: 220%; height: auto; max-width: none; display: block; border-radius: 0; }
 .hero-power-art-window > .asset-fallback.hero-power-art { inset: 0; width: 100%; height: 100%; padding: 4px; border-radius: inherit; }
-.hero-power-cost { position: absolute; left: -7px; top: -9px; z-index: 2; min-width: 26px; height: 26px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #e7f9ff; border-radius: 50%; color: #fff; background: radial-gradient(circle at 34% 26%, #9be4ff, #267bc2 62%, #0e315e); box-shadow: 0 2px 5px #000, inset 0 0 4px rgb(255 255 255 / 62%); font: 800 .78rem/1 var(--hearthstone-number-font); text-shadow: 0 1px 2px #03203a; }
+.hero-power-cost { position: absolute; left: -9px; top: -11px; z-index: 2; width: 30px; height: 30px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; color: #fff; background: transparent; box-shadow: none; font: 800 .78rem/1 var(--hearthstone-number-font); text-shadow: 0 1px 2px #03203a; }
 .hero-power-slot > span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .weapon-slot { display: flex; align-items: center; gap: 5px; color: #f5c56d; }
 .weapon-art-window { position: relative; width: 46px; height: 46px; flex: 0 0 auto; overflow: hidden; border: 2px solid #d4b778; border-radius: 50%; background: #2e2320; box-shadow: 0 2px 7px #000, inset 0 0 5px rgb(255 244 191 / 32%); }
 .weapon-art { position: absolute; left: -41%; top: -30%; width: 190%; height: auto; max-width: none; display: block; border-radius: 0; }
 .weapon-art-window > .asset-fallback.weapon-art { inset: 0; width: 100%; height: 100%; padding: 4px; border-radius: inherit; }
-.weapon-stat { position: absolute; bottom: -2px; z-index: 2; min-width: 20px; height: 20px; padding: 0 3px; display: grid; place-items: center; border: 1px solid #fff1c4; border-radius: 50%; color: #fff; box-shadow: 0 2px 5px #000, inset 0 0 4px rgb(255 255 255 / 34%); font: 800 .72rem/1 var(--hearthstone-number-font); }
-.weapon-attack { left: -4px; background: radial-gradient(circle at 35% 28%, #ffe38c, #c87916 64%, #6f310b); }
-.weapon-durability { right: -4px; background: radial-gradient(circle at 35% 28%, #ff8174, #c03635 66%, #681722); }
+.weapon-stat { position: absolute; bottom: -4px; z-index: 2; width: 25px; height: 25px; display: grid; place-items: center; color: #fff; font: 800 .72rem/1 var(--hearthstone-number-font); text-align: center; }
+.weapon-attack { left: -6px; }
+.weapon-durability { right: -6px; }
 .weapon-name { max-width: 12ch; overflow: hidden; font-size: .66rem; text-overflow: ellipsis; white-space: nowrap; }
 .weapon-slot:focus-visible, .hero-portrait:focus-visible { outline: 3px solid #8fe6ff; outline-offset: 4px; }
 .resource-pills { display: flex; align-items: center; margin-left: 0; }
@@ -276,6 +278,7 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .mana-crystal-gem--temporary { border-color: #e3d6ff; background: linear-gradient(145deg, #f4efff 0%, #b69bff 27%, #5b43bb 61%, #211651 100%); box-shadow: 0 0 7px rgb(187 154 255 / 88%), inset 1px 1px 2px rgb(255 255 255 / 76%), inset -2px -3px 4px rgb(17 8 61 / 80%); }
 .mana-crystal-gem-shine { position: absolute; left: 3px; top: 3px; z-index: 1; width: 4px; height: 8px; border-radius: 50%; background: rgb(255 255 255 / 82%); filter: blur(.2px); opacity: .78; transform: rotate(28deg); }
 .mana-crystal-temporary { position: absolute; right: 5px; top: -10px; z-index: 2; min-width: 21px; padding: 2px 4px; border: 1px solid #e1d6ff; border-radius: 999px; color: #fff; background: linear-gradient(180deg, #8f6cff, #3e2a91); box-shadow: 0 2px 5px #000, 0 0 8px rgb(183 151 255 / 62%); font: 800 .56rem/1 var(--hearthstone-number-font); text-align: center; }
+.mana-crystal-overload { position: absolute; left: 5px; top: -10px; z-index: 2; min-width: 24px; padding: 2px 4px; border: 1px solid #ffbe5d; border-radius: 999px; color: #fff3bd; background: linear-gradient(180deg, #a74d23, #4d1e1b); box-shadow: 0 2px 5px #000, 0 0 8px rgb(255 129 41 / 62%); font: 800 .56rem/1 var(--hearthstone-number-font); text-align: center; }
 .opponent-hand, .player-hand { position: relative; min-width: 0; display: flex; align-items: flex-end; justify-content: center; overflow: visible; }
 .opponent-hand { min-height: 96px; padding: 4px 8%; }
 .opponent-hand-card { position: relative; width: 78px; height: 108px; margin-left: -34px; transform: rotate(var(--fan-angle)) translateY(var(--fan-lift)); transform-origin: bottom center; z-index: var(--fan-order); transition: transform .18s ease, filter .18s ease; }
@@ -291,6 +294,7 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .game-card { position: relative; width: 156px; height: auto; aspect-ratio: 512 / 776; padding: 0; overflow: visible; display: block; flex: 0 0 auto; border: 0; border-radius: 16px; color: #fff; background: transparent; box-shadow: none; filter: drop-shadow(0 9px 16px rgb(0 0 0 / 50%)); transition: transform .18s ease, filter .18s ease; }
 .game-card.compact { width: 120px; height: auto; aspect-ratio: 512 / 776; }
 .game-card.battlefield-card { width: 124px; aspect-ratio: .82; border-radius: 50%; }
+.game-card.battlefield-card.location-card { width: 120px; aspect-ratio: 512 / 776; border-radius: 16px; }
 .battlefield-art-window { position: absolute; inset: 0; overflow: hidden; border: 3px solid #515960; border-radius: 50%; background: #15120f; box-shadow: 0 4px 9px rgb(0 0 0 / 58%), inset 0 0 0 1px rgb(218 230 226 / 42%); }
 .battlefield-card .battlefield-card-art { position: absolute; left: 50%; top: 50%; width: 132%; height: auto; max-width: none; object-fit: initial; transform: translate(-50%, -50%); }
 .battlefield-card .card-stat { bottom: -7px; width: 34px; height: 34px; font-size: 1rem; }
@@ -301,8 +305,7 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .game-card.exhausted { filter: saturate(.5) brightness(.7) drop-shadow(0 9px 16px rgb(0 0 0 / 50%)); }
 .game-card img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
 .asset-fallback { width: 100%; height: 100%; display: grid; place-items: center; padding: 8px; border: 2px dashed #8dbfc5; border-radius: inherit; color: #d9fbff; background: #153843; text-align: center; font-size: .78rem; }
-.game-card .card-cost { font-size: 1.12rem; }
-
+.card-frame > img { object-fit: fill; }
 
 .card-stats { display: contents; pointer-events: none; }
 .game-card .card-stat { font-size: 1.08rem; }
@@ -379,10 +382,9 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .inspection-card--pure { display: block; padding: 0; border: 0; border-radius: 16px; background: transparent; box-shadow: none; }
 .inspection-card-art { width: 68px; height: auto; aspect-ratio: 512 / 776; box-shadow: none; border-radius: 9px; }
 .inspection-card--pure .inspection-card-art { width: min(440px, calc(100vw - 32px)); max-width: none; border-radius: 16px; box-shadow: 0 18px 42px rgb(0 0 0 / 70%); }
-.inspection-card--pure .inspection-card-art .card-cost { font-size: clamp(1.8rem, 4vw, 2.6rem); }
-.inspection-card--pure .inspection-card-art .card-stat { border-width: 2px; font-size: clamp(1.5rem, 3vw, 2rem); }
-.inspection-card-art .card-cost { font-size: .68rem; }
-.inspection-card-art .card-stat { font-size: .68rem; }
+.inspection-card--pure .inspection-card-art .card-frame-number { font-size: 11.5cqw; }
+.inspection-card--pure .inspection-card-art .card-frame-stat { -webkit-text-stroke-width: .6cqw; }
+.inspection-card-art .card-frame-number { font-size: 11.5cqw; }
 .inspection-card-copy { min-width: 0; display: grid; align-content: center; gap: 4px; color: #d8f3ef; font-size: .72rem; line-height: 1.35; }
 .inspection-card-copy strong { overflow: hidden; color: #fff1c7; font-size: .88rem; text-overflow: ellipsis; white-space: nowrap; }
 .keyword-tooltip { padding: 8px 10px; border: 1px solid #86e2e1; border-radius: 9px; background: rgb(4 15 21 / 98%); color: #d9fbff; font-size: .7rem; line-height: 1.45; box-shadow: 0 10px 24px rgb(0 0 0 / 46%); }
@@ -482,7 +484,6 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
   .battlefield-card .card-stat { width: 29px; height: 29px; font-size: .84rem; }
   .battlefield-card .layered-card-attack { left: 2px; }
   .battlefield-card .layered-card-health { right: 2px; }
-  .game-card .card-cost { font-size: .96rem; }
   .game-card .card-stat { font-size: .92rem; }
   .action-panel { padding: 8px; }
   .game-status { top: 72px; right: 18px; width: min(260px, calc(100vw - 36px)); gap: 4px; }
@@ -618,8 +619,6 @@ h1 { margin: 12px 0; font-size: clamp(2rem, 7vw, 4.5rem); line-height: .98; }
 .card-preview-layout { width: min(1100px, 100%); margin: clamp(28px, 5vw, 64px) auto 0; display: grid; grid-template-columns: minmax(360px, 1fr) minmax(300px, 380px); align-items: center; gap: clamp(32px, 7vw, 96px); }
 .card-preview-stage { display: grid; justify-items: center; gap: 14px; }
 .layered-card { position: relative; width: min(340px, 76vw); aspect-ratio: 512 / 776; overflow: visible; isolation: isolate; filter: drop-shadow(0 24px 28px rgb(0 0 0 / 62%)); }
-.layered-card-art-source { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; user-select: none; }
-.card-cost, .layered-card-cost { position: absolute; top: 10%; left: 5%; z-index: 6; width: 21%; aspect-ratio: 1; display: grid; place-items: center; clip-path: polygon(24% 0, 76% 0, 100% 50%, 76% 100%, 24% 100%, 0 50%); color: #fff; background: radial-gradient(circle at 33% 25%, #c4f3ff 0 7%, #6bc5ed 24%, #1b65b0 68%, #0b2859 100%); box-shadow: 0 2px 5px rgb(0 0 0 / 72%), inset 0 -8px 10px rgb(2 28 88 / 38%); font: 900 clamp(1.45rem, 3.4vw, 2rem)/.9 var(--hearthstone-number-font); font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .8px rgb(10 26 48 / 82%); paint-order: stroke fill; text-shadow: 0 2px 1px rgb(0 0 0 / 70%), 0 0 1px rgb(0 0 0 / 88%); }
 .card-stat, .layered-card-stat { position: absolute; bottom: 12%; z-index: 6; width: 15%; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgb(255 244 207 / 72%); border-radius: 50%; color: #fff; box-shadow: 0 2px 5px rgb(0 0 0 / 72%), inset 0 0 5px rgb(255 255 255 / 30%); font: 900 clamp(1.15rem, 2.9vw, 1.65rem)/.88 var(--hearthstone-number-font); font-variant-numeric: lining-nums tabular-nums; -webkit-text-stroke: .85px rgb(35 16 6 / 82%); paint-order: stroke fill; text-shadow: 0 2px 1px rgb(0 0 0 / 72%), 0 0 1px rgb(0 0 0 / 88%); }
 .layered-card-attack { left: 10%; background: radial-gradient(circle at 34% 24%, #ffe59b, #c47719 63%, #63320b); }
 .layered-card-health { right: 9%; background: radial-gradient(circle at 34% 24%, #ff8d7e, #c03635 64%, #681722); }

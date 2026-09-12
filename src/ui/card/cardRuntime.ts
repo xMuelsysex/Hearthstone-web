@@ -11,13 +11,15 @@ export function artAssetPath(entity: PublicEntityViewModel): string {
 export function cardRuntimeValues(entity: PublicEntityViewModel) {
   const definition = getCardDefinition(entity.definitionId)
   const weapon = definition.type === 'WEAPON'
+  const location = definition.type === 'LOCATION'
+  const usesDurability = weapon || location
   return {
     definition,
     cost: entity.cost,
-    valueLabel: weapon ? '耐久' : '生命',
-    currentValue: weapon ? entity.durability : entity.health,
-    maximumValue: weapon ? definition.durability : entity.maxHealth,
-    baseValue: weapon ? definition.durability : definition.health,
-    hasStats: definition.type === 'MINION' || weapon,
+    valueLabel: usesDurability ? '耐久' : '生命',
+    currentValue: usesDurability ? entity.durability : entity.health,
+    maximumValue: usesDurability ? definition.durability : entity.maxHealth,
+    baseValue: usesDurability ? definition.durability : definition.health,
+    hasStats: definition.type === 'MINION' || usesDurability,
   }
 }

@@ -212,7 +212,7 @@ test('all eleven official heroes start a class-specific showcase with signature 
   }
 })
 
-test('first launch tutorial completes all five real-card steps and persists completion', async ({ page }) => {
+test('first launch tutorial completes all twenty real-card steps and persists completion', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { name: '法力渴求' })).toBeVisible()
   await page.getByRole('button', { name: '跳过动画' }).click()
@@ -253,6 +253,76 @@ test('first launch tutorial completes all five real-card steps and persists comp
   await expect(page.locator('.player-hand .game-card[data-card-definition-id="BOT_563"][data-tutorial-role="source"]')).toHaveCount(1)
   await expect(page.locator('.player-board .game-card[data-card-definition-id="BOT_309"][data-tutorial-role="target"]')).toHaveCount(1)
   await dragAndWaitForBatch(page, handCard(page, 'BOT_563'), boardCard(page, 'player', 'BOT_309'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '嘲讽' })).toBeVisible()
+  await expect(page.locator('.player-board .game-card[data-card-definition-id="DRG_066"][data-tutorial-role="source"]')).toHaveCount(1)
+  await expect(page.locator('.opponent-board .game-card[data-card-definition-id="CORE_ICC_038"][data-tutorial-role="target"]')).toHaveCount(1)
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'DRG_066'), boardCard(page, 'opponent', 'CORE_ICC_038'), 'attack')
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '圣盾' })).toBeVisible()
+  await expect(page.locator('.player-board .game-card[data-card-definition-id="DRG_066"][data-tutorial-role="source"]')).toHaveCount(1)
+  await expect(page.locator('.opponent-board .game-card[data-card-definition-id="CORE_ICC_038"][data-tutorial-role="target"]')).toHaveCount(1)
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'DRG_066'), boardCard(page, 'opponent', 'CORE_ICC_038'), 'attack')
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '风怒' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'CATA_153'), page.locator('.player-board'))
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'CATA_153'), boardCard(page, 'opponent', 'CS2_119'), 'attack')
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'CATA_153'), boardCard(page, 'opponent', 'CS2_119'), 'attack')
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '亡语' })).toBeVisible()
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'EX1_556'), boardCard(page, 'opponent', 'CS2_118'), 'attack')
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '突袭' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'DINO_136t'), page.locator('.player-board'))
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'DINO_136t'), boardCard(page, 'opponent', 'CS2_119'), 'attack')
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '冲锋' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'HERO_11bpt'), page.locator('.player-board'))
+  await dragAndWaitForBatch(page, boardCard(page, 'player', 'HERO_11bpt'), hero(page, '旅店老板'), 'attack')
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '潜行' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'TLC_522'), page.locator('.player-board'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '吸血' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'JAIL_441'), boardCard(page, 'opponent', 'CS2_119'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '复生' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'CAP_801'), boardCard(page, 'player', 'CORE_EX1_012'))
+  await dragAndWaitForBatch(page, handCard(page, 'CS2_029'), boardCard(page, 'player', 'CORE_EX1_012'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '免疫' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'WW_815'), page.locator('.player-board'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '冻结' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'CORE_CS2_024'), boardCard(page, 'opponent', 'CS2_119'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '沉默' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'TSC_926'), page.locator('.player-board'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '法术伤害' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'CORE_CS2_024'), boardCard(page, 'opponent', 'CS2_119'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '过载' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'SCH_427'), page.locator('.player-board'))
+  await page.getByRole('button', { name: '下一步' }).click()
+
+  await expect(page.getByRole('heading', { name: '连击' })).toBeVisible()
+  await dragAndWaitForBatch(page, handCard(page, 'GAME_005'), page.locator('.player-board'))
+  await dragAndWaitForBatch(page, handCard(page, 'CATA_785'), page.locator('.player-board'))
   await page.getByRole('button', { name: '完成教程' }).click()
 
   await expect(page.getByRole('heading', { name: '炉石传说：旅店展示战' })).toBeVisible()
@@ -459,9 +529,9 @@ test('public inspection stays on public entities and inspection-only keyboard in
     const previewStats = await page.locator('[data-inspection-overlay]').evaluate((overlay) => {
       const readFontSize = (selector: string) => Number.parseFloat(getComputedStyle(overlay.querySelector(selector) as HTMLElement).fontSize)
       return {
-        cost: readFontSize('.card-cost'),
-        attack: readFontSize('.card-attack'),
-        health: readFontSize('.card-health'),
+        cost: readFontSize('.card-frame-cost'),
+        attack: readFontSize('.card-frame-attack'),
+        health: readFontSize('.card-frame-value'),
       }
     })
     expect(previewStats.cost).toBeGreaterThan(20)

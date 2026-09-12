@@ -4,6 +4,7 @@ import type { CardDefinitionId } from '@/cards/types'
 import { usePlayerSession, type BattleAnimation, type LegalActionDescriptor, type PlayerViewModel, type PublicEntityViewModel } from '@/app/context/playerSession'
 import { AssetImage } from '@/ui/AssetImage'
 import { CardFace } from '@/ui/card/CardFace'
+import { CARD_FRAME_MATERIALS } from '@/ui/card/cardFrameMaterials'
 import { artAssetPath, cardRuntimeValues } from '@/ui/card/cardRuntime'
 
 const KEYWORD_LABELS: Record<string, string> = {
@@ -18,10 +19,19 @@ const KEYWORD_LABELS: Record<string, string> = {
   RUSH: '突袭',
   DIVINE_SHIELD: '圣盾',
   WINDFURY: '风怒',
+  STEALTH: '潜行',
+  LIFESTEAL: '吸血',
+  REBORN: '复生',
+  IMMUNE: '免疫',
+  FREEZE: '冻结',
+  SPELLPOWER: '法术伤害',
+  OVERLOAD: '过载',
+  COMBO: '连击',
 }
 
 const EVENT_LABELS: Record<string, string> = {
   CARD_PLAYED: '打出卡牌',
+  LOCATION_ACTIVATED: '地标激活',
   CARD_ADDED: '获得卡牌',
   ATTACK_DECLARED: '发起攻击',
   DAMAGE_BATCH_APPLIED: '伤害结算',
@@ -37,6 +47,13 @@ const EVENT_LABELS: Record<string, string> = {
   MINION_SUMMONED: '召唤随从',
   MINION_BUFFED: '随从强化',
   MINION_KEYWORD_GRANTED: '获得关键词',
+  MINION_SILENCED: '随从沉默',
+  CHARACTER_FROZEN: '角色冻结',
+  CHARACTER_IMMUNITY_GRANTED: '角色获得免疫',
+  DEATHRATTLE_TRIGGERED: '亡语触发',
+  MANA_RESTORED: '法力复原',
+  OVERLOAD_APPLIED: '过载锁定',
+  CHARACTER_HEALED: '角色治疗',
   WEAPON_CREATED_AND_EQUIPPED: '装备武器',
   HERO_HEALTH_SET: '英雄生命变化',
   HERO_POWER_REFRESHED: '英雄技能复原',
@@ -54,6 +71,14 @@ const KEYWORD_DESCRIPTIONS: Record<string, string> = {
   RUSH: '召唤当回合即可攻击随从。',
   DIVINE_SHIELD: '抵挡一次伤害。',
   WINDFURY: '每个回合可以攻击两次。',
+  STEALTH: '无法成为敌方指向性动作的目标，攻击后解除。',
+  LIFESTEAL: '造成伤害时恢复等量的英雄生命。',
+  REBORN: '首次死亡后以 1 点生命重新召唤。',
+  IMMUNE: '免疫期间不会受到伤害。',
+  FREEZE: '被冻结的角色暂时不能攻击。',
+  SPELLPOWER: '使造成的法术伤害提高。',
+  OVERLOAD: '下回合锁定指定数量的法力水晶。',
+  COMBO: '本回合先使用过其他牌时触发额外效果。',
 }
 
 const INSPECTION_TOOLTIP_ID = 'card-keyword-tooltip'
@@ -339,17 +364,20 @@ function cardEffectIsReady(entity: PublicEntityViewModel, playable: boolean): bo
 
 function InspectionLayer({ source }: { source: InspectionSource }) {
   const { entity } = source
-  const keywordText = entity.keywords.map((keyword) => `${KEYWORD_LABELS[keyword] ?? keyword}：${KEYWORD_DESCRIPTIONS[keyword] ?? '该关键词的公开规则说明。'}`).join('；')
+  const activeKeywords = [...entity.keywords, ...(entity.frozen ? ['FREEZE'] : []), ...(entity.immune ? ['IMMUNE'] : [])]
+  const keywordText = activeKeywords.map((keyword) => `${KEYWORD_LABELS[keyword] ?? keyword}：${KEYWORD_DESCRIPTIONS[keyword] ?? '该关键词的公开规则说明。'}`).join('；')
   const values = cardRuntimeValues(entity)
   const largeCardPreview = source.mode === 'board' && (
-    values.definition.type === 'MINION' || values.definition.type === 'HERO' || values.definition.type === 'HERO_POWER'
+    values.definition.type === 'MINION' || values.definition.type === 'HERO' || values.definition.type === 'HERO_POWER' || values.definition.type === 'LOCATION'
   )
   const battlefieldCardPreview = source.mode === 'board' && values.definition.type === 'MINION'
   const valueSummary = values.definition.type === 'HERO'
     ? `生命 ${entity.health}/${entity.maxHealth}`
-    : values.hasStats
-      ? `攻击 ${entity.attack} · ${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
-      : `费用 ${values.cost}`
+    : values.definition.type === 'LOCATION'
+      ? `费用 ${values.cost} · 耐久 ${values.currentValue}/${values.maximumValue}`
+      : values.hasStats
+        ? `攻击 ${entity.attack} · ${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
+        : `费用 ${values.cost}`
   const positionStyle = source.mode === 'hand' ? { left: `${source.x}px`, top: `${source.y}px` } : undefined
   return (
     <div
@@ -389,7 +417,7 @@ function InspectionLayer({ source }: { source: InspectionSource }) {
           </div>}
         </div>
       )}
-      {entity.keywords.length > 0 && !largeCardPreview ? <div id={INSPECTION_TOOLTIP_ID} role="tooltip" className="keyword-tooltip">{keywordText}</div> : null}
+      {activeKeywords.length > 0 && !largeCardPreview ? <div id={INSPECTION_TOOLTIP_ID} role="tooltip" className="keyword-tooltip">{keywordText}</div> : null}
     </div>
   )
 }
@@ -401,6 +429,7 @@ type CardProps = {
   onToggle?: () => void
   onPointerDown?: ((event: ReactPointerEvent<HTMLElement>) => void) | undefined
   onActivate?: (() => void) | undefined
+  onClick?: (() => void) | undefined
   dropTargetId?: number
   dropTargetClassName?: string
   battlefield?: boolean
@@ -415,17 +444,22 @@ type CardProps = {
   attackTarget?: boolean
 }
 
-function Card({ entity, compact = false, selected = false, onToggle, onPointerDown, onActivate, dropTargetId, dropTargetClassName = '', battlefield = false, style, inspection, tutorialHighlight, playable = false, attackable = false, effectReady = false, projectedDeath = false, attackSource, attackTarget = false }: CardProps) {
+function Card({ entity, compact = false, selected = false, onToggle, onPointerDown, onActivate, onClick, dropTargetId, dropTargetClassName = '', battlefield = false, style, inspection, tutorialHighlight, playable = false, attackable = false, effectReady = false, projectedDeath = false, attackSource, attackTarget = false }: CardProps) {
   const values = cardRuntimeValues(entity)
-  const baseAccessibleLabel = values.hasStats
-    ? `${entity.name}，攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
-    : values.definition.type === 'HERO'
-      ? `${entity.name}英雄，生命 ${entity.health}/${entity.maxHealth}`
-      : `${entity.name}，费用 ${values.cost}`
+  const isLocation = values.definition.type === 'LOCATION'
+  const baseAccessibleLabel = isLocation
+    ? `${entity.name}，费用 ${values.cost}，耐久 ${values.currentValue}/${values.maximumValue}`
+    : values.hasStats
+      ? `${entity.name}，攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`
+      : values.definition.type === 'HERO'
+        ? `${entity.name}英雄，生命 ${entity.health}/${entity.maxHealth}`
+        : `${entity.name}，费用 ${values.cost}`
   const cardStatusLabels = [
     playable ? '可使用' : null,
     attackable ? '可攻击' : null,
     effectReady ? '特效可触发' : null,
+    entity.frozen ? '冻结' : null,
+    entity.immune ? '免疫' : null,
     projectedDeath ? '攻击后预计死亡' : null,
   ].filter((label): label is string => label !== null)
   const accessibleLabel = cardStatusLabels.length > 0 ? `${baseAccessibleLabel}，${cardStatusLabels.join('，')}` : baseAccessibleLabel
@@ -437,7 +471,7 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
     ? { '--attack-dx': `${attackSource.dx}px`, '--attack-dy': `${attackSource.dy}px` } as CSSProperties
     : undefined
   const resolvedStyle = style || attackStyle ? { ...(style ?? {}), ...(attackStyle ?? {}) } : undefined
-  const className = `game-card ${battlefield ? 'battlefield-card' : ''} ${compact ? 'compact' : ''} ${selected ? 'selected' : ''} ${entity.exhausted ? 'exhausted' : ''} ${onPointerDown ? 'drag-source' : ''} ${playable ? 'card-playable' : ''} ${attackable ? 'card-attackable' : ''} ${effectReady ? 'card-effect-ready' : ''} ${projectedDeath ? 'card-projected-death' : ''} ${attackSource !== undefined ? 'attack-animation-source' : ''} ${attackTarget ? 'attack-animation-target' : ''} ${dropTargetClassName}`
+  const className = `game-card ${battlefield ? 'battlefield-card' : ''} ${isLocation ? 'location-card' : ''} ${compact ? 'compact' : ''} ${selected ? 'selected' : ''} ${entity.exhausted ? 'exhausted' : ''} ${onPointerDown ? 'drag-source' : ''} ${playable ? 'card-playable' : ''} ${attackable ? 'card-attackable' : ''} ${effectReady ? 'card-effect-ready' : ''} ${projectedDeath ? 'card-projected-death' : ''} ${attackSource !== undefined ? 'attack-animation-source' : ''} ${attackTarget ? 'attack-animation-target' : ''} ${dropTargetClassName}`
   const commonProps = {
     'data-drop-target': dropTargetId === undefined ? undefined : `entity:${dropTargetId}`,
     'data-card-definition-id': entity.definitionId,
@@ -450,18 +484,22 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
     'data-card-playable': playable ? 'true' : undefined,
     'data-card-attackable': attackable ? 'true' : undefined,
     'data-card-effect-ready': effectReady ? 'true' : undefined,
+    'data-frozen': entity.frozen ? 'true' : undefined,
+    'data-immune': entity.immune ? 'true' : undefined,
+    'data-location-state': isLocation ? (entity.exhausted ? 'exhausted' : 'ready') : undefined,
+    'data-location-durability-current': isLocation ? entity.durability : undefined,
     'data-predicted-death': projectedDeath ? 'true' : undefined,
     'data-attack-animation-source': attackSource !== undefined ? 'true' : undefined,
     'data-attack-animation-target': attackTarget ? 'true' : undefined,
     onPointerDown,
     style: resolvedStyle,
   }
-  const publicInspectionProps = inspectionAttributes(inspection, entity.keywords.length > 0)
+  const publicInspectionProps = inspectionAttributes(inspection, entity.keywords.length > 0 || entity.frozen === true || entity.immune === true)
   const highlightProps = tutorialAttributes(tutorialHighlight)
   if (onToggle) {
     return <button type="button" className={`${className} selectable`} aria-pressed={selected} onClick={onToggle} {...commonProps} {...publicInspectionProps} {...highlightProps}>{content}</button>
   }
-  if (onPointerDown || onActivate) {
+  if (onPointerDown || onActivate || onClick) {
     return <div
       role="button"
       tabIndex={0}
@@ -473,6 +511,7 @@ function Card({ entity, compact = false, selected = false, onToggle, onPointerDo
           onActivate?.()
         }
       }}
+      onClick={onClick}
       {...commonProps}
       {...publicInspectionProps}
       {...highlightProps}
@@ -490,15 +529,18 @@ function ManaTray({ mana, owner }: ManaTrayProps) {
   const permanentCount = Math.max(0, Math.floor(mana.maximum))
   const availablePermanentCount = Math.max(0, Math.min(permanentCount, Math.floor(mana.current)))
   const temporaryCount = Math.max(0, Math.floor(mana.temporary))
+  const overloadLocked = Math.max(0, Math.floor(mana.overloadLocked ?? 0))
   return (
     <div
       className={`resource-pills mana-tray mana-crystal ${mana.current + mana.temporary > 0 ? 'mana-crystal--ready' : ''}`}
       role="group"
       aria-label={`法力 ${mana.current}/${mana.maximum}，临时 ${mana.temporary}`}
+      aria-description={overloadLocked > 0 ? `过载锁定 ${overloadLocked}` : undefined}
       data-mana-owner={owner}
       data-mana-current={mana.current}
       data-mana-max={mana.maximum}
       data-mana-temporary={mana.temporary}
+      data-mana-overload={overloadLocked}
     >
       <strong className="mana-crystal-value" aria-live="polite">{mana.current}/{mana.maximum}</strong>
       <div className="mana-crystal-list" aria-hidden="true">
@@ -509,6 +551,7 @@ function ManaTray({ mana, owner }: ManaTrayProps) {
         {Array.from({ length: temporaryCount }, (_, index) => <span key={`temporary-${index + 1}`} className="mana-crystal-gem mana-crystal-gem--temporary" data-mana-slot={permanentCount + index + 1} data-mana-kind="temporary" data-mana-state="temporary"><span className="mana-crystal-gem-shine" /></span>)}
       </div>
       {temporaryCount > 0 ? <small className="mana-crystal-temporary">+{temporaryCount}</small> : null}
+      {overloadLocked > 0 ? <small className="mana-crystal-overload">🔒{overloadLocked}</small> : null}
     </div>
   )
 }
@@ -576,8 +619,14 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
           <AssetImage src={artAssetPath(entity)} fallbackSrc={entity.assetPath} alt={`${label}英雄 ${entity.name}`} className="hero-art" />
         </span>
           <span className="hero-health-badge" aria-live="polite">{currentHealth}</span>
-          {currentAttack > 0 ? <span className={`hero-attack-badge ${entity.attack > 0 ? 'hero-attack-badge--temporary' : ''}`} aria-label={`攻击 ${currentAttack}`} data-hero-attack-current={currentAttack}>{currentAttack}</span> : null}
-          {entity.armor > 0 ? <span className="hero-armor-badge" aria-label={`护甲 ${entity.armor}`} data-hero-armor-current={entity.armor}>{entity.armor}</span> : null}
+          {currentAttack > 0 ? <span className={`hero-attack-badge ${entity.attack > 0 ? 'hero-attack-badge--temporary' : ''}`} aria-label={`攻击 ${currentAttack}`} data-hero-attack-current={currentAttack}>
+            <AssetImage src={CARD_FRAME_MATERIALS.attack} alt="" className="hero-stat-asset" />
+            <span className="hero-stat-value" aria-hidden="true">{currentAttack}</span>
+          </span> : null}
+          {entity.armor > 0 ? <span className="hero-armor-badge" aria-label={`护甲 ${entity.armor}`} data-hero-armor-current={entity.armor}>
+            <AssetImage src={CARD_FRAME_MATERIALS.armor} alt="" className="hero-stat-asset" />
+            <span className="hero-stat-value" aria-hidden="true">{entity.armor}</span>
+          </span> : null}
         </div>
         <div className="hero-details">
         <strong>{label}<small>{entity.name}</small></strong>
@@ -589,8 +638,14 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
       {weapon ? <div className="weapon-slot" tabIndex={0} aria-label={`${label}武器 ${weapon.name}，攻击 ${weapon.attack}，耐久 ${weapon.durability}`} data-card-definition-id={weapon.definitionId} data-entity-id={weapon.id} data-card-cost-current={weapon?.cost} data-card-attack-current={weapon.attack} data-card-value-current={weapon.durability} data-card-value-max={weaponDefinition?.durability} data-card-value-label="耐久" {...inspectionAttributes(weaponInspection, weapon.keywords.length > 0)}>
         <span className="weapon-art-window">
           <AssetImage src={weapon.assetPath} alt={`${weapon.name}武器卡图`} className="weapon-art" />
-          <span className="weapon-stat weapon-attack" aria-hidden="true">{weapon.attack}</span>
-          <span className="weapon-stat weapon-durability" aria-hidden="true">{weapon.durability}</span>
+          <span className="weapon-stat weapon-attack" aria-hidden="true">
+            <AssetImage src={CARD_FRAME_MATERIALS.weaponAttack} alt="" className="weapon-stat-asset" />
+            <span className="weapon-stat-value">{weapon.attack}</span>
+          </span>
+          <span className="weapon-stat weapon-durability" aria-hidden="true">
+            <AssetImage src={CARD_FRAME_MATERIALS.weaponDurability} alt="" className="weapon-stat-asset" />
+            <span className="weapon-stat-value">{weapon.durability}</span>
+          </span>
         </span>
         <span className="weapon-name">{weapon.name}</span>
       </div> : null}
@@ -615,7 +670,10 @@ function Hero({ entity, heroPower, weapon, label, mana, onEntityPointerDown, onE
       >
         <span className="hero-power-art-window">
           <AssetImage src={artAssetPath(heroPower)} fallbackSrc={heroPower.assetPath} alt={`英雄技能 ${heroPower.name}`} className="hero-power-art" />
-          <span className="hero-power-cost" aria-hidden="true" data-card-cost-current={heroPower.cost}>{heroPower.cost}</span>
+          <span className="hero-power-cost" aria-hidden="true" data-card-cost-current={heroPower.cost}>
+            <AssetImage src={CARD_FRAME_MATERIALS.costCrystal} alt="" className="hero-power-cost-asset" />
+            <span className="hero-power-cost-value">{heroPower.cost}</span>
+          </span>
         </span>
         <span>{heroPower.name}</span>
         </button>
@@ -1040,6 +1098,55 @@ export function GameBoard() {
       if (!discoverOpen && discoverAction?.cardInstanceId === entity.id) return { role: 'source' }
       return !discoverOpen && entity.id === session.view.opponent.hero.id && discoverAction ? { role: 'target' } : undefined
     }
+    const highlightPlayAction = (action: PlayCardAction | undefined): TutorialHighlight | undefined => {
+      if (!action) return undefined
+      if (action.cardInstanceId === entity.id) return { role: 'source' }
+      return action.targetEntityId === entity.id ? { role: 'target' } : undefined
+    }
+    if (tutorial.stepId === 'TAUNT' || tutorial.stepId === 'DIVINE_SHIELD') {
+      const attack = attackActions.find((action) => action.attackSourceId === session.view.self.board.find((candidate) => candidate.definitionId === 'DRG_066')?.id && action.attackTargetId === session.view.opponent.board.find((candidate) => candidate.definitionId === 'CORE_ICC_038')?.id)
+      if (attack?.attackSourceId === entity.id) return { role: 'source' }
+      return attack?.attackTargetId === entity.id ? { role: 'target' } : undefined
+    }
+    if (tutorial.stepId === 'WINDFURY') {
+      const play = playActions.find((action) => cardDefinitionForAction(action) === 'CATA_153')
+      const attack = attackActions.find((action) => action.attackSourceId === session.view.self.board.find((candidate) => candidate.definitionId === 'CATA_153')?.id && action.attackTargetId === session.view.opponent.board.find((candidate) => candidate.definitionId === 'CS2_119')?.id)
+      return highlightPlayAction(play) ?? (attack?.attackSourceId === entity.id ? { role: 'source' } : attack?.attackTargetId === entity.id ? { role: 'target' } : undefined)
+    }
+    if (tutorial.stepId === 'DEATHRATTLE') {
+      const attack = attackActions.find((action) => action.attackSourceId === session.view.self.board.find((candidate) => candidate.definitionId === 'EX1_556')?.id && action.attackTargetId === session.view.opponent.board.find((candidate) => candidate.definitionId === 'CS2_118')?.id)
+      if (attack?.attackSourceId === entity.id) return { role: 'source' }
+      return attack?.attackTargetId === entity.id ? { role: 'target' } : undefined
+    }
+    if (tutorial.stepId === 'RUSH') {
+      const play = playActions.find((action) => cardDefinitionForAction(action) === 'DINO_136t')
+      if (play?.cardInstanceId === entity.id) return { role: 'source' }
+      const attack = attackActions.find((action) => action.attackSourceId === session.view.self.board.find((candidate) => candidate.definitionId === 'DINO_136t')?.id && action.attackTargetId === session.view.opponent.board.find((candidate) => candidate.definitionId === 'CS2_119')?.id)
+      if (attack?.attackSourceId === entity.id) return { role: 'source' }
+      return attack?.attackTargetId === entity.id ? { role: 'target' } : undefined
+    }
+    if (tutorial.stepId === 'CHARGE') {
+      const play = playActions.find((action) => cardDefinitionForAction(action) === 'HERO_11bpt')
+      if (play?.cardInstanceId === entity.id) return { role: 'source' }
+      const attack = attackActions.find((action) => action.attackSourceId === session.view.self.board.find((candidate) => candidate.definitionId === 'HERO_11bpt')?.id && action.attackTargetId === session.view.opponent.hero.id)
+      if (attack?.attackSourceId === entity.id) return { role: 'source' }
+      return attack?.attackTargetId === entity.id ? { role: 'target' } : undefined
+    }
+    if (tutorial.stepId === 'STEALTH') return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'TLC_522'))
+    if (tutorial.stepId === 'LIFESTEAL') return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'JAIL_441'))
+    if (tutorial.stepId === 'REBORN') return highlightPlayAction(playActions.find((action) => ['CAP_801', 'CS2_029'].includes(cardDefinitionForAction(action) ?? '')))
+    if (tutorial.stepId === 'IMMUNE') return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'WW_815'))
+    if (tutorial.stepId === 'FREEZE') return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'CORE_CS2_024'))
+    if (tutorial.stepId === 'SILENCE') return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'TSC_926'))
+    if (tutorial.stepId === 'SPELLPOWER') {
+      if (entity.definitionId === 'CORE_EX1_012') return { role: 'source' }
+      return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'CORE_CS2_024'))
+    }
+    if (tutorial.stepId === 'OVERLOAD') return highlightPlayAction(playActions.find((action) => cardDefinitionForAction(action) === 'SCH_427'))
+    if (tutorial.stepId === 'COMBO') {
+      const play = playActions.find((action) => ['GAME_005', 'CATA_785'].includes(cardDefinitionForAction(action) ?? ''))
+      return highlightPlayAction(play)
+    }
     const magneticAction = playActions.find((action) => action.playMode === 'MAGNETIC' && action.targetEntityId === session.view.self.board.find((target) => target.definitionId === 'BOT_309')?.id && cardDefinitionForAction(action) === 'BOT_563')
     if (magneticAction?.cardInstanceId === entity.id) return { role: 'source' }
     return magneticAction?.targetEntityId === entity.id ? { role: 'target' } : undefined
@@ -1120,7 +1227,11 @@ export function GameBoard() {
                 {session.view.self.board.length === 0 ? <span className="empty-zone">你的战场为空</span> : session.view.self.board.map((entity) => {
                   const attackable = attackActions.some((action) => action.attackSourceId === entity.id)
                   const payload = boardEntityPayload(entity)
-                  return <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} attackable={attackable} projectedDeath={projectedDeathEntityIds.has(entity.id)} attackSource={attackMotionFor(entity.id)} attackTarget={attackTargetIds.has(entity.id)} onPointerDown={payload ? (event) => startDrag(payload, event) : undefined} onActivate={payload ? () => activateFromKeyboard(payload) : undefined} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />
+                  const locationAction = session.legalActions.find((action): action is Extract<LegalActionDescriptor, { type: 'ACTIVATE_LOCATION' }> => action.type === 'ACTIVATE_LOCATION' && action.locationEntityId === entity.id)
+                  const activateLocation = locationAction ? () => {
+                    if (!interactionLocked) void dispatch(locationAction)
+                  } : undefined
+                  return <Card key={entity.id} entity={entity} compact battlefield dropTargetId={entity.id} dropTargetClassName={entityTargetClass(entity.id)} attackable={attackable} effectReady={activateLocation !== undefined} projectedDeath={projectedDeathEntityIds.has(entity.id)} attackSource={attackMotionFor(entity.id)} attackTarget={attackTargetIds.has(entity.id)} onPointerDown={payload ? (event) => startDrag(payload, event) : undefined} onActivate={activateLocation ?? (payload ? () => activateFromKeyboard(payload) : undefined)} onClick={activateLocation} inspection={inspectionFor(entity)} tutorialHighlight={tutorialHighlightFor(entity)} />
                 })}
               </div>
               <Hero

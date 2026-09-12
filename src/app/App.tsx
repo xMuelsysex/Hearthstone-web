@@ -94,7 +94,7 @@ export function App() {
   const [snapshot, setSnapshot] = useState<SessionSnapshot | null>(() => controller.snapshot())
   const [tutorialSession, setTutorialSession] = useState<TutorialStepSession | null>(() => firstLaunchTutorial ? startTutorialStep(TUTORIAL_STEPS[0]!.id) : null)
   const [tutorialIndex, setTutorialIndex] = useState(0)
-  const [notice, setNotice] = useState(storageError ? `本地存储损坏：${storageError}` : firstLaunchTutorial ? '首次启动：完成或跳过五步教程后进入主菜单。' : '冻结卡牌、棋盘与权威日志已就绪。')
+  const [notice, setNotice] = useState(storageError ? `本地存储损坏：${storageError}` : firstLaunchTutorial ? `首次启动：完成或跳过 ${TUTORIAL_STEPS.length} 步教程后进入主菜单。` : '冻结卡牌、棋盘与权威日志已就绪。')
   const [DebugPanel, setDebugPanel] = useState<ComponentType<DebugPanelProps> | null>(null)
 
   useEffect(() => controller.subscribe(() => setSnapshot(controller.snapshot())), [controller])
@@ -313,7 +313,7 @@ export function App() {
         return
       }
       setTutorialSession(null)
-      setNotice('五步教程已完成。')
+      setNotice('教程已完成。')
       setScreen('menu')
     },
     skipTutorial,

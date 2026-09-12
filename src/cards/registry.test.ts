@@ -11,7 +11,7 @@ import {
 import sourceSnapshot from '@/cards/data/source-selected.250339.json' with { type: 'json' }
 import { CARD_DEFINITIONS_V1, getCardDefinition } from '@/cards/registry'
 
-const excludedMechanics = ['SECRET', 'QUEST', 'LOCATION', 'TITAN', 'DORMANT', 'TRADEABLE', 'OVERLOAD', 'SILENCE', 'TRANSFORM', 'FREEZE', 'REBORN']
+const excludedMechanics = ['SECRET', 'QUEST', 'LOCATION', 'TITAN', 'DORMANT', 'TRADEABLE', 'SILENCE', 'TRANSFORM']
 
 describe('card baseline', () => {
   it('contains two legal 30-card decks', () => {
@@ -96,5 +96,9 @@ describe('card baseline', () => {
     expect(getCardDefinition('DINO_136t').keywords).toContain('RUSH')
     expect(getCardDefinition('CORE_ICC_038').keywords).toContain('DIVINE_SHIELD')
     expect(getCardDefinition('CATA_153').keywords).toContain('WINDFURY')
+    expect(getCardDefinition('CORE_CS2_024').keywords).toContain('FREEZE')
+    expect(getCardDefinition('JAIL_441').keywords).toContain('LIFESTEAL')
+    expect(getCardDefinition('TLC_522').keywords).toContain('STEALTH')
+    expect(getCardDefinition('SCH_427').keywords).toContain('OVERLOAD')
   })
 })

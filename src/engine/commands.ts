@@ -5,6 +5,7 @@ import type { AuthoritativeSessionStateV1, CommandId, DecisionId, EntityId, Play
 export type GameCommand =
   | { type: 'CONFIRM_MULLIGAN'; actorId: PlayerId; commandId: CommandId; mulliganCardInstanceIds: EntityId[] }
   | { type: 'PLAY_CARD'; actorId: PlayerId; commandId: CommandId; cardInstanceId: EntityId; playMode: 'NORMAL' | 'MAGNETIC'; placementIndex?: number; targetEntityId?: EntityId }
+  | { type: 'ACTIVATE_LOCATION'; actorId: PlayerId; commandId: CommandId; locationEntityId: EntityId }
   | { type: 'SELECT_DISCOVER'; actorId: PlayerId; commandId: CommandId; decisionId: DecisionId; discoverChoiceId: CardDefinitionId }
   | { type: 'ATTACK'; actorId: PlayerId; commandId: CommandId; attackSourceId: EntityId; attackTargetId: EntityId }
   | { type: 'USE_HERO_POWER'; actorId: PlayerId; commandId: CommandId; targetEntityId?: EntityId }
@@ -14,7 +15,7 @@ export type TargetLegalityEvidence = {
   actionKind: 'SPELL' | 'HERO_POWER' | 'BATTLECRY'
   actorId: PlayerId
   publicCandidateEntityIds: EntityId[]
-  excluded: Array<{ entityId: EntityId; reason: 'ELUSIVE' }>
+  excluded: Array<{ entityId: EntityId; reason: 'ELUSIVE' | 'STEALTH' | 'IMMUNE' }>
   selectedTargetEntityId: EntityId
 }
 
@@ -28,6 +29,7 @@ export type MulliganActionDescriptor = {
 export type LegalActionDescriptor =
   | MulliganActionDescriptor
   | { id: string; type: 'PLAY_CARD'; actorId: PlayerId; cardInstanceId: EntityId; playMode: 'NORMAL' | 'MAGNETIC'; placementIndex?: number; targetEntityId?: EntityId; evidence?: TargetLegalityEvidence }
+  | { id: string; type: 'ACTIVATE_LOCATION'; actorId: PlayerId; locationEntityId: EntityId }
   | { id: string; type: 'SELECT_DISCOVER'; actorId: PlayerId; decisionId: DecisionId; discoverChoiceId: CardDefinitionId }
   | { id: string; type: 'ATTACK'; actorId: PlayerId; attackSourceId: EntityId; attackTargetId: EntityId; projectedDeathEntityIds: EntityId[] }
   | { id: string; type: 'USE_HERO_POWER'; actorId: PlayerId; targetEntityId?: EntityId; evidence?: TargetLegalityEvidence }
@@ -57,6 +59,8 @@ export function commandFromAction(
       if (descriptor.targetEntityId !== undefined) command.targetEntityId = descriptor.targetEntityId
       return command
     }
+    case 'ACTIVATE_LOCATION':
+      return { type: descriptor.type, actorId: descriptor.actorId, commandId, locationEntityId: descriptor.locationEntityId }
     case 'SELECT_DISCOVER':
       return { type: descriptor.type, actorId: descriptor.actorId, commandId, decisionId: descriptor.decisionId, discoverChoiceId: descriptor.discoverChoiceId }
     case 'ATTACK':
@@ -99,6 +103,8 @@ function actionMatchesCommand(action: LegalActionDescriptor, command: GameComman
   switch (action.type) {
     case 'PLAY_CARD':
       return command.type === 'PLAY_CARD' && action.cardInstanceId === command.cardInstanceId && action.playMode === command.playMode && action.placementIndex === command.placementIndex && action.targetEntityId === command.targetEntityId
+    case 'ACTIVATE_LOCATION':
+      return command.type === 'ACTIVATE_LOCATION' && action.locationEntityId === command.locationEntityId
     case 'SELECT_DISCOVER':
       return command.type === 'SELECT_DISCOVER' && action.decisionId === command.decisionId && action.discoverChoiceId === command.discoverChoiceId
     case 'ATTACK':

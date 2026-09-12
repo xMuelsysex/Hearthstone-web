@@ -18,6 +18,12 @@ export function normalizeStateForCardDataVersion(state: AuthoritativeSessionStat
     delete entity.cost
     delete entity.summonedThisTurn
     delete entity.attacksRemaining
+    delete entity.frozen
+    delete entity.immune
+  }
+  for (const player of Object.values(normalized.game.players)) {
+    delete player.cardsPlayedThisTurn
+    delete player.overloadLocked
   }
   return normalized
 }

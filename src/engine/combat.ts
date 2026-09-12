@@ -14,8 +14,8 @@ export function projectedCombatDeaths(state: AuthoritativeSessionStateV1, source
   const targetAttack = combatAttackValue(state.game, target.id)
   const deaths: EntityId[] = []
 
-  if (!target.keywords.includes('DIVINE_SHIELD') && wouldKill(target, sourceAttack, source.keywords.includes('POISONOUS'))) deaths.push(target.id)
-  if (targetAttack > 0 && !source.keywords.includes('DIVINE_SHIELD') && wouldKill(source, targetAttack, target.keywords.includes('POISONOUS'))) deaths.push(source.id)
+  if (!target.immune && !target.keywords.includes('DIVINE_SHIELD') && wouldKill(target, sourceAttack, source.keywords.includes('POISONOUS'))) deaths.push(target.id)
+  if (targetAttack > 0 && !source.immune && !source.keywords.includes('DIVINE_SHIELD') && wouldKill(source, targetAttack, target.keywords.includes('POISONOUS'))) deaths.push(source.id)
   return deaths
 }
 

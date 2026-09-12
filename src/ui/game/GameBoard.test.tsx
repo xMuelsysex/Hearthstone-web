@@ -6,6 +6,7 @@ import type { BattleAnimation, LegalActionDescriptor, PlayerSessionValue, Player
 import { CARD_DEFINITIONS_V1 } from '@/cards/registry'
 import { projectPlayerView } from '@/engine/projection'
 import { createShowcaseState } from '@/scenarios/showcase'
+import { CARD_FRAME_MATERIALS } from '@/ui/card/cardFrameMaterials'
 import { GameBoard } from '@/ui/game/GameBoard'
 
 type SessionOverrides = Partial<Pick<PlayerSessionValue, 'mode' | 'tutorial' | 'error' | 'busy' | 'lastEventKey' | 'lastEventTypes' | 'lastAnimations'>>
@@ -348,6 +349,33 @@ describe('GameBoard public UI boundaries', () => {
     expect(container.querySelector('[data-target-arrow]')).toBeNull()
   })
 
+  it('uses the official CardFrame for hand, discover, and drag card faces', () => {
+    const view = publicView()
+    const handCard = view.self.hand.find((entity) => entity.definitionId === 'RLK_843')
+    if (!handCard) throw new Error('RLK_843 fixture missing from public hand')
+    const discoverChoiceIds = ['CS2_196', 'RLK_843', 'CS2_082'] as const
+    const actions: LegalActionDescriptor[] = [
+      playCardAction(handCard, view.opponent.hero.id),
+      ...discoverChoiceIds.map((discoverChoiceId) => ({
+        id: `discover-${discoverChoiceId}`,
+        type: 'SELECT_DISCOVER' as const,
+        actorId: 'PLAYER' as const,
+        decisionId: 'discover-card-frame',
+        discoverChoiceId,
+      })),
+    ]
+
+    const { container } = renderBoard(makeSession(view, actions))
+    const handCardNode = container.querySelector(`.player-hand [data-entity-id="${handCard.id}"]`)
+    expect(handCardNode?.querySelector('.card-frame')).toHaveAttribute('data-card-frame-type', 'SPELL')
+    expect(container.querySelectorAll('.discover-choices .card-frame')).toHaveLength(discoverChoiceIds.length)
+
+    if (!(handCardNode instanceof HTMLElement)) throw new Error('hand card fixture missing')
+    fireEvent.pointerDown(handCardNode, { pointerId: 11, pointerType: 'mouse', button: 0, clientX: 240, clientY: 240 })
+    expect(container.querySelector('[data-drag-preview] .card-frame')).toHaveAttribute('data-card-frame-type', 'SPELL')
+    fireEvent.pointerUp(window, { pointerId: 11, clientX: 240, clientY: 240 })
+  })
+
   it('requests original art for every supported minion on the battlefield', () => {
     const view = publicView()
     const minions = Object.values(CARD_DEFINITIONS_V1).filter((definition) => definition.type === 'MINION')
@@ -419,7 +447,8 @@ describe('GameBoard public UI boundaries', () => {
     expect(opponentMinionCard?.querySelector('.card-cost')).toBeNull()
     expect(weaponCard).toHaveAttribute('data-card-value-label', '耐久')
     expect(weaponCard).toHaveAttribute('data-card-value-current', '1')
-    expect(weaponCard?.querySelector('.card-health')).toHaveTextContent('1')
+    expect(weaponCard?.querySelector('.card-frame')).toHaveAttribute('data-card-frame-type', 'WEAPON')
+    expect(weaponCard?.querySelector('.card-frame-value')).toHaveTextContent('1')
     expect(weaponCard).toHaveAttribute('aria-label', '炽炎战斧，攻击 3，耐久 1/2')
   })
 
@@ -474,16 +503,21 @@ describe('GameBoard public UI boundaries', () => {
     expect(playerHero).toHaveAttribute('data-hero-attack-current', '4')
     expect(playerHero.querySelector('.hero-attack-badge')).toHaveTextContent('4')
     expect(playerHero.querySelector('.hero-armor-badge')).toHaveTextContent('3')
+    expect(playerHero.querySelector('.hero-attack-badge .hero-stat-asset')).toHaveAttribute('src', CARD_FRAME_MATERIALS.attack)
+    expect(playerHero.querySelector('.hero-armor-badge .hero-stat-asset')).toHaveAttribute('src', CARD_FRAME_MATERIALS.armor)
 
     const weaponSlot = playerHero.querySelector('.weapon-slot')
     expect(weaponSlot).toHaveAttribute('data-card-attack-current', '3')
     expect(weaponSlot).toHaveAttribute('data-card-value-current', '1')
     expect(weaponSlot?.querySelector('.weapon-attack')).toHaveTextContent('3')
     expect(weaponSlot?.querySelector('.weapon-durability')).toHaveTextContent('1')
+    expect(weaponSlot?.querySelector('.weapon-attack .weapon-stat-asset')).toHaveAttribute('src', CARD_FRAME_MATERIALS.weaponAttack)
+    expect(weaponSlot?.querySelector('.weapon-durability .weapon-stat-asset')).toHaveAttribute('src', CARD_FRAME_MATERIALS.weaponDurability)
 
     const heroPower = playerHero.querySelector('.hero-power-slot')
     expect(heroPower).toHaveAttribute('data-card-cost-current', '2')
     expect(heroPower?.querySelector('.hero-power-cost')).toHaveTextContent('2')
+    expect(heroPower?.querySelector('.hero-power-cost-asset')).toHaveAttribute('src', CARD_FRAME_MATERIALS.costCrystal)
     const manaCrystal = container.querySelector('.player-hand .mana-crystal')
     expect(manaCrystal).toHaveClass('mana-tray')
     expect(manaCrystal).toHaveAttribute('data-mana-current', String(view.self.mana.current))
@@ -496,13 +530,14 @@ describe('GameBoard public UI boundaries', () => {
     expect(powerInspection).toHaveClass('large-card-preview')
     expect(powerInspection).toHaveAttribute('data-inspection-presentation', 'card-only')
     expect(powerInspection?.querySelector('.large-inspection-card--hero_power')).toBeInTheDocument()
-    expect(powerInspection?.querySelector('.card-cost')).toHaveTextContent('2')
+    expect(powerInspection?.querySelector('.card-frame')).toHaveAttribute('data-card-frame-type', 'HERO_POWER')
+    expect(powerInspection?.querySelector('.card-frame-cost')).toHaveTextContent('2')
     expect(powerInspection?.querySelector('.inspection-card-copy')).toBeNull()
 
     fireEvent.focus(weaponSlot)
     const weaponInspection = container.querySelector('.inspection-card-copy')
     expect(weaponInspection).toHaveTextContent('耐久 1/2')
-    expect(container.querySelector('.inspection-card-art .card-health')).toHaveTextContent('1')
+    expect(container.querySelector('.inspection-card-art .card-frame-value')).toHaveTextContent('1')
   })
 
   it('uses original hero and hero-power art without extra frame placeholders', () => {
@@ -599,9 +634,11 @@ describe('GameBoard public UI boundaries', () => {
     expect(preview).toHaveAttribute('data-inspection-presentation', 'card-only')
     expect(preview?.querySelector('.battlefield-inspection-card')).toBeInTheDocument()
     expect(preview?.querySelector('.inspection-card-copy')).toBeNull()
-    expect(preview?.querySelector('.card-cost')).toHaveAttribute('data-card-cost-current')
-    expect(preview?.querySelector('.card-attack')).toHaveTextContent(String(minion.attack))
-    expect(preview?.querySelector('.card-health')).toHaveTextContent(String(minion.health))
+    expect(preview?.querySelector('.card-frame')).toHaveAttribute('data-card-frame-type', 'MINION')
+    expect(preview?.querySelector('.card-frame')).toHaveAttribute('data-card-cost-current', String(minion.cost))
+    expect(preview?.querySelector('.card-frame-cost')).toHaveTextContent(String(minion.cost))
+    expect(preview?.querySelector('.card-frame-attack')).toHaveTextContent(String(minion.attack))
+    expect(preview?.querySelector('.card-frame-value')).toHaveTextContent(String(minion.health))
     expect(preview?.querySelector('[data-card-value-current]')).toHaveAttribute('data-card-value-current', String(minion.health))
 
     const updatedView = structuredClone(view)

@@ -1,7 +1,7 @@
 export type CardDefinitionId = string
 export type CardClass = 'DEATHKNIGHT' | 'DEMONHUNTER' | 'DRUID' | 'HUNTER' | 'MAGE' | 'PALADIN' | 'PRIEST' | 'ROGUE' | 'SHAMAN' | 'WARLOCK' | 'WARRIOR' | 'NEUTRAL'
 export type CardType = 'MINION' | 'SPELL' | 'WEAPON' | 'HERO' | 'HERO_POWER' | 'LOCATION'
-export type Keyword = 'MANATHIRST' | 'POISONOUS' | 'ELUSIVE' | 'DISCOVER' | 'MAGNETIC' | 'TAUNT' | 'DEATHRATTLE' | 'CHARGE' | 'RUSH' | 'DIVINE_SHIELD' | 'WINDFURY'
+export type Keyword = 'MANATHIRST' | 'POISONOUS' | 'ELUSIVE' | 'DISCOVER' | 'MAGNETIC' | 'TAUNT' | 'DEATHRATTLE' | 'CHARGE' | 'RUSH' | 'DIVINE_SHIELD' | 'WINDFURY' | 'STEALTH' | 'LIFESTEAL' | 'REBORN' | 'IMMUNE' | 'FREEZE' | 'SPELLPOWER' | 'OVERLOAD' | 'COMBO'
 export type Race = 'BEAST' | 'DRAGON' | 'ELEMENTAL' | 'MECHANICAL' | 'MURLOC' | 'NAGA' | 'UNDEAD'
 export type TargetingMode = 'NONE' | 'ANY_CHARACTER' | 'FRIENDLY_CHARACTER' | 'ENEMY_CHARACTER' | 'ANY_MINION' | 'ENEMY_DAMAGED_MINION' | 'ENEMY_HERO' | 'FRIENDLY_MINION' | 'FRIENDLY_BEAST' | 'UNHURT_ENEMY_MINION'
 
@@ -51,6 +51,16 @@ export type EffectExecutorId =
   | 'ADD_TOKEN_CARD'
   | 'DISCOVER_CARD'
   | 'TEMPORARY_HERO_ATTACK_AND_ARMOR'
+  | 'DAMAGE_AND_FREEZE'
+  | 'FREEZE_CHARACTER'
+  | 'SILENCE_OTHER_MINIONS'
+  | 'SILENCE_MINION'
+  | 'BUFF_AND_GRANT_REBORN_TAUNT'
+  | 'GRANT_IMMUNITY_AND_ATTACK_ALL'
+  | 'MANA_RESTORE_AND_OVERLOAD'
+  | 'COMBO_DAMAGE'
+  | 'FAN_OF_KNIVES'
+  | 'DEATHRATTLE_DRAW'
 
 export type CardDefinitionV1 = {
   id: CardDefinitionId
@@ -75,5 +85,8 @@ export type CardDefinitionV1 = {
   manathirstThreshold: number
   tokenCardId: CardDefinitionId | null
   targeting: TargetingMode
+  battlecryEffect: EffectExecutorId | null
+  comboEffect: EffectExecutorId | null
+  deathrattleEffect: EffectExecutorId | null
   assetId: string
 }

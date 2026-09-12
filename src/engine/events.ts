@@ -10,6 +10,7 @@ export type DamagePacketV1 = {
   targetEntityId: EntityId
   amount: number
   poisonous: boolean
+  lifesteal?: boolean
   reason: DamageReason
 }
 
@@ -23,7 +24,8 @@ export type DomainEventV1 =
   | { type: 'CARD_DRAWN'; actorId: PlayerId; entityId: EntityId; burned: boolean }
   | { type: 'CARD_ADDED'; actorId: PlayerId; entity: GameEntityV1; burned: boolean }
   | { type: 'FATIGUE_INCREASED'; actorId: PlayerId; amount: number }
-  | { type: 'CARD_PLAYED'; actorId: PlayerId; entityId: EntityId; manaCost: number; destination: 'BOARD' | 'GRAVEYARD' | 'SET_ASIDE'; placementIndex: number | null }
+  | { type: 'CARD_PLAYED'; actorId: PlayerId; entityId: EntityId; manaCost: number; destination: 'BOARD' | 'GRAVEYARD' | 'SET_ASIDE'; placementIndex: number | null; comboActive?: boolean }
+  | { type: 'LOCATION_ACTIVATED'; actorId: PlayerId; entityId: EntityId; durabilityCost: number; destroyed: boolean }
   | { type: 'MANATHIRST_BONUS_APPLIED'; sourceEntityId: EntityId; threshold: number; value: number }
   | { type: 'ATTACK_DECLARED'; actorId: PlayerId; sourceEntityId: EntityId; targetEntityId: EntityId }
   | { type: 'HERO_POWER_USED'; actorId: PlayerId; heroPowerEntityId: EntityId; manaCost: number }
@@ -31,8 +33,11 @@ export type DomainEventV1 =
   | { type: 'DAMAGE_BATCH_APPLIED'; packets: DamagePacketV1[] }
   | { type: 'MINION_MARKED_DESTROYED'; entityId: EntityId }
   | { type: 'MINION_DEATH_BATCH'; deaths: Array<{ entityId: EntityId; reason: DeathReason }> }
+  | { type: 'MINION_SILENCED'; targetEntityId: EntityId }
+  | { type: 'CHARACTER_FROZEN'; targetEntityId: EntityId }
+  | { type: 'CHARACTER_IMMUNITY_GRANTED'; targetEntityId: EntityId }
   | { type: 'DEATHRATTLE_TRIGGERED'; entityId: EntityId }
-  | { type: 'MINION_SUMMONED'; actorId: PlayerId; entity: GameEntityV1; placementIndex: number; fromDeck?: boolean }
+  | { type: 'MINION_SUMMONED'; actorId: PlayerId; entity: GameEntityV1; placementIndex: number; fromDeck?: boolean; reborn?: boolean }
   | { type: 'MINION_BUFFED'; targetEntityId: EntityId; attackGain: number; healthGain: number }
   | { type: 'MINION_KEYWORD_GRANTED'; targetEntityId: EntityId; keyword: Keyword }
   | { type: 'ARMOR_GAINED'; actorId: PlayerId; amount: number }
@@ -40,6 +45,8 @@ export type DomainEventV1 =
   | { type: 'HERO_HEALTH_SET'; actorId: PlayerId; health: number }
   | { type: 'TEMPORARY_HERO_ATTACK_GAINED'; actorId: PlayerId; amount: number }
   | { type: 'TEMPORARY_MANA_GAINED'; actorId: PlayerId; amount: number }
+  | { type: 'MANA_RESTORED'; actorId: PlayerId; amount: number }
+  | { type: 'OVERLOAD_APPLIED'; actorId: PlayerId; amount: number }
   | { type: 'WEAPON_EQUIPPED'; actorId: PlayerId; entityId: EntityId; replacedEntityId: EntityId | null }
   | { type: 'WEAPON_CREATED_AND_EQUIPPED'; actorId: PlayerId; entity: GameEntityV1; replacedEntityId: EntityId | null }
   | { type: 'WEAPON_DURABILITY_LOST'; actorId: PlayerId; entityId: EntityId; amount: number; destroyed: boolean }

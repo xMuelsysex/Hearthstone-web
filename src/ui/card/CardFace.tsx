@@ -6,16 +6,15 @@ import { CardFrame, type CardFrameLayer } from '@/ui/card/CardFrame'
 type CardFaceProps = {
   entity: PublicEntityViewModel
   imageAlt?: string
-  artClassName?: string
   battlefield?: boolean
   cardFrame?: boolean
   frameImagePath?: string
   cardLayer?: CardFrameLayer
 }
 
-export function CardFace({ entity, imageAlt, artClassName, battlefield = false, cardFrame = false, frameImagePath, cardLayer }: CardFaceProps) {
+export function CardFace({ entity, imageAlt, battlefield = false, cardFrame = false, frameImagePath, cardLayer }: CardFaceProps) {
   const values = cardRuntimeValues(entity)
-  if (cardFrame) return <CardFrame entity={entity} imagePath={frameImagePath ?? entity.assetPath} {...(imageAlt === undefined ? {} : { imageAlt })} {...(cardLayer === undefined ? {} : { layer: cardLayer })} />
+  if (cardFrame || !battlefield || values.definition.type === 'LOCATION') return <CardFrame entity={entity} imagePath={frameImagePath ?? entity.assetPath} {...(imageAlt === undefined ? {} : { imageAlt })} {...(cardLayer === undefined ? {} : { layer: cardLayer })} />
   const attackState = entity.attack > values.definition.attack ? 'buffed' : entity.attack < values.definition.attack ? 'debuffed' : 'base'
   const valueState = values.currentValue < values.maximumValue
     ? 'damaged'
@@ -26,8 +25,7 @@ export function CardFace({ entity, imageAlt, artClassName, battlefield = false, 
         : 'base'
   return (
     <>
-      {battlefield ? <span className="battlefield-art-window"><AssetImage src={artAssetPath(entity)} fallbackSrc={entity.assetPath} alt={imageAlt ?? `${entity.name}原画`} className="battlefield-card-art" /></span> : <AssetImage src={entity.assetPath} alt={imageAlt ?? `${entity.name}卡图`} className={artClassName ?? ''} />}
-      {!battlefield && values.definition.type !== 'HERO' ? <span className="card-cost layered-card-cost" aria-label={`费用 ${values.cost}`} data-card-cost-current={values.cost}>{values.cost}</span> : null}
+      <span className="battlefield-art-window"><AssetImage src={artAssetPath(entity)} fallbackSrc={entity.assetPath} alt={imageAlt ?? `${entity.name}原画`} className="battlefield-card-art" /></span>
       {values.hasStats ? <span
         className="card-stats"
         aria-label={`攻击 ${entity.attack}，${values.valueLabel} ${values.currentValue}/${values.maximumValue}`}
